@@ -1,6 +1,6 @@
 {
   "version": 4,
-  "updatedAt": "2026-07-09T16:33:21",
+  "updatedAt": "2026-07-09T16:53:13",
   "songsDir": "/home/tofinovak/aria-server/songs",
   "tracks": {
     "06 - [Nice Dream].mp3": {
@@ -715,7 +715,7 @@
       "title": "All That I Can Give",
       "artist": "The Plot in You",
       "albumArtist": "The Plot in You",
-      "album": "Vol. 2",
+      "album": "The Plot in You",
       "duration": 198.072,
       "year": 2024,
       "trackNumber": 3,
@@ -726,8 +726,8 @@
       },
       "hasArtwork": true,
       "isExplicit": false,
-      "searchText": "all that i can give the plot in you the plot in you vol. 2 06 - all that i can give.mp3",
-      "albumID": "ed72c775-8328-548c-a125-3d9658c9049f"
+      "searchText": "all that i can give the plot in you the plot in you the plot in you 06 - all that i can give.mp3",
+      "albumID": "f570936b-1f05-5a30-b25a-ba13ee718a70"
     },
     "13 - AmEN!.mp3": {
       "filename": "13 - AmEN!.mp3",
@@ -999,11 +999,11 @@
       "mtimeNs": 1783606124200199539,
       "id": "3a4a0273-7f72-5ae8-9f56-fc962a3810a0",
       "title": "Around the Railing",
-      "artist": "Daylight",
+      "artist": "Superheaven",
       "albumArtist": "Daylight",
       "album": "Jar",
       "duration": 309.168,
-      "year": 2013,
+      "year": 2014,
       "trackNumber": 12,
       "artwork": {
         "topHex": "#45D6C7",
@@ -1012,7 +1012,7 @@
       },
       "hasArtwork": true,
       "isExplicit": false,
-      "searchText": "around the railing daylight daylight jar 12 - around the railing.mp3",
+      "searchText": "around the railing superheaven daylight jar 12 - around the railing.mp3",
       "albumID": "d48e6f81-32c8-5ff9-ba55-ebfffa1175cf"
     },
     "06 - Sleep Token - Ascensionism.mp3": {
@@ -1155,7 +1155,7 @@
       "title": "Been Here Before",
       "artist": "The Plot in You",
       "albumArtist": "The Plot in You",
-      "album": "Vol. 3",
+      "album": "The Plot in You",
       "duration": 267.912,
       "year": 2024,
       "trackNumber": 1,
@@ -1166,8 +1166,8 @@
       },
       "hasArtwork": true,
       "isExplicit": false,
-      "searchText": "been here before the plot in you the plot in you vol. 3 07 - been here before.mp3",
-      "albumID": "4c92fe4a-0610-50cb-8ff9-8f51f5706673"
+      "searchText": "been here before the plot in you the plot in you the plot in you 07 - been here before.mp3",
+      "albumID": "f570936b-1f05-5a30-b25a-ba13ee718a70"
     },
     "01 - before it all starts.mp3": {
       "filename": "01 - before it all starts.mp3",
@@ -1175,11 +1175,11 @@
       "mtimeNs": 1783606059986836387,
       "id": "adce9c92-db03-55a2-878b-cf2aa5aba4d4",
       "title": "before it all starts",
-      "artist": "Superheaven",
+      "artist": "Moon Differences",
       "albumArtist": "Superheaven",
-      "album": "Jar",
+      "album": "music for lonely people",
       "duration": 56.184,
-      "year": 2014,
+      "year": 2025,
       "trackNumber": 1,
       "artwork": {
         "topHex": "#8ECAE6",
@@ -1188,8 +1188,8 @@
       },
       "hasArtwork": true,
       "isExplicit": false,
-      "searchText": "before it all starts superheaven superheaven jar 01 - before it all starts.mp3",
-      "albumID": "d48e6f81-32c8-5ff9-ba55-ebfffa1175cf"
+      "searchText": "before it all starts moon differences superheaven music for lonely people 01 - before it all starts.mp3",
+      "albumID": "7b9e6809-9d82-501b-ac76-3008c9235bb4"
     },
     "11 - Best Before： Death.mp3": {
       "filename": "11 - Best Before： Death.mp3",
@@ -1609,6 +1609,28 @@
       "searchText": "bullet proof..i wish i was radiohead radiohead the bends 09 - bullet proof ... i wish i was.mp3",
       "albumID": "4f0bac82-4235-56bf-b95a-941c1bf37281"
     },
+    "03 - VIOLENT VIRA - Burn Me With A Bible.mp3": {
+      "filename": "03 - VIOLENT VIRA - Burn Me With A Bible.mp3",
+      "size": 9961344,
+      "mtimeNs": 1783606075258922353,
+      "id": "1a97e58b-fee8-5178-8edf-a2e713cf8ab8",
+      "title": "Burn Me With A Bible",
+      "artist": "VIOLENT VIRA",
+      "albumArtist": "Superheaven",
+      "album": "Lover Of A Ghost",
+      "duration": 294.576,
+      "year": 2014,
+      "trackNumber": 3,
+      "artwork": {
+        "topHex": "#45D6C7",
+        "bottomHex": "#26324A",
+        "symbolName": "waveform"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "burn me with a bible violent vira superheaven lover of a ghost 03 - violent vira - burn me with a bible.mp3",
+      "albumID": "3ebc8380-95fe-5e4b-86df-bf81187df44d"
+    },
     "06 - Bury Me Alive.mp3": {
       "filename": "06 - Bury Me Alive.mp3",
       "size": 5440817,
@@ -1769,11 +1791,11 @@
       "mtimeNs": 1783606081336956566,
       "id": "c6a2e915-15f5-5353-896d-1531b419de01",
       "title": "catalyst",
-      "artist": "Superheaven",
+      "artist": "Moon Differences",
       "albumArtist": "Superheaven",
-      "album": "Jar",
+      "album": "music for lonely people",
       "duration": 146.04,
-      "year": 2014,
+      "year": 2025,
       "trackNumber": 5,
       "artwork": {
         "topHex": "#F28482",
@@ -1782,8 +1804,8 @@
       },
       "hasArtwork": true,
       "isExplicit": false,
-      "searchText": "catalyst superheaven superheaven jar 05 - catalyst.mp3",
-      "albumID": "d48e6f81-32c8-5ff9-ba55-ebfffa1175cf"
+      "searchText": "catalyst moon differences superheaven music for lonely people 05 - catalyst.mp3",
+      "albumID": "7b9e6809-9d82-501b-ac76-3008c9235bb4"
     },
     "11 - Catharsis.mp3": {
       "filename": "11 - Catharsis.mp3",
@@ -1872,6 +1894,50 @@
       "isExplicit": false,
       "searchText": "chasing ghosts violent vira violent vira lover of a ghost 14 - violent vira - chasing ghosts.mp3",
       "albumID": "3ebc8380-95fe-5e4b-86df-bf81187df44d"
+    },
+    "05 - IMMINENCE - Chasing Shadows & Alleviate.mp3": {
+      "filename": "05 - IMMINENCE - Chasing Shadows & Alleviate.mp3",
+      "size": 17979421,
+      "mtimeNs": 1783606083953971297,
+      "id": "21c45899-d8fc-558d-8746-7cd19fa7bf73",
+      "title": "Chasing Shadows & Alleviate",
+      "artist": "Imminence",
+      "albumArtist": "Superheaven",
+      "album": "Heaven in Hiding",
+      "duration": 531.768,
+      "year": 2022,
+      "trackNumber": 5,
+      "artwork": {
+        "topHex": "#F4D35E",
+        "bottomHex": "#23395B",
+        "symbolName": "tram.fill"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "chasing shadows & alleviate imminence superheaven heaven in hiding 05 - imminence - chasing shadows & alleviate.mp3",
+      "albumID": "ba86de38-ebd9-55ee-bc2e-c5d61ba994ae"
+    },
+    "07 - IMMINENCE - Chasing Shadows & Alleviate.mp3": {
+      "filename": "07 - IMMINENCE - Chasing Shadows & Alleviate.mp3",
+      "size": 17979421,
+      "mtimeNs": 1783606094998033846,
+      "id": "6c62a740-addf-56ba-a2a2-00bcdcfe77df",
+      "title": "Chasing Shadows & Alleviate",
+      "artist": "Imminence",
+      "albumArtist": "Superheaven",
+      "album": "Heaven in Hiding",
+      "duration": 531.768,
+      "year": 2022,
+      "trackNumber": 7,
+      "artwork": {
+        "topHex": "#90BE6D",
+        "bottomHex": "#22332C",
+        "symbolName": "airplane"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "chasing shadows & alleviate imminence superheaven heaven in hiding 07 - imminence - chasing shadows & alleviate.mp3",
+      "albumID": "ba86de38-ebd9-55ee-bc2e-c5d61ba994ae"
     },
     "03 - Chemical.mp3": {
       "filename": "03 - Chemical.mp3",
@@ -1969,7 +2035,7 @@
       "title": "Closure",
       "artist": "The Plot in You",
       "albumArtist": "The Plot in You",
-      "album": "Closure",
+      "album": "The Plot in You",
       "duration": 193.584,
       "year": 2024,
       "trackNumber": 1,
@@ -1980,8 +2046,8 @@
       },
       "hasArtwork": true,
       "isExplicit": false,
-      "searchText": "closure the plot in you the plot in you closure 04 - closure.mp3",
-      "albumID": "007e9132-b573-522a-b98e-b5c09feb36c6"
+      "searchText": "closure the plot in you the plot in you the plot in you 04 - closure.mp3",
+      "albumID": "f570936b-1f05-5a30-b25a-ba13ee718a70"
     },
     "06 - VIOLENT VIRA - Common Decency.mp3": {
       "filename": "06 - VIOLENT VIRA - Common Decency.mp3",
@@ -2055,11 +2121,11 @@
       "mtimeNs": 1783606081428957084,
       "id": "627beb91-6079-5595-a9e1-1abe13863d92",
       "title": "Crawl",
-      "artist": "Daylight",
+      "artist": "Superheaven",
       "albumArtist": "Daylight",
       "album": "Jar",
       "duration": 153.696,
-      "year": 2013,
+      "year": 2014,
       "trackNumber": 5,
       "artwork": {
         "topHex": "#A7C957",
@@ -2068,7 +2134,7 @@
       },
       "hasArtwork": true,
       "isExplicit": false,
-      "searchText": "crawl daylight daylight jar 05 - crawl.mp3",
+      "searchText": "crawl superheaven daylight jar 05 - crawl.mp3",
       "albumID": "d48e6f81-32c8-5ff9-ba55-ebfffa1175cf"
     },
     "Crawling_3.mp3": {
@@ -2445,50 +2511,6 @@
       "searchText": "dead butterflies architects architects for those that wish to exist 05 - dead butterflies.mp3",
       "albumID": "2885b38b-b7f1-5b7f-9388-5f8437be2a13"
     },
-    "04 - Dead Poet Society - How could I love you？.mp3": {
-      "filename": "04 - Dead Poet Society - How could I love you？.mp3",
-      "size": 8572883,
-      "mtimeNs": 1783606075862925753,
-      "id": "d6d973c9-5a47-55a4-8f67-46cf98135810",
-      "title": "Dead Poet Society - How could I love you？",
-      "artist": "Superheaven",
-      "albumArtist": "Superheaven",
-      "album": "Jar",
-      "duration": 234.216,
-      "year": 2014,
-      "trackNumber": 4,
-      "artwork": {
-        "topHex": "#45D6C7",
-        "bottomHex": "#26324A",
-        "symbolName": "waveform"
-      },
-      "hasArtwork": true,
-      "isExplicit": false,
-      "searchText": "dead poet society - how could i love you？ superheaven superheaven jar 04 - dead poet society - how could i love you？.mp3",
-      "albumID": "d48e6f81-32c8-5ff9-ba55-ebfffa1175cf"
-    },
-    "05 - Dead Poet Society - I hope you hate me..mp3": {
-      "filename": "05 - Dead Poet Society - I hope you hate me..mp3",
-      "size": 8293975,
-      "mtimeNs": 1783606081705958643,
-      "id": "2ac76ee7-f691-5cc1-b45e-dc9d38e5e4c4",
-      "title": "Dead Poet Society - I hope you hate me.",
-      "artist": "Superheaven",
-      "albumArtist": "Superheaven",
-      "album": "Jar",
-      "duration": 230.04,
-      "year": 2014,
-      "trackNumber": 5,
-      "artwork": {
-        "topHex": "#8ECAE6",
-        "bottomHex": "#1D3557",
-        "symbolName": "drop.fill"
-      },
-      "hasArtwork": true,
-      "isExplicit": false,
-      "searchText": "dead poet society - i hope you hate me. superheaven superheaven jar 05 - dead poet society - i hope you hate me..mp3",
-      "albumID": "d48e6f81-32c8-5ff9-ba55-ebfffa1175cf"
-    },
     "01 - Dear Diary,.mp3": {
       "filename": "01 - Dear Diary,.mp3",
       "size": 5324964,
@@ -2576,6 +2598,28 @@
       "isExplicit": false,
       "searchText": "decay josh a josh a disgrace 03 - josh a • decay.mp3",
       "albumID": "cc045ff7-5a14-5aca-a279-4853e7e55652"
+    },
+    "02 - Marilyn Manson - Deep Six (Explicit) (Official Music Video).mp3": {
+      "filename": "02 - Marilyn Manson - Deep Six (Explicit) (Official Music Video).mp3",
+      "size": 8831025,
+      "mtimeNs": 1783606066961875650,
+      "id": "1520fc22-dc86-56db-a683-113b1d1cf4a4",
+      "title": "Deep Six",
+      "artist": "Marilyn Manson",
+      "albumArtist": "Superheaven",
+      "album": "The Pale Emperor",
+      "duration": 250.8,
+      "year": 2015,
+      "trackNumber": 2,
+      "artwork": {
+        "topHex": "#8ECAE6",
+        "bottomHex": "#1D3557",
+        "symbolName": "drop.fill"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "deep six marilyn manson superheaven the pale emperor 02 - marilyn manson - deep six (explicit) (official music video).mp3",
+      "albumID": "73859b3c-89b5-500a-8aef-519e39676c89"
     },
     "13 - Demi God.mp3": {
       "filename": "13 - Demi God.mp3",
@@ -2849,7 +2893,7 @@
       "title": "Divide",
       "artist": "The Plot in You",
       "albumArtist": "The Plot in You",
-      "album": "Live From the Palladium",
+      "album": "The Plot in You",
       "duration": 208.872,
       "year": 2025,
       "trackNumber": 6,
@@ -2860,8 +2904,8 @@
       },
       "hasArtwork": true,
       "isExplicit": false,
-      "searchText": "divide the plot in you the plot in you live from the palladium 01 - divide.mp3",
-      "albumID": "c6829362-592b-513b-956c-4da556396c6d"
+      "searchText": "divide the plot in you the plot in you the plot in you 01 - divide.mp3",
+      "albumID": "f570936b-1f05-5a30-b25a-ba13ee718a70"
     },
     "02 - Dizzy.mp3": {
       "filename": "02 - Dizzy.mp3",
@@ -2959,7 +3003,7 @@
       "title": "Don’t Look Away",
       "artist": "The Plot in You",
       "albumArtist": "The Plot in You",
-      "album": "Don’t Look Away",
+      "album": "The Plot in You",
       "duration": 193.944,
       "year": 2024,
       "trackNumber": 1,
@@ -2970,8 +3014,8 @@
       },
       "hasArtwork": true,
       "isExplicit": false,
-      "searchText": "don’t look away the plot in you the plot in you don’t look away 05 - don’t look away.mp3",
-      "albumID": "acbf5fd1-d048-5fa5-bbef-23895eddeae3"
+      "searchText": "don’t look away the plot in you the plot in you the plot in you 05 - don’t look away.mp3",
+      "albumID": "f570936b-1f05-5a30-b25a-ba13ee718a70"
     },
     "02 - Don't Stay.mp3": {
       "filename": "02 - Don't Stay.mp3",
@@ -3133,11 +3177,11 @@
       "mtimeNs": 1783606070163893674,
       "id": "c2c5b6d3-e407-5e8f-a2f0-5abc60caf2c8",
       "title": "dreams can never stay",
-      "artist": "Superheaven",
+      "artist": "Moon Differences",
       "albumArtist": "Superheaven",
-      "album": "Jar",
+      "album": "music for lonely people",
       "duration": 293.424,
-      "year": 2014,
+      "year": 2025,
       "trackNumber": 3,
       "artwork": {
         "topHex": "#45D6C7",
@@ -3146,8 +3190,8 @@
       },
       "hasArtwork": true,
       "isExplicit": false,
-      "searchText": "dreams can never stay superheaven superheaven jar 03 - dreams can never stay.mp3",
-      "albumID": "d48e6f81-32c8-5ff9-ba55-ebfffa1175cf"
+      "searchText": "dreams can never stay moon differences superheaven music for lonely people 03 - dreams can never stay.mp3",
+      "albumID": "7b9e6809-9d82-501b-ac76-3008c9235bb4"
     },
     "09 - Drown.mp3": {
       "filename": "09 - Drown.mp3",
@@ -4081,7 +4125,7 @@
       "title": "Forgotten",
       "artist": "The Plot in You",
       "albumArtist": "The Plot in You",
-      "album": "Forgotten",
+      "album": "The Plot in You",
       "duration": 175.296,
       "year": 2023,
       "trackNumber": 1,
@@ -4092,8 +4136,8 @@
       },
       "hasArtwork": true,
       "isExplicit": false,
-      "searchText": "forgotten the plot in you the plot in you forgotten 03 - forgotten.mp3",
-      "albumID": "aa061c48-af1c-5100-bd9d-68ad9c0a2fdb"
+      "searchText": "forgotten the plot in you the plot in you the plot in you 03 - forgotten.mp3",
+      "albumID": "f570936b-1f05-5a30-b25a-ba13ee718a70"
     },
     "05 - Frailty.mp3": {
       "filename": "05 - Frailty.mp3",
@@ -4248,6 +4292,28 @@
       "isExplicit": false,
       "searchText": "gethsemane sleep token sleep token even in arcadia 09 - sleep token - gethsemane.mp3",
       "albumID": "6c7f277e-924e-5e35-b0c2-4142f1f4db35"
+    },
+    "02 - IMMINENCE - Ghost.mp3": {
+      "filename": "02 - IMMINENCE - Ghost.mp3",
+      "size": 11652520,
+      "mtimeNs": 1783606065846869373,
+      "id": "b5a4a87d-271b-5560-b5cc-97c2ed428341",
+      "title": "Ghost",
+      "artist": "Imminence",
+      "albumArtist": "Superheaven",
+      "album": "Heaven in Hiding",
+      "duration": 332.568,
+      "year": 2022,
+      "trackNumber": 2,
+      "artwork": {
+        "topHex": "#F28482",
+        "bottomHex": "#2E1E32",
+        "symbolName": "sparkles"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "ghost imminence superheaven heaven in hiding 02 - imminence - ghost.mp3",
+      "albumID": "ba86de38-ebd9-55ee-bc2e-c5d61ba994ae"
     },
     "05 - Ghost In The Night.mp3": {
       "filename": "05 - Ghost In The Night.mp3",
@@ -4645,6 +4711,28 @@
       "searchText": "heart-shaped glasses (when the heart guides the hand) (inhuman remix by jade e puget) marilyn manson marilyn manson eat me, drink me 12 - heart-shaped glasses (when the heart guides the hand) (inhuman remix by jade e puget).mp3",
       "albumID": "2e0083c8-8205-53f9-a203-452d7675a0b9"
     },
+    "13 - IMMINENCE - Heaven In Hiding.mp3": {
+      "filename": "13 - IMMINENCE - Heaven In Hiding.mp3",
+      "size": 9720259,
+      "mtimeNs": 1783606129947232144,
+      "id": "8257eb79-167a-5159-858c-2728188c2135",
+      "title": "Heaven In Hiding",
+      "artist": "IMMINENCE",
+      "albumArtist": "Superheaven",
+      "album": "Heaven in Hiding",
+      "duration": 281.88,
+      "year": 2014,
+      "trackNumber": 13,
+      "artwork": {
+        "topHex": "#B8F2E6",
+        "bottomHex": "#21455A",
+        "symbolName": "clock.fill"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "heaven in hiding imminence superheaven heaven in hiding 13 - imminence - heaven in hiding.mp3",
+      "albumID": "ba86de38-ebd9-55ee-bc2e-c5d61ba994ae"
+    },
     "14 - Heavener.mp3": {
       "filename": "14 - Heavener.mp3",
       "size": 9179122,
@@ -4849,11 +4937,11 @@
       "mtimeNs": 1783606114647145338,
       "id": "755085b9-a48b-56db-96bd-f9ac7a1b78fa",
       "title": "Hole in the Ground",
-      "artist": "Daylight",
+      "artist": "Superheaven",
       "albumArtist": "Daylight",
       "album": "Jar",
       "duration": 271.824,
-      "year": 2013,
+      "year": 2014,
       "trackNumber": 10,
       "artwork": {
         "topHex": "#A7C957",
@@ -4862,7 +4950,7 @@
       },
       "hasArtwork": true,
       "isExplicit": false,
-      "searchText": "hole in the ground daylight daylight jar 10 - hole in the ground.mp3",
+      "searchText": "hole in the ground superheaven daylight jar 10 - hole in the ground.mp3",
       "albumID": "d48e6f81-32c8-5ff9-ba55-ebfffa1175cf"
     },
     "04 - hoodie.mp3": {
@@ -4871,11 +4959,11 @@
       "mtimeNs": 1783606076891931546,
       "id": "331acce4-805f-5296-b71e-681380bf402b",
       "title": "hoodie",
-      "artist": "Superheaven",
+      "artist": "Moon Differences",
       "albumArtist": "Superheaven",
-      "album": "Jar",
+      "album": "music for lonely people",
       "duration": 134.664,
-      "year": 2014,
+      "year": 2025,
       "trackNumber": 4,
       "artwork": {
         "topHex": "#F4D35E",
@@ -4884,8 +4972,8 @@
       },
       "hasArtwork": true,
       "isExplicit": false,
-      "searchText": "hoodie superheaven superheaven jar 04 - hoodie.mp3",
-      "albumID": "d48e6f81-32c8-5ff9-ba55-ebfffa1175cf"
+      "searchText": "hoodie moon differences superheaven music for lonely people 04 - hoodie.mp3",
+      "albumID": "7b9e6809-9d82-501b-ac76-3008c9235bb4"
     },
     "11 - Hospital for Souls.mp3": {
       "filename": "11 - Hospital for Souls.mp3",
@@ -4930,6 +5018,28 @@
       "isExplicit": false,
       "searchText": "hot to go! nothing,nowhere. nothing,nowhere. will it emo? (vol.1) 02 - hot to go!.mp3",
       "albumID": "680f7984-65fe-50fb-bdac-9d202637034f"
+    },
+    "04 - Dead Poet Society - How could I love you？.mp3": {
+      "filename": "04 - Dead Poet Society - How could I love you？.mp3",
+      "size": 8572883,
+      "mtimeNs": 1783606075862925753,
+      "id": "d6d973c9-5a47-55a4-8f67-46cf98135810",
+      "title": "How could I love you？",
+      "artist": "Dead Poet Society",
+      "albumArtist": "Superheaven",
+      "album": "FISSION",
+      "duration": 234.216,
+      "year": 2024,
+      "trackNumber": 4,
+      "artwork": {
+        "topHex": "#45D6C7",
+        "bottomHex": "#26324A",
+        "symbolName": "waveform"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "how could i love you？ dead poet society superheaven fission 04 - dead poet society - how could i love you？.mp3",
+      "albumID": "78e97674-3a1d-55d0-bbd2-c91a77150488"
     },
     "10 - How I Fall Apart.mp3": {
       "filename": "10 - How I Fall Apart.mp3",
@@ -5239,6 +5349,28 @@
       "searchText": "i don’t know what to say bring me the horizon bring me the horizon amo 13 - i don't know what to say.mp3",
       "albumID": "059b7604-859f-5902-b7bb-af3ce0f07638"
     },
+    "05 - Dead Poet Society - I hope you hate me..mp3": {
+      "filename": "05 - Dead Poet Society - I hope you hate me..mp3",
+      "size": 8293975,
+      "mtimeNs": 1783606081705958643,
+      "id": "2ac76ee7-f691-5cc1-b45e-dc9d38e5e4c4",
+      "title": "I hope you hate me.",
+      "artist": "Dead Poet Society",
+      "albumArtist": "Superheaven",
+      "album": "FISSION",
+      "duration": 230.04,
+      "year": 2024,
+      "trackNumber": 5,
+      "artwork": {
+        "topHex": "#8ECAE6",
+        "bottomHex": "#1D3557",
+        "symbolName": "drop.fill"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "i hope you hate me. dead poet society superheaven fission 05 - dead poet society - i hope you hate me..mp3",
+      "albumID": "78e97674-3a1d-55d0-bbd2-c91a77150488"
+    },
     "07 - Josh A • I Miss My Ex.mp3": {
       "filename": "07 - Josh A • I Miss My Ex.mp3",
       "size": 3744149,
@@ -5326,116 +5458,6 @@
       "isExplicit": false,
       "searchText": "if i was your vampire marilyn manson marilyn manson eat me, drink me 01 - if i was your vampire.mp3",
       "albumID": "2e0083c8-8205-53f9-a203-452d7675a0b9"
-    },
-    "05 - IMMINENCE - Chasing Shadows & Alleviate.mp3": {
-      "filename": "05 - IMMINENCE - Chasing Shadows & Alleviate.mp3",
-      "size": 17979421,
-      "mtimeNs": 1783606083953971297,
-      "id": "21c45899-d8fc-558d-8746-7cd19fa7bf73",
-      "title": "IMMINENCE - Chasing Shadows & Alleviate",
-      "artist": "Superheaven",
-      "albumArtist": "Superheaven",
-      "album": "Jar",
-      "duration": 531.768,
-      "year": 2014,
-      "trackNumber": 5,
-      "artwork": {
-        "topHex": "#F4D35E",
-        "bottomHex": "#23395B",
-        "symbolName": "tram.fill"
-      },
-      "hasArtwork": true,
-      "isExplicit": false,
-      "searchText": "imminence - chasing shadows & alleviate superheaven superheaven jar 05 - imminence - chasing shadows & alleviate.mp3",
-      "albumID": "d48e6f81-32c8-5ff9-ba55-ebfffa1175cf"
-    },
-    "07 - IMMINENCE - Chasing Shadows & Alleviate.mp3": {
-      "filename": "07 - IMMINENCE - Chasing Shadows & Alleviate.mp3",
-      "size": 17979421,
-      "mtimeNs": 1783606094998033846,
-      "id": "6c62a740-addf-56ba-a2a2-00bcdcfe77df",
-      "title": "IMMINENCE - Chasing Shadows & Alleviate",
-      "artist": "Superheaven",
-      "albumArtist": "Superheaven",
-      "album": "Jar",
-      "duration": 531.768,
-      "year": 2014,
-      "trackNumber": 7,
-      "artwork": {
-        "topHex": "#90BE6D",
-        "bottomHex": "#22332C",
-        "symbolName": "airplane"
-      },
-      "hasArtwork": true,
-      "isExplicit": false,
-      "searchText": "imminence - chasing shadows & alleviate superheaven superheaven jar 07 - imminence - chasing shadows & alleviate.mp3",
-      "albumID": "d48e6f81-32c8-5ff9-ba55-ebfffa1175cf"
-    },
-    "02 - IMMINENCE - Ghost.mp3": {
-      "filename": "02 - IMMINENCE - Ghost.mp3",
-      "size": 11652520,
-      "mtimeNs": 1783606065846869373,
-      "id": "b5a4a87d-271b-5560-b5cc-97c2ed428341",
-      "title": "IMMINENCE - Ghost",
-      "artist": "Superheaven",
-      "albumArtist": "Superheaven",
-      "album": "Jar",
-      "duration": 332.568,
-      "year": 2014,
-      "trackNumber": 2,
-      "artwork": {
-        "topHex": "#F28482",
-        "bottomHex": "#2E1E32",
-        "symbolName": "sparkles"
-      },
-      "hasArtwork": true,
-      "isExplicit": false,
-      "searchText": "imminence - ghost superheaven superheaven jar 02 - imminence - ghost.mp3",
-      "albumID": "d48e6f81-32c8-5ff9-ba55-ebfffa1175cf"
-    },
-    "13 - IMMINENCE - Heaven In Hiding.mp3": {
-      "filename": "13 - IMMINENCE - Heaven In Hiding.mp3",
-      "size": 9720259,
-      "mtimeNs": 1783606129947232144,
-      "id": "8257eb79-167a-5159-858c-2728188c2135",
-      "title": "IMMINENCE - Heaven In Hiding",
-      "artist": "Superheaven",
-      "albumArtist": "Superheaven",
-      "album": "Jar",
-      "duration": 281.88,
-      "year": 2014,
-      "trackNumber": 13,
-      "artwork": {
-        "topHex": "#B8F2E6",
-        "bottomHex": "#21455A",
-        "symbolName": "clock.fill"
-      },
-      "hasArtwork": true,
-      "isExplicit": false,
-      "searchText": "imminence - heaven in hiding superheaven superheaven jar 13 - imminence - heaven in hiding.mp3",
-      "albumID": "d48e6f81-32c8-5ff9-ba55-ebfffa1175cf"
-    },
-    "03 - IMMINENCE - Temptation.mp3": {
-      "filename": "03 - IMMINENCE - Temptation.mp3",
-      "size": 8551321,
-      "mtimeNs": 1783606071621901881,
-      "id": "b7b3dd04-6599-58b3-8ed0-630412df426e",
-      "title": "IMMINENCE - Temptation",
-      "artist": "Superheaven",
-      "albumArtist": "Superheaven",
-      "album": "Jar",
-      "duration": 243.864,
-      "year": 2014,
-      "trackNumber": 3,
-      "artwork": {
-        "topHex": "#C77DFF",
-        "bottomHex": "#2B235A",
-        "symbolName": "antenna.radiowaves.left.and.right"
-      },
-      "hasArtwork": true,
-      "isExplicit": false,
-      "searchText": "imminence - temptation superheaven superheaven jar 03 - imminence - temptation.mp3",
-      "albumID": "d48e6f81-32c8-5ff9-ba55-ebfffa1175cf"
     },
     "07 - Immolation of Night.mp3": {
       "filename": "07 - Immolation of Night.mp3",
@@ -5531,11 +5553,11 @@
       "mtimeNs": 1783606120600179113,
       "id": "dee88c24-0597-5931-a8ed-ef2f1d63406f",
       "title": "In on It",
-      "artist": "Daylight",
+      "artist": "Superheaven",
       "albumArtist": "Daylight",
       "album": "Jar",
       "duration": 203.28,
-      "year": 2013,
+      "year": 2014,
       "trackNumber": 11,
       "artwork": {
         "topHex": "#90BE6D",
@@ -5544,7 +5566,7 @@
       },
       "hasArtwork": true,
       "isExplicit": false,
-      "searchText": "in on it daylight daylight jar 11 - in on it.mp3",
+      "searchText": "in on it superheaven daylight jar 11 - in on it.mp3",
       "albumID": "d48e6f81-32c8-5ff9-ba55-ebfffa1175cf"
     },
     "06 - In Somnus Veritas.mp3": {
@@ -6059,11 +6081,11 @@
       "mtimeNs": 1783606100879067217,
       "id": "804604df-bb65-5f48-8a5a-60739d877732",
       "title": "Knew",
-      "artist": "Daylight",
+      "artist": "Superheaven",
       "albumArtist": "Daylight",
       "album": "Jar",
       "duration": 78.552,
-      "year": 2013,
+      "year": 2014,
       "trackNumber": 8,
       "artwork": {
         "topHex": "#A7C957",
@@ -6072,7 +6094,7 @@
       },
       "hasArtwork": true,
       "isExplicit": false,
-      "searchText": "knew daylight daylight jar 08 - knew.mp3",
+      "searchText": "knew superheaven daylight jar 08 - knew.mp3",
       "albumID": "d48e6f81-32c8-5ff9-ba55-ebfffa1175cf"
     },
     "12 - KOET.mp3": {
@@ -6213,11 +6235,11 @@
       "mtimeNs": 1783606088896999225,
       "id": "c198e931-c3fc-5cab-9b3e-4ee8152c5c88",
       "title": "Last October",
-      "artist": "Daylight",
+      "artist": "Superheaven",
       "albumArtist": "Daylight",
       "album": "Jar",
       "duration": 232.704,
-      "year": 2013,
+      "year": 2014,
       "trackNumber": 6,
       "artwork": {
         "topHex": "#45D6C7",
@@ -6226,7 +6248,7 @@
       },
       "hasArtwork": true,
       "isExplicit": false,
-      "searchText": "last october daylight daylight jar 06 - last october.mp3",
+      "searchText": "last october superheaven daylight jar 06 - last october.mp3",
       "albumID": "d48e6f81-32c8-5ff9-ba55-ebfffa1175cf"
     },
     "17 - Laugh It Off.mp3": {
@@ -6281,7 +6303,7 @@
       "title": "Left Behind",
       "artist": "The Plot in You",
       "albumArtist": "The Plot in You",
-      "album": "Forgotten",
+      "album": "The Plot in You",
       "duration": 206.952,
       "year": 2023,
       "trackNumber": 2,
@@ -6292,8 +6314,8 @@
       },
       "hasArtwork": true,
       "isExplicit": false,
-      "searchText": "left behind the plot in you the plot in you forgotten 02 - left behind.mp3",
-      "albumID": "aa061c48-af1c-5100-bd9d-68ad9c0a2fdb"
+      "searchText": "left behind the plot in you the plot in you the plot in you 02 - left behind.mp3",
+      "albumID": "f570936b-1f05-5a30-b25a-ba13ee718a70"
     },
     "12 - Left Behind (Acoustic).mp3": {
       "filename": "12 - Left Behind (Acoustic).mp3",
@@ -6433,11 +6455,11 @@
       "mtimeNs": 1783606066406872526,
       "id": "4a3c3f39-b95f-575a-8969-d096128bc26c",
       "title": "Life in a Jar",
-      "artist": "Daylight",
+      "artist": "Superheaven",
       "albumArtist": "Daylight",
       "album": "Jar",
       "duration": 222.24,
-      "year": 2013,
+      "year": 2014,
       "trackNumber": 2,
       "artwork": {
         "topHex": "#8ECAE6",
@@ -6446,7 +6468,7 @@
       },
       "hasArtwork": true,
       "isExplicit": false,
-      "searchText": "life in a jar daylight daylight jar 02 - life in a jar.mp3",
+      "searchText": "life in a jar superheaven daylight jar 02 - life in a jar.mp3",
       "albumID": "d48e6f81-32c8-5ff9-ba55-ebfffa1175cf"
     },
     "07 - Life Is A Highway.mp3": {
@@ -6653,11 +6675,11 @@
       "mtimeNs": 1783606066579873499,
       "id": "205df905-53f4-5bd1-a450-e8db9ce73306",
       "title": "lost in time",
-      "artist": "Superheaven",
+      "artist": "Moon Differences",
       "albumArtist": "Superheaven",
-      "album": "Jar",
+      "album": "music for lonely people",
       "duration": 209.4,
-      "year": 2014,
+      "year": 2025,
       "trackNumber": 2,
       "artwork": {
         "topHex": "#C77DFF",
@@ -6666,8 +6688,8 @@
       },
       "hasArtwork": true,
       "isExplicit": false,
-      "searchText": "lost in time superheaven superheaven jar 02 - lost in time.mp3",
-      "albumID": "d48e6f81-32c8-5ff9-ba55-ebfffa1175cf"
+      "searchText": "lost in time moon differences superheaven music for lonely people 02 - lost in time.mp3",
+      "albumID": "7b9e6809-9d82-501b-ac76-3008c9235bb4"
     },
     "08 - Love Burns.mp3": {
       "filename": "08 - Love Burns.mp3",
@@ -6800,28 +6822,6 @@
       "isExplicit": false,
       "searchText": "mantra bring me the horizon bring me the horizon amo 02 - mantra.mp3",
       "albumID": "059b7604-859f-5902-b7bb-af3ce0f07638"
-    },
-    "02 - Marilyn Manson - Deep Six (Explicit) (Official Music Video).mp3": {
-      "filename": "02 - Marilyn Manson - Deep Six (Explicit) (Official Music Video).mp3",
-      "size": 8831025,
-      "mtimeNs": 1783606066961875650,
-      "id": "1520fc22-dc86-56db-a683-113b1d1cf4a4",
-      "title": "Marilyn Manson - Deep Six (Explicit) (Official Music Video)",
-      "artist": "Superheaven",
-      "albumArtist": "Superheaven",
-      "album": "Jar",
-      "duration": 250.8,
-      "year": 2014,
-      "trackNumber": 2,
-      "artwork": {
-        "topHex": "#8ECAE6",
-        "bottomHex": "#1D3557",
-        "symbolName": "drop.fill"
-      },
-      "hasArtwork": true,
-      "isExplicit": false,
-      "searchText": "marilyn manson - deep six (explicit) (official music video) superheaven superheaven jar 02 - marilyn manson - deep six (explicit) (official music video).mp3",
-      "albumID": "d48e6f81-32c8-5ff9-ba55-ebfffa1175cf"
     },
     "Polaris_-_Martyr__Waves___Official_Audio_Stream_.mp3": {
       "filename": "Polaris_-_Martyr__Waves___Official_Audio_Stream_.mp3",
@@ -7533,11 +7533,11 @@
       "mtimeNs": 1783606108150108469,
       "id": "447aa429-92b1-569d-ac70-f961c44a9117",
       "title": "No One’s Deserving",
-      "artist": "Daylight",
+      "artist": "Superheaven",
       "albumArtist": "Daylight",
       "album": "Jar",
       "duration": 183.36,
-      "year": 2013,
+      "year": 2014,
       "trackNumber": 9,
       "artwork": {
         "topHex": "#90BE6D",
@@ -7546,7 +7546,7 @@
       },
       "hasArtwork": true,
       "isExplicit": false,
-      "searchText": "no one’s deserving daylight daylight jar 09 - no one's deserving.mp3",
+      "searchText": "no one’s deserving superheaven daylight jar 09 - no one's deserving.mp3",
       "albumID": "d48e6f81-32c8-5ff9-ba55-ebfffa1175cf"
     },
     "11 - Nobody's Listening.mp3": {
@@ -7885,11 +7885,11 @@
       "mtimeNs": 1783606072887909007,
       "id": "fccf9d68-f840-5236-b30f-56a80068091d",
       "title": "Outside of Me",
-      "artist": "Daylight",
+      "artist": "Superheaven",
       "albumArtist": "Daylight",
       "album": "Jar",
       "duration": 151.728,
-      "year": 2013,
+      "year": 2014,
       "trackNumber": 3,
       "artwork": {
         "topHex": "#B8F2E6",
@@ -7898,7 +7898,7 @@
       },
       "hasArtwork": true,
       "isExplicit": false,
-      "searchText": "outside of me daylight daylight jar 03 - outside of me.mp3",
+      "searchText": "outside of me superheaven daylight jar 03 - outside of me.mp3",
       "albumID": "d48e6f81-32c8-5ff9-ba55-ebfffa1175cf"
     },
     "09 - Overdrive.mp3": {
@@ -8261,7 +8261,7 @@
       "title": "Pretend",
       "artist": "The Plot in You",
       "albumArtist": "The Plot in You",
-      "album": "Vol. 3",
+      "album": "The Plot in You",
       "duration": 185.376,
       "year": 2024,
       "trackNumber": 2,
@@ -8272,8 +8272,8 @@
       },
       "hasArtwork": true,
       "isExplicit": false,
-      "searchText": "pretend the plot in you the plot in you vol. 3 08 - pretend.mp3",
-      "albumID": "4c92fe4a-0610-50cb-8ff9-8f51f5706673"
+      "searchText": "pretend the plot in you the plot in you the plot in you 08 - pretend.mp3",
+      "albumID": "f570936b-1f05-5a30-b25a-ba13ee718a70"
     },
     "07 - Sleep Token - Provider.mp3": {
       "filename": "07 - Sleep Token - Provider.mp3",
@@ -8737,6 +8737,28 @@
       "searchText": "s.e.x. narcissist violent vira violent vira lover of a ghost 12 - violent vira - s.e.x. narcissist.mp3",
       "albumID": "3ebc8380-95fe-5e4b-86df-bf81187df44d"
     },
+    "10 - Violent Vira - Saccharine.mp3": {
+      "filename": "10 - Violent Vira - Saccharine.mp3",
+      "size": 7268526,
+      "mtimeNs": 1783606117358160720,
+      "id": "204dad5b-6280-5935-8259-03e10c235e78",
+      "title": "Saccharine",
+      "artist": "VIOLENT VIRA",
+      "albumArtist": "Superheaven",
+      "album": "Lover Of A Ghost",
+      "duration": 206.256,
+      "year": 2014,
+      "trackNumber": 10,
+      "artwork": {
+        "topHex": "#45D6C7",
+        "bottomHex": "#26324A",
+        "symbolName": "waveform"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "saccharine violent vira superheaven lover of a ghost 10 - violent vira - saccharine.mp3",
+      "albumID": "3ebc8380-95fe-5e4b-86df-bf81187df44d"
+    },
     "06 - Safer in the Forest⧸Love Song for Poor Michigan.mp3": {
       "filename": "06 - Safer in the Forest⧸Love Song for Poor Michigan.mp3",
       "size": 9617453,
@@ -8985,11 +9007,11 @@
       "mtimeNs": 1783606078900942854,
       "id": "89cc921c-73b4-5187-a5f3-0462d5956085",
       "title": "Sheltered",
-      "artist": "Daylight",
+      "artist": "Superheaven",
       "albumArtist": "Daylight",
       "album": "Jar",
       "duration": 161.352,
-      "year": 2013,
+      "year": 2014,
       "trackNumber": 4,
       "artwork": {
         "topHex": "#B8F2E6",
@@ -8998,7 +9020,7 @@
       },
       "hasArtwork": true,
       "isExplicit": false,
-      "searchText": "sheltered daylight daylight jar 04 - sheltered.mp3",
+      "searchText": "sheltered superheaven daylight jar 04 - sheltered.mp3",
       "albumID": "d48e6f81-32c8-5ff9-ba55-ebfffa1175cf"
     },
     "07 - Sign Me Up.mp3": {
@@ -9361,7 +9383,7 @@
       "title": "Spare Me",
       "artist": "The Plot in You",
       "albumArtist": "The Plot in You",
-      "album": "Vol. 3",
+      "album": "The Plot in You",
       "duration": 217.872,
       "year": 2024,
       "trackNumber": 3,
@@ -9372,8 +9394,8 @@
       },
       "hasArtwork": true,
       "isExplicit": false,
-      "searchText": "spare me the plot in you the plot in you vol. 3 09 - spare me.mp3",
-      "albumID": "4c92fe4a-0610-50cb-8ff9-8f51f5706673"
+      "searchText": "spare me the plot in you the plot in you the plot in you 09 - spare me.mp3",
+      "albumID": "f570936b-1f05-5a30-b25a-ba13ee718a70"
     },
     "01 - Speak to Me.mp3": {
       "filename": "01 - Speak to Me.mp3",
@@ -9447,11 +9469,11 @@
       "mtimeNs": 1783606063167854293,
       "id": "01886fd8-bc32-5f0a-9f6b-70f3cb08b2b9",
       "title": "Sponge",
-      "artist": "Daylight",
+      "artist": "Superheaven",
       "albumArtist": "Daylight",
       "album": "Jar",
       "duration": 263.616,
-      "year": 2013,
+      "year": 2014,
       "trackNumber": 1,
       "artwork": {
         "topHex": "#F28482",
@@ -9460,7 +9482,7 @@
       },
       "hasArtwork": true,
       "isExplicit": false,
-      "searchText": "sponge daylight daylight jar 01 - sponge.mp3",
+      "searchText": "sponge superheaven daylight jar 01 - sponge.mp3",
       "albumID": "d48e6f81-32c8-5ff9-ba55-ebfffa1175cf"
     },
     "03 - St. Paul Missionary Baptist Church Blues.mp3": {
@@ -9491,11 +9513,11 @@
       "mtimeNs": 1783606091063011512,
       "id": "7f5b900f-575a-521f-8ec2-930d490068e9",
       "title": "stay",
-      "artist": "Superheaven",
+      "artist": "Moon Differences",
       "albumArtist": "Superheaven",
-      "album": "Jar",
+      "album": "music for lonely people",
       "duration": 291.768,
-      "year": 2014,
+      "year": 2025,
       "trackNumber": 6,
       "artwork": {
         "topHex": "#F28482",
@@ -9504,8 +9526,8 @@
       },
       "hasArtwork": true,
       "isExplicit": false,
-      "searchText": "stay superheaven superheaven jar 06 - stay.mp3",
-      "albumID": "d48e6f81-32c8-5ff9-ba55-ebfffa1175cf"
+      "searchText": "stay moon differences superheaven music for lonely people 06 - stay.mp3",
+      "albumID": "7b9e6809-9d82-501b-ac76-3008c9235bb4"
     },
     "06 - Stay with You.mp3": {
       "filename": "06 - Stay with You.mp3",
@@ -9836,6 +9858,28 @@
       "isExplicit": false,
       "searchText": "telomeres sleep token sleep token this place will become your tomb 10 - telomeres.mp3",
       "albumID": "6c95a99f-9a22-59fe-b9d0-886bff1ad721"
+    },
+    "03 - IMMINENCE - Temptation.mp3": {
+      "filename": "03 - IMMINENCE - Temptation.mp3",
+      "size": 8551321,
+      "mtimeNs": 1783606071621901881,
+      "id": "b7b3dd04-6599-58b3-8ed0-630412df426e",
+      "title": "Temptation",
+      "artist": "Imminence",
+      "albumArtist": "Superheaven",
+      "album": "Heaven in Hiding",
+      "duration": 243.864,
+      "year": 2022,
+      "trackNumber": 3,
+      "artwork": {
+        "topHex": "#C77DFF",
+        "bottomHex": "#2B235A",
+        "symbolName": "antenna.radiowaves.left.and.right"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "temptation imminence superheaven heaven in hiding 03 - imminence - temptation.mp3",
+      "albumID": "ba86de38-ebd9-55ee-bc2e-c5d61ba994ae"
     },
     "13 - Texas Tea.mp3": {
       "filename": "13 - Texas Tea.mp3",
@@ -10849,50 +10893,6 @@
       "searchText": "vagabond polaris polaris the death of me polaris_-_vagabond__official_audio_stream_.mp3",
       "albumID": "3eaa5d7e-92be-59b1-8e21-b23d7aff0390"
     },
-    "03 - VIOLENT VIRA - Burn Me With A Bible.mp3": {
-      "filename": "03 - VIOLENT VIRA - Burn Me With A Bible.mp3",
-      "size": 9961344,
-      "mtimeNs": 1783606075258922353,
-      "id": "1a97e58b-fee8-5178-8edf-a2e713cf8ab8",
-      "title": "VIOLENT VIRA - Burn Me With A Bible",
-      "artist": "Superheaven",
-      "albumArtist": "Superheaven",
-      "album": "Jar",
-      "duration": 294.576,
-      "year": 2014,
-      "trackNumber": 3,
-      "artwork": {
-        "topHex": "#45D6C7",
-        "bottomHex": "#26324A",
-        "symbolName": "waveform"
-      },
-      "hasArtwork": true,
-      "isExplicit": false,
-      "searchText": "violent vira - burn me with a bible superheaven superheaven jar 03 - violent vira - burn me with a bible.mp3",
-      "albumID": "d48e6f81-32c8-5ff9-ba55-ebfffa1175cf"
-    },
-    "10 - Violent Vira - Saccharine.mp3": {
-      "filename": "10 - Violent Vira - Saccharine.mp3",
-      "size": 7268526,
-      "mtimeNs": 1783606117358160720,
-      "id": "204dad5b-6280-5935-8259-03e10c235e78",
-      "title": "Violent Vira - Saccharine",
-      "artist": "Superheaven",
-      "albumArtist": "Superheaven",
-      "album": "Jar",
-      "duration": 206.256,
-      "year": 2014,
-      "trackNumber": 10,
-      "artwork": {
-        "topHex": "#45D6C7",
-        "bottomHex": "#26324A",
-        "symbolName": "waveform"
-      },
-      "hasArtwork": true,
-      "isExplicit": false,
-      "searchText": "violent vira - saccharine superheaven superheaven jar 10 - violent vira - saccharine.mp3",
-      "albumID": "d48e6f81-32c8-5ff9-ba55-ebfffa1175cf"
-    },
     "09 - Void Surfacing.mp3": {
       "filename": "09 - Void Surfacing.mp3",
       "size": 9086131,
@@ -11383,11 +11383,11 @@
       "mtimeNs": 1783606098130051619,
       "id": "44e4034a-2a7f-52a3-b832-57b71b25a733",
       "title": "Youngest Daughter",
-      "artist": "Daylight",
+      "artist": "Superheaven",
       "albumArtist": "Daylight",
       "album": "Jar",
       "duration": 249.552,
-      "year": 2013,
+      "year": 2014,
       "trackNumber": 7,
       "artwork": {
         "topHex": "#F4D35E",
@@ -11396,7 +11396,7 @@
       },
       "hasArtwork": true,
       "isExplicit": false,
-      "searchText": "youngest daughter daylight daylight jar 07 - youngest daughter.mp3",
+      "searchText": "youngest daughter superheaven daylight jar 07 - youngest daughter.mp3",
       "albumID": "d48e6f81-32c8-5ff9-ba55-ebfffa1175cf"
     },
     "06 - Youth Decay.mp3": {

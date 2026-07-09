@@ -614,6 +614,8 @@ class AriaSongHandler(BaseHTTPRequestHandler):
             self.write_text("Aria song server is running.\nTry /api/tracks?offset=0&limit=100\n")
         elif parsed.path == "/api/tracks":
             self.write_tracks(parsed)
+        elif parsed.path.startswith("/api/tracks/"):
+            self.write_track(parsed)
         elif parsed.path == "/api/search":
             self.write_search(parsed)
         elif parsed.path == "/api/albums":
@@ -638,6 +640,60 @@ class AriaSongHandler(BaseHTTPRequestHandler):
         else:
             self.send_response(HTTPStatus.OK)
             self.end_headers()
+
+    def write_track(self, parsed) -> None:
+        raw_track_path = parsed.path.removeprefix("/api/tracks/")
+        wants_metadata = False
+
+        if raw_track_path.endswith("/metadata"):
+            wants_metadata = True
+            raw_track_path = raw_track_path.removesuffix("/metadata")
+
+        track_id = unquote(raw_track_path).strip("/")
+        if not track_id:
+            self.send_error(HTTPStatus.BAD_REQUEST, "Missing track id")
+            return
+
+        record = self.catalog_index.track_for_id(track_id)
+        if record is None:
+            self.send_error(HTTPStatus.NOT_FOUND, "Track not found")
+            return
+
+        base_url = f"http://{self.headers.get('Host', 'localhost:8000')}"
+        artwork_by_album = album_artwork_sources(self.catalog_index.tracks())
+        track = track_payload_from_record(
+            record,
+            base_url,
+            artwork_by_album.get(album_key_for_record(record)),
+        )
+
+        metadata = {
+            "id": track["id"],
+            "title": track["title"],
+            "artist": track["artist"],
+            "albumArtist": track["albumArtist"],
+            "album": track["album"],
+            "year": track["year"],
+            "trackNumber": track["trackNumber"],
+            "duration": track["duration"],
+            "isExplicit": track["isExplicit"],
+            "artwork": track["artwork"],
+            "artworkURL": track["artworkURL"],
+            "streamURL": track["streamURL"],
+        }
+
+        if wants_metadata:
+            self.write_json({
+                **metadata,
+                "metadata": metadata,
+                "track": track,
+            })
+            return
+
+        self.write_json({
+            **track,
+            "metadata": metadata,
+        })
 
     def handle_track_update(self) -> None:
         parsed = urlparse(self.path)
