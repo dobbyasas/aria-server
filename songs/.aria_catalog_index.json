@@ -1,6 +1,6 @@
 {
   "version": 4,
-  "updatedAt": "2026-07-09T16:53:13",
+  "updatedAt": "2026-07-09T17:16:32",
   "songsDir": "/home/tofinovak/aria-server/songs",
   "tracks": {
     "06 - [Nice Dream].mp3": {
@@ -596,6 +596,50 @@
       "isExplicit": false,
       "searchText": "alkaline sleep token sleep token this place will become your tomb 07 - alkaline.mp3",
       "albumID": "6c95a99f-9a22-59fe-b9d0-886bff1ad721"
+    },
+    "07 - All Around Me.mp3": {
+      "filename": "07 - All Around Me.mp3",
+      "size": 7256679,
+      "mtimeNs": 1783609658303664476,
+      "id": "d7350786-d4b4-5453-ae71-2744560cbf6d",
+      "title": "All Around Me",
+      "artist": "Flyleaf",
+      "albumArtist": "Flyleaf",
+      "album": "Flyleaf",
+      "duration": 198.552,
+      "year": 2006,
+      "trackNumber": 7,
+      "artwork": {
+        "topHex": "#B8F2E6",
+        "bottomHex": "#21455A",
+        "symbolName": "clock.fill"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "all around me flyleaf flyleaf flyleaf 07 - all around me.mp3",
+      "albumID": "e394ac30-0a90-5549-8b34-b1b67a904f18"
+    },
+    "11 - All I Wanted.mp3": {
+      "filename": "11 - All I Wanted.mp3",
+      "size": 8256746,
+      "mtimeNs": 1783610181626526145,
+      "id": "63f0edf2-64f3-5d42-bb3a-d7fbb777e097",
+      "title": "All I Wanted",
+      "artist": "Paramore",
+      "albumArtist": "Paramore",
+      "album": "Brand New Eyes",
+      "duration": 225.816,
+      "year": 2009,
+      "trackNumber": 11,
+      "artwork": {
+        "topHex": "#90BE6D",
+        "bottomHex": "#22332C",
+        "symbolName": "airplane"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "all i wanted paramore paramore brand new eyes 11 - all i wanted.mp3",
+      "albumID": "6b07bf73-4a1f-59f5-96e2-8b38d726c534"
     },
     "11 - All In Vain.mp3": {
       "filename": "11 - All In Vain.mp3",
@@ -1455,6 +1499,28 @@
       "searchText": "bones radiohead radiohead the bends 05 - bones.mp3",
       "albumID": "4f0bac82-4235-56bf-b95a-941c1bf37281"
     },
+    "11 - Born for This.mp3": {
+      "filename": "11 - Born for This.mp3",
+      "size": 9043963,
+      "mtimeNs": 1783609999743642761,
+      "id": "0f51514f-e585-5d87-aa36-8216d25c145c",
+      "title": "Born for This",
+      "artist": "Paramore",
+      "albumArtist": "Paramore",
+      "album": "Riot!",
+      "duration": 238.656,
+      "year": 2007,
+      "trackNumber": 11,
+      "artwork": {
+        "topHex": "#8ECAE6",
+        "bottomHex": "#1D3557",
+        "symbolName": "drop.fill"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "born for this paramore paramore riot! 11 - born for this.mp3",
+      "albumID": "3879780b-9fd1-5fa6-9d93-875ac32acde6"
+    },
     "09 - Brain Damage.mp3": {
       "filename": "09 - Brain Damage.mp3",
       "size": 7300015,
@@ -1542,6 +1608,50 @@
       "isExplicit": false,
       "searchText": "breathe (in the air) pink floyd pink floyd the dark side of the moon 02 - breathe (in the air).mp3",
       "albumID": "e9a8304a-5369-563d-9713-65997f260e16"
+    },
+    "10 - Breathe Today.mp3": {
+      "filename": "10 - Breathe Today.mp3",
+      "size": 5638596,
+      "mtimeNs": 1783609658336517077,
+      "id": "d0daf889-665d-5d2b-ab2d-b21c37916145",
+      "title": "Breathe Today",
+      "artist": "Flyleaf",
+      "albumArtist": "Flyleaf",
+      "album": "Flyleaf",
+      "duration": 149.88,
+      "year": 2006,
+      "trackNumber": 10,
+      "artwork": {
+        "topHex": "#B8F2E6",
+        "bottomHex": "#21455A",
+        "symbolName": "clock.fill"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "breathe today flyleaf flyleaf flyleaf 10 - breathe today.mp3",
+      "albumID": "e394ac30-0a90-5549-8b34-b1b67a904f18"
+    },
+    "04 - Brick by Boring Brick.mp3": {
+      "filename": "04 - Brick by Boring Brick.mp3",
+      "size": 9605761,
+      "mtimeNs": 1783610181514525501,
+      "id": "7d30322f-2e05-5ab5-81a3-f5a7d68e94a2",
+      "title": "Brick by Boring Brick",
+      "artist": "Paramore",
+      "albumArtist": "Paramore",
+      "album": "Brand New Eyes",
+      "duration": 253.992,
+      "year": 2009,
+      "trackNumber": 4,
+      "artwork": {
+        "topHex": "#A7C957",
+        "bottomHex": "#1A2C2A",
+        "symbolName": "moon.stars.fill"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "brick by boring brick paramore paramore brand new eyes 04 - brick by boring brick.mp3",
+      "albumID": "6b07bf73-4a1f-59f5-96e2-8b38d726c534"
     },
     "09 - Broadcasting From Beyond the Grave： Death Inc..mp3": {
       "filename": "09 - Broadcasting From Beyond the Grave： Death Inc..mp3",
@@ -1741,6 +1851,28 @@
       "searchText": "caramel sleep token sleep token even in arcadia 05 - sleep token - caramel.mp3",
       "albumID": "6c7f277e-924e-5e35-b0c2-4142f1f4db35"
     },
+    "01 - Careful.mp3": {
+      "filename": "01 - Careful.mp3",
+      "size": 8622183,
+      "mtimeNs": 1783610181466525225,
+      "id": "ba93ae64-56dc-5726-93b4-718f5445725b",
+      "title": "Careful",
+      "artist": "Paramore",
+      "albumArtist": "Paramore",
+      "album": "Brand New Eyes",
+      "duration": 230.472,
+      "year": 2009,
+      "trackNumber": 1,
+      "artwork": {
+        "topHex": "#F4D35E",
+        "bottomHex": "#23395B",
+        "symbolName": "tram.fill"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "careful paramore paramore brand new eyes 01 - careful.mp3",
+      "albumID": "6b07bf73-4a1f-59f5-96e2-8b38d726c534"
+    },
     "03 - Cash Machine.mp3": {
       "filename": "03 - Cash Machine.mp3",
       "size": 6150321,
@@ -1762,6 +1894,28 @@
       "isExplicit": false,
       "searchText": "cash machine oliver tree oliver tree ugly is beautiful 03 - cash machine.mp3",
       "albumID": "b8831736-1777-5bf8-992a-092fcd6de53a"
+    },
+    "04 - Cassie.mp3": {
+      "filename": "04 - Cassie.mp3",
+      "size": 6505090,
+      "mtimeNs": 1783609658270786109,
+      "id": "800e226b-4fc5-5034-b101-bcc3ee771692",
+      "title": "Cassie",
+      "artist": "Flyleaf",
+      "albumArtist": "Flyleaf",
+      "album": "Flyleaf",
+      "duration": 178.56,
+      "year": 2006,
+      "trackNumber": 4,
+      "artwork": {
+        "topHex": "#A7C957",
+        "bottomHex": "#1A2C2A",
+        "symbolName": "moon.stars.fill"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "cassie flyleaf flyleaf flyleaf 04 - cassie.mp3",
+      "albumID": "e394ac30-0a90-5549-8b34-b1b67a904f18"
     },
     "08 - Casualty.mp3": {
       "filename": "08 - Casualty.mp3",
@@ -2247,6 +2401,28 @@
       "searchText": "crush thornhill thornhill bodies 09 - crush.mp3",
       "albumID": "c5d66f9b-283d-52ce-9b64-46de98fb6ebe"
     },
+    "08 - crushcrushcrush.mp3": {
+      "filename": "08 - crushcrushcrush.mp3",
+      "size": 7309533,
+      "mtimeNs": 1783609999697796356,
+      "id": "a6967c3a-3f4d-552a-bc9a-13465e4324e8",
+      "title": "crushcrushcrush",
+      "artist": "Paramore",
+      "albumArtist": "Paramore",
+      "album": "Riot!",
+      "duration": 189.408,
+      "year": 2007,
+      "trackNumber": 8,
+      "artwork": {
+        "topHex": "#45D6C7",
+        "bottomHex": "#26324A",
+        "symbolName": "waveform"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "crushcrushcrush paramore paramore riot! 08 - crushcrushcrush.mp3",
+      "albumID": "3879780b-9fd1-5fa6-9d93-875ac32acde6"
+    },
     "09 - Cupid Carries A Gun.mp3": {
       "filename": "09 - Cupid Carries A Gun.mp3",
       "size": 10479973,
@@ -2598,6 +2774,28 @@
       "isExplicit": false,
       "searchText": "decay josh a josh a disgrace 03 - josh a • decay.mp3",
       "albumID": "cc045ff7-5a14-5aca-a279-4853e7e55652"
+    },
+    "12 - Decode (Twilight Soundtrack Version).mp3": {
+      "filename": "12 - Decode (Twilight Soundtrack Version).mp3",
+      "size": 9697161,
+      "mtimeNs": 1783610181642526237,
+      "id": "9fb426d8-7f7b-543a-ba26-f71e86084142",
+      "title": "Decode (Twilight Soundtrack Version)",
+      "artist": "Paramore",
+      "albumArtist": "Paramore",
+      "album": "Brand New Eyes",
+      "duration": 262.704,
+      "year": 2009,
+      "trackNumber": 12,
+      "artwork": {
+        "topHex": "#A7C957",
+        "bottomHex": "#1A2C2A",
+        "symbolName": "moon.stars.fill"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "decode (twilight soundtrack version) paramore paramore brand new eyes 12 - decode (twilight soundtrack version).mp3",
+      "albumID": "6b07bf73-4a1f-59f5-96e2-8b38d726c534"
     },
     "02 - Marilyn Manson - Deep Six (Explicit) (Official Music Video).mp3": {
       "filename": "02 - Marilyn Manson - Deep Six (Explicit) (Official Music Video).mp3",
@@ -3985,6 +4183,50 @@
       "searchText": "feel the silence the goo goo dolls the goo goo dolls greatest hits, volume one: the singles 09 - feel the silence (remix).mp3",
       "albumID": "1b921444-b7c5-5c1d-8845-09330e047586"
     },
+    "07 - Feeling Sorry.mp3": {
+      "filename": "07 - Feeling Sorry.mp3",
+      "size": 7024102,
+      "mtimeNs": 1783610181564525788,
+      "id": "bffea031-e5a8-5ef2-8462-4e67bbb3bdf1",
+      "title": "Feeling Sorry",
+      "artist": "Paramore",
+      "albumArtist": "Paramore",
+      "album": "Brand New Eyes",
+      "duration": 185.184,
+      "year": 2009,
+      "trackNumber": 7,
+      "artwork": {
+        "topHex": "#F28482",
+        "bottomHex": "#2E1E32",
+        "symbolName": "sparkles"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "feeling sorry paramore paramore brand new eyes 07 - feeling sorry.mp3",
+      "albumID": "6b07bf73-4a1f-59f5-96e2-8b38d726c534"
+    },
+    "10 - Fences.mp3": {
+      "filename": "10 - Fences.mp3",
+      "size": 7672920,
+      "mtimeNs": 1783609999726999117,
+      "id": "a19a70ed-1f42-544b-b3c3-5633e6360587",
+      "title": "Fences",
+      "artist": "Paramore",
+      "albumArtist": "Paramore",
+      "album": "Riot!",
+      "duration": 199.008,
+      "year": 2007,
+      "trackNumber": 10,
+      "artwork": {
+        "topHex": "#90BE6D",
+        "bottomHex": "#22332C",
+        "symbolName": "airplane"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "fences paramore paramore riot! 10 - fences.mp3",
+      "albumID": "3879780b-9fd1-5fa6-9d93-875ac32acde6"
+    },
     "08 - Figure.09.mp3": {
       "filename": "08 - Figure.09.mp3",
       "size": 6688410,
@@ -4050,6 +4292,28 @@
       "isExplicit": false,
       "searchText": "follow you bring me the horizon bring me the horizon that’s the spirit 05 - follow you.mp3",
       "albumID": "2bf43a98-dbad-57f3-ad63-8571fdd86e37"
+    },
+    "01 - For a Pessimist, I'm Pretty Optimistic.mp3": {
+      "filename": "01 - For a Pessimist, I'm Pretty Optimistic.mp3",
+      "size": 8957565,
+      "mtimeNs": 1783609999582479338,
+      "id": "39034525-9440-56d7-b266-e292c164a7d8",
+      "title": "For a Pessimist, I'm Pretty Optimistic",
+      "artist": "Paramore",
+      "albumArtist": "Paramore",
+      "album": "Riot!",
+      "duration": 228.336,
+      "year": 2007,
+      "trackNumber": 1,
+      "artwork": {
+        "topHex": "#45D6C7",
+        "bottomHex": "#26324A",
+        "symbolName": "waveform"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "for a pessimist, i'm pretty optimistic paramore paramore riot! 01 - for a pessimist, i'm pretty optimistic.mp3",
+      "albumID": "3879780b-9fd1-5fa6-9d93-875ac32acde6"
     },
     "11 - For Now.mp3": {
       "filename": "11 - For Now.mp3",
@@ -4248,6 +4512,28 @@
       "isExplicit": false,
       "searchText": "from yesterday thirty seconds to mars thirty seconds to mars a beautiful lie 07 - from yesterday.mp3",
       "albumID": "059290fe-4ca8-5c9b-b97f-b53c65be2189"
+    },
+    "02 - Fully Alive.mp3": {
+      "filename": "02 - Fully Alive.mp3",
+      "size": 5880560,
+      "mtimeNs": 1783609658248516571,
+      "id": "33e217da-7035-559e-a756-09b28ce3aa31",
+      "title": "Fully Alive",
+      "artist": "Flyleaf",
+      "albumArtist": "Flyleaf",
+      "album": "Flyleaf",
+      "duration": 154.176,
+      "year": 2006,
+      "trackNumber": 2,
+      "artwork": {
+        "topHex": "#F28482",
+        "bottomHex": "#2E1E32",
+        "symbolName": "sparkles"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "fully alive flyleaf flyleaf flyleaf 02 - fully alive.mp3",
+      "albumID": "e394ac30-0a90-5549-8b34-b1b67a904f18"
     },
     "04 - Garbage.mp3": {
       "filename": "04 - Garbage.mp3",
@@ -4490,6 +4776,28 @@
       "isExplicit": false,
       "searchText": "green thumb post malone post malone austin 16 - green thumb.mp3",
       "albumID": "0ab3ec0d-1f9c-5832-8963-753466a3165c"
+    },
+    "03 - Hallelujah.mp3": {
+      "filename": "03 - Hallelujah.mp3",
+      "size": 7925037,
+      "mtimeNs": 1783609999615479528,
+      "id": "2071cf28-1e44-583e-8e84-4af4c0c0a33c",
+      "title": "Hallelujah",
+      "artist": "Paramore",
+      "albumArtist": "Paramore",
+      "album": "Riot!",
+      "duration": 203.664,
+      "year": 2007,
+      "trackNumber": 3,
+      "artwork": {
+        "topHex": "#8ECAE6",
+        "bottomHex": "#1D3557",
+        "symbolName": "drop.fill"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "hallelujah paramore paramore riot! 03 - hallelujah.mp3",
+      "albumID": "3879780b-9fd1-5fa6-9d93-875ac32acde6"
     },
     "09 - Happy.mp3": {
       "filename": "09 - Happy.mp3",
@@ -5437,6 +5745,50 @@
       "searchText": "i want it that way nothing,nowhere. nothing,nowhere. will it emo? (vol.1) 06 - i want it that way.mp3",
       "albumID": "680f7984-65fe-50fb-bdac-9d202637034f"
     },
+    "01 - I'm So Sick.mp3": {
+      "filename": "01 - I'm So Sick.mp3",
+      "size": 6391062,
+      "mtimeNs": 1783609658238516513,
+      "id": "baeebc12-9788-5722-849d-492a4663177a",
+      "title": "I'm So Sick",
+      "artist": "Flyleaf",
+      "albumArtist": "Flyleaf",
+      "album": "Flyleaf",
+      "duration": 175.92,
+      "year": 2006,
+      "trackNumber": 1,
+      "artwork": {
+        "topHex": "#A7C957",
+        "bottomHex": "#1A2C2A",
+        "symbolName": "moon.stars.fill"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "i'm so sick flyleaf flyleaf flyleaf 01 - i'm so sick.mp3",
+      "albumID": "e394ac30-0a90-5549-8b34-b1b67a904f18"
+    },
+    "06 - I'm Sorry.mp3": {
+      "filename": "06 - I'm Sorry.mp3",
+      "size": 6163967,
+      "mtimeNs": 1783609658292516824,
+      "id": "1da30aa3-8aef-5a4f-ab28-106e60f60295",
+      "title": "I'm Sorry",
+      "artist": "Flyleaf",
+      "albumArtist": "Flyleaf",
+      "album": "Flyleaf",
+      "duration": 163.776,
+      "year": 2006,
+      "trackNumber": 6,
+      "artwork": {
+        "topHex": "#B8F2E6",
+        "bottomHex": "#21455A",
+        "symbolName": "clock.fill"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "i'm sorry flyleaf flyleaf flyleaf 06 - i'm sorry.mp3",
+      "albumID": "e394ac30-0a90-5549-8b34-b1b67a904f18"
+    },
     "01 - If I Was Your Vampire.mp3": {
       "filename": "01 - If I Was Your Vampire.mp3",
       "size": 11549567,
@@ -5458,6 +5810,28 @@
       "isExplicit": false,
       "searchText": "if i was your vampire marilyn manson marilyn manson eat me, drink me 01 - if i was your vampire.mp3",
       "albumID": "2e0083c8-8205-53f9-a203-452d7675a0b9"
+    },
+    "02 - Ignorance.mp3": {
+      "filename": "02 - Ignorance.mp3",
+      "size": 8228562,
+      "mtimeNs": 1783610181481525311,
+      "id": "581a8f04-548a-50f4-bb9b-af57b1483a6a",
+      "title": "Ignorance",
+      "artist": "Paramore",
+      "albumArtist": "Paramore",
+      "album": "Brand New Eyes",
+      "duration": 218.664,
+      "year": 2009,
+      "trackNumber": 2,
+      "artwork": {
+        "topHex": "#A7C957",
+        "bottomHex": "#1A2C2A",
+        "symbolName": "moon.stars.fill"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "ignorance paramore paramore brand new eyes 02 - ignorance.mp3",
+      "albumID": "6b07bf73-4a1f-59f5-96e2-8b38d726c534"
     },
     "07 - Immolation of Night.mp3": {
       "filename": "07 - Immolation of Night.mp3",
@@ -6427,6 +6801,28 @@
       "searchText": "let me leave currents currents the way it ends 06 - let me leave.mp3",
       "albumID": "1e0deeef-74e8-5ca0-b0ef-1e7fe0ad884c"
     },
+    "06 - Let the Flames Begin.mp3": {
+      "filename": "06 - Let the Flames Begin.mp3",
+      "size": 7488317,
+      "mtimeNs": 1783609999661479792,
+      "id": "f1ffc493-c6b6-5461-ab1c-80835ea4e8ec",
+      "title": "Let the Flames Begin",
+      "artist": "Paramore",
+      "albumArtist": "Paramore",
+      "album": "Riot!",
+      "duration": 198.264,
+      "year": 2007,
+      "trackNumber": 6,
+      "artwork": {
+        "topHex": "#8ECAE6",
+        "bottomHex": "#1D3557",
+        "symbolName": "drop.fill"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "let the flames begin paramore paramore riot! 06 - let the flames begin.mp3",
+      "albumID": "3879780b-9fd1-5fa6-9d93-875ac32acde6"
+    },
     "11 - Libertine.mp3": {
       "filename": "11 - Libertine.mp3",
       "size": 7931605,
@@ -6624,6 +7020,28 @@
       "isExplicit": false,
       "searchText": "look to windward sleep token sleep token even in arcadia 01 - sleep token - look to windward.mp3",
       "albumID": "6c7f277e-924e-5e35-b0c2-4142f1f4db35"
+    },
+    "08 - Looking Up.mp3": {
+      "filename": "08 - Looking Up.mp3",
+      "size": 7928628,
+      "mtimeNs": 1783610181579525875,
+      "id": "a934c16d-2767-52d7-ab47-0550633ee166",
+      "title": "Looking Up",
+      "artist": "Paramore",
+      "albumArtist": "Paramore",
+      "album": "Brand New Eyes",
+      "duration": 209.472,
+      "year": 2009,
+      "trackNumber": 8,
+      "artwork": {
+        "topHex": "#C77DFF",
+        "bottomHex": "#2B235A",
+        "symbolName": "antenna.radiowaves.left.and.right"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "looking up paramore paramore brand new eyes 08 - looking up.mp3",
+      "albumID": "6b07bf73-4a1f-59f5-96e2-8b38d726c534"
     },
     "10 - LosT.mp3": {
       "filename": "10 - LosT.mp3",
@@ -6955,6 +7373,28 @@
       "searchText": "mine sleep token sleep token this place will become your tomb 03 - mine.mp3",
       "albumID": "6c95a99f-9a22-59fe-b9d0-886bff1ad721"
     },
+    "07 - Miracle.mp3": {
+      "filename": "07 - Miracle.mp3",
+      "size": 8070941,
+      "mtimeNs": 1783609999682479913,
+      "id": "baa97771-e249-53da-a24f-679caa6e8a00",
+      "title": "Miracle",
+      "artist": "Paramore",
+      "albumArtist": "Paramore",
+      "album": "Riot!",
+      "duration": 209.784,
+      "year": 2007,
+      "trackNumber": 7,
+      "artwork": {
+        "topHex": "#45D6C7",
+        "bottomHex": "#26324A",
+        "symbolName": "waveform"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "miracle paramore paramore riot! 07 - miracle.mp3",
+      "albumID": "3879780b-9fd1-5fa6-9d93-875ac32acde6"
+    },
     "05 - Miracle Man.mp3": {
       "filename": "05 - Miracle Man.mp3",
       "size": 4342423,
@@ -6976,6 +7416,72 @@
       "isExplicit": false,
       "searchText": "miracle man oliver tree oliver tree ugly is beautiful 05 - miracle man.mp3",
       "albumID": "b8831736-1777-5bf8-992a-092fcd6de53a"
+    },
+    "04 - Misery Business.mp3": {
+      "filename": "04 - Misery Business.mp3",
+      "size": 8074549,
+      "mtimeNs": 1783609999630479614,
+      "id": "11997c87-06cc-5520-b14c-0456b7bda09a",
+      "title": "Misery Business",
+      "artist": "Paramore",
+      "albumArtist": "Paramore",
+      "album": "Riot!",
+      "duration": 211.56,
+      "year": 2007,
+      "trackNumber": 4,
+      "artwork": {
+        "topHex": "#A7C957",
+        "bottomHex": "#1A2C2A",
+        "symbolName": "moon.stars.fill"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "misery business paramore paramore riot! 04 - misery business.mp3",
+      "albumID": "3879780b-9fd1-5fa6-9d93-875ac32acde6"
+    },
+    "12 - Misery Business (Acoustic Version).mp3": {
+      "filename": "12 - Misery Business (Acoustic Version).mp3",
+      "size": 7669696,
+      "mtimeNs": 1783609999756881757,
+      "id": "3b0f4df3-c749-5f37-bd7e-278ff3c84e72",
+      "title": "Misery Business (Acoustic Version)",
+      "artist": "Paramore",
+      "albumArtist": "Paramore",
+      "album": "Riot!",
+      "duration": 194.16,
+      "year": 2007,
+      "trackNumber": 12,
+      "artwork": {
+        "topHex": "#A7C957",
+        "bottomHex": "#1A2C2A",
+        "symbolName": "moon.stars.fill"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "misery business (acoustic version) paramore paramore riot! 12 - misery business (acoustic version).mp3",
+      "albumID": "3879780b-9fd1-5fa6-9d93-875ac32acde6"
+    },
+    "10 - Misguided Ghosts.mp3": {
+      "filename": "10 - Misguided Ghosts.mp3",
+      "size": 6494541,
+      "mtimeNs": 1783610181610526053,
+      "id": "afb31a17-2615-5428-89ee-2a5af9e73805",
+      "title": "Misguided Ghosts",
+      "artist": "Paramore",
+      "albumArtist": "Paramore",
+      "album": "Brand New Eyes",
+      "duration": 181.536,
+      "year": 2009,
+      "trackNumber": 10,
+      "artwork": {
+        "topHex": "#B8F2E6",
+        "bottomHex": "#21455A",
+        "symbolName": "clock.fill"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "misguided ghosts paramore paramore brand new eyes 10 - misguided ghosts.mp3",
+      "albumID": "6b07bf73-4a1f-59f5-96e2-8b38d726c534"
     },
     "12 - Missing Limbs.mp3": {
       "filename": "12 - Missing Limbs.mp3",
@@ -8099,6 +8605,28 @@
       "searchText": "peace of mind while she sleeps while she sleeps self hell 01 - peace of mind.mp3",
       "albumID": "3ddff11c-3506-5dc0-aca3-116de122f323"
     },
+    "03 - Perfect.mp3": {
+      "filename": "03 - Perfect.mp3",
+      "size": 6458033,
+      "mtimeNs": 1783609658259516634,
+      "id": "ddfd50fe-496f-568e-8f7b-0109d0897a83",
+      "title": "Perfect",
+      "artist": "Flyleaf",
+      "albumArtist": "Flyleaf",
+      "album": "Flyleaf",
+      "duration": 168.912,
+      "year": 2006,
+      "trackNumber": 3,
+      "artwork": {
+        "topHex": "#F4D35E",
+        "bottomHex": "#23395B",
+        "symbolName": "tram.fill"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "perfect flyleaf flyleaf flyleaf 03 - perfect.mp3",
+      "albumID": "e394ac30-0a90-5549-8b34-b1b67a904f18"
+    },
     "08 - Perfect.mp3": {
       "filename": "08 - Perfect.mp3",
       "size": 5237010,
@@ -8164,6 +8692,28 @@
       "isExplicit": false,
       "searchText": "planet telex radiohead radiohead the bends 01 - planet telex.mp3",
       "albumID": "4f0bac82-4235-56bf-b95a-941c1bf37281"
+    },
+    "03 - Playing God.mp3": {
+      "filename": "03 - Playing God.mp3",
+      "size": 7086385,
+      "mtimeNs": 1783610181497525403,
+      "id": "d3f3d02f-5e82-53ce-8be5-034717df8c34",
+      "title": "Playing God",
+      "artist": "Paramore",
+      "albumArtist": "Paramore",
+      "album": "Brand New Eyes",
+      "duration": 182.832,
+      "year": 2009,
+      "trackNumber": 3,
+      "artwork": {
+        "topHex": "#8ECAE6",
+        "bottomHex": "#1D3557",
+        "symbolName": "drop.fill"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "playing god paramore paramore brand new eyes 03 - playing god.mp3",
+      "albumID": "6b07bf73-4a1f-59f5-96e2-8b38d726c534"
     },
     "12 - Please End Me.mp3": {
       "filename": "12 - Please End Me.mp3",
@@ -8472,6 +9022,28 @@
       "isExplicit": false,
       "searchText": "rawfear twenty one pilots twenty one pilots breach 02 - rawfear.mp3",
       "albumID": "42ee477c-2dcb-5c15-860c-edf48619bafd"
+    },
+    "08 - Red Sam.mp3": {
+      "filename": "08 - Red Sam.mp3",
+      "size": 7422845,
+      "mtimeNs": 1783609658314986557,
+      "id": "e30e6b43-f9e6-570a-8b00-1e4415a5e63e",
+      "title": "Red Sam",
+      "artist": "Flyleaf",
+      "albumArtist": "Flyleaf",
+      "album": "Flyleaf",
+      "duration": 200.136,
+      "year": 2006,
+      "trackNumber": 8,
+      "artwork": {
+        "topHex": "#C77DFF",
+        "bottomHex": "#2B235A",
+        "symbolName": "antenna.radiowaves.left.and.right"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "red sam flyleaf flyleaf flyleaf 08 - red sam.mp3",
+      "albumID": "e394ac30-0a90-5549-8b34-b1b67a904f18"
     },
     "03 - Relapse.mp3": {
       "filename": "03 - Relapse.mp3",
@@ -9221,6 +9793,28 @@
       "searchText": "slide the goo goo dolls the goo goo dolls greatest hits, volume one: the singles 04 - slide.mp3",
       "albumID": "1b921444-b7c5-5c1d-8845-09330e047586"
     },
+    "11 - So I Thought.mp3": {
+      "filename": "11 - So I Thought.mp3",
+      "size": 10632796,
+      "mtimeNs": 1783609658349517152,
+      "id": "009b282f-21b0-538a-921c-fa6b080a5030",
+      "title": "So I Thought",
+      "artist": "Flyleaf",
+      "albumArtist": "Flyleaf",
+      "album": "Flyleaf",
+      "duration": 290.904,
+      "year": 2006,
+      "trackNumber": 11,
+      "artwork": {
+        "topHex": "#45D6C7",
+        "bottomHex": "#26324A",
+        "symbolName": "waveform"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "so i thought flyleaf flyleaf flyleaf 11 - so i thought.mp3",
+      "albumID": "e394ac30-0a90-5549-8b34-b1b67a904f18"
+    },
     "04 - Josh A • So Tired.mp3": {
       "filename": "04 - Josh A • So Tired.mp3",
       "size": 3506163,
@@ -9352,6 +9946,28 @@
       "isExplicit": false,
       "searchText": "sonder polaris polaris the mortal coil 11 - sonder.mp3",
       "albumID": "9e19d2ca-47a7-5173-b218-5d3a457b8203"
+    },
+    "05 - Sorrow.mp3": {
+      "filename": "05 - Sorrow.mp3",
+      "size": 6249282,
+      "mtimeNs": 1783609658281516761,
+      "id": "e55df7c1-7f58-5a57-b6a8-f1b7de647bfc",
+      "title": "Sorrow",
+      "artist": "Flyleaf",
+      "albumArtist": "Flyleaf",
+      "album": "Flyleaf",
+      "duration": 166.032,
+      "year": 2006,
+      "trackNumber": 5,
+      "artwork": {
+        "topHex": "#8ECAE6",
+        "bottomHex": "#1D3557",
+        "symbolName": "drop.fill"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "sorrow flyleaf flyleaf flyleaf 05 - sorrow.mp3",
+      "albumID": "e394ac30-0a90-5549-8b34-b1b67a904f18"
     },
     "06 - Soulless Creatures.mp3": {
       "filename": "06 - Soulless Creatures.mp3",
@@ -9903,6 +10519,28 @@
       "searchText": "texas tea post malone post malone austin 13 - texas tea.mp3",
       "albumID": "0ab3ec0d-1f9c-5832-8963-753466a3165c"
     },
+    "02 - That's What You Get.mp3": {
+      "filename": "02 - That's What You Get.mp3",
+      "size": 8776754,
+      "mtimeNs": 1783609999599879640,
+      "id": "1d2afdcc-86e7-5e9e-b807-cb2ac6e1b834",
+      "title": "That's What You Get",
+      "artist": "Paramore",
+      "albumArtist": "Paramore",
+      "album": "Riot!",
+      "duration": 220.512,
+      "year": 2007,
+      "trackNumber": 2,
+      "artwork": {
+        "topHex": "#8ECAE6",
+        "bottomHex": "#1D3557",
+        "symbolName": "drop.fill"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "that's what you get paramore paramore riot! 02 - that's what you get.mp3",
+      "albumID": "3879780b-9fd1-5fa6-9d93-875ac32acde6"
+    },
     "08 - Sleep Token - The Apparition.mp3": {
       "filename": "08 - Sleep Token - The Apparition.mp3",
       "size": 8907384,
@@ -10277,6 +10915,28 @@
       "searchText": "the most beautiful bitter fruit la dispute la dispute wildlife 07 - the most beautiful bitter fruit.mp3",
       "albumID": "b4cb0a1a-d1d4-5cef-b1ce-e8b73a77b407"
     },
+    "06 - The Only Exception.mp3": {
+      "filename": "06 - The Only Exception.mp3",
+      "size": 10397911,
+      "mtimeNs": 1783610181548859138,
+      "id": "a6d7ed87-f52f-5c32-b64c-a1eb49f415e8",
+      "title": "The Only Exception",
+      "artist": "Paramore",
+      "albumArtist": "Paramore",
+      "album": "Brand New Eyes",
+      "duration": 267.696,
+      "year": 2009,
+      "trackNumber": 6,
+      "artwork": {
+        "topHex": "#45D6C7",
+        "bottomHex": "#26324A",
+        "symbolName": "waveform"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "the only exception paramore paramore brand new eyes 06 - the only exception.mp3",
+      "albumID": "6b07bf73-4a1f-59f5-96e2-8b38d726c534"
+    },
     "03 - The Red Carpet Grave.mp3": {
       "filename": "03 - The Red Carpet Grave.mp3",
       "size": 8035162,
@@ -10430,6 +11090,28 @@
       "isExplicit": false,
       "searchText": "the summoning sleep token sleep token take me back to eden 02 - sleep token - the summoning.mp3",
       "albumID": "8519aaa3-41db-5f63-83bd-876a58078f56"
+    },
+    "09 - There For You.mp3": {
+      "filename": "09 - There For You.mp3",
+      "size": 6190994,
+      "mtimeNs": 1783609658325546730,
+      "id": "d320ae30-35d5-5efc-bb76-9e54a39e9a49",
+      "title": "There For You",
+      "artist": "Flyleaf",
+      "albumArtist": "Flyleaf",
+      "album": "Flyleaf",
+      "duration": 167.928,
+      "year": 2006,
+      "trackNumber": 9,
+      "artwork": {
+        "topHex": "#F28482",
+        "bottomHex": "#2E1E32",
+        "symbolName": "sparkles"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "there for you flyleaf flyleaf flyleaf 09 - there for you.mp3",
+      "albumID": "e394ac30-0a90-5549-8b34-b1b67a904f18"
     },
     "04 - They Said That Hell's Not Hot.mp3": {
       "filename": "04 - They Said That Hell's Not Hot.mp3",
@@ -10716,6 +11398,28 @@
       "isExplicit": false,
       "searchText": "true friends bring me the horizon bring me the horizon that’s the spirit 04 - true friends.mp3",
       "albumID": "2bf43a98-dbad-57f3-ad63-8571fdd86e37"
+    },
+    "05 - Turn It Off.mp3": {
+      "filename": "05 - Turn It Off.mp3",
+      "size": 9602366,
+      "mtimeNs": 1783610181531525599,
+      "id": "4ad983da-da01-50b4-a678-7e170bffcad8",
+      "title": "Turn It Off",
+      "artist": "Paramore",
+      "albumArtist": "Paramore",
+      "album": "Brand New Eyes",
+      "duration": 259.752,
+      "year": 2009,
+      "trackNumber": 5,
+      "artwork": {
+        "topHex": "#45D6C7",
+        "bottomHex": "#26324A",
+        "symbolName": "waveform"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "turn it off paramore paramore brand new eyes 05 - turn it off.mp3",
+      "albumID": "6b07bf73-4a1f-59f5-96e2-8b38d726c534"
     },
     "01 - un pobre niño murió.mp3": {
       "filename": "01 - un pobre niño murió.mp3",
@@ -11047,6 +11751,28 @@
       "searchText": "wave in the monitor violent vira violent vira lover of a ghost 08 - violent vira - wave in the monitor.mp3",
       "albumID": "3ebc8380-95fe-5e4b-86df-bf81187df44d"
     },
+    "09 - We Are Broken.mp3": {
+      "filename": "09 - We Are Broken.mp3",
+      "size": 8340218,
+      "mtimeNs": 1783609999712867027,
+      "id": "b174100d-9b2f-598d-82d0-1b141945ff50",
+      "title": "We Are Broken",
+      "artist": "Paramore",
+      "albumArtist": "Paramore",
+      "album": "Riot!",
+      "duration": 218.376,
+      "year": 2007,
+      "trackNumber": 9,
+      "artwork": {
+        "topHex": "#45D6C7",
+        "bottomHex": "#26324A",
+        "symbolName": "waveform"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "we are broken paramore paramore riot! 09 - we are broken.mp3",
+      "albumID": "3879780b-9fd1-5fa6-9d93-875ac32acde6"
+    },
     "04 - We Are Never Ever Getting Back Together.mp3": {
       "filename": "04 - We Are Never Ever Getting Back Together.mp3",
       "size": 6849357,
@@ -11090,6 +11816,50 @@
       "isExplicit": false,
       "searchText": "what you need bring me the horizon bring me the horizon that’s the spirit 06 - what you need.mp3",
       "albumID": "2bf43a98-dbad-57f3-ad63-8571fdd86e37"
+    },
+    "05 - When It Rains.mp3": {
+      "filename": "05 - When It Rains.mp3",
+      "size": 8378076,
+      "mtimeNs": 1783609999646479706,
+      "id": "21ca663a-5112-5545-8cbd-acc17d92fd51",
+      "title": "When It Rains",
+      "artist": "Paramore",
+      "albumArtist": "Paramore",
+      "album": "Riot!",
+      "duration": 215.136,
+      "year": 2007,
+      "trackNumber": 5,
+      "artwork": {
+        "topHex": "#F28482",
+        "bottomHex": "#2E1E32",
+        "symbolName": "sparkles"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "when it rains paramore paramore riot! 05 - when it rains.mp3",
+      "albumID": "3879780b-9fd1-5fa6-9d93-875ac32acde6"
+    },
+    "09 - Where the Lines Overlap.mp3": {
+      "filename": "09 - Where the Lines Overlap.mp3",
+      "size": 7472422,
+      "mtimeNs": 1783610181595525967,
+      "id": "6e0d84b0-36ab-5663-af95-ac0514cad99a",
+      "title": "Where the Lines Overlap",
+      "artist": "Paramore",
+      "albumArtist": "Paramore",
+      "album": "Brand New Eyes",
+      "duration": 198.792,
+      "year": 2009,
+      "trackNumber": 9,
+      "artwork": {
+        "topHex": "#A7C957",
+        "bottomHex": "#1A2C2A",
+        "symbolName": "moon.stars.fill"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "where the lines overlap paramore paramore brand new eyes 09 - where the lines overlap.mp3",
+      "albumID": "6b07bf73-4a1f-59f5-96e2-8b38d726c534"
     },
     "09 - why you gotta kick me when i'm down？.mp3": {
       "filename": "09 - why you gotta kick me when i'm down？.mp3",
