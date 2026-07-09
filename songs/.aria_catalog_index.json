@@ -1,6 +1,6 @@
 {
   "version": 4,
-  "updatedAt": "2026-07-09T16:11:24",
+  "updatedAt": "2026-07-09T16:33:21",
   "songsDir": "/home/tofinovak/aria-server/songs",
   "tracks": {
     "06 - [Nice Dream].mp3": {
@@ -33,7 +33,7 @@
       "title": "...and with hope you'll be damned",
       "artist": "Paleface Swiss",
       "albumArtist": "Paleface Swiss",
-      "album": "CURSED",
+      "album": "CURSED (The Complete Edition)",
       "duration": 209.856,
       "year": 2025,
       "trackNumber": 3,
@@ -44,8 +44,8 @@
       },
       "hasArtwork": true,
       "isExplicit": false,
-      "searchText": "...and with hope you'll be damned paleface swiss paleface swiss cursed 03 - ... and with hope you'll be damned.mp3",
-      "albumID": "714f9272-2426-5ec2-971f-06fe36e9b53a"
+      "searchText": "...and with hope you'll be damned paleface swiss paleface swiss cursed (the complete edition) 03 - ... and with hope you'll be damned.mp3",
+      "albumID": "e34adfde-0c56-52c4-8635-34c246f80dea"
     },
     "02 - 1993 (feat. Little Ricky ZR3).mp3": {
       "filename": "02 - 1993 (feat. Little Ricky ZR3).mp3",
@@ -495,7 +495,7 @@
       "title": "Absence Persistent",
       "artist": "Invent Animate",
       "albumArtist": "Invent Animate",
-      "album": "Heavener",
+      "album": "Heavener (Definitive)",
       "duration": 229.152,
       "year": 2023,
       "trackNumber": 1,
@@ -506,8 +506,8 @@
       },
       "hasArtwork": true,
       "isExplicit": false,
-      "searchText": "absence persistent invent animate invent animate heavener 01 - absence persistent.mp3",
-      "albumID": "412ad494-180e-5132-a57d-0974e200abc0"
+      "searchText": "absence persistent invent animate invent animate heavener (definitive) 01 - absence persistent.mp3",
+      "albumID": "06c00327-a8a0-580a-a2d6-5900bbe601b4"
     },
     "09 - Aftertouch.mp3": {
       "filename": "09 - Aftertouch.mp3",
@@ -693,7 +693,7 @@
       "title": "All Star",
       "artist": "nothing,nowhere.",
       "albumArtist": "nothing,nowhere.",
-      "album": "will it emo? (vol. 1)",
+      "album": "will it emo? (vol.1)",
       "duration": 206.88,
       "year": 2025,
       "trackNumber": 2,
@@ -704,8 +704,8 @@
       },
       "hasArtwork": true,
       "isExplicit": false,
-      "searchText": "all star nothing,nowhere. nothing,nowhere. will it emo? (vol. 1) 01 - all star.mp3",
-      "albumID": "0fca7ebe-fae0-5cf9-9d56-83d5f7ade883"
+      "searchText": "all star nothing,nowhere. nothing,nowhere. will it emo? (vol.1) 01 - all star.mp3",
+      "albumID": "680f7984-65fe-50fb-bdac-9d202637034f"
     },
     "06 - All That I Can Give.mp3": {
       "filename": "06 - All That I Can Give.mp3",
@@ -1199,10 +1199,10 @@
       "title": "Best Before: Death",
       "artist": "Paleface Swiss",
       "albumArtist": "Paleface Swiss",
-      "album": "Best Before: Death",
+      "album": "CURSED (The Complete Edition)",
       "duration": 213.624,
       "year": 2023,
-      "trackNumber": 1,
+      "trackNumber": 11,
       "artwork": {
         "topHex": "#F4D35E",
         "bottomHex": "#23395B",
@@ -1210,8 +1210,8 @@
       },
       "hasArtwork": true,
       "isExplicit": false,
-      "searchText": "best before: death paleface swiss paleface swiss best before: death 11 - best before： death.mp3",
-      "albumID": "7fa1c259-f4b4-5066-b71d-c362ac5af571"
+      "searchText": "best before: death paleface swiss paleface swiss cursed (the complete edition) 11 - best before： death.mp3",
+      "albumID": "e34adfde-0c56-52c4-8635-34c246f80dea"
     },
     "11 - Better Days.mp3": {
       "filename": "11 - Better Days.mp3",
@@ -1243,7 +1243,7 @@
       "title": "Better Days",
       "artist": "The Goo Goo Dolls",
       "albumArtist": "The Goo Goo Dolls",
-      "album": "Let Love In",
+      "album": "Greatest Hits, Volume One: The Singles",
       "duration": 213.312,
       "year": 2006,
       "trackNumber": 4,
@@ -1254,8 +1254,8 @@
       },
       "hasArtwork": true,
       "isExplicit": false,
-      "searchText": "better days the goo goo dolls the goo goo dolls let love in 10 - better days.mp3",
-      "albumID": "3c66cc6d-8ac7-51a1-ae2f-112377244e16"
+      "searchText": "better days the goo goo dolls the goo goo dolls greatest hits, volume one: the singles 10 - better days.mp3",
+      "albumID": "1b921444-b7c5-5c1d-8845-09330e047586"
     },
     "11 - Big Machine.mp3": {
       "filename": "11 - Big Machine.mp3",
@@ -1265,7 +1265,7 @@
       "title": "Big Machine",
       "artist": "The Goo Goo Dolls",
       "albumArtist": "The Goo Goo Dolls",
-      "album": "Gutterflower",
+      "album": "Greatest Hits, Volume One: The Singles",
       "duration": 189.624,
       "year": 2014,
       "trackNumber": 1,
@@ -1276,8 +1276,8 @@
       },
       "hasArtwork": true,
       "isExplicit": false,
-      "searchText": "big machine the goo goo dolls the goo goo dolls gutterflower 11 - big machine.mp3",
-      "albumID": "173e3c0e-6fd5-5887-a80c-820a2a552457"
+      "searchText": "big machine the goo goo dolls the goo goo dolls greatest hits, volume one: the singles 11 - big machine.mp3",
+      "albumID": "1b921444-b7c5-5c1d-8845-09330e047586"
     },
     "05 - Birds Of A Feather.mp3": {
       "filename": "05 - Birds Of A Feather.mp3",
@@ -1287,7 +1287,7 @@
       "title": "Birds of a Feather",
       "artist": "nothing,nowhere.",
       "albumArtist": "nothing,nowhere.",
-      "album": "will it emo (vol.1)",
+      "album": "will it emo? (vol.1)",
       "duration": 141.288,
       "year": 2025,
       "trackNumber": 5,
@@ -1298,8 +1298,8 @@
       },
       "hasArtwork": true,
       "isExplicit": false,
-      "searchText": "birds of a feather nothing,nowhere. nothing,nowhere. will it emo (vol.1) 05 - birds of a feather.mp3",
-      "albumID": "4a12f785-b4fd-5135-9f7f-6b5b8368a29f"
+      "searchText": "birds of a feather nothing,nowhere. nothing,nowhere. will it emo? (vol.1) 05 - birds of a feather.mp3",
+      "albumID": "680f7984-65fe-50fb-bdac-9d202637034f"
     },
     "08 - Birds Of Hell Awaiting.mp3": {
       "filename": "08 - Birds Of Hell Awaiting.mp3",
@@ -1353,7 +1353,7 @@
       "title": "Black Balloon",
       "artist": "The Goo Goo Dolls",
       "albumArtist": "The Goo Goo Dolls",
-      "album": "Dizzy Up the Girl",
+      "album": "Greatest Hits, Volume One: The Singles",
       "duration": 250.104,
       "year": 2015,
       "trackNumber": 5,
@@ -1364,8 +1364,8 @@
       },
       "hasArtwork": true,
       "isExplicit": false,
-      "searchText": "black balloon the goo goo dolls the goo goo dolls dizzy up the girl 12 - black balloon.mp3",
-      "albumID": "e69be23e-08b2-5c3f-b74d-a67b146192a4"
+      "searchText": "black balloon the goo goo dolls the goo goo dolls greatest hits, volume one: the singles 12 - black balloon.mp3",
+      "albumID": "1b921444-b7c5-5c1d-8845-09330e047586"
     },
     "02 - Black Lungs.mp3": {
       "filename": "02 - Black Lungs.mp3",
@@ -1573,7 +1573,7 @@
       "title": "Broadway",
       "artist": "The Goo Goo Dolls",
       "albumArtist": "The Goo Goo Dolls",
-      "album": "Dizzy Up the Girl",
+      "album": "Greatest Hits, Volume One: The Singles",
       "duration": 238.368,
       "year": 2015,
       "trackNumber": 3,
@@ -1584,8 +1584,8 @@
       },
       "hasArtwork": true,
       "isExplicit": false,
-      "searchText": "broadway the goo goo dolls the goo goo dolls dizzy up the girl 08 - broadway.mp3",
-      "albumID": "e69be23e-08b2-5c3f-b74d-a67b146192a4"
+      "searchText": "broadway the goo goo dolls the goo goo dolls greatest hits, volume one: the singles 08 - broadway.mp3",
+      "albumID": "1b921444-b7c5-5c1d-8845-09330e047586"
     },
     "09 - Bullet Proof ... I Wish I Was.mp3": {
       "filename": "09 - Bullet Proof ... I Wish I Was.mp3",
@@ -2871,7 +2871,7 @@
       "title": "Dizzy",
       "artist": "The Goo Goo Dolls",
       "albumArtist": "The Goo Goo Dolls",
-      "album": "Dizzy Up the Girl",
+      "album": "Greatest Hits, Volume One: The Singles",
       "duration": 161.616,
       "year": 2015,
       "trackNumber": 1,
@@ -2882,8 +2882,8 @@
       },
       "hasArtwork": true,
       "isExplicit": false,
-      "searchText": "dizzy the goo goo dolls the goo goo dolls dizzy up the girl 02 - dizzy.mp3",
-      "albumID": "e69be23e-08b2-5c3f-b74d-a67b146192a4"
+      "searchText": "dizzy the goo goo dolls the goo goo dolls greatest hits, volume one: the singles 02 - dizzy.mp3",
+      "albumID": "1b921444-b7c5-5c1d-8845-09330e047586"
     },
     "01 - Do You Dream Of Armageddon？.mp3": {
       "filename": "01 - Do You Dream Of Armageddon？.mp3",
@@ -2937,7 +2937,7 @@
       "title": "Don't You Ever Stop",
       "artist": "Paleface Swiss",
       "albumArtist": "Paleface Swiss",
-      "album": "CURSED",
+      "album": "CURSED (The Complete Edition)",
       "duration": 199.488,
       "year": 2025,
       "trackNumber": 4,
@@ -2948,8 +2948,8 @@
       },
       "hasArtwork": true,
       "isExplicit": false,
-      "searchText": "don't you ever stop paleface swiss paleface swiss cursed 04 - don't you ever stop.mp3",
-      "albumID": "714f9272-2426-5ec2-971f-06fe36e9b53a"
+      "searchText": "don't you ever stop paleface swiss paleface swiss cursed (the complete edition) 04 - don't you ever stop.mp3",
+      "albumID": "e34adfde-0c56-52c4-8635-34c246f80dea"
     },
     "05 - Don’t Look Away.mp3": {
       "filename": "05 - Don’t Look Away.mp3",
@@ -3399,7 +3399,7 @@
       "title": "Elysium",
       "artist": "Invent Animate",
       "albumArtist": "Invent Animate",
-      "album": "Heavener",
+      "album": "Heavener (Definitive)",
       "duration": 289.008,
       "year": 2023,
       "trackNumber": 11,
@@ -3410,8 +3410,8 @@
       },
       "hasArtwork": true,
       "isExplicit": false,
-      "searchText": "elysium invent animate invent animate heavener 11 - elysium.mp3",
-      "albumID": "412ad494-180e-5132-a57d-0974e200abc0"
+      "searchText": "elysium invent animate invent animate heavener (definitive) 11 - elysium.mp3",
+      "albumID": "06c00327-a8a0-580a-a2d6-5900bbe601b4"
     },
     "10 - Emberglow.mp3": {
       "filename": "10 - Emberglow.mp3",
@@ -3421,7 +3421,7 @@
       "title": "Emberglow",
       "artist": "Invent Animate",
       "albumArtist": "Invent Animate",
-      "album": "Heavener",
+      "album": "Heavener (Definitive)",
       "duration": 261.6,
       "year": 2023,
       "trackNumber": 10,
@@ -3432,8 +3432,8 @@
       },
       "hasArtwork": true,
       "isExplicit": false,
-      "searchText": "emberglow invent animate invent animate heavener 10 - emberglow.mp3",
-      "albumID": "412ad494-180e-5132-a57d-0974e200abc0"
+      "searchText": "emberglow invent animate invent animate heavener (definitive) 10 - emberglow.mp3",
+      "albumID": "06c00327-a8a0-580a-a2d6-5900bbe601b4"
     },
     "02 - Sleep Token - Emergence.mp3": {
       "filename": "02 - Sleep Token - Emergence.mp3",
@@ -3553,7 +3553,7 @@
       "title": "Enough?",
       "artist": "Paleface Swiss",
       "albumArtist": "Paleface Swiss",
-      "album": "CURSED",
+      "album": "CURSED (The Complete Edition)",
       "duration": 207.816,
       "year": 2025,
       "trackNumber": 5,
@@ -3564,8 +3564,8 @@
       },
       "hasArtwork": true,
       "isExplicit": false,
-      "searchText": "enough? paleface swiss paleface swiss cursed 05 - enough？.mp3",
-      "albumID": "714f9272-2426-5ec2-971f-06fe36e9b53a"
+      "searchText": "enough? paleface swiss paleface swiss cursed (the complete edition) 05 - enough？.mp3",
+      "albumID": "e34adfde-0c56-52c4-8635-34c246f80dea"
     },
     "08 - IMMINENCE - Enslaved.mp3": {
       "filename": "08 - IMMINENCE - Enslaved.mp3",
@@ -3663,10 +3663,10 @@
       "title": "Everlong",
       "artist": "Foo Fighters",
       "albumArtist": "Foo Fighters",
-      "album": "Greatest Hits",
+      "album": "The Colour and the Shape",
       "duration": 291.288,
       "year": 2009,
-      "trackNumber": 4,
+      "trackNumber": 11,
       "artwork": {
         "topHex": "#45D6C7",
         "bottomHex": "#26324A",
@@ -3674,8 +3674,8 @@
       },
       "hasArtwork": true,
       "isExplicit": false,
-      "searchText": "everlong foo fighters foo fighters greatest hits everlong.mp3",
-      "albumID": "a5fc2c12-5ca4-56de-98a6-86001f1215ac"
+      "searchText": "everlong foo fighters foo fighters the colour and the shape everlong.mp3",
+      "albumID": "9615a262-c0da-5a88-bcd4-833dd6b59c49"
     },
     "07 - Evidence.mp3": {
       "filename": "07 - Evidence.mp3",
@@ -3817,7 +3817,7 @@
       "title": "False Meridian",
       "artist": "Invent Animate",
       "albumArtist": "Invent Animate",
-      "album": "Heavener",
+      "album": "Heavener (Definitive)",
       "duration": 300.288,
       "year": 2023,
       "trackNumber": 5,
@@ -3828,8 +3828,8 @@
       },
       "hasArtwork": true,
       "isExplicit": false,
-      "searchText": "false meridian invent animate invent animate heavener 05 - false meridian.mp3",
-      "albumID": "412ad494-180e-5132-a57d-0974e200abc0"
+      "searchText": "false meridian invent animate invent animate heavener (definitive) 05 - false meridian.mp3",
+      "albumID": "06c00327-a8a0-580a-a2d6-5900bbe601b4"
     },
     "12 - Fated, Faithful, Fatal.mp3": {
       "filename": "12 - Fated, Faithful, Fatal.mp3",
@@ -3927,7 +3927,7 @@
       "title": "Feel the Silence",
       "artist": "The Goo Goo Dolls",
       "albumArtist": "The Goo Goo Dolls",
-      "album": "Let Love In",
+      "album": "Greatest Hits, Volume One: The Singles",
       "duration": 230.928,
       "year": 2006,
       "trackNumber": 3,
@@ -3938,8 +3938,8 @@
       },
       "hasArtwork": true,
       "isExplicit": false,
-      "searchText": "feel the silence the goo goo dolls the goo goo dolls let love in 09 - feel the silence (remix).mp3",
-      "albumID": "3c66cc6d-8ac7-51a1-ae2f-112377244e16"
+      "searchText": "feel the silence the goo goo dolls the goo goo dolls greatest hits, volume one: the singles 09 - feel the silence (remix).mp3",
+      "albumID": "1b921444-b7c5-5c1d-8845-09330e047586"
     },
     "08 - Figure.09.mp3": {
       "filename": "08 - Figure.09.mp3",
@@ -4125,7 +4125,7 @@
       "title": "fresh bruises",
       "artist": "Bring Me the Horizon",
       "albumArtist": "Bring Me the Horizon",
-      "album": "amo (japan tour edition)",
+      "album": "amo",
       "duration": 198.48,
       "year": 2019,
       "trackNumber": 10,
@@ -4136,8 +4136,8 @@
       },
       "hasArtwork": true,
       "isExplicit": false,
-      "searchText": "fresh bruises bring me the horizon bring me the horizon amo (japan tour edition) 10 - fresh bruises.mp3",
-      "albumID": "e5e377c6-0270-5d37-a362-f0929fe07b3d"
+      "searchText": "fresh bruises bring me the horizon bring me the horizon amo 10 - fresh bruises.mp3",
+      "albumID": "059b7604-859f-5902-b7bb-af3ce0f07638"
     },
     "10 - From the Inside.mp3": {
       "filename": "10 - From the Inside.mp3",
@@ -4433,7 +4433,7 @@
       "title": "Happy",
       "artist": "nothing,nowhere.",
       "albumArtist": "nothing,nowhere.",
-      "album": "will it emo (vol.1)",
+      "album": "will it emo? (vol.1)",
       "duration": 116.616,
       "year": 2025,
       "trackNumber": 9,
@@ -4444,8 +4444,8 @@
       },
       "hasArtwork": true,
       "isExplicit": false,
-      "searchText": "happy nothing,nowhere. nothing,nowhere. will it emo (vol.1) 09 - happy.mp3",
-      "albumID": "4a12f785-b4fd-5135-9f7f-6b5b8368a29f"
+      "searchText": "happy nothing,nowhere. nothing,nowhere. will it emo? (vol.1) 09 - happy.mp3",
+      "albumID": "680f7984-65fe-50fb-bdac-9d202637034f"
     },
     "02 - Happy Song.mp3": {
       "filename": "02 - Happy Song.mp3",
@@ -4521,7 +4521,7 @@
       "title": "Harder Harmonies",
       "artist": "La Dispute",
       "albumArtist": "Various Artists",
-      "album": "Fall 2012 Sampler",
+      "album": "Wildlife",
       "duration": 215.256,
       "year": 2012,
       "trackNumber": 17,
@@ -4532,8 +4532,8 @@
       },
       "hasArtwork": true,
       "isExplicit": false,
-      "searchText": "harder harmonies la dispute various artists fall 2012 sampler 02 - harder harmonies.mp3",
-      "albumID": "25fec3f9-381d-59b2-bbbf-75e89fd4a5af"
+      "searchText": "harder harmonies la dispute various artists wildlife 02 - harder harmonies.mp3",
+      "albumID": "b4cb0a1a-d1d4-5cef-b1ce-e8b73a77b407"
     },
     "02 - Hatred.mp3": {
       "filename": "02 - Hatred.mp3",
@@ -4543,7 +4543,7 @@
       "title": "Hatred",
       "artist": "Paleface Swiss",
       "albumArtist": "Paleface Swiss",
-      "album": "CURSED",
+      "album": "CURSED (The Complete Edition)",
       "duration": 184.008,
       "year": 2025,
       "trackNumber": 2,
@@ -4554,8 +4554,8 @@
       },
       "hasArtwork": true,
       "isExplicit": false,
-      "searchText": "hatred paleface swiss paleface swiss cursed 02 - hatred.mp3",
-      "albumID": "714f9272-2426-5ec2-971f-06fe36e9b53a"
+      "searchText": "hatred paleface swiss paleface swiss cursed (the complete edition) 02 - hatred.mp3",
+      "albumID": "e34adfde-0c56-52c4-8635-34c246f80dea"
     },
     "02 - Headache.mp3": {
       "filename": "02 - Headache.mp3",
@@ -4675,7 +4675,7 @@
       "title": "heavy metal",
       "artist": "Bring Me the Horizon feat. Rahzel",
       "albumArtist": "Bring Me the Horizon",
-      "album": "amo (japan tour edition)",
+      "album": "amo",
       "duration": 240.624,
       "year": 2019,
       "trackNumber": 12,
@@ -4686,8 +4686,8 @@
       },
       "hasArtwork": true,
       "isExplicit": false,
-      "searchText": "heavy metal bring me the horizon feat. rahzel bring me the horizon amo (japan tour edition) 12 - heavy metal.mp3",
-      "albumID": "e5e377c6-0270-5d37-a362-f0929fe07b3d"
+      "searchText": "heavy metal bring me the horizon feat. rahzel bring me the horizon amo 12 - heavy metal.mp3",
+      "albumID": "059b7604-859f-5902-b7bb-af3ce0f07638"
     },
     "03 - Here Is Gone.mp3": {
       "filename": "03 - Here Is Gone.mp3",
@@ -4697,7 +4697,7 @@
       "title": "Here Is Gone",
       "artist": "The Goo Goo Dolls",
       "albumArtist": "The Goo Goo Dolls",
-      "album": "Gutterflower",
+      "album": "Greatest Hits, Volume One: The Singles",
       "duration": 238.368,
       "year": 2014,
       "trackNumber": 3,
@@ -4708,8 +4708,8 @@
       },
       "hasArtwork": true,
       "isExplicit": false,
-      "searchText": "here is gone the goo goo dolls the goo goo dolls gutterflower 03 - here is gone.mp3",
-      "albumID": "173e3c0e-6fd5-5887-a80c-820a2a552457"
+      "searchText": "here is gone the goo goo dolls the goo goo dolls greatest hits, volume one: the singles 03 - here is gone.mp3",
+      "albumID": "1b921444-b7c5-5c1d-8845-09330e047586"
     },
     "03 - Foo Fighters - Hey, Johnny Park!.mp3": {
       "filename": "03 - Foo Fighters - Hey, Johnny Park!.mp3",
@@ -4917,7 +4917,7 @@
       "title": "HOT TO GO!",
       "artist": "nothing,nowhere.",
       "albumArtist": "nothing,nowhere.",
-      "album": "will it emo? (vol. 1)",
+      "album": "will it emo? (vol.1)",
       "duration": 173.256,
       "year": 2025,
       "trackNumber": 1,
@@ -4928,8 +4928,8 @@
       },
       "hasArtwork": true,
       "isExplicit": false,
-      "searchText": "hot to go! nothing,nowhere. nothing,nowhere. will it emo? (vol. 1) 02 - hot to go!.mp3",
-      "albumID": "0fca7ebe-fae0-5cf9-9d56-83d5f7ade883"
+      "searchText": "hot to go! nothing,nowhere. nothing,nowhere. will it emo? (vol.1) 02 - hot to go!.mp3",
+      "albumID": "680f7984-65fe-50fb-bdac-9d202637034f"
     },
     "10 - How I Fall Apart.mp3": {
       "filename": "10 - How I Fall Apart.mp3",
@@ -5203,7 +5203,7 @@
       "title": "i apologise if you feel something",
       "artist": "Bring Me the Horizon",
       "albumArtist": "Bring Me the Horizon",
-      "album": "amo (japan tour edition)",
+      "album": "amo",
       "duration": 139.608,
       "year": 2019,
       "trackNumber": 1,
@@ -5214,8 +5214,8 @@
       },
       "hasArtwork": true,
       "isExplicit": false,
-      "searchText": "i apologise if you feel something bring me the horizon bring me the horizon amo (japan tour edition) 01 - i apologise if you feel something.mp3",
-      "albumID": "e5e377c6-0270-5d37-a362-f0929fe07b3d"
+      "searchText": "i apologise if you feel something bring me the horizon bring me the horizon amo 01 - i apologise if you feel something.mp3",
+      "albumID": "059b7604-859f-5902-b7bb-af3ce0f07638"
     },
     "13 - i don't know what to say.mp3": {
       "filename": "13 - i don't know what to say.mp3",
@@ -5225,7 +5225,7 @@
       "title": "i don’t know what to say",
       "artist": "Bring Me the Horizon",
       "albumArtist": "Bring Me the Horizon",
-      "album": "amo (japan tour edition)",
+      "album": "amo",
       "duration": 352.416,
       "year": 2019,
       "trackNumber": 13,
@@ -5236,8 +5236,8 @@
       },
       "hasArtwork": true,
       "isExplicit": false,
-      "searchText": "i don’t know what to say bring me the horizon bring me the horizon amo (japan tour edition) 13 - i don't know what to say.mp3",
-      "albumID": "e5e377c6-0270-5d37-a362-f0929fe07b3d"
+      "searchText": "i don’t know what to say bring me the horizon bring me the horizon amo 13 - i don't know what to say.mp3",
+      "albumID": "059b7604-859f-5902-b7bb-af3ce0f07638"
     },
     "07 - Josh A • I Miss My Ex.mp3": {
       "filename": "07 - Josh A • I Miss My Ex.mp3",
@@ -5291,7 +5291,7 @@
       "title": "I Want It That Way",
       "artist": "nothing,nowhere.",
       "albumArtist": "nothing,nowhere.",
-      "album": "will it emo (vol.1)",
+      "album": "will it emo? (vol.1)",
       "duration": 164.568,
       "year": 2025,
       "trackNumber": 6,
@@ -5302,8 +5302,8 @@
       },
       "hasArtwork": true,
       "isExplicit": false,
-      "searchText": "i want it that way nothing,nowhere. nothing,nowhere. will it emo (vol.1) 06 - i want it that way.mp3",
-      "albumID": "4a12f785-b4fd-5135-9f7f-6b5b8368a29f"
+      "searchText": "i want it that way nothing,nowhere. nothing,nowhere. will it emo? (vol.1) 06 - i want it that way.mp3",
+      "albumID": "680f7984-65fe-50fb-bdac-9d202637034f"
     },
     "01 - If I Was Your Vampire.mp3": {
       "filename": "01 - If I Was Your Vampire.mp3",
@@ -5445,7 +5445,7 @@
       "title": "Immolation of Night",
       "artist": "Invent Animate",
       "albumArtist": "Invent Animate",
-      "album": "Heavener",
+      "album": "Heavener (Definitive)",
       "duration": 230.424,
       "year": 2023,
       "trackNumber": 7,
@@ -5456,8 +5456,8 @@
       },
       "hasArtwork": true,
       "isExplicit": false,
-      "searchText": "immolation of night invent animate invent animate heavener 07 - immolation of night.mp3",
-      "albumID": "412ad494-180e-5132-a57d-0974e200abc0"
+      "searchText": "immolation of night invent animate invent animate heavener (definitive) 07 - immolation of night.mp3",
+      "albumID": "06c00327-a8a0-580a-a2d6-5900bbe601b4"
     },
     "07 - Impermanence.mp3": {
       "filename": "07 - Impermanence.mp3",
@@ -5577,7 +5577,7 @@
       "title": "in the dark",
       "artist": "Bring Me the Horizon",
       "albumArtist": "Bring Me the Horizon",
-      "album": "amo (japan tour edition)",
+      "album": "amo",
       "duration": 271.224,
       "year": 2019,
       "trackNumber": 4,
@@ -5588,8 +5588,8 @@
       },
       "hasArtwork": true,
       "isExplicit": false,
-      "searchText": "in the dark bring me the horizon bring me the horizon amo (japan tour edition) 04 - in the dark.mp3",
-      "albumID": "e5e377c6-0270-5d37-a362-f0929fe07b3d"
+      "searchText": "in the dark bring me the horizon bring me the horizon amo 04 - in the dark.mp3",
+      "albumID": "059b7604-859f-5902-b7bb-af3ce0f07638"
     },
     "In_the_End_3.mp3": {
       "filename": "In_the_End_3.mp3",
@@ -5775,7 +5775,7 @@
       "title": "Iris",
       "artist": "The Goo Goo Dolls",
       "albumArtist": "The Goo Goo Dolls",
-      "album": "Dizzy Up the Girl",
+      "album": "Greatest Hits, Volume One: The Singles",
       "duration": 289.944,
       "year": 2015,
       "trackNumber": 11,
@@ -5786,8 +5786,8 @@
       },
       "hasArtwork": true,
       "isExplicit": false,
-      "searchText": "iris the goo goo dolls the goo goo dolls dizzy up the girl 14 - iris.mp3",
-      "albumID": "e69be23e-08b2-5c3f-b74d-a67b146192a4"
+      "searchText": "iris the goo goo dolls the goo goo dolls greatest hits, volume one: the singles 14 - iris.mp3",
+      "albumID": "1b921444-b7c5-5c1d-8845-09330e047586"
     },
     "05 - Itch For The Cure (When Will We Be Free？).mp3": {
       "filename": "05 - Itch For The Cure (When Will We Be Free？).mp3",
@@ -6149,7 +6149,7 @@
       "title": "Labyrinthine",
       "artist": "Invent Animate",
       "albumArtist": "Invent Animate",
-      "album": "Heavener",
+      "album": "Heavener (Definitive)",
       "duration": 223.464,
       "year": 2023,
       "trackNumber": 3,
@@ -6160,8 +6160,8 @@
       },
       "hasArtwork": true,
       "isExplicit": false,
-      "searchText": "labyrinthine invent animate invent animate heavener 03 - labyrinthine.mp3",
-      "albumID": "412ad494-180e-5132-a57d-0974e200abc0"
+      "searchText": "labyrinthine invent animate invent animate heavener (definitive) 03 - labyrinthine.mp3",
+      "albumID": "06c00327-a8a0-580a-a2d6-5900bbe601b4"
     },
     "Polaris_-_Landmine__Official_Audio_Stream_.mp3": {
       "filename": "Polaris_-_Landmine__Official_Audio_Stream_.mp3",
@@ -6347,7 +6347,7 @@
       "title": "Let Love In",
       "artist": "The Goo Goo Dolls",
       "albumArtist": "The Goo Goo Dolls",
-      "album": "Let Love In",
+      "album": "Greatest Hits, Volume One: The Singles",
       "duration": 300.456,
       "year": 2006,
       "trackNumber": 2,
@@ -6358,8 +6358,8 @@
       },
       "hasArtwork": true,
       "isExplicit": false,
-      "searchText": "let love in the goo goo dolls the goo goo dolls let love in 01 - let love in.mp3",
-      "albumID": "3c66cc6d-8ac7-51a1-ae2f-112377244e16"
+      "searchText": "let love in the goo goo dolls the goo goo dolls greatest hits, volume one: the singles 01 - let love in.mp3",
+      "albumID": "1b921444-b7c5-5c1d-8845-09330e047586"
     },
     "04 - Let Me Down.mp3": {
       "filename": "04 - Let Me Down.mp3",
@@ -6457,7 +6457,7 @@
       "title": "Life Is a Highway",
       "artist": "nothing,nowhere.",
       "albumArtist": "nothing,nowhere.",
-      "album": "will it emo (vol.1)",
+      "album": "will it emo? (vol.1)",
       "duration": 165.384,
       "year": 2025,
       "trackNumber": 7,
@@ -6468,8 +6468,8 @@
       },
       "hasArtwork": true,
       "isExplicit": false,
-      "searchText": "life is a highway nothing,nowhere. nothing,nowhere. will it emo (vol.1) 07 - life is a highway.mp3",
-      "albumID": "4a12f785-b4fd-5135-9f7f-6b5b8368a29f"
+      "searchText": "life is a highway nothing,nowhere. nothing,nowhere. will it emo? (vol.1) 07 - life is a highway.mp3",
+      "albumID": "680f7984-65fe-50fb-bdac-9d202637034f"
     },
     "04 - Like That.mp3": {
       "filename": "04 - Like That.mp3",
@@ -6677,7 +6677,7 @@
       "title": "Love Burns",
       "artist": "Paleface Swiss",
       "albumArtist": "Paleface Swiss",
-      "album": "CURSED",
+      "album": "CURSED (The Complete Edition)",
       "duration": 255.888,
       "year": 2025,
       "trackNumber": 8,
@@ -6688,8 +6688,8 @@
       },
       "hasArtwork": true,
       "isExplicit": false,
-      "searchText": "love burns paleface swiss paleface swiss cursed 08 - love burns.mp3",
-      "albumID": "714f9272-2426-5ec2-971f-06fe36e9b53a"
+      "searchText": "love burns paleface swiss paleface swiss cursed (the complete edition) 08 - love burns.mp3",
+      "albumID": "e34adfde-0c56-52c4-8635-34c246f80dea"
     },
     "11 - Jake Hill & Josh A - Lowlife.mp3": {
       "filename": "11 - Jake Hill & Josh A - Lowlife.mp3",
@@ -6787,7 +6787,7 @@
       "title": "MANTRA",
       "artist": "Bring Me the Horizon",
       "albumArtist": "Bring Me the Horizon",
-      "album": "amo (japan tour edition)",
+      "album": "amo",
       "duration": 233.16,
       "year": 2019,
       "trackNumber": 2,
@@ -6798,8 +6798,8 @@
       },
       "hasArtwork": true,
       "isExplicit": false,
-      "searchText": "mantra bring me the horizon bring me the horizon amo (japan tour edition) 02 - mantra.mp3",
-      "albumID": "e5e377c6-0270-5d37-a362-f0929fe07b3d"
+      "searchText": "mantra bring me the horizon bring me the horizon amo 02 - mantra.mp3",
+      "albumID": "059b7604-859f-5902-b7bb-af3ce0f07638"
     },
     "02 - Marilyn Manson - Deep Six (Explicit) (Official Music Video).mp3": {
       "filename": "02 - Marilyn Manson - Deep Six (Explicit) (Official Music Video).mp3",
@@ -6875,7 +6875,7 @@
       "title": "medicine",
       "artist": "Bring Me the Horizon",
       "albumArtist": "Bring Me the Horizon",
-      "album": "amo (japan tour edition)",
+      "album": "amo",
       "duration": 227.304,
       "year": 2019,
       "trackNumber": 7,
@@ -6886,8 +6886,8 @@
       },
       "hasArtwork": true,
       "isExplicit": false,
-      "searchText": "medicine bring me the horizon bring me the horizon amo (japan tour edition) 07 - medicine.mp3",
-      "albumID": "e5e377c6-0270-5d37-a362-f0929fe07b3d"
+      "searchText": "medicine bring me the horizon bring me the horizon amo 07 - medicine.mp3",
+      "albumID": "059b7604-859f-5902-b7bb-af3ce0f07638"
     },
     "11 - Memento Mori.mp3": {
       "filename": "11 - Memento Mori.mp3",
@@ -7051,10 +7051,10 @@
       "title": "Monkey Wrench",
       "artist": "Foo Fighters",
       "albumArtist": "Foo Fighters",
-      "album": "Greatest Hits",
+      "album": "The Colour and the Shape",
       "duration": 272.232,
       "year": 2009,
-      "trackNumber": 3,
+      "trackNumber": 2,
       "artwork": {
         "topHex": "#90BE6D",
         "bottomHex": "#22332C",
@@ -7062,8 +7062,8 @@
       },
       "hasArtwork": true,
       "isExplicit": false,
-      "searchText": "monkey wrench foo fighters foo fighters greatest hits wrench.mp3",
-      "albumID": "a5fc2c12-5ca4-56de-98a6-86001f1215ac"
+      "searchText": "monkey wrench foo fighters foo fighters the colour and the shape wrench.mp3",
+      "albumID": "9615a262-c0da-5a88-bcd4-833dd6b59c49"
     },
     "04 - Monsters.mp3": {
       "filename": "04 - Monsters.mp3",
@@ -7117,7 +7117,7 @@
       "title": "mother tongue",
       "artist": "Bring Me the Horizon",
       "albumArtist": "Bring Me the Horizon",
-      "album": "amo (japan tour edition)",
+      "album": "amo",
       "duration": 217.464,
       "year": 2019,
       "trackNumber": 11,
@@ -7128,8 +7128,8 @@
       },
       "hasArtwork": true,
       "isExplicit": false,
-      "searchText": "mother tongue bring me the horizon bring me the horizon amo (japan tour edition) 11 - mother tongue.mp3",
-      "albumID": "e5e377c6-0270-5d37-a362-f0929fe07b3d"
+      "searchText": "mother tongue bring me the horizon bring me the horizon amo 11 - mother tongue.mp3",
+      "albumID": "059b7604-859f-5902-b7bb-af3ce0f07638"
     },
     "11 - Mothership.mp3": {
       "filename": "11 - Mothership.mp3",
@@ -7205,7 +7205,7 @@
       "title": "My Blood on Your Hands",
       "artist": "Paleface Swiss",
       "albumArtist": "Paleface Swiss",
-      "album": "CURSED",
+      "album": "CURSED (The Complete Edition)",
       "duration": 100.464,
       "year": 2025,
       "trackNumber": 7,
@@ -7216,8 +7216,8 @@
       },
       "hasArtwork": true,
       "isExplicit": false,
-      "searchText": "my blood on your hands paleface swiss paleface swiss cursed 07 - my blood on your hands.mp3",
-      "albumID": "714f9272-2426-5ec2-971f-06fe36e9b53a"
+      "searchText": "my blood on your hands paleface swiss paleface swiss cursed (the complete edition) 07 - my blood on your hands.mp3",
+      "albumID": "e34adfde-0c56-52c4-8635-34c246f80dea"
     },
     "11 - Dead Poet Society - My Condition.mp3": {
       "filename": "11 - Dead Poet Society - My Condition.mp3",
@@ -7491,7 +7491,7 @@
       "title": "nihilist blues",
       "artist": "Bring Me the Horizon feat. Grimes",
       "albumArtist": "Bring Me the Horizon",
-      "album": "amo (japan tour edition)",
+      "album": "amo",
       "duration": 325.536,
       "year": 2019,
       "trackNumber": 3,
@@ -7502,8 +7502,8 @@
       },
       "hasArtwork": true,
       "isExplicit": false,
-      "searchText": "nihilist blues bring me the horizon feat. grimes bring me the horizon amo (japan tour edition) 03 - nihilist blues.mp3",
-      "albumID": "e5e377c6-0270-5d37-a362-f0929fe07b3d"
+      "searchText": "nihilist blues bring me the horizon feat. grimes bring me the horizon amo 03 - nihilist blues.mp3",
+      "albumID": "059b7604-859f-5902-b7bb-af3ce0f07638"
     },
     "06 - NO FEELING IS FINAL (Feat. Aether).mp3": {
       "filename": "06 - NO FEELING IS FINAL (Feat. Aether).mp3",
@@ -7821,7 +7821,7 @@
       "title": "ouch",
       "artist": "Bring Me the Horizon",
       "albumArtist": "Bring Me the Horizon",
-      "album": "amo (japan tour edition)",
+      "album": "amo",
       "duration": 109.056,
       "year": 2019,
       "trackNumber": 6,
@@ -7832,8 +7832,8 @@
       },
       "hasArtwork": true,
       "isExplicit": false,
-      "searchText": "ouch bring me the horizon bring me the horizon amo (japan tour edition) 06 - ouch.mp3",
-      "albumID": "e5e377c6-0270-5d37-a362-f0929fe07b3d"
+      "searchText": "ouch bring me the horizon bring me the horizon amo 06 - ouch.mp3",
+      "albumID": "059b7604-859f-5902-b7bb-af3ce0f07638"
     },
     "10 - OUT OF THE BLUE.mp3": {
       "filename": "10 - OUT OF THE BLUE.mp3",
@@ -8107,7 +8107,7 @@
       "title": "Perfect",
       "artist": "nothing,nowhere.",
       "albumArtist": "nothing,nowhere.",
-      "album": "will it emo (vol.1)",
+      "album": "will it emo? (vol.1)",
       "duration": 166.992,
       "year": 2025,
       "trackNumber": 8,
@@ -8118,8 +8118,8 @@
       },
       "hasArtwork": true,
       "isExplicit": false,
-      "searchText": "perfect nothing,nowhere. nothing,nowhere. will it emo (vol.1) 08 - perfect.mp3",
-      "albumID": "4a12f785-b4fd-5135-9f7f-6b5b8368a29f"
+      "searchText": "perfect nothing,nowhere. nothing,nowhere. will it emo? (vol.1) 08 - perfect.mp3",
+      "albumID": "680f7984-65fe-50fb-bdac-9d202637034f"
     },
     "03 - Phantom Fear.mp3": {
       "filename": "03 - Phantom Fear.mp3",
@@ -8173,10 +8173,10 @@
       "title": "Please End Me",
       "artist": "Paleface Swiss",
       "albumArtist": "Paleface Swiss",
-      "album": "Please End Me",
+      "album": "CURSED (The Complete Edition)",
       "duration": 191.784,
       "year": 2023,
-      "trackNumber": 1,
+      "trackNumber": 12,
       "artwork": {
         "topHex": "#B8F2E6",
         "bottomHex": "#21455A",
@@ -8184,8 +8184,8 @@
       },
       "hasArtwork": true,
       "isExplicit": false,
-      "searchText": "please end me paleface swiss paleface swiss please end me 12 - please end me.mp3",
-      "albumID": "f3318d91-4ba3-52f8-aace-82aa7dfb280c"
+      "searchText": "please end me paleface swiss paleface swiss cursed (the complete edition) 12 - please end me.mp3",
+      "albumID": "e34adfde-0c56-52c4-8635-34c246f80dea"
     },
     "Points_of_Authority_3.mp3": {
       "filename": "Points_of_Authority_3.mp3",
@@ -8305,7 +8305,7 @@
       "title": "Purity Weeps",
       "artist": "Invent Animate",
       "albumArtist": "Invent Animate",
-      "album": "Heavener",
+      "album": "Heavener (Definitive)",
       "duration": 248.856,
       "year": 2023,
       "trackNumber": 8,
@@ -8316,8 +8316,8 @@
       },
       "hasArtwork": true,
       "isExplicit": false,
-      "searchText": "purity weeps invent animate invent animate heavener 08 - purity weeps.mp3",
-      "albumID": "412ad494-180e-5132-a57d-0974e200abc0"
+      "searchText": "purity weeps invent animate invent animate heavener (definitive) 08 - purity weeps.mp3",
+      "albumID": "06c00327-a8a0-580a-a2d6-5900bbe601b4"
     },
     "Pushing_Me_Away_3.mp3": {
       "filename": "Pushing_Me_Away_3.mp3",
@@ -8503,7 +8503,7 @@
       "title": "Reverie",
       "artist": "Invent Animate",
       "albumArtist": "Invent Animate",
-      "album": "Heavener",
+      "album": "Heavener (Definitive)",
       "duration": 190.512,
       "year": 2023,
       "trackNumber": 6,
@@ -8514,8 +8514,8 @@
       },
       "hasArtwork": true,
       "isExplicit": false,
-      "searchText": "reverie invent animate invent animate heavener 06 - reverie.mp3",
-      "albumID": "412ad494-180e-5132-a57d-0974e200abc0"
+      "searchText": "reverie invent animate invent animate heavener (definitive) 06 - reverie.mp3",
+      "albumID": "06c00327-a8a0-580a-a2d6-5900bbe601b4"
     },
     "09 - Revolt.mp3": {
       "filename": "09 - Revolt.mp3",
@@ -8569,7 +8569,7 @@
       "title": "River of Sorrows",
       "artist": "Paleface Swiss",
       "albumArtist": "Paleface Swiss",
-      "album": "CURSED",
+      "album": "CURSED (The Complete Edition)",
       "duration": 243.024,
       "year": 2025,
       "trackNumber": 9,
@@ -8580,8 +8580,8 @@
       },
       "hasArtwork": true,
       "isExplicit": false,
-      "searchText": "river of sorrows paleface swiss paleface swiss cursed 09 - river of sorrows.mp3",
-      "albumID": "714f9272-2426-5ec2-971f-06fe36e9b53a"
+      "searchText": "river of sorrows paleface swiss paleface swiss cursed (the complete edition) 09 - river of sorrows.mp3",
+      "albumID": "e34adfde-0c56-52c4-8635-34c246f80dea"
     },
     "14 - River Of Sorrows (Unplugged).mp3": {
       "filename": "14 - River Of Sorrows (Unplugged).mp3",
@@ -8591,10 +8591,10 @@
       "title": "River of Sorrows (unplugged)",
       "artist": "Paleface Swiss & Ron Deris",
       "albumArtist": "Paleface Swiss & Ron Deris",
-      "album": "River of Sorrows (unplugged)",
+      "album": "CURSED (The Complete Edition)",
       "duration": 266.712,
       "year": 2025,
-      "trackNumber": 1,
+      "trackNumber": 14,
       "artwork": {
         "topHex": "#F28482",
         "bottomHex": "#2E1E32",
@@ -8602,8 +8602,8 @@
       },
       "hasArtwork": true,
       "isExplicit": false,
-      "searchText": "river of sorrows (unplugged) paleface swiss & ron deris paleface swiss & ron deris river of sorrows (unplugged) 14 - river of sorrows (unplugged).mp3",
-      "albumID": "cb5d0759-c303-5c12-929b-6c70b6d248f4"
+      "searchText": "river of sorrows (unplugged) paleface swiss & ron deris paleface swiss & ron deris cursed (the complete edition) 14 - river of sorrows (unplugged).mp3",
+      "albumID": "e34adfde-0c56-52c4-8635-34c246f80dea"
     },
     "08 - Robot Voices.mp3": {
       "filename": "08 - Robot Voices.mp3",
@@ -8943,7 +8943,7 @@
       "title": "Shade Astray",
       "artist": "Invent Animate",
       "albumArtist": "Invent Animate",
-      "album": "Heavener",
+      "album": "Heavener (Definitive)",
       "duration": 275.832,
       "year": 2023,
       "trackNumber": 2,
@@ -8954,8 +8954,8 @@
       },
       "hasArtwork": true,
       "isExplicit": false,
-      "searchText": "shade astray invent animate invent animate heavener 02 - shade astray.mp3",
-      "albumID": "412ad494-180e-5132-a57d-0974e200abc0"
+      "searchText": "shade astray invent animate invent animate heavener (definitive) 02 - shade astray.mp3",
+      "albumID": "06c00327-a8a0-580a-a2d6-5900bbe601b4"
     },
     "06 - Shadow Moses.mp3": {
       "filename": "06 - Shadow Moses.mp3",
@@ -9185,7 +9185,7 @@
       "title": "Slide",
       "artist": "The Goo Goo Dolls",
       "albumArtist": "The Goo Goo Dolls",
-      "album": "Dizzy Up the Girl",
+      "album": "Greatest Hits, Volume One: The Singles",
       "duration": 213.24,
       "year": 2015,
       "trackNumber": 2,
@@ -9196,8 +9196,8 @@
       },
       "hasArtwork": true,
       "isExplicit": false,
-      "searchText": "slide the goo goo dolls the goo goo dolls dizzy up the girl 04 - slide.mp3",
-      "albumID": "e69be23e-08b2-5c3f-b74d-a67b146192a4"
+      "searchText": "slide the goo goo dolls the goo goo dolls greatest hits, volume one: the singles 04 - slide.mp3",
+      "albumID": "1b921444-b7c5-5c1d-8845-09330e047586"
     },
     "04 - Josh A • So Tired.mp3": {
       "filename": "04 - Josh A • So Tired.mp3",
@@ -9515,7 +9515,7 @@
       "title": "Stay With You",
       "artist": "The Goo Goo Dolls",
       "albumArtist": "The Goo Goo Dolls",
-      "album": "Let Love In",
+      "album": "Greatest Hits, Volume One: The Singles",
       "duration": 236.304,
       "year": 2006,
       "trackNumber": 1,
@@ -9526,8 +9526,8 @@
       },
       "hasArtwork": true,
       "isExplicit": false,
-      "searchText": "stay with you the goo goo dolls the goo goo dolls let love in 06 - stay with you.mp3",
-      "albumID": "3c66cc6d-8ac7-51a1-ae2f-112377244e16"
+      "searchText": "stay with you the goo goo dolls the goo goo dolls greatest hits, volume one: the singles 06 - stay with you.mp3",
+      "albumID": "1b921444-b7c5-5c1d-8845-09330e047586"
     },
     "11 - sTraNgeRs.mp3": {
       "filename": "11 - sTraNgeRs.mp3",
@@ -9581,7 +9581,7 @@
       "title": "sugar honey ice & tea",
       "artist": "Bring Me the Horizon",
       "albumArtist": "Bring Me the Horizon",
-      "album": "amo (japan tour edition)",
+      "album": "amo",
       "duration": 261.6,
       "year": 2019,
       "trackNumber": 8,
@@ -9592,8 +9592,8 @@
       },
       "hasArtwork": true,
       "isExplicit": false,
-      "searchText": "sugar honey ice & tea bring me the horizon bring me the horizon amo (japan tour edition) 08 - sugar honey ice & tea.mp3",
-      "albumID": "e5e377c6-0270-5d37-a362-f0929fe07b3d"
+      "searchText": "sugar honey ice & tea bring me the horizon bring me the horizon amo 08 - sugar honey ice & tea.mp3",
+      "albumID": "059b7604-859f-5902-b7bb-af3ce0f07638"
     },
     "06 - Josh A • Suicide Benz.mp3": {
       "filename": "06 - Josh A • Suicide Benz.mp3",
@@ -9691,7 +9691,7 @@
       "title": "Sympathy",
       "artist": "The Goo Goo Dolls",
       "albumArtist": "The Goo Goo Dolls",
-      "album": "Gutterflower",
+      "album": "Greatest Hits, Volume One: The Singles",
       "duration": 187.8,
       "year": 2014,
       "trackNumber": 8,
@@ -9702,8 +9702,8 @@
       },
       "hasArtwork": true,
       "isExplicit": false,
-      "searchText": "sympathy the goo goo dolls the goo goo dolls gutterflower 07 - before it's too late.mp3",
-      "albumID": "173e3c0e-6fd5-5887-a80c-820a2a552457"
+      "searchText": "sympathy the goo goo dolls the goo goo dolls greatest hits, volume one: the singles 07 - before it's too late.mp3",
+      "albumID": "1b921444-b7c5-5c1d-8845-09330e047586"
     },
     "13 - Sympathy.mp3": {
       "filename": "13 - Sympathy.mp3",
@@ -9713,7 +9713,7 @@
       "title": "Sympathy",
       "artist": "The Goo Goo Dolls",
       "albumArtist": "The Goo Goo Dolls",
-      "album": "Gutterflower",
+      "album": "Greatest Hits, Volume One: The Singles",
       "duration": 177.6,
       "year": 2014,
       "trackNumber": 8,
@@ -9724,8 +9724,8 @@
       },
       "hasArtwork": true,
       "isExplicit": false,
-      "searchText": "sympathy the goo goo dolls the goo goo dolls gutterflower 13 - sympathy.mp3",
-      "albumID": "173e3c0e-6fd5-5887-a80c-820a2a552457"
+      "searchText": "sympathy the goo goo dolls the goo goo dolls greatest hits, volume one: the singles 13 - sympathy.mp3",
+      "albumID": "1b921444-b7c5-5c1d-8845-09330e047586"
     },
     "11 - Sleep Token - Take Me Back To Eden.mp3": {
       "filename": "11 - Sleep Token - Take Me Back To Eden.mp3",
@@ -9801,7 +9801,7 @@
       "title": "Tearin’ Up My Heart",
       "artist": "nothing,nowhere.",
       "albumArtist": "nothing,nowhere.",
-      "album": "will it emo (vol.1)",
+      "album": "will it emo? (vol.1)",
       "duration": 118.896,
       "year": 2025,
       "trackNumber": 3,
@@ -9812,8 +9812,8 @@
       },
       "hasArtwork": true,
       "isExplicit": false,
-      "searchText": "tearin’ up my heart nothing,nowhere. nothing,nowhere. will it emo (vol.1) 03 - tearin' up my heart.mp3",
-      "albumID": "4a12f785-b4fd-5135-9f7f-6b5b8368a29f"
+      "searchText": "tearin’ up my heart nothing,nowhere. nothing,nowhere. will it emo? (vol.1) 03 - tearin' up my heart.mp3",
+      "albumID": "680f7984-65fe-50fb-bdac-9d202637034f"
     },
     "10 - Telomeres.mp3": {
       "filename": "10 - Telomeres.mp3",
@@ -10085,12 +10085,12 @@
       "mtimeNs": 1783606130586235769,
       "id": "b722ef85-cd89-55db-b9a3-3165c553b7a4",
       "title": "The Gallow",
-      "artist": "Contempt",
+      "artist": "PALEFACESWISS",
       "albumArtist": "Contempt",
-      "album": "Stormforce",
+      "album": "CURSED (The Complete Edition)",
       "duration": 298.392,
       "year": 2002,
-      "trackNumber": 9,
+      "trackNumber": 13,
       "artwork": {
         "topHex": "#8ECAE6",
         "bottomHex": "#1D3557",
@@ -10098,8 +10098,8 @@
       },
       "hasArtwork": true,
       "isExplicit": false,
-      "searchText": "the gallow contempt contempt stormforce 13 - the gallow.mp3",
-      "albumID": "e80d9618-8979-5ea9-ad19-cf5a1a7b6ec4"
+      "searchText": "the gallow palefaceswiss contempt cursed (the complete edition) 13 - the gallow.mp3",
+      "albumID": "e34adfde-0c56-52c4-8635-34c246f80dea"
     },
     "05 - The Great Gig in the Sky.mp3": {
       "filename": "05 - The Great Gig in the Sky.mp3",
@@ -10681,7 +10681,7 @@
       "title": "un pobre niño murió",
       "artist": "Paleface Swiss",
       "albumArtist": "Paleface Swiss",
-      "album": "CURSED",
+      "album": "CURSED (The Complete Edition)",
       "duration": 104.832,
       "year": 2025,
       "trackNumber": 1,
@@ -10692,8 +10692,8 @@
       },
       "hasArtwork": true,
       "isExplicit": false,
-      "searchText": "un pobre niño murió paleface swiss paleface swiss cursed 01 - un pobre niño murió.mp3",
-      "albumID": "714f9272-2426-5ec2-971f-06fe36e9b53a"
+      "searchText": "un pobre niño murió paleface swiss paleface swiss cursed (the complete edition) 01 - un pobre niño murió.mp3",
+      "albumID": "e34adfde-0c56-52c4-8635-34c246f80dea"
     },
     "06 - Undead Ahead 2： The Tale of the Midnight Ride.mp3": {
       "filename": "06 - Undead Ahead 2： The Tale of the Midnight Ride.mp3",
@@ -10747,7 +10747,7 @@
       "title": "Unwritten",
       "artist": "nothing,nowhere.",
       "albumArtist": "nothing,nowhere.",
-      "album": "will it emo (vol.1)",
+      "album": "will it emo? (vol.1)",
       "duration": 197.712,
       "year": 2025,
       "trackNumber": 10,
@@ -10758,8 +10758,8 @@
       },
       "hasArtwork": true,
       "isExplicit": false,
-      "searchText": "unwritten nothing,nowhere. nothing,nowhere. will it emo (vol.1) 10 - unwritten.mp3",
-      "albumID": "4a12f785-b4fd-5135-9f7f-6b5b8368a29f"
+      "searchText": "unwritten nothing,nowhere. nothing,nowhere. will it emo? (vol.1) 10 - unwritten.mp3",
+      "albumID": "680f7984-65fe-50fb-bdac-9d202637034f"
     },
     "06 - Foo Fighters - Up In Arms.mp3": {
       "filename": "06 - Foo Fighters - Up In Arms.mp3",
@@ -10901,7 +10901,7 @@
       "title": "Void Surfacing",
       "artist": "Invent Animate",
       "albumArtist": "Invent Animate",
-      "album": "Heavener",
+      "album": "Heavener (Definitive)",
       "duration": 270.984,
       "year": 2023,
       "trackNumber": 9,
@@ -10912,8 +10912,8 @@
       },
       "hasArtwork": true,
       "isExplicit": false,
-      "searchText": "void surfacing invent animate invent animate heavener 09 - void surfacing.mp3",
-      "albumID": "412ad494-180e-5132-a57d-0974e200abc0"
+      "searchText": "void surfacing invent animate invent animate heavener (definitive) 09 - void surfacing.mp3",
+      "albumID": "06c00327-a8a0-580a-a2d6-5900bbe601b4"
     },
     "05 - Sleep Token - Vore.mp3": {
       "filename": "05 - Sleep Token - Vore.mp3",
@@ -11055,7 +11055,7 @@
       "title": "We Are Never Ever Getting Back Together",
       "artist": "nothing,nowhere.",
       "albumArtist": "nothing,nowhere.",
-      "album": "will it emo (vol.1)",
+      "album": "will it emo? (vol.1)",
       "duration": 204.024,
       "year": 2025,
       "trackNumber": 4,
@@ -11066,8 +11066,8 @@
       },
       "hasArtwork": true,
       "isExplicit": false,
-      "searchText": "we are never ever getting back together nothing,nowhere. nothing,nowhere. will it emo (vol.1) 04 - we are never ever getting back together.mp3",
-      "albumID": "4a12f785-b4fd-5135-9f7f-6b5b8368a29f"
+      "searchText": "we are never ever getting back together nothing,nowhere. nothing,nowhere. will it emo? (vol.1) 04 - we are never ever getting back together.mp3",
+      "albumID": "680f7984-65fe-50fb-bdac-9d202637034f"
     },
     "06 - What You Need.mp3": {
       "filename": "06 - What You Need.mp3",
@@ -11099,7 +11099,7 @@
       "title": "why you gotta kick me when i’m down?",
       "artist": "Bring Me the Horizon",
       "albumArtist": "Bring Me the Horizon",
-      "album": "amo (japan tour edition)",
+      "album": "amo",
       "duration": 268.896,
       "year": 2019,
       "trackNumber": 9,
@@ -11110,8 +11110,8 @@
       },
       "hasArtwork": true,
       "isExplicit": false,
-      "searchText": "why you gotta kick me when i’m down? bring me the horizon bring me the horizon amo (japan tour edition) 09 - why you gotta kick me when i'm down？.mp3",
-      "albumID": "e5e377c6-0270-5d37-a362-f0929fe07b3d"
+      "searchText": "why you gotta kick me when i’m down? bring me the horizon bring me the horizon amo 09 - why you gotta kick me when i'm down？.mp3",
+      "albumID": "059b7604-859f-5902-b7bb-af3ce0f07638"
     },
     "05 - Wide Awake.mp3": {
       "filename": "05 - Wide Awake.mp3",
@@ -11231,7 +11231,7 @@
       "title": "Without a Whisper",
       "artist": "Invent Animate",
       "albumArtist": "Invent Animate",
-      "album": "Heavener",
+      "album": "Heavener (Definitive)",
       "duration": 257.568,
       "year": 2023,
       "trackNumber": 4,
@@ -11242,8 +11242,8 @@
       },
       "hasArtwork": true,
       "isExplicit": false,
-      "searchText": "without a whisper invent animate invent animate heavener 04 - without a whisper.mp3",
-      "albumID": "412ad494-180e-5132-a57d-0974e200abc0"
+      "searchText": "without a whisper invent animate invent animate heavener (definitive) 04 - without a whisper.mp3",
+      "albumID": "06c00327-a8a0-580a-a2d6-5900bbe601b4"
     },
     "15 - Without a Whisper (Reimagined).mp3": {
       "filename": "15 - Without a Whisper (Reimagined).mp3",
@@ -11275,7 +11275,7 @@
       "title": "wonderful life",
       "artist": "Bring Me the Horizon feat. Dani Filth",
       "albumArtist": "Bring Me the Horizon",
-      "album": "amo (japan tour edition)",
+      "album": "amo",
       "duration": 274.44,
       "year": 2019,
       "trackNumber": 5,
@@ -11286,8 +11286,8 @@
       },
       "hasArtwork": true,
       "isExplicit": false,
-      "searchText": "wonderful life bring me the horizon feat. dani filth bring me the horizon amo (japan tour edition) 05 - wonderful life.mp3",
-      "albumID": "e5e377c6-0270-5d37-a362-f0929fe07b3d"
+      "searchText": "wonderful life bring me the horizon feat. dani filth bring me the horizon amo 05 - wonderful life.mp3",
+      "albumID": "059b7604-859f-5902-b7bb-af3ce0f07638"
     },
     "14 - You and I in Unison.mp3": {
       "filename": "14 - You and I in Unison.mp3",
@@ -11407,7 +11407,7 @@
       "title": "Youth Decay",
       "artist": "Paleface Swiss",
       "albumArtist": "Paleface Swiss",
-      "album": "CURSED",
+      "album": "CURSED (The Complete Edition)",
       "duration": 214.44,
       "year": 2025,
       "trackNumber": 6,
@@ -11418,8 +11418,8 @@
       },
       "hasArtwork": true,
       "isExplicit": false,
-      "searchText": "youth decay paleface swiss paleface swiss cursed 06 - youth decay.mp3",
-      "albumID": "714f9272-2426-5ec2-971f-06fe36e9b53a"
+      "searchText": "youth decay paleface swiss paleface swiss cursed (the complete edition) 06 - youth decay.mp3",
+      "albumID": "e34adfde-0c56-52c4-8635-34c246f80dea"
     },
     "02 - YOUtopia.mp3": {
       "filename": "02 - YOUtopia.mp3",

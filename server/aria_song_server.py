@@ -365,7 +365,46 @@ class CatalogIndex:
     def track_for_filename(self, filename: str) -> dict | None:
         self.refresh_in_background()
         with self.lock:
-            return self.records_by_filename.get(filename)
+            record = self.records_by_filename.get(filename)
+            return dict(record) if record else None
+
+    def track_for_id(self, track_id: str) -> dict | None:
+        self.refresh_in_background()
+        with self.lock:
+            for record in self.records:
+                if record.get("id") == track_id:
+                    return dict(record)
+        return None
+
+    def update_track_metadata(self, track_id: str, updates: dict) -> dict | None:
+        with self.lock:
+            record_index = next(
+                (
+                    index
+                    for index, record in enumerate(self.records)
+                    if record.get("id") == track_id
+                ),
+                None,
+            )
+            if record_index is None:
+                return None
+
+            updated_record = dict(self.records[record_index])
+            updated_record.update(updates)
+            updated_record["searchText"] = search_text_for(updated_record)
+            updated_record["albumID"] = album_id_for(updated_record.get("album") or "Fedora songs")
+
+            records = list(self.records)
+            records[record_index] = updated_record
+            records.sort(key=title_sort_key)
+
+            self.records = records
+            self.records_by_filename = {record["filename"]: record for record in records}
+            self.last_refresh_at = monotonic()
+            self.last_error = None
+
+            self.save(records)
+            return dict(updated_record)
 
     def status(self) -> dict:
         with self.lock:
@@ -555,6 +594,19 @@ class AriaSongHandler(BaseHTTPRequestHandler):
     def catalog_index(self) -> CatalogIndex:
         return self.server.catalog_index
 
+    def do_OPTIONS(self) -> None:
+        self.send_response(HTTPStatus.NO_CONTENT)
+        self.send_common_headers()
+        self.send_header("Access-Control-Allow-Methods", "GET, HEAD, OPTIONS, PATCH, PUT")
+        self.send_header("Access-Control-Allow-Headers", "Content-Type")
+        self.end_headers()
+
+    def do_PATCH(self) -> None:
+        self.handle_track_update()
+
+    def do_PUT(self) -> None:
+        self.handle_track_update()
+
     def do_GET(self) -> None:
         parsed = urlparse(self.path)
 
@@ -586,6 +638,127 @@ class AriaSongHandler(BaseHTTPRequestHandler):
         else:
             self.send_response(HTTPStatus.OK)
             self.end_headers()
+
+    def handle_track_update(self) -> None:
+        parsed = urlparse(self.path)
+        if not parsed.path.startswith("/api/tracks/"):
+            self.send_error(HTTPStatus.NOT_FOUND, "Not found")
+            return
+
+        track_id = unquote(parsed.path.removeprefix("/api/tracks/")).strip()
+        if not track_id:
+            self.send_error(HTTPStatus.BAD_REQUEST, "Missing track id")
+            return
+
+        payload = self.read_json_body()
+        if payload is None:
+            return
+
+        updates = self.track_metadata_updates(payload)
+        if updates is None:
+            return
+
+        updated_record = self.catalog_index.update_track_metadata(track_id, updates)
+        if updated_record is None:
+            self.send_error(HTTPStatus.NOT_FOUND, "Track not found")
+            return
+
+        base_url = f"http://{self.headers.get('Host', 'localhost:8000')}"
+        artwork_by_album = album_artwork_sources(self.catalog_index.tracks())
+        self.write_json(
+            track_payload_from_record(
+                updated_record,
+                base_url,
+                artwork_by_album.get(album_key_for_record(updated_record)),
+            )
+        )
+
+    def read_json_body(self) -> dict | None:
+        try:
+            content_length = int(self.headers.get("Content-Length", "0") or 0)
+        except ValueError:
+            self.send_error(HTTPStatus.BAD_REQUEST, "Invalid Content-Length")
+            return None
+
+        if content_length <= 0:
+            return {}
+
+        raw_body = self.rfile.read(content_length)
+        try:
+            payload = json.loads(raw_body.decode("utf-8"))
+        except (UnicodeDecodeError, json.JSONDecodeError):
+            self.send_error(HTTPStatus.BAD_REQUEST, "Expected a JSON request body")
+            return None
+
+        if not isinstance(payload, dict):
+            self.send_error(HTTPStatus.BAD_REQUEST, "Expected a JSON object")
+            return None
+
+        return payload
+
+    def track_metadata_updates(self, payload: dict) -> dict | None:
+        source = payload.get("metadata") if isinstance(payload.get("metadata"), dict) else payload
+        updates: dict = {}
+
+        text_fields = ("title", "artist", "albumArtist", "album")
+        for field in text_fields:
+            if field not in source:
+                continue
+
+            value = source.get(field)
+            if value is None:
+                continue
+
+            text_value = str(value).strip()
+            if field in ("title", "artist") and not text_value:
+                self.send_error(HTTPStatus.BAD_REQUEST, f"{field} cannot be empty")
+                return None
+
+            if field == "album" and not text_value:
+                text_value = "Fedora songs"
+
+            if field == "albumArtist" and not text_value:
+                text_value = str(source.get("artist") or updates.get("artist") or "Unknown Artist").strip()
+
+            updates[field] = text_value
+
+        if "year" in source:
+            year = source.get("year")
+            if year in (None, ""):
+                updates["year"] = datetime.now().year
+            else:
+                try:
+                    updates["year"] = int(year)
+                except (TypeError, ValueError):
+                    self.send_error(HTTPStatus.BAD_REQUEST, "year must be a number")
+                    return None
+
+        if "trackNumber" in source:
+            track_number = source.get("trackNumber")
+            if track_number in (None, ""):
+                updates["trackNumber"] = None
+            else:
+                try:
+                    updates["trackNumber"] = int(track_number)
+                except (TypeError, ValueError):
+                    self.send_error(HTTPStatus.BAD_REQUEST, "trackNumber must be a number")
+                    return None
+
+                if updates["trackNumber"] < 1:
+                    self.send_error(HTTPStatus.BAD_REQUEST, "trackNumber must be 1 or greater")
+                    return None
+
+        if "isExplicit" in source:
+            updates["isExplicit"] = bool(source.get("isExplicit"))
+
+        if not updates:
+            self.send_error(
+                HTTPStatus.BAD_REQUEST,
+                "No supported metadata fields found. Send title, artist, albumArtist, album, year, trackNumber, or isExplicit.",
+            )
+            return None
+
+        return updates
 
     def write_tracks(self, parsed) -> None:
         base_url = f"http://{self.headers.get('Host', 'localhost:8000')}"
@@ -890,6 +1063,8 @@ class AriaSongHandler(BaseHTTPRequestHandler):
 
     def send_common_headers(self) -> None:
         self.send_header("Access-Control-Allow-Origin", "*")
+        self.send_header("Access-Control-Allow-Methods", "GET, HEAD, OPTIONS, PATCH, PUT")
+        self.send_header("Access-Control-Allow-Headers", "Content-Type")
         self.send_header("Cache-Control", "no-store")
 
 
