@@ -1,6 +1,6 @@
 {
   "version": 4,
-  "updatedAt": "2026-07-09T17:16:32",
+  "updatedAt": "2026-07-09T18:26:39",
   "songsDir": "/home/tofinovak/aria-server/songs",
   "tracks": {
     "06 - [Nice Dream].mp3": {
@@ -509,6 +509,28 @@
       "searchText": "absence persistent invent animate invent animate heavener (definitive) 01 - absence persistent.mp3",
       "albumID": "06c00327-a8a0-580a-a2d6-5900bbe601b4"
     },
+    "07 - Absolution.mp3": {
+      "filename": "07 - Absolution.mp3",
+      "size": 10054739,
+      "mtimeNs": 1783613568680918455,
+      "id": "8bc69c6a-ff85-5fcd-88df-abb9449bd75c",
+      "title": "Absolution",
+      "artist": "The Pretty Reckless",
+      "albumArtist": "The Pretty Reckless",
+      "album": "Going to Hell",
+      "duration": 274.104,
+      "year": 2026,
+      "trackNumber": null,
+      "artwork": {
+        "topHex": "#8ECAE6",
+        "bottomHex": "#1D3557",
+        "symbolName": "drop.fill"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "absolution the pretty reckless the pretty reckless going to hell 07 - absolution.mp3",
+      "albumID": "a5d7d1ef-1e03-567b-ad24-fcad3b3ff9a1"
+    },
     "09 - Aftertouch.mp3": {
       "filename": "09 - Aftertouch.mp3",
       "size": 8655383,
@@ -618,6 +640,28 @@
       "isExplicit": false,
       "searchText": "all around me flyleaf flyleaf flyleaf 07 - all around me.mp3",
       "albumID": "e394ac30-0a90-5549-8b34-b1b67a904f18"
+    },
+    "12 - All I Need to Know.mp3": {
+      "filename": "12 - All I Need to Know.mp3",
+      "size": 9064291,
+      "mtimeNs": 1783614227911667011,
+      "id": "107e2fca-5eba-5d7f-8b82-27ca6fda035c",
+      "title": "All I Need to Know",
+      "artist": "Thousand Foot Krutch",
+      "albumArtist": "Thousand Foot Krutch",
+      "album": "The End Is Where We Begin",
+      "duration": 249.552,
+      "year": 2012,
+      "trackNumber": 12,
+      "artwork": {
+        "topHex": "#8ECAE6",
+        "bottomHex": "#1D3557",
+        "symbolName": "drop.fill"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "all i need to know thousand foot krutch thousand foot krutch the end is where we begin 12 - all i need to know.mp3",
+      "albumID": "c59a9539-1d04-5937-becf-f482e925d03d"
     },
     "11 - All I Wanted.mp3": {
       "filename": "11 - All I Wanted.mp3",
@@ -773,6 +817,28 @@
       "searchText": "all that i can give the plot in you the plot in you the plot in you 06 - all that i can give.mp3",
       "albumID": "f570936b-1f05-5a30-b25a-ba13ee718a70"
     },
+    "07 - Always.mp3": {
+      "filename": "07 - Always.mp3",
+      "size": 9421016,
+      "mtimeNs": 1783612351111973745,
+      "id": "aa870b89-1fdb-5f5e-969f-cc53fc6b104a",
+      "title": "Always",
+      "artist": "Landmvrks",
+      "albumArtist": "Landmvrks",
+      "album": "Lost In The Waves",
+      "duration": 254.928,
+      "year": 2021,
+      "trackNumber": 7,
+      "artwork": {
+        "topHex": "#A7C957",
+        "bottomHex": "#1A2C2A",
+        "symbolName": "moon.stars.fill"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "always landmvrks landmvrks lost in the waves 07 - always.mp3",
+      "albumID": "4d262392-b8e5-5d4a-af9c-2399bfb48f87"
+    },
     "13 - AmEN!.mp3": {
       "filename": "13 - AmEN!.mp3",
       "size": 6134817,
@@ -904,6 +970,28 @@
       "isExplicit": false,
       "searchText": "another life motionless in white motionless in white disguise 08 - another life.mp3",
       "albumID": "9c7424a1-e189-51e6-8cfa-ef7fe60a4e6f"
+    },
+    "03 - Queen - Another One Bites the Dust.mp3": {
+      "filename": "03 - Queen - Another One Bites the Dust.mp3",
+      "size": 5876895,
+      "mtimeNs": 1783611092821798801,
+      "id": "13f40224-bdcd-51a8-9f64-d3df15fd56d4",
+      "title": "Another One Bites the Dust",
+      "artist": "Queen",
+      "albumArtist": "AzzholeDoucheBag",
+      "album": "Greatest Hits Vol. 1",
+      "duration": 215.064,
+      "year": 2010,
+      "trackNumber": null,
+      "artwork": {
+        "topHex": "#8ECAE6",
+        "bottomHex": "#1D3557",
+        "symbolName": "drop.fill"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "another one bites the dust queen azzholedouchebag greatest hits vol. 1 03 - queen - another one bites the dust.mp3",
+      "albumID": "5a31f22c-e092-5eb6-9a40-1e49f1bb13a7"
     },
     "09 - Antivist.mp3": {
       "filename": "09 - Antivist.mp3",
@@ -1059,6 +1147,28 @@
       "searchText": "around the railing superheaven daylight jar 12 - around the railing.mp3",
       "albumID": "d48e6f81-32c8-5ff9-ba55-ebfffa1175cf"
     },
+    "14 - ARTIFICIAL SUICIDE.mp3": {
+      "filename": "14 - ARTIFICIAL SUICIDE.mp3",
+      "size": 7127984,
+      "mtimeNs": 1783612815056618422,
+      "id": "3546b16f-2117-5c46-a00a-eea5c132049d",
+      "title": "ARTIFICIAL SUICIDE",
+      "artist": "Bad Omens",
+      "albumArtist": "Bad Omens",
+      "album": "THE DEATH OF PEACE OF MIND",
+      "duration": 195.024,
+      "year": 2022,
+      "trackNumber": 14,
+      "artwork": {
+        "topHex": "#B8F2E6",
+        "bottomHex": "#21455A",
+        "symbolName": "clock.fill"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "artificial suicide bad omens bad omens the death of peace of mind 14 - artificial suicide.mp3",
+      "albumID": "73567f28-85c0-50db-b969-fb696202c7a1"
+    },
     "06 - Sleep Token - Ascensionism.mp3": {
       "filename": "06 - Sleep Token - Ascensionism.mp3",
       "size": 14009000,
@@ -1169,6 +1279,28 @@
       "searchText": "avalanche bring me the horizon bring me the horizon that’s the spirit 07 - avalanche.mp3",
       "albumID": "2bf43a98-dbad-57f3-ad63-8571fdd86e37"
     },
+    "07 - bad decisions.mp3": {
+      "filename": "07 - bad decisions.mp3",
+      "size": 9724394,
+      "mtimeNs": 1783612814949617812,
+      "id": "6ee828dc-0442-5497-9c1d-cb0c5c3c072f",
+      "title": "bad decisions",
+      "artist": "Bad Omens",
+      "albumArtist": "Bad Omens",
+      "album": "THE DEATH OF PEACE OF MIND",
+      "duration": 261.384,
+      "year": 2022,
+      "trackNumber": 7,
+      "artwork": {
+        "topHex": "#90BE6D",
+        "bottomHex": "#22332C",
+        "symbolName": "airplane"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "bad decisions bad omens bad omens the death of peace of mind 07 - bad decisions.mp3",
+      "albumID": "73567f28-85c0-50db-b969-fb696202c7a1"
+    },
     "11 - Battle Of One.mp3": {
       "filename": "11 - Battle Of One.mp3",
       "size": 5877400,
@@ -1190,6 +1322,28 @@
       "isExplicit": false,
       "searchText": "battle of one thirty seconds to mars thirty seconds to mars a beautiful lie 11 - battle of one.mp3",
       "albumID": "059290fe-4ca8-5c9b-b97f-b53c65be2189"
+    },
+    "07 - Be Somebody.mp3": {
+      "filename": "07 - Be Somebody.mp3",
+      "size": 7913353,
+      "mtimeNs": 1783614227857686857,
+      "id": "a12413ab-a6f7-51a4-adc2-336403a01ca4",
+      "title": "Be Somebody",
+      "artist": "Thousand Foot Krutch",
+      "albumArtist": "Thousand Foot Krutch",
+      "album": "The End Is Where We Begin",
+      "duration": 222.48,
+      "year": 2012,
+      "trackNumber": 7,
+      "artwork": {
+        "topHex": "#8ECAE6",
+        "bottomHex": "#1D3557",
+        "symbolName": "drop.fill"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "be somebody thousand foot krutch thousand foot krutch the end is where we begin 07 - be somebody.mp3",
+      "albumID": "c59a9539-1d04-5937-becf-f482e925d03d"
     },
     "07 - Been Here Before.mp3": {
       "filename": "07 - Been Here Before.mp3",
@@ -1234,6 +1388,28 @@
       "isExplicit": false,
       "searchText": "before it all starts moon differences superheaven music for lonely people 01 - before it all starts.mp3",
       "albumID": "7b9e6809-9d82-501b-ac76-3008c9235bb4"
+    },
+    "13 - Behind Blue Eyes.mp3": {
+      "filename": "13 - Behind Blue Eyes.mp3",
+      "size": 9281682,
+      "mtimeNs": 1783612597835176697,
+      "id": "c9c0d9c7-d499-50fe-b7a7-4f0a4a4afe35",
+      "title": "Behind Blue Eyes",
+      "artist": "Limp Bizkit",
+      "albumArtist": "Limp Bizkit",
+      "album": "Greatest Hitz",
+      "duration": 269.424,
+      "year": 2005,
+      "trackNumber": 13,
+      "artwork": {
+        "topHex": "#B8F2E6",
+        "bottomHex": "#21455A",
+        "symbolName": "clock.fill"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "behind blue eyes limp bizkit limp bizkit greatest hitz 13 - behind blue eyes.mp3",
+      "albumID": "c6e0e327-6051-5f2f-b7f5-5cb74ccd0374"
     },
     "11 - Best Before： Death.mp3": {
       "filename": "11 - Best Before： Death.mp3",
@@ -1300,6 +1476,28 @@
       "isExplicit": false,
       "searchText": "better days the goo goo dolls the goo goo dolls greatest hits, volume one: the singles 10 - better days.mp3",
       "albumID": "1b921444-b7c5-5c1d-8845-09330e047586"
+    },
+    "07 - Queen - Bicycle Race.mp3": {
+      "filename": "07 - Queen - Bicycle Race.mp3",
+      "size": 4973042,
+      "mtimeNs": 1783611146742110967,
+      "id": "4d6c9217-1442-5207-a075-4bd2af028a56",
+      "title": "Bicycle Race",
+      "artist": "Queen",
+      "albumArtist": "AzzholeDoucheBag",
+      "album": "Greatest Hits Vol. 1",
+      "duration": 182.064,
+      "year": 2010,
+      "trackNumber": null,
+      "artwork": {
+        "topHex": "#C77DFF",
+        "bottomHex": "#2B235A",
+        "symbolName": "antenna.radiowaves.left.and.right"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "bicycle race queen azzholedouchebag greatest hits vol. 1 07 - queen - bicycle race.mp3",
+      "albumID": "5a31f22c-e092-5eb6-9a40-1e49f1bb13a7"
     },
     "11 - Big Machine.mp3": {
       "filename": "11 - Big Machine.mp3",
@@ -1455,6 +1653,50 @@
       "searchText": "black star radiohead radiohead the bends 10 - black star.mp3",
       "albumID": "4f0bac82-4235-56bf-b95a-941c1bf37281"
     },
+    "03 - Blackhole.mp3": {
+      "filename": "03 - Blackhole.mp3",
+      "size": 7680271,
+      "mtimeNs": 1783610692733482991,
+      "id": "ba78f512-d89b-5916-b1c0-248096f1ba2f",
+      "title": "Blackhole",
+      "artist": "Architects",
+      "albumArtist": "Architects",
+      "album": "The Sky, The Earth & All Between",
+      "duration": 200.832,
+      "year": 2025,
+      "trackNumber": 3,
+      "artwork": {
+        "topHex": "#90BE6D",
+        "bottomHex": "#22332C",
+        "symbolName": "airplane"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "blackhole architects architects the sky, the earth & all between 03 - blackhole.mp3",
+      "albumID": "8cb26527-8c02-53be-871a-b87838411734"
+    },
+    "08 - Blame Me.mp3": {
+      "filename": "08 - Blame Me.mp3",
+      "size": 9665789,
+      "mtimeNs": 1783613579368979454,
+      "id": "fba9a215-4cbf-5904-95b4-3f4f9d8a764e",
+      "title": "Blame Me",
+      "artist": "The Pretty Reckless",
+      "albumArtist": "The Pretty Reckless",
+      "album": "Going to Hell",
+      "duration": 267.048,
+      "year": 2026,
+      "trackNumber": null,
+      "artwork": {
+        "topHex": "#C77DFF",
+        "bottomHex": "#2B235A",
+        "symbolName": "antenna.radiowaves.left.and.right"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "blame me the pretty reckless the pretty reckless going to hell 08 - blame me.mp3",
+      "albumID": "a5d7d1ef-1e03-567b-ad24-fcad3b3ff9a1"
+    },
     "10 - Blasphemy.mp3": {
       "filename": "10 - Blasphemy.mp3",
       "size": 9658876,
@@ -1476,6 +1718,72 @@
       "isExplicit": false,
       "searchText": "blasphemy bring me the horizon bring me the horizon that’s the spirit 10 - blasphemy.mp3",
       "albumID": "2bf43a98-dbad-57f3-ad63-8571fdd86e37"
+    },
+    "13 - Queen - Body Language.mp3": {
+      "filename": "13 - Queen - Body Language.mp3",
+      "size": 7483300,
+      "mtimeNs": 1783611215321507930,
+      "id": "9c876ebe-9f8e-55d4-91c3-323de0488295",
+      "title": "Body Language",
+      "artist": "Queen",
+      "albumArtist": "AzzholeDoucheBag",
+      "album": "Greatest Hits Vol. 1",
+      "duration": 272.04,
+      "year": 2010,
+      "trackNumber": null,
+      "artwork": {
+        "topHex": "#B8F2E6",
+        "bottomHex": "#21455A",
+        "symbolName": "clock.fill"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "body language queen azzholedouchebag greatest hits vol. 1 13 - queen - body language.mp3",
+      "albumID": "5a31f22c-e092-5eb6-9a40-1e49f1bb13a7"
+    },
+    "17 - Queen – Bohemian Rhapsody (Official Video Remastered).mp3": {
+      "filename": "17 - Queen – Bohemian Rhapsody (Official Video Remastered).mp3",
+      "size": 11528148,
+      "mtimeNs": 1783611261705776929,
+      "id": "605d7d1f-4406-5e8a-a2bc-3bf1c5bfd5e5",
+      "title": "Bohemian Rhapsody",
+      "artist": "Queen",
+      "albumArtist": "Queen Official",
+      "album": "Greatest Hits Vol. 1",
+      "duration": 359.472,
+      "year": 2008,
+      "trackNumber": null,
+      "artwork": {
+        "topHex": "#B8F2E6",
+        "bottomHex": "#21455A",
+        "symbolName": "clock.fill"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "bohemian rhapsody queen queen official greatest hits vol. 1 17 - queen – bohemian rhapsody (official video remastered).mp3",
+      "albumID": "5a31f22c-e092-5eb6-9a40-1e49f1bb13a7"
+    },
+    "11 - Boiler.mp3": {
+      "filename": "11 - Boiler.mp3",
+      "size": 12110528,
+      "mtimeNs": 1783612597811544890,
+      "id": "6d55cfd1-85c8-5505-8421-8fe90b4c416e",
+      "title": "Boiler",
+      "artist": "Limp Bizkit",
+      "albumArtist": "Limp Bizkit",
+      "album": "Greatest Hitz",
+      "duration": 344.64,
+      "year": 2005,
+      "trackNumber": 11,
+      "artwork": {
+        "topHex": "#C77DFF",
+        "bottomHex": "#2B235A",
+        "symbolName": "antenna.radiowaves.left.and.right"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "boiler limp bizkit limp bizkit greatest hitz 11 - boiler.mp3",
+      "albumID": "c6e0e327-6051-5f2f-b7f5-5cb74ccd0374"
     },
     "05 - Bones.mp3": {
       "filename": "05 - Bones.mp3",
@@ -1543,6 +1851,28 @@
       "searchText": "brain damage pink floyd pink floyd the dark side of the moon 09 - brain damage.mp3",
       "albumID": "e9a8304a-5369-563d-9713-65997f260e16"
     },
+    "05 - Brain Dead.mp3": {
+      "filename": "05 - Brain Dead.mp3",
+      "size": 6607954,
+      "mtimeNs": 1783610692765483176,
+      "id": "32978b5b-ffd6-5a92-8985-0bdb9948a3cf",
+      "title": "Brain Dead",
+      "artist": "Architects",
+      "albumArtist": "Architects",
+      "album": "The Sky, The Earth & All Between",
+      "duration": 168.96,
+      "year": 2025,
+      "trackNumber": 5,
+      "artwork": {
+        "topHex": "#90BE6D",
+        "bottomHex": "#22332C",
+        "symbolName": "airplane"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "brain dead architects architects the sky, the earth & all between 05 - brain dead.mp3",
+      "albumID": "8cb26527-8c02-53be-871a-b87838411734"
+    },
     "10 - Brand New Numb.mp3": {
       "filename": "10 - Brand New Numb.mp3",
       "size": 7276751,
@@ -1564,6 +1894,28 @@
       "isExplicit": false,
       "searchText": "brand new numb motionless in white motionless in white disguise 10 - brand new numb.mp3",
       "albumID": "9c7424a1-e189-51e6-8cfa-ef7fe60a4e6f"
+    },
+    "04 - Break Stuff.mp3": {
+      "filename": "04 - Break Stuff.mp3",
+      "size": 5801725,
+      "mtimeNs": 1783612597722328563,
+      "id": "3f55b8da-fd46-5913-8075-2d72d20d4c0a",
+      "title": "Break Stuff",
+      "artist": "Limp Bizkit",
+      "albumArtist": "Limp Bizkit",
+      "album": "Greatest Hitz",
+      "duration": 166.68,
+      "year": 2005,
+      "trackNumber": 4,
+      "artwork": {
+        "topHex": "#A7C957",
+        "bottomHex": "#1A2C2A",
+        "symbolName": "moon.stars.fill"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "break stuff limp bizkit limp bizkit greatest hitz 04 - break stuff.mp3",
+      "albumID": "c6e0e327-6051-5f2f-b7f5-5cb74ccd0374"
     },
     "09 - Breaking the Habit.mp3": {
       "filename": "09 - Breaking the Habit.mp3",
@@ -1697,6 +2049,50 @@
       "searchText": "broadway the goo goo dolls the goo goo dolls greatest hits, volume one: the singles 08 - broadway.mp3",
       "albumID": "1b921444-b7c5-5c1d-8845-09330e047586"
     },
+    "09 - Broken Mirror.mp3": {
+      "filename": "09 - Broken Mirror.mp3",
+      "size": 7400367,
+      "mtimeNs": 1783610692832483564,
+      "id": "a3361a2c-b0be-5d22-8bad-4ac349f089fd",
+      "title": "Broken Mirror",
+      "artist": "Architects",
+      "albumArtist": "Architects",
+      "album": "The Sky, The Earth & All Between",
+      "duration": 190.608,
+      "year": 2025,
+      "trackNumber": 9,
+      "artwork": {
+        "topHex": "#B8F2E6",
+        "bottomHex": "#21455A",
+        "symbolName": "clock.fill"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "broken mirror architects architects the sky, the earth & all between 09 - broken mirror.mp3",
+      "albumID": "8cb26527-8c02-53be-871a-b87838411734"
+    },
+    "14 - Build A Bridge.mp3": {
+      "filename": "14 - Build A Bridge.mp3",
+      "size": 7892402,
+      "mtimeNs": 1783612597845728938,
+      "id": "e33177d9-26a9-5315-a45c-03e7287cca00",
+      "title": "Build A Bridge",
+      "artist": "Limp Bizkit",
+      "albumArtist": "Limp Bizkit",
+      "album": "Greatest Hitz",
+      "duration": 236.16,
+      "year": 2005,
+      "trackNumber": 14,
+      "artwork": {
+        "topHex": "#45D6C7",
+        "bottomHex": "#26324A",
+        "symbolName": "waveform"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "build a bridge limp bizkit limp bizkit greatest hitz 14 - build a bridge.mp3",
+      "albumID": "c6e0e327-6051-5f2f-b7f5-5cb74ccd0374"
+    },
     "09 - Bullet Proof ... I Wish I Was.mp3": {
       "filename": "09 - Bullet Proof ... I Wish I Was.mp3",
       "size": 7102954,
@@ -1718,6 +2114,28 @@
       "isExplicit": false,
       "searchText": "bullet proof..i wish i was radiohead radiohead the bends 09 - bullet proof ... i wish i was.mp3",
       "albumID": "4f0bac82-4235-56bf-b95a-941c1bf37281"
+    },
+    "09 - Burn.mp3": {
+      "filename": "09 - Burn.mp3",
+      "size": 4094025,
+      "mtimeNs": 1783613589227035760,
+      "id": "196f2607-fe4a-50f3-8744-6e7e572e59d9",
+      "title": "Burn",
+      "artist": "The Pretty Reckless",
+      "albumArtist": "The Pretty Reckless",
+      "album": "Going to Hell",
+      "duration": 108.048,
+      "year": 2026,
+      "trackNumber": null,
+      "artwork": {
+        "topHex": "#F28482",
+        "bottomHex": "#2E1E32",
+        "symbolName": "sparkles"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "burn the pretty reckless the pretty reckless going to hell 09 - burn.mp3",
+      "albumID": "a5d7d1ef-1e03-567b-ad24-fcad3b3ff9a1"
     },
     "03 - VIOLENT VIRA - Burn Me With A Bible.mp3": {
       "filename": "03 - VIOLENT VIRA - Burn Me With A Bible.mp3",
@@ -2027,6 +2445,28 @@
       "searchText": "center mass twenty one pilots twenty one pilots breach 09 - center mass.mp3",
       "albumID": "42ee477c-2dcb-5c15-860c-edf48619bafd"
     },
+    "12 - Chandelier.mp3": {
+      "filename": "12 - Chandelier.mp3",
+      "size": 9305839,
+      "mtimeNs": 1783610692883483860,
+      "id": "78970bf2-fd62-5b08-b3bc-620bed680594",
+      "title": "Chandelier",
+      "artist": "Architects",
+      "albumArtist": "Architects",
+      "album": "The Sky, The Earth & All Between",
+      "duration": 246.072,
+      "year": 2025,
+      "trackNumber": 12,
+      "artwork": {
+        "topHex": "#8ECAE6",
+        "bottomHex": "#1D3557",
+        "symbolName": "drop.fill"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "chandelier architects architects the sky, the earth & all between 12 - chandelier.mp3",
+      "albumID": "8cb26527-8c02-53be-871a-b87838411734"
+    },
     "14 - VIOLENT VIRA - Chasing Ghosts.mp3": {
       "filename": "14 - VIOLENT VIRA - Chasing Ghosts.mp3",
       "size": 7623164,
@@ -2225,6 +2665,28 @@
       "searchText": "common decency violent vira violent vira lover of a ghost 06 - violent vira - common decency.mp3",
       "albumID": "3ebc8380-95fe-5e4b-86df-bf81187df44d"
     },
+    "01 - CONCRETE JUNGLE.mp3": {
+      "filename": "01 - CONCRETE JUNGLE.mp3",
+      "size": 8460311,
+      "mtimeNs": 1783612814858617293,
+      "id": "2f7179b3-c366-58c7-a4ed-a17e4f92d2f1",
+      "title": "CONCRETE JUNGLE",
+      "artist": "Bad Omens",
+      "albumArtist": "Bad Omens",
+      "album": "THE DEATH OF PEACE OF MIND",
+      "duration": 220.536,
+      "year": 2022,
+      "trackNumber": 1,
+      "artwork": {
+        "topHex": "#F28482",
+        "bottomHex": "#2E1E32",
+        "symbolName": "sparkles"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "concrete jungle bad omens bad omens the death of peace of mind 01 - concrete jungle.mp3",
+      "albumID": "73567f28-85c0-50db-b969-fb696202c7a1"
+    },
     "04 - Consume.mp3": {
       "filename": "04 - Consume.mp3",
       "size": 8799073,
@@ -2269,6 +2731,50 @@
       "searchText": "cottonwood twenty one pilots twenty one pilots breach 10 - cottonwood.mp3",
       "albumID": "42ee477c-2dcb-5c15-860c-edf48619bafd"
     },
+    "01 - Counterfeit.mp3": {
+      "filename": "01 - Counterfeit.mp3",
+      "size": 9575387,
+      "mtimeNs": 1783612597692098777,
+      "id": "e08657a1-60d6-5631-9798-ec31c68fd0c7",
+      "title": "Counterfeit",
+      "artist": "Limp Bizkit",
+      "albumArtist": "Limp Bizkit",
+      "album": "Greatest Hitz",
+      "duration": 288.144,
+      "year": 2005,
+      "trackNumber": 1,
+      "artwork": {
+        "topHex": "#90BE6D",
+        "bottomHex": "#22332C",
+        "symbolName": "airplane"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "counterfeit limp bizkit limp bizkit greatest hitz 01 - counterfeit.mp3",
+      "albumID": "c6e0e327-6051-5f2f-b7f5-5cb74ccd0374"
+    },
+    "09 - Courtesy Call.mp3": {
+      "filename": "09 - Courtesy Call.mp3",
+      "size": 8405280,
+      "mtimeNs": 1783614227874686955,
+      "id": "3a0bc83a-4226-50e2-bd34-24189e91ff16",
+      "title": "Courtesy Call",
+      "artist": "Thousand Foot Krutch",
+      "albumArtist": "Thousand Foot Krutch",
+      "album": "The End Is Where We Begin",
+      "duration": 236.928,
+      "year": 2012,
+      "trackNumber": 9,
+      "artwork": {
+        "topHex": "#C77DFF",
+        "bottomHex": "#2B235A",
+        "symbolName": "antenna.radiowaves.left.and.right"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "courtesy call thousand foot krutch thousand foot krutch the end is where we begin 09 - courtesy call.mp3",
+      "albumID": "c59a9539-1d04-5937-becf-f482e925d03d"
+    },
     "05 - Crawl.mp3": {
       "filename": "05 - Crawl.mp3",
       "size": 5151376,
@@ -2312,6 +2818,28 @@
       "isExplicit": false,
       "searchText": "crawling linkin park linkin park hybrid theory crawling_3.mp3",
       "albumID": "00b39498-8518-50fc-8f64-26619b4d09c1"
+    },
+    "09 - Queen - Crazy Little Thing Called Love.mp3": {
+      "filename": "09 - Queen - Crazy Little Thing Called Love.mp3",
+      "size": 4505228,
+      "mtimeNs": 1783611170951251029,
+      "id": "d9530f04-6737-562d-83fd-648f17bc361d",
+      "title": "Crazy Little Thing Called Love",
+      "artist": "Queen",
+      "albumArtist": "AzzholeDoucheBag",
+      "album": "Greatest Hits Vol. 1",
+      "duration": 163.08,
+      "year": 2010,
+      "trackNumber": null,
+      "artwork": {
+        "topHex": "#B8F2E6",
+        "bottomHex": "#21455A",
+        "symbolName": "clock.fill"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "crazy little thing called love queen azzholedouchebag greatest hits vol. 1 09 - queen - crazy little thing called love.mp3",
+      "albumID": "5a31f22c-e092-5eb6-9a40-1e49f1bb13a7"
     },
     "Polaris_-_Creatures_Of_Habit__Official_Audio_Stream_.mp3": {
       "filename": "Polaris_-_Creatures_Of_Habit__Official_Audio_Stream_.mp3",
@@ -2488,6 +3016,28 @@
       "isExplicit": false,
       "searchText": "cure for the itch linkin park linkin park hybrid theory cure_for_the_itch_2.mp3",
       "albumID": "00b39498-8518-50fc-8f64-26619b4d09c1"
+    },
+    "10 - Curse.mp3": {
+      "filename": "10 - Curse.mp3",
+      "size": 7116197,
+      "mtimeNs": 1783610692850483668,
+      "id": "ed3b6522-7084-5c93-8883-5d9fba69418c",
+      "title": "Curse",
+      "artist": "Architects",
+      "albumArtist": "Architects",
+      "album": "The Sky, The Earth & All Between",
+      "duration": 181.176,
+      "year": 2025,
+      "trackNumber": 10,
+      "artwork": {
+        "topHex": "#8ECAE6",
+        "bottomHex": "#1D3557",
+        "symbolName": "drop.fill"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "curse architects architects the sky, the earth & all between 10 - curse.mp3",
+      "albumID": "8cb26527-8c02-53be-871a-b87838411734"
     },
     "08 - Sleep Token - Damocles.mp3": {
       "filename": "08 - Sleep Token - Damocles.mp3",
@@ -2708,6 +3258,28 @@
       "isExplicit": false,
       "searchText": "dear diary, bring me the horizon bring me the horizon post human: survival horror 01 - dear diary,.mp3",
       "albumID": "191a9cdb-d386-5476-b70a-f08145a9a351"
+    },
+    "06 - Dear Sister.mp3": {
+      "filename": "06 - Dear Sister.mp3",
+      "size": 2254412,
+      "mtimeNs": 1783613564646895408,
+      "id": "f5ded490-6710-5ed3-b142-346ddd24703f",
+      "title": "Dear Sister",
+      "artist": "The Pretty Reckless",
+      "albumArtist": "The Pretty Reckless",
+      "album": "Going to Hell",
+      "duration": 56.088,
+      "year": 2026,
+      "trackNumber": null,
+      "artwork": {
+        "topHex": "#90BE6D",
+        "bottomHex": "#22332C",
+        "symbolName": "airplane"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "dear sister the pretty reckless the pretty reckless going to hell 06 - dear sister.mp3",
+      "albumID": "a5d7d1ef-1e03-567b-ad24-fcad3b3ff9a1"
     },
     "13 - Deathbeds.mp3": {
       "filename": "13 - Deathbeds.mp3",
@@ -3171,6 +3743,28 @@
       "searchText": "doll foo fighters foo fighters the colour and the shape 01 - foo fighters - doll.mp3",
       "albumID": "9615a262-c0da-5a88-bcd4-833dd6b59c49"
     },
+    "15 - Queen - Don't Stop Me Now.mp3": {
+      "filename": "15 - Queen - Don't Stop Me Now.mp3",
+      "size": 5462344,
+      "mtimeNs": 1783611243043668270,
+      "id": "21f5d579-8faa-53f4-8728-73c64edc5d38",
+      "title": "Don't Stop Me Now",
+      "artist": "Queen",
+      "albumArtist": "AzzholeDoucheBag",
+      "album": "Greatest Hits Vol. 1",
+      "duration": 210.048,
+      "year": 2010,
+      "trackNumber": null,
+      "artwork": {
+        "topHex": "#45D6C7",
+        "bottomHex": "#26324A",
+        "symbolName": "waveform"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "don't stop me now queen azzholedouchebag greatest hits vol. 1 15 - queen - don't stop me now.mp3",
+      "albumID": "5a31f22c-e092-5eb6-9a40-1e49f1bb13a7"
+    },
     "04 - Don't You Ever Stop.mp3": {
       "filename": "04 - Don't You Ever Stop.mp3",
       "size": 7043360,
@@ -3302,6 +3896,28 @@
       "isExplicit": false,
       "searchText": "dopesick while she sleeps while she sleeps self hell 07 - dopesick (feat. stone).mp3",
       "albumID": "3ddff11c-3506-5dc0-aca3-116de122f323"
+    },
+    "11 - Down.mp3": {
+      "filename": "11 - Down.mp3",
+      "size": 7402947,
+      "mtimeNs": 1783614227898687093,
+      "id": "b2d21e71-8e8b-55f5-84e3-3dcf566ef0e5",
+      "title": "Down",
+      "artist": "Thousand Foot Krutch",
+      "albumArtist": "Thousand Foot Krutch",
+      "album": "The End Is Where We Begin",
+      "duration": 207.288,
+      "year": 2012,
+      "trackNumber": 11,
+      "artwork": {
+        "topHex": "#B8F2E6",
+        "bottomHex": "#21455A",
+        "symbolName": "clock.fill"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "down thousand foot krutch thousand foot krutch the end is where we begin 11 - down.mp3",
+      "albumID": "c59a9539-1d04-5937-becf-f482e925d03d"
     },
     "08 - DOWN (Feat. Malevolence).mp3": {
       "filename": "08 - DOWN (Feat. Malevolence).mp3",
@@ -3567,6 +4183,28 @@
       "searchText": "eat me, drink me marilyn manson marilyn manson eat me, drink me 11 - eat me, drink me.mp3",
       "albumID": "2e0083c8-8205-53f9-a203-452d7675a0b9"
     },
+    "12 - Eat You Alive.mp3": {
+      "filename": "12 - Eat You Alive.mp3",
+      "size": 8261953,
+      "mtimeNs": 1783612597823521320,
+      "id": "c24b3425-ddbd-52a9-a685-d0def9695b3e",
+      "title": "Eat You Alive",
+      "artist": "Limp Bizkit",
+      "albumArtist": "Limp Bizkit",
+      "album": "Greatest Hitz",
+      "duration": 237.816,
+      "year": 2005,
+      "trackNumber": 12,
+      "artwork": {
+        "topHex": "#C77DFF",
+        "bottomHex": "#2B235A",
+        "symbolName": "antenna.radiowaves.left.and.right"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "eat you alive limp bizkit limp bizkit greatest hitz 12 - eat you alive.mp3",
+      "albumID": "c6e0e327-6051-5f2f-b7f5-5cb74ccd0374"
+    },
     "10 - Eclipse.mp3": {
       "filename": "10 - Eclipse.mp3",
       "size": 4296147,
@@ -3632,6 +4270,28 @@
       "isExplicit": false,
       "searchText": "edward benz, 27 times la dispute la dispute wildlife 10 - edward benz, 27 times.mp3",
       "albumID": "b4cb0a1a-d1d4-5cef-b1ce-e8b73a77b407"
+    },
+    "01 - Elegy.mp3": {
+      "filename": "01 - Elegy.mp3",
+      "size": 8299009,
+      "mtimeNs": 1783610692702933239,
+      "id": "cbbb4b6c-0169-5720-9c8e-779812fa4fd3",
+      "title": "Elegy",
+      "artist": "Architects",
+      "albumArtist": "Architects",
+      "album": "The Sky, The Earth & All Between",
+      "duration": 215.592,
+      "year": 2025,
+      "trackNumber": 1,
+      "artwork": {
+        "topHex": "#F4D35E",
+        "bottomHex": "#23395B",
+        "symbolName": "tram.fill"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "elegy architects architects the sky, the earth & all between 01 - elegy.mp3",
+      "albumID": "8cb26527-8c02-53be-871a-b87838411734"
     },
     "11 - Elysium.mp3": {
       "filename": "11 - Elysium.mp3",
@@ -3919,6 +4579,28 @@
       "searchText": "everlong foo fighters foo fighters the colour and the shape everlong.mp3",
       "albumID": "9615a262-c0da-5a88-bcd4-833dd6b59c49"
     },
+    "04 - Everything Ends.mp3": {
+      "filename": "04 - Everything Ends.mp3",
+      "size": 8282156,
+      "mtimeNs": 1783610692750483090,
+      "id": "f4f6a5ca-4b06-5a90-99b0-36f258399d6d",
+      "title": "Everything Ends",
+      "artist": "Architects",
+      "albumArtist": "Architects",
+      "album": "The Sky, The Earth & All Between",
+      "duration": 220.032,
+      "year": 2025,
+      "trackNumber": 4,
+      "artwork": {
+        "topHex": "#B8F2E6",
+        "bottomHex": "#21455A",
+        "symbolName": "clock.fill"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "everything ends architects architects the sky, the earth & all between 04 - everything ends.mp3",
+      "albumID": "8cb26527-8c02-53be-871a-b87838411734"
+    },
     "07 - Evidence.mp3": {
       "filename": "07 - Evidence.mp3",
       "size": 10965984,
@@ -3941,6 +4623,50 @@
       "searchText": "evidence marilyn manson marilyn manson eat me, drink me 07 - evidence.mp3",
       "albumID": "2e0083c8-8205-53f9-a203-452d7675a0b9"
     },
+    "06 - Evil Eyes.mp3": {
+      "filename": "06 - Evil Eyes.mp3",
+      "size": 8867345,
+      "mtimeNs": 1783610692781483269,
+      "id": "a1a5e281-0497-5fc8-bb6e-78047eae28b2",
+      "title": "Evil Eyes",
+      "artist": "Architects",
+      "albumArtist": "Architects",
+      "album": "The Sky, The Earth & All Between",
+      "duration": 231.264,
+      "year": 2025,
+      "trackNumber": 6,
+      "artwork": {
+        "topHex": "#A7C957",
+        "bottomHex": "#1A2C2A",
+        "symbolName": "moon.stars.fill"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "evil eyes architects architects the sky, the earth & all between 06 - evil eyes.mp3",
+      "albumID": "8cb26527-8c02-53be-871a-b87838411734"
+    },
+    "09 - Factory Girl.mp3": {
+      "filename": "09 - Factory Girl.mp3",
+      "size": 8573353,
+      "mtimeNs": 1783612986672596694,
+      "id": "906da3f2-f1b9-5bf3-a9ff-2c53077df859",
+      "title": "Factory Girl",
+      "artist": "The Pretty Reckless",
+      "albumArtist": "The Pretty Reckless",
+      "album": "Light Me Up",
+      "duration": 211.272,
+      "year": 2010,
+      "trackNumber": 9,
+      "artwork": {
+        "topHex": "#F28482",
+        "bottomHex": "#2E1E32",
+        "symbolName": "sparkles"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "factory girl the pretty reckless the pretty reckless light me up 09 - factory girl.mp3",
+      "albumID": "357f3175-f069-5a82-a0df-83ce1ce49a36"
+    },
     "07 - Faint.mp3": {
       "filename": "07 - Faint.mp3",
       "size": 5646442,
@@ -3962,6 +4688,28 @@
       "isExplicit": false,
       "searchText": "faint linkin park linkin park meteora 07 - faint.mp3",
       "albumID": "779f2a5e-56c1-5b48-8326-4461859d3027"
+    },
+    "02 - Faith.mp3": {
+      "filename": "02 - Faith.mp3",
+      "size": 4807188,
+      "mtimeNs": 1783612597700244014,
+      "id": "8768caab-ecfe-5158-b87a-e9a8ae3792d2",
+      "title": "Faith",
+      "artist": "Limp Bizkit",
+      "albumArtist": "Limp Bizkit",
+      "album": "Greatest Hitz",
+      "duration": 146.736,
+      "year": 2005,
+      "trackNumber": 2,
+      "artwork": {
+        "topHex": "#A7C957",
+        "bottomHex": "#1A2C2A",
+        "symbolName": "moon.stars.fill"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "faith limp bizkit limp bizkit greatest hitz 02 - faith.mp3",
+      "albumID": "c6e0e327-6051-5f2f-b7f5-5cb74ccd0374"
     },
     "04 - Fake Plastic Trees.mp3": {
       "filename": "04 - Fake Plastic Trees.mp3",
@@ -4072,6 +4820,28 @@
       "isExplicit": false,
       "searchText": "false meridian invent animate invent animate heavener (definitive) 05 - false meridian.mp3",
       "albumID": "06c00327-a8a0-580a-a2d6-5900bbe601b4"
+    },
+    "06 - Queen - Fat Bottomed Girls.mp3": {
+      "filename": "06 - Queen - Fat Bottomed Girls.mp3",
+      "size": 6818561,
+      "mtimeNs": 1783611130215015172,
+      "id": "48126af6-6c53-549f-b1ef-b3d99fb778b0",
+      "title": "Fat Bottomed Girls",
+      "artist": "Queen",
+      "albumArtist": "AzzholeDoucheBag",
+      "album": "Greatest Hits Vol. 1",
+      "duration": 257.064,
+      "year": 2010,
+      "trackNumber": null,
+      "artwork": {
+        "topHex": "#45D6C7",
+        "bottomHex": "#26324A",
+        "symbolName": "waveform"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "fat bottomed girls queen azzholedouchebag greatest hits vol. 1 06 - queen - fat bottomed girls.mp3",
+      "albumID": "5a31f22c-e092-5eb6-9a40-1e49f1bb13a7"
     },
     "12 - Fated, Faithful, Fatal.mp3": {
       "filename": "12 - Fated, Faithful, Fatal.mp3",
@@ -4270,6 +5040,50 @@
       "isExplicit": false,
       "searchText": "flight without feathers architects architects for those that wish to exist 08 - flight without feathers.mp3",
       "albumID": "2885b38b-b7f1-5b7f-9388-5f8437be2a13"
+    },
+    "13 - Fly On the Wall.mp3": {
+      "filename": "13 - Fly On the Wall.mp3",
+      "size": 8719816,
+      "mtimeNs": 1783614227922687231,
+      "id": "f7a3cdc8-ae76-5e8f-8dab-21226328a9a5",
+      "title": "Fly On the Wall",
+      "artist": "Thousand Foot Krutch",
+      "albumArtist": "Thousand Foot Krutch",
+      "album": "The End Is Where We Begin",
+      "duration": 242.808,
+      "year": 2012,
+      "trackNumber": 13,
+      "artwork": {
+        "topHex": "#B8F2E6",
+        "bottomHex": "#21455A",
+        "symbolName": "clock.fill"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "fly on the wall thousand foot krutch thousand foot krutch the end is where we begin 13 - fly on the wall.mp3",
+      "albumID": "c59a9539-1d04-5937-becf-f482e925d03d"
+    },
+    "01 - Follow Me Down.mp3": {
+      "filename": "01 - Follow Me Down.mp3",
+      "size": 9767915,
+      "mtimeNs": 1783613508430574655,
+      "id": "ad17a2e2-29bf-5483-be49-2a00904156aa",
+      "title": "Follow Me Down",
+      "artist": "The Pretty Reckless",
+      "albumArtist": "The Pretty Reckless",
+      "album": "Going to Hell",
+      "duration": 281.112,
+      "year": 2026,
+      "trackNumber": null,
+      "artwork": {
+        "topHex": "#A7C957",
+        "bottomHex": "#1A2C2A",
+        "symbolName": "moon.stars.fill"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "follow me down the pretty reckless the pretty reckless going to hell 01 - follow me down.mp3",
+      "albumID": "a5d7d1ef-1e03-567b-ad24-fcad3b3ff9a1"
     },
     "05 - Follow You.mp3": {
       "filename": "05 - Follow You.mp3",
@@ -4667,6 +5481,50 @@
       "searchText": "go to hell, for heaven’s sake bring me the horizon bring me the horizon sempiternal 05 - go to hell, for heaven's sake.mp3",
       "albumID": "8672778c-8d02-5245-b39e-fc2a69560a21"
     },
+    "07 - Goin' Down.mp3": {
+      "filename": "07 - Goin' Down.mp3",
+      "size": 8751879,
+      "mtimeNs": 1783612986640596511,
+      "id": "96f55dc2-ba3f-5d71-9620-7e5ae63aae01",
+      "title": "Goin' Down",
+      "artist": "The Pretty Reckless",
+      "albumArtist": "The Pretty Reckless",
+      "album": "Light Me Up",
+      "duration": 215.928,
+      "year": 2010,
+      "trackNumber": 7,
+      "artwork": {
+        "topHex": "#F28482",
+        "bottomHex": "#2E1E32",
+        "symbolName": "sparkles"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "goin' down the pretty reckless the pretty reckless light me up 07 - goin' down.mp3",
+      "albumID": "357f3175-f069-5a82-a0df-83ce1ce49a36"
+    },
+    "02 - Going to Hell.mp3": {
+      "filename": "02 - Going to Hell.mp3",
+      "size": 10172018,
+      "mtimeNs": 1783613519457637548,
+      "id": "1b5abf92-30e8-5b60-b028-dde23989411b",
+      "title": "Going to Hell",
+      "artist": "The Pretty Reckless",
+      "albumArtist": "The Pretty Reckless",
+      "album": "Going to Hell",
+      "duration": 278.832,
+      "year": 2026,
+      "trackNumber": null,
+      "artwork": {
+        "topHex": "#F4D35E",
+        "bottomHex": "#23395B",
+        "symbolName": "tram.fill"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "going to hell the pretty reckless the pretty reckless going to hell 02 - going to hell.mp3",
+      "albumID": "a5d7d1ef-1e03-567b-ad24-fcad3b3ff9a1"
+    },
     "12 - Goliath.mp3": {
       "filename": "12 - Goliath.mp3",
       "size": 8675398,
@@ -4710,6 +5568,28 @@
       "isExplicit": false,
       "searchText": "gone with the wind architects architects all our gods have abandoned us 05 - gone with the wind.mp3",
       "albumID": "f6ece19a-e993-561a-ac94-2c697262607f"
+    },
+    "16 - Queen - Good Old Fashioned Lover Boy.mp3": {
+      "filename": "16 - Queen - Good Old Fashioned Lover Boy.mp3",
+      "size": 4657121,
+      "mtimeNs": 1783611254674735784,
+      "id": "99c21d98-1ee5-5bba-b931-0020ed9656be",
+      "title": "Good Old Fashioned Lover Boy",
+      "artist": "Queen",
+      "albumArtist": "AzzholeDoucheBag",
+      "album": "Greatest Hits Vol. 1",
+      "duration": 174.072,
+      "year": 2010,
+      "trackNumber": null,
+      "artwork": {
+        "topHex": "#C77DFF",
+        "bottomHex": "#2B235A",
+        "symbolName": "antenna.radiowaves.left.and.right"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "good old fashioned lover boy queen azzholedouchebag greatest hits vol. 1 16 - queen - good old fashioned lover boy.mp3",
+      "albumID": "5a31f22c-e092-5eb6-9a40-1e49f1bb13a7"
     },
     "03 - Sleep Token - Granite.mp3": {
       "filename": "03 - Sleep Token - Granite.mp3",
@@ -5041,6 +5921,28 @@
       "searchText": "heaven in hiding imminence superheaven heaven in hiding 13 - imminence - heaven in hiding.mp3",
       "albumID": "ba86de38-ebd9-55ee-bc2e-c5d61ba994ae"
     },
+    "03 - Heaven Knows.mp3": {
+      "filename": "03 - Heaven Knows.mp3",
+      "size": 8196381,
+      "mtimeNs": 1783613529670695781,
+      "id": "48c378c6-cbc7-590e-a38a-619b20d0a1f0",
+      "title": "Heaven Knows",
+      "artist": "The Pretty Reckless",
+      "albumArtist": "The Pretty Reckless",
+      "album": "Going to Hell",
+      "duration": 224.88,
+      "year": 2026,
+      "trackNumber": null,
+      "artwork": {
+        "topHex": "#45D6C7",
+        "bottomHex": "#26324A",
+        "symbolName": "waveform"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "heaven knows the pretty reckless the pretty reckless going to hell 03 - heaven knows.mp3",
+      "albumID": "a5d7d1ef-1e03-567b-ad24-fcad3b3ff9a1"
+    },
     "14 - Heavener.mp3": {
       "filename": "14 - Heavener.mp3",
       "size": 9179122,
@@ -5261,6 +6163,28 @@
       "searchText": "hole in the ground superheaven daylight jar 10 - hole in the ground.mp3",
       "albumID": "d48e6f81-32c8-5ff9-ba55-ebfffa1175cf"
     },
+    "17 - Home Sweet Home⧸Bittersweet Symphony.mp3": {
+      "filename": "17 - Home Sweet Home⧸Bittersweet Symphony.mp3",
+      "size": 7648042,
+      "mtimeNs": 1783612597878180749,
+      "id": "73992a1f-6368-50ae-abab-a2278a68d5ce",
+      "title": "Home Sweet Home⧸Bittersweet Symphony",
+      "artist": "Limp Bizkit",
+      "albumArtist": "Limp Bizkit",
+      "album": "Greatest Hitz",
+      "duration": 231.84,
+      "year": 2005,
+      "trackNumber": 17,
+      "artwork": {
+        "topHex": "#C77DFF",
+        "bottomHex": "#2B235A",
+        "symbolName": "antenna.radiowaves.left.and.right"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "home sweet home⧸bittersweet symphony limp bizkit limp bizkit greatest hitz 17 - home sweet home⧸bittersweet symphony.mp3",
+      "albumID": "c6e0e327-6051-5f2f-b7f5-5cb74ccd0374"
+    },
     "04 - hoodie.mp3": {
       "filename": "04 - hoodie.mp3",
       "size": 5349688,
@@ -5326,6 +6250,28 @@
       "isExplicit": false,
       "searchText": "hot to go! nothing,nowhere. nothing,nowhere. will it emo? (vol.1) 02 - hot to go!.mp3",
       "albumID": "680f7984-65fe-50fb-bdac-9d202637034f"
+    },
+    "04 - House on a Hill.mp3": {
+      "filename": "04 - House on a Hill.mp3",
+      "size": 10409676,
+      "mtimeNs": 1783613538909748554,
+      "id": "7cbd9982-2a34-5469-8064-8d755455cbd3",
+      "title": "House on a Hill",
+      "artist": "The Pretty Reckless",
+      "albumArtist": "The Pretty Reckless",
+      "album": "Going to Hell",
+      "duration": 285.816,
+      "year": 2026,
+      "trackNumber": null,
+      "artwork": {
+        "topHex": "#F4D35E",
+        "bottomHex": "#23395B",
+        "symbolName": "tram.fill"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "house on a hill the pretty reckless the pretty reckless going to hell 04 - house on a hill.mp3",
+      "albumID": "a5d7d1ef-1e03-567b-ad24-fcad3b3ff9a1"
     },
     "04 - Dead Poet Society - How could I love you？.mp3": {
       "filename": "04 - Dead Poet Society - How could I love you？.mp3",
@@ -5657,6 +6603,28 @@
       "searchText": "i don’t know what to say bring me the horizon bring me the horizon amo 13 - i don't know what to say.mp3",
       "albumID": "059b7604-859f-5902-b7bb-af3ce0f07638"
     },
+    "06 - I Get Wicked.mp3": {
+      "filename": "06 - I Get Wicked.mp3",
+      "size": 7719917,
+      "mtimeNs": 1783614227846841633,
+      "id": "003f2ca6-3f45-59c4-96d7-a7da8c52bd55",
+      "title": "I Get Wicked",
+      "artist": "Thousand Foot Krutch",
+      "albumArtist": "Thousand Foot Krutch",
+      "album": "The End Is Where We Begin",
+      "duration": 213.48,
+      "year": 2012,
+      "trackNumber": 6,
+      "artwork": {
+        "topHex": "#B8F2E6",
+        "bottomHex": "#21455A",
+        "symbolName": "clock.fill"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "i get wicked thousand foot krutch thousand foot krutch the end is where we begin 06 - i get wicked.mp3",
+      "albumID": "c59a9539-1d04-5937-becf-f482e925d03d"
+    },
     "05 - Dead Poet Society - I hope you hate me..mp3": {
       "filename": "05 - Dead Poet Society - I hope you hate me..mp3",
       "size": 8293975,
@@ -5788,6 +6756,28 @@
       "isExplicit": false,
       "searchText": "i'm sorry flyleaf flyleaf flyleaf 06 - i'm sorry.mp3",
       "albumID": "e394ac30-0a90-5549-8b34-b1b67a904f18"
+    },
+    "12 - IDWT$.mp3": {
+      "filename": "12 - IDWT$.mp3",
+      "size": 7734368,
+      "mtimeNs": 1783612815025618245,
+      "id": "073ec518-8e6e-5ae9-a459-fde31a3a130e",
+      "title": "IDWT$",
+      "artist": "Bad Omens",
+      "albumArtist": "Bad Omens",
+      "album": "THE DEATH OF PEACE OF MIND",
+      "duration": 202.992,
+      "year": 2022,
+      "trackNumber": 12,
+      "artwork": {
+        "topHex": "#C77DFF",
+        "bottomHex": "#2B235A",
+        "symbolName": "antenna.radiowaves.left.and.right"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "idwt$ bad omens bad omens the death of peace of mind 12 - idwt$.mp3",
+      "albumID": "73567f28-85c0-50db-b969-fb696202c7a1"
     },
     "01 - If I Was Your Vampire.mp3": {
       "filename": "01 - If I Was Your Vampire.mp3",
@@ -6317,6 +7307,28 @@
       "searchText": "joke’s on you! oliver tree oliver tree ugly is beautiful 09 - joke's on you!.mp3",
       "albumID": "b8831736-1777-5bf8-992a-092fcd6de53a"
     },
+    "08 - Judgement Day.mp3": {
+      "filename": "08 - Judgement Day.mp3",
+      "size": 7486221,
+      "mtimeNs": 1783610692814483460,
+      "id": "9421f91b-f60f-553c-9913-702d2cfce659",
+      "title": "Judgement Day",
+      "artist": "Architects",
+      "albumArtist": "Architects",
+      "album": "The Sky, The Earth & All Between",
+      "duration": 194.976,
+      "year": 2025,
+      "trackNumber": 8,
+      "artwork": {
+        "topHex": "#F28482",
+        "bottomHex": "#2E1E32",
+        "symbolName": "sparkles"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "judgement day architects architects the sky, the earth & all between 08 - judgement day.mp3",
+      "albumID": "8cb26527-8c02-53be-871a-b87838411734"
+    },
     "07 - Just.mp3": {
       "filename": "07 - Just.mp3",
       "size": 8173525,
@@ -6361,6 +7373,50 @@
       "searchText": "just a car crash away superheaven superheaven jar 05 - just a car crash away.mp3",
       "albumID": "d48e6f81-32c8-5ff9-ba55-ebfffa1175cf"
     },
+    "08 - Just Pretend.mp3": {
+      "filename": "08 - Just Pretend.mp3",
+      "size": 7727633,
+      "mtimeNs": 1783612814964617897,
+      "id": "7045c7d5-8421-5fb1-906a-d97f2fbaaa56",
+      "title": "Just Pretend",
+      "artist": "Bad Omens",
+      "albumArtist": "Bad Omens",
+      "album": "THE DEATH OF PEACE OF MIND",
+      "duration": 204.72,
+      "year": 2022,
+      "trackNumber": 8,
+      "artwork": {
+        "topHex": "#C77DFF",
+        "bottomHex": "#2B235A",
+        "symbolName": "antenna.radiowaves.left.and.right"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "just pretend bad omens bad omens the death of peace of mind 08 - just pretend.mp3",
+      "albumID": "73567f28-85c0-50db-b969-fb696202c7a1"
+    },
+    "05 - Just Tonight.mp3": {
+      "filename": "05 - Just Tonight.mp3",
+      "size": 6934075,
+      "mtimeNs": 1783612986606596317,
+      "id": "0c053650-91b8-52d3-bc7d-cf61d191f749",
+      "title": "Just Tonight",
+      "artist": "The Pretty Reckless",
+      "albumArtist": "The Pretty Reckless",
+      "album": "Light Me Up",
+      "duration": 168.432,
+      "year": 2010,
+      "trackNumber": 5,
+      "artwork": {
+        "topHex": "#F28482",
+        "bottomHex": "#2E1E32",
+        "symbolName": "sparkles"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "just tonight the pretty reckless the pretty reckless light me up 05 - just tonight.mp3",
+      "albumID": "357f3175-f069-5a82-a0df-83ce1ce49a36"
+    },
     "05 - Kill the Ache.mp3": {
       "filename": "05 - Kill the Ache.mp3",
       "size": 7734618,
@@ -6382,6 +7438,28 @@
       "isExplicit": false,
       "searchText": "kill the ache currents currents the way it ends 05 - kill the ache.mp3",
       "albumID": "1e0deeef-74e8-5ca0-b0ef-1e7fe0ad884c"
+    },
+    "04 - Queen - Killer Queen.mp3": {
+      "filename": "04 - Queen - Killer Queen.mp3",
+      "size": 4709675,
+      "mtimeNs": 1783611104803868055,
+      "id": "be2ab799-83be-5c2b-92a1-73a166350534",
+      "title": "Killer Queen",
+      "artist": "Queen",
+      "albumArtist": "AzzholeDoucheBag",
+      "album": "Greatest Hits Vol. 1",
+      "duration": 180.072,
+      "year": 2010,
+      "trackNumber": null,
+      "artwork": {
+        "topHex": "#8ECAE6",
+        "bottomHex": "#1D3557",
+        "symbolName": "drop.fill"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "killer queen queen azzholedouchebag greatest hits vol. 1 04 - queen - killer queen.mp3",
+      "albumID": "5a31f22c-e092-5eb6-9a40-1e49f1bb13a7"
     },
     "01 - Killing Strangers.mp3": {
       "filename": "01 - Killing Strangers.mp3",
@@ -6603,6 +7681,28 @@
       "searchText": "landmine post malone post malone austin 15 - landmine.mp3",
       "albumID": "0ab3ec0d-1f9c-5832-8963-753466a3165c"
     },
+    "07 - Landmines.mp3": {
+      "filename": "07 - Landmines.mp3",
+      "size": 8235273,
+      "mtimeNs": 1783610692799978382,
+      "id": "b036533d-78cf-54ac-a64d-01bb3ad57b9b",
+      "title": "Landmines",
+      "artist": "Architects",
+      "albumArtist": "Architects",
+      "album": "The Sky, The Earth & All Between",
+      "duration": 214.896,
+      "year": 2025,
+      "trackNumber": 7,
+      "artwork": {
+        "topHex": "#F4D35E",
+        "bottomHex": "#23395B",
+        "symbolName": "tram.fill"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "landmines architects architects the sky, the earth & all between 07 - landmines.mp3",
+      "albumID": "8cb26527-8c02-53be-871a-b87838411734"
+    },
     "06 - Last October.mp3": {
       "filename": "06 - Last October.mp3",
       "size": 7800238,
@@ -6646,6 +7746,28 @@
       "isExplicit": false,
       "searchText": "laugh it off post malone post malone austin 17 - laugh it off.mp3",
       "albumID": "0ab3ec0d-1f9c-5832-8963-753466a3165c"
+    },
+    "16 - Lean On Me.mp3": {
+      "filename": "16 - Lean On Me.mp3",
+      "size": 9012977,
+      "mtimeNs": 1783612597867682321,
+      "id": "fff00592-6579-5ebe-a448-e98e8510bc3c",
+      "title": "Lean On Me",
+      "artist": "Limp Bizkit",
+      "albumArtist": "Limp Bizkit",
+      "album": "Greatest Hitz",
+      "duration": 265.704,
+      "year": 2005,
+      "trackNumber": 16,
+      "artwork": {
+        "topHex": "#8ECAE6",
+        "bottomHex": "#1D3557",
+        "symbolName": "drop.fill"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "lean on me limp bizkit limp bizkit greatest hitz 16 - lean on me.mp3",
+      "albumID": "c6e0e327-6051-5f2f-b7f5-5cb74ccd0374"
     },
     "02 - LEAVE ME ALONE.mp3": {
       "filename": "02 - LEAVE ME ALONE.mp3",
@@ -6823,6 +7945,28 @@
       "searchText": "let the flames begin paramore paramore riot! 06 - let the flames begin.mp3",
       "albumID": "3879780b-9fd1-5fa6-9d93-875ac32acde6"
     },
+    "05 - Let the Sparks Fly.mp3": {
+      "filename": "05 - Let the Sparks Fly.mp3",
+      "size": 8897322,
+      "mtimeNs": 1783614227834686725,
+      "id": "6f51c73e-5843-5e3c-8468-1f20462cf70c",
+      "title": "Let the Sparks Fly",
+      "artist": "Thousand Foot Krutch",
+      "albumArtist": "Thousand Foot Krutch",
+      "album": "The End Is Where We Begin",
+      "duration": 246.168,
+      "year": 2012,
+      "trackNumber": 5,
+      "artwork": {
+        "topHex": "#8ECAE6",
+        "bottomHex": "#1D3557",
+        "symbolName": "drop.fill"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "let the sparks fly thousand foot krutch thousand foot krutch the end is where we begin 05 - let the sparks fly.mp3",
+      "albumID": "c59a9539-1d04-5937-becf-f482e925d03d"
+    },
     "11 - Libertine.mp3": {
       "filename": "11 - Libertine.mp3",
       "size": 7931605,
@@ -6888,6 +8032,72 @@
       "isExplicit": false,
       "searchText": "life is a highway nothing,nowhere. nothing,nowhere. will it emo? (vol.1) 07 - life is a highway.mp3",
       "albumID": "680f7984-65fe-50fb-bdac-9d202637034f"
+    },
+    "04 - Light Me Up.mp3": {
+      "filename": "04 - Light Me Up.mp3",
+      "size": 8402897,
+      "mtimeNs": 1783612986592596238,
+      "id": "294f77ce-4a01-5bc0-8bdb-6a574a80d6e9",
+      "title": "Light Me Up",
+      "artist": "The Pretty Reckless",
+      "albumArtist": "The Pretty Reckless",
+      "album": "Light Me Up",
+      "duration": 207.72,
+      "year": 2010,
+      "trackNumber": 4,
+      "artwork": {
+        "topHex": "#F28482",
+        "bottomHex": "#2E1E32",
+        "symbolName": "sparkles"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "light me up the pretty reckless the pretty reckless light me up 04 - light me up.mp3",
+      "albumID": "357f3175-f069-5a82-a0df-83ce1ce49a36"
+    },
+    "03 - Light Up the Sky.mp3": {
+      "filename": "03 - Light Up the Sky.mp3",
+      "size": 8518067,
+      "mtimeNs": 1783614227811686592,
+      "id": "766cc66d-f646-5f3e-8b36-1c01d2b269c9",
+      "title": "Light Up the Sky",
+      "artist": "Thousand Foot Krutch",
+      "albumArtist": "Thousand Foot Krutch",
+      "album": "The End Is Where We Begin",
+      "duration": 239.664,
+      "year": 2012,
+      "trackNumber": 3,
+      "artwork": {
+        "topHex": "#F28482",
+        "bottomHex": "#2E1E32",
+        "symbolName": "sparkles"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "light up the sky thousand foot krutch thousand foot krutch the end is where we begin 03 - light up the sky.mp3",
+      "albumID": "c59a9539-1d04-5937-becf-f482e925d03d"
+    },
+    "06 - Like A Villain.mp3": {
+      "filename": "06 - Like A Villain.mp3",
+      "size": 7850072,
+      "mtimeNs": 1783612814931617709,
+      "id": "37bcab94-4397-5df0-bd5c-a517fb57b294",
+      "title": "Like A Villain",
+      "artist": "Bad Omens",
+      "albumArtist": "Bad Omens",
+      "album": "THE DEATH OF PEACE OF MIND",
+      "duration": 210.72,
+      "year": 2022,
+      "trackNumber": 6,
+      "artwork": {
+        "topHex": "#8ECAE6",
+        "bottomHex": "#1D3557",
+        "symbolName": "drop.fill"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "like a villain bad omens bad omens the death of peace of mind 06 - like a villain.mp3",
+      "albumID": "73567f28-85c0-50db-b969-fb696202c7a1"
     },
     "04 - Like That.mp3": {
       "filename": "04 - Like That.mp3",
@@ -7087,6 +8297,28 @@
       "searchText": "lost and left behind imminence imminence heaven in hiding 10 - imminence - lost and left behind.mp3",
       "albumID": "ba86de38-ebd9-55ee-bc2e-c5d61ba994ae"
     },
+    "01 - Lost in a Wave.mp3": {
+      "filename": "01 - Lost in a Wave.mp3",
+      "size": 8424260,
+      "mtimeNs": 1783612351031973289,
+      "id": "3de7daaf-3aeb-503d-8f09-32bf1af29ee7",
+      "title": "Lost in a Wave",
+      "artist": "Landmvrks",
+      "albumArtist": "Landmvrks",
+      "album": "Lost In The Waves",
+      "duration": 224.976,
+      "year": 2021,
+      "trackNumber": 1,
+      "artwork": {
+        "topHex": "#90BE6D",
+        "bottomHex": "#22332C",
+        "symbolName": "airplane"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "lost in a wave landmvrks landmvrks lost in the waves 01 - lost in a wave.mp3",
+      "albumID": "4d262392-b8e5-5d4a-af9c-2399bfb48f87"
+    },
     "02 - lost in time.mp3": {
       "filename": "02 - lost in time.mp3",
       "size": 7068739,
@@ -7218,6 +8450,28 @@
       "isExplicit": false,
       "searchText": "lying from you linkin park linkin park meteora 04 - lying from you.mp3",
       "albumID": "779f2a5e-56c1-5b48-8326-4461859d3027"
+    },
+    "03 - Make Me Wanna Die.mp3": {
+      "filename": "03 - Make Me Wanna Die.mp3",
+      "size": 9316341,
+      "mtimeNs": 1783612986575596141,
+      "id": "cff1401a-37ea-56ef-a5b4-7d28a662e803",
+      "title": "Make Me Wanna Die",
+      "artist": "The Pretty Reckless",
+      "albumArtist": "The Pretty Reckless",
+      "album": "Light Me Up",
+      "duration": 235.68,
+      "year": 2010,
+      "trackNumber": 3,
+      "artwork": {
+        "topHex": "#F4D35E",
+        "bottomHex": "#23395B",
+        "symbolName": "tram.fill"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "make me wanna die the pretty reckless the pretty reckless light me up 03 - make me wanna die.mp3",
+      "albumID": "357f3175-f069-5a82-a0df-83ce1ce49a36"
     },
     "02 - MANTRA.mp3": {
       "filename": "02 - MANTRA.mp3",
@@ -7373,6 +8627,28 @@
       "searchText": "mine sleep token sleep token this place will become your tomb 03 - mine.mp3",
       "albumID": "6c95a99f-9a22-59fe-b9d0-886bff1ad721"
     },
+    "15 - Miracle.mp3": {
+      "filename": "15 - Miracle.mp3",
+      "size": 8197395,
+      "mtimeNs": 1783612815071618507,
+      "id": "d0edf33c-02be-5edd-884e-2d37bc293148",
+      "title": "Miracle",
+      "artist": "Bad Omens",
+      "albumArtist": "Bad Omens",
+      "album": "THE DEATH OF PEACE OF MIND",
+      "duration": 225.024,
+      "year": 2022,
+      "trackNumber": 15,
+      "artwork": {
+        "topHex": "#45D6C7",
+        "bottomHex": "#26324A",
+        "symbolName": "waveform"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "miracle bad omens bad omens the death of peace of mind 15 - miracle.mp3",
+      "albumID": "73567f28-85c0-50db-b969-fb696202c7a1"
+    },
     "07 - Miracle.mp3": {
       "filename": "07 - Miracle.mp3",
       "size": 8070941,
@@ -7482,6 +8758,28 @@
       "isExplicit": false,
       "searchText": "misguided ghosts paramore paramore brand new eyes 10 - misguided ghosts.mp3",
       "albumID": "6b07bf73-4a1f-59f5-96e2-8b38d726c534"
+    },
+    "06 - Miss Nothing.mp3": {
+      "filename": "06 - Miss Nothing.mp3",
+      "size": 7887372,
+      "mtimeNs": 1783612986621596403,
+      "id": "5ae54855-5fae-510b-b01f-257754fb026e",
+      "title": "Miss Nothing",
+      "artist": "The Pretty Reckless",
+      "albumArtist": "The Pretty Reckless",
+      "album": "Light Me Up",
+      "duration": 193.632,
+      "year": 2010,
+      "trackNumber": 6,
+      "artwork": {
+        "topHex": "#C77DFF",
+        "bottomHex": "#2B235A",
+        "symbolName": "antenna.radiowaves.left.and.right"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "miss nothing the pretty reckless the pretty reckless light me up 06 - miss nothing.mp3",
+      "albumID": "357f3175-f069-5a82-a0df-83ce1ce49a36"
     },
     "12 - Missing Limbs.mp3": {
       "filename": "12 - Missing Limbs.mp3",
@@ -7747,6 +9045,28 @@
       "searchText": "my condition dead poet society dead poet society fission 11 - dead poet society - my condition.mp3",
       "albumID": "78e97674-3a1d-55d0-bbd2-c91a77150488"
     },
+    "08 - My Generation.mp3": {
+      "filename": "08 - My Generation.mp3",
+      "size": 7786756,
+      "mtimeNs": 1783612597769361967,
+      "id": "4186618e-613c-5443-9374-d06c186b2563",
+      "title": "My Generation",
+      "artist": "Limp Bizkit",
+      "albumArtist": "Limp Bizkit",
+      "album": "Greatest Hitz",
+      "duration": 221.112,
+      "year": 2005,
+      "trackNumber": 8,
+      "artwork": {
+        "topHex": "#F4D35E",
+        "bottomHex": "#23395B",
+        "symbolName": "tram.fill"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "my generation limp bizkit limp bizkit greatest hitz 08 - my generation.mp3",
+      "albumID": "c6e0e327-6051-5f2f-b7f5-5cb74ccd0374"
+    },
     "hero.mp3": {
       "filename": "hero.mp3",
       "size": 8659349,
@@ -7791,6 +9111,28 @@
       "searchText": "my iron lung radiohead radiohead the bends 08 - my iron lung.mp3",
       "albumID": "4f0bac82-4235-56bf-b95a-941c1bf37281"
     },
+    "01 - My Medicine.mp3": {
+      "filename": "01 - My Medicine.mp3",
+      "size": 7649448,
+      "mtimeNs": 1783612986542595953,
+      "id": "d971abec-accd-5a2a-9dee-281be361c965",
+      "title": "My Medicine",
+      "artist": "The Pretty Reckless",
+      "albumArtist": "The Pretty Reckless",
+      "album": "Light Me Up",
+      "duration": 194.016,
+      "year": 2010,
+      "trackNumber": 1,
+      "artwork": {
+        "topHex": "#B8F2E6",
+        "bottomHex": "#21455A",
+        "symbolName": "clock.fill"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "my medicine the pretty reckless the pretty reckless light me up 01 - my medicine.mp3",
+      "albumID": "357f3175-f069-5a82-a0df-83ce1ce49a36"
+    },
     "04 - Foo Fighters - My Poor Brain.mp3": {
       "filename": "04 - Foo Fighters - My Poor Brain.mp3",
       "size": 7211444,
@@ -7812,6 +9154,50 @@
       "isExplicit": false,
       "searchText": "my poor brain foo fighters foo fighters the colour and the shape 04 - foo fighters - my poor brain.mp3",
       "albumID": "9615a262-c0da-5a88-bcd4-833dd6b59c49"
+    },
+    "10 - My Way.mp3": {
+      "filename": "10 - My Way.mp3",
+      "size": 9621313,
+      "mtimeNs": 1783612597794104414,
+      "id": "ee52f6dd-e161-5002-aaee-8e98474327f8",
+      "title": "My Way",
+      "artist": "Limp Bizkit",
+      "albumArtist": "Limp Bizkit",
+      "album": "Greatest Hitz",
+      "duration": 273.168,
+      "year": 2005,
+      "trackNumber": 10,
+      "artwork": {
+        "topHex": "#45D6C7",
+        "bottomHex": "#26324A",
+        "symbolName": "waveform"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "my way limp bizkit limp bizkit greatest hitz 10 - my way.mp3",
+      "albumID": "c6e0e327-6051-5f2f-b7f5-5cb74ccd0374"
+    },
+    "06 - N 2 Gether Now.mp3": {
+      "filename": "06 - N 2 Gether Now.mp3",
+      "size": 7257758,
+      "mtimeNs": 1783612597746752791,
+      "id": "c417fabc-4c40-5fb5-b506-55cd1cb64653",
+      "title": "N 2 Gether Now",
+      "artist": "Limp Bizkit",
+      "albumArtist": "Limp Bizkit",
+      "album": "Greatest Hitz",
+      "duration": 235.824,
+      "year": 2005,
+      "trackNumber": 6,
+      "artwork": {
+        "topHex": "#F4D35E",
+        "bottomHex": "#23395B",
+        "symbolName": "tram.fill"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "n 2 gether now limp bizkit limp bizkit greatest hitz 06 - n 2 gether now.mp3",
+      "albumID": "c6e0e327-6051-5f2f-b7f5-5cb74ccd0374"
     },
     "09 - n⧸A.mp3": {
       "filename": "09 - n⧸A.mp3",
@@ -8077,6 +9463,50 @@
       "searchText": "nobody’s listening linkin park linkin park meteora 11 - nobody's listening.mp3",
       "albumID": "779f2a5e-56c1-5b48-8326-4461859d3027"
     },
+    "03 - Nookie.mp3": {
+      "filename": "03 - Nookie.mp3",
+      "size": 8955174,
+      "mtimeNs": 1783612597712187103,
+      "id": "51c64228-fdcd-5587-873b-8eb27bbdd095",
+      "title": "Nookie",
+      "artist": "Limp Bizkit",
+      "albumArtist": "Limp Bizkit",
+      "album": "Greatest Hitz",
+      "duration": 266.064,
+      "year": 2005,
+      "trackNumber": 3,
+      "artwork": {
+        "topHex": "#B8F2E6",
+        "bottomHex": "#21455A",
+        "symbolName": "clock.fill"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "nookie limp bizkit limp bizkit greatest hitz 03 - nookie.mp3",
+      "albumID": "c6e0e327-6051-5f2f-b7f5-5cb74ccd0374"
+    },
+    "08 - Nothing Left To Lose.mp3": {
+      "filename": "08 - Nothing Left To Lose.mp3",
+      "size": 9778325,
+      "mtimeNs": 1783612986657968009,
+      "id": "01db1514-1ac4-5031-af6d-352d07a89fd8",
+      "title": "Nothing Left To Lose",
+      "artist": "The Pretty Reckless",
+      "albumArtist": "The Pretty Reckless",
+      "album": "Light Me Up",
+      "duration": 251.64,
+      "year": 2010,
+      "trackNumber": 8,
+      "artwork": {
+        "topHex": "#45D6C7",
+        "bottomHex": "#26324A",
+        "symbolName": "waveform"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "nothing left to lose the pretty reckless the pretty reckless light me up 08 - nothing left to lose.mp3",
+      "albumID": "357f3175-f069-5a82-a0df-83ce1ce49a36"
+    },
     "04 - Novacandy.mp3": {
       "filename": "04 - Novacandy.mp3",
       "size": 6850361,
@@ -8098,6 +9528,50 @@
       "isExplicit": false,
       "searchText": "novacandy post malone post malone austin 04 - novacandy.mp3",
       "albumID": "0ab3ec0d-1f9c-5832-8963-753466a3165c"
+    },
+    "10 - Queen - Now I'm Here.mp3": {
+      "filename": "10 - Queen - Now I'm Here.mp3",
+      "size": 6753841,
+      "mtimeNs": 1783611181394311428,
+      "id": "38fa0153-faef-5de8-aa7c-8c4de1fccc3a",
+      "title": "Now I'm Here",
+      "artist": "Queen",
+      "albumArtist": "AzzholeDoucheBag",
+      "album": "Greatest Hits Vol. 1",
+      "duration": 254.064,
+      "year": 2010,
+      "trackNumber": null,
+      "artwork": {
+        "topHex": "#A7C957",
+        "bottomHex": "#1A2C2A",
+        "symbolName": "moon.stars.fill"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "now i'm here queen azzholedouchebag greatest hits vol. 1 10 - queen - now i'm here.mp3",
+      "albumID": "5a31f22c-e092-5eb6-9a40-1e49f1bb13a7"
+    },
+    "02 - Nowhere To Go.mp3": {
+      "filename": "02 - Nowhere To Go.mp3",
+      "size": 9115530,
+      "mtimeNs": 1783612814874617384,
+      "id": "f4efd278-49f7-5d8e-b4de-a0c6a4a411fd",
+      "title": "Nowhere To Go",
+      "artist": "Bad Omens",
+      "albumArtist": "Bad Omens",
+      "album": "THE DEATH OF PEACE OF MIND",
+      "duration": 246.816,
+      "year": 2022,
+      "trackNumber": 2,
+      "artwork": {
+        "topHex": "#B8F2E6",
+        "bottomHex": "#21455A",
+        "symbolName": "clock.fill"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "nowhere to go bad omens bad omens the death of peace of mind 02 - nowhere to go.mp3",
+      "albumID": "73567f28-85c0-50db-b969-fb696202c7a1"
     },
     "04 - Obey.mp3": {
       "filename": "04 - Obey.mp3",
@@ -8385,6 +9859,28 @@
       "searchText": "outbreak josh a feat. quadeca josh a disgrace 10 - josh a - outbreak (ft. quadeca).mp3",
       "albumID": "cc045ff7-5a14-5aca-a279-4853e7e55652"
     },
+    "15 - Outroduction.mp3": {
+      "filename": "15 - Outroduction.mp3",
+      "size": 1761007,
+      "mtimeNs": 1783614227941687341,
+      "id": "d83ef31f-2e66-5da2-acbe-81a1e0e65e31",
+      "title": "Outroduction",
+      "artist": "Thousand Foot Krutch",
+      "albumArtist": "Thousand Foot Krutch",
+      "album": "The End Is Where We Begin",
+      "duration": 37.824,
+      "year": 2012,
+      "trackNumber": 15,
+      "artwork": {
+        "topHex": "#F28482",
+        "bottomHex": "#2E1E32",
+        "symbolName": "sparkles"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "outroduction thousand foot krutch thousand foot krutch the end is where we begin 15 - outroduction.mp3",
+      "albumID": "c59a9539-1d04-5937-becf-f482e925d03d"
+    },
     "03 - Outside Of Me.mp3": {
       "filename": "03 - Outside Of Me.mp3",
       "size": 5030247,
@@ -8451,6 +9947,28 @@
       "searchText": "overflow polaris polaris fatalism 04 - overflow.mp3",
       "albumID": "faa2f123-0d38-523a-b2d7-14d481584fd6"
     },
+    "09 - Overrated.mp3": {
+      "filename": "09 - Overrated.mp3",
+      "size": 7981420,
+      "mtimeNs": 1783612351134973876,
+      "id": "d203e419-7c95-504d-aaa9-f75083dfefeb",
+      "title": "Overrated",
+      "artist": "Landmvrks",
+      "albumArtist": "Landmvrks",
+      "album": "Lost In The Waves",
+      "duration": 205.368,
+      "year": 2021,
+      "trackNumber": 9,
+      "artwork": {
+        "topHex": "#F4D35E",
+        "bottomHex": "#23395B",
+        "symbolName": "tram.fill"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "overrated landmvrks landmvrks lost in the waves 09 - overrated.mp3",
+      "albumID": "4d262392-b8e5-5d4a-af9c-2399bfb48f87"
+    },
     "08 - Pacify Me.mp3": {
       "filename": "08 - Pacify Me.mp3",
       "size": 7271889,
@@ -8494,6 +10012,28 @@
       "isExplicit": false,
       "searchText": "papercut linkin park linkin park hybrid theory papercut_3.mp3",
       "albumID": "00b39498-8518-50fc-8f64-26619b4d09c1"
+    },
+    "10 - Paralyzed.mp3": {
+      "filename": "10 - Paralyzed.mp3",
+      "size": 7490467,
+      "mtimeNs": 1783612351148973956,
+      "id": "91a302d2-4e63-5b2b-a0cc-1d2e5d090511",
+      "title": "Paralyzed",
+      "artist": "Landmvrks",
+      "albumArtist": "Landmvrks",
+      "album": "Lost In The Waves",
+      "duration": 216.144,
+      "year": 2021,
+      "trackNumber": 10,
+      "artwork": {
+        "topHex": "#F28482",
+        "bottomHex": "#2E1E32",
+        "symbolName": "sparkles"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "paralyzed landmvrks landmvrks lost in the waves 10 - paralyzed.mp3",
+      "albumID": "4d262392-b8e5-5d4a-af9c-2399bfb48f87"
     },
     "05 - Josh A • Paranoia.mp3": {
       "filename": "05 - Josh A • Paranoia.mp3",
@@ -8692,6 +10232,28 @@
       "isExplicit": false,
       "searchText": "planet telex radiohead radiohead the bends 01 - planet telex.mp3",
       "albumID": "4f0bac82-4235-56bf-b95a-941c1bf37281"
+    },
+    "11 - Queen - Play the Game.mp3": {
+      "filename": "11 - Queen - Play the Game.mp3",
+      "size": 5550123,
+      "mtimeNs": 1783611194688388347,
+      "id": "701f49f8-68ae-56dd-bd5a-da7e92cc6af1",
+      "title": "Play the Game",
+      "artist": "Queen",
+      "albumArtist": "AzzholeDoucheBag",
+      "album": "Greatest Hits Vol. 1",
+      "duration": 208.056,
+      "year": 2010,
+      "trackNumber": null,
+      "artwork": {
+        "topHex": "#F28482",
+        "bottomHex": "#2E1E32",
+        "symbolName": "sparkles"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "play the game queen azzholedouchebag greatest hits vol. 1 11 - queen - play the game.mp3",
+      "albumID": "5a31f22c-e092-5eb6-9a40-1e49f1bb13a7"
     },
     "03 - Playing God.mp3": {
       "filename": "03 - Playing God.mp3",
@@ -9001,6 +10563,28 @@
       "searchText": "rainbows while she sleeps while she sleeps self hell 03 - rainbows.mp3",
       "albumID": "3ddff11c-3506-5dc0-aca3-116de122f323"
     },
+    "02 - Rainfall.mp3": {
+      "filename": "02 - Rainfall.mp3",
+      "size": 7624277,
+      "mtimeNs": 1783612351045973369,
+      "id": "2cfb8620-090c-557a-ac43-dfeb19f0797c",
+      "title": "Rainfall",
+      "artist": "Landmvrks",
+      "albumArtist": "Landmvrks",
+      "album": "Lost In The Waves",
+      "duration": 194.544,
+      "year": 2021,
+      "trackNumber": 2,
+      "artwork": {
+        "topHex": "#8ECAE6",
+        "bottomHex": "#1D3557",
+        "symbolName": "drop.fill"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "rainfall landmvrks landmvrks lost in the waves 02 - rainfall.mp3",
+      "albumID": "4d262392-b8e5-5d4a-af9c-2399bfb48f87"
+    },
     "02 - RAWFEAR.mp3": {
       "filename": "02 - RAWFEAR.mp3",
       "size": 6811373,
@@ -9022,6 +10606,28 @@
       "isExplicit": false,
       "searchText": "rawfear twenty one pilots twenty one pilots breach 02 - rawfear.mp3",
       "albumID": "42ee477c-2dcb-5c15-860c-edf48619bafd"
+    },
+    "05 - Re-Arranged.mp3": {
+      "filename": "05 - Re-Arranged.mp3",
+      "size": 12301038,
+      "mtimeNs": 1783612597736511409,
+      "id": "56b08655-3799-5189-a1f7-709b897cf5a0",
+      "title": "Re-Arranged",
+      "artist": "Limp Bizkit",
+      "albumArtist": "Limp Bizkit",
+      "album": "Greatest Hitz",
+      "duration": 354.792,
+      "year": 2005,
+      "trackNumber": 5,
+      "artwork": {
+        "topHex": "#45D6C7",
+        "bottomHex": "#26324A",
+        "symbolName": "waveform"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "re-arranged limp bizkit limp bizkit greatest hitz 05 - re-arranged.mp3",
+      "albumID": "c6e0e327-6051-5f2f-b7f5-5cb74ccd0374"
     },
     "08 - Red Sam.mp3": {
       "filename": "08 - Red Sam.mp3",
@@ -9199,6 +10805,28 @@
       "searchText": "robot voices twenty one pilots twenty one pilots breach 08 - robot voices.mp3",
       "albumID": "42ee477c-2dcb-5c15-860c-edf48619bafd"
     },
+    "09 - Rollin' (Air Raid Vehicle).mp3": {
+      "filename": "09 - Rollin' (Air Raid Vehicle).mp3",
+      "size": 7492044,
+      "mtimeNs": 1783612597781783021,
+      "id": "74d9247d-853d-5787-bdac-d23f140f6aab",
+      "title": "Rollin' (Air Raid Vehicle)",
+      "artist": "Limp Bizkit",
+      "albumArtist": "Limp Bizkit",
+      "album": "Greatest Hitz",
+      "duration": 213.912,
+      "year": 2005,
+      "trackNumber": 9,
+      "artwork": {
+        "topHex": "#F4D35E",
+        "bottomHex": "#23395B",
+        "symbolName": "tram.fill"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "rollin' (air raid vehicle) limp bizkit limp bizkit greatest hitz 09 - rollin' (air raid vehicle).mp3",
+      "albumID": "c6e0e327-6051-5f2f-b7f5-5cb74ccd0374"
+    },
     "08 - Run.mp3": {
       "filename": "08 - Run.mp3",
       "size": 7699952,
@@ -9375,6 +11003,28 @@
       "searchText": "save me josh a josh a disgrace 13 - josh a - save me.mp3",
       "albumID": "cc045ff7-5a14-5aca-a279-4853e7e55652"
     },
+    "14 - Queen - Save Me.mp3": {
+      "filename": "14 - Queen - Save Me.mp3",
+      "size": 5994405,
+      "mtimeNs": 1783611232110605001,
+      "id": "2a2f2082-1c4f-514a-a20f-81f7e08ae669",
+      "title": "Save Me",
+      "artist": "Queen",
+      "albumArtist": "AzzholeDoucheBag",
+      "album": "Greatest Hits Vol. 1",
+      "duration": 227.064,
+      "year": 2010,
+      "trackNumber": null,
+      "artwork": {
+        "topHex": "#F28482",
+        "bottomHex": "#2E1E32",
+        "symbolName": "sparkles"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "save me queen azzholedouchebag greatest hits vol. 1 14 - queen - save me.mp3",
+      "albumID": "5a31f22c-e092-5eb6-9a40-1e49f1bb13a7"
+    },
     "06 - Savior.mp3": {
       "filename": "06 - Savior.mp3",
       "size": 6205830,
@@ -9396,6 +11046,28 @@
       "isExplicit": false,
       "searchText": "savior thirty seconds to mars thirty seconds to mars a beautiful lie 06 - savior.mp3",
       "albumID": "059290fe-4ca8-5c9b-b97f-b53c65be2189"
+    },
+    "06 - Say No Word.mp3": {
+      "filename": "06 - Say No Word.mp3",
+      "size": 5842191,
+      "mtimeNs": 1783612351097973666,
+      "id": "a157407e-9f27-574d-9cff-67faac1374e8",
+      "title": "Say No Word",
+      "artist": "Landmvrks",
+      "albumArtist": "Landmvrks",
+      "album": "Lost In The Waves",
+      "duration": 149.64,
+      "year": 2021,
+      "trackNumber": 6,
+      "artwork": {
+        "topHex": "#45D6C7",
+        "bottomHex": "#26324A",
+        "symbolName": "waveform"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "say no word landmvrks landmvrks lost in the waves 06 - say no word.mp3",
+      "albumID": "4d262392-b8e5-5d4a-af9c-2399bfb48f87"
     },
     "09 - Second Skin.mp3": {
       "filename": "09 - Second Skin.mp3",
@@ -9440,6 +11112,28 @@
       "isExplicit": false,
       "searchText": "see you foo fighters foo fighters the colour and the shape 08 - foo fighters - see you.mp3",
       "albumID": "9615a262-c0da-5a88-bcd4-833dd6b59c49"
+    },
+    "11 - Seeing Red.mp3": {
+      "filename": "11 - Seeing Red.mp3",
+      "size": 8405403,
+      "mtimeNs": 1783610692867483767,
+      "id": "93a0a27a-f397-5fc9-9618-6f391c4272c3",
+      "title": "Seeing Red",
+      "artist": "Architects",
+      "albumArtist": "Architects",
+      "album": "The Sky, The Earth & All Between",
+      "duration": 220.608,
+      "year": 2025,
+      "trackNumber": 11,
+      "artwork": {
+        "topHex": "#F4D35E",
+        "bottomHex": "#23395B",
+        "symbolName": "tram.fill"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "seeing red architects architects the sky, the earth & all between 11 - seeing red.mp3",
+      "albumID": "8cb26527-8c02-53be-871a-b87838411734"
     },
     "08 - Seen It All Before.mp3": {
       "filename": "08 - Seen It All Before.mp3",
@@ -9529,6 +11223,28 @@
       "searchText": "settle down society while she sleeps while she sleeps you are we 07 - settle down society.mp3",
       "albumID": "7a698a7c-ace6-5bc1-862d-da5c16bb461a"
     },
+    "12 - Queen - Seven Seas of Rhye.mp3": {
+      "filename": "12 - Queen - Seven Seas of Rhye.mp3",
+      "size": 4553537,
+      "mtimeNs": 1783611205217449426,
+      "id": "b3f620f3-d62a-5061-97a6-7203fcfe1617",
+      "title": "Seven Seas of Rhye",
+      "artist": "Queen",
+      "albumArtist": "AzzholeDoucheBag",
+      "album": "Greatest Hits Vol. 1",
+      "duration": 167.064,
+      "year": 2010,
+      "trackNumber": null,
+      "artwork": {
+        "topHex": "#90BE6D",
+        "bottomHex": "#22332C",
+        "symbolName": "airplane"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "seven seas of rhye queen azzholedouchebag greatest hits vol. 1 12 - queen - seven seas of rhye.mp3",
+      "albumID": "5a31f22c-e092-5eb6-9a40-1e49f1bb13a7"
+    },
     "02 - Shade Astray.mp3": {
       "filename": "02 - Shade Astray.mp3",
       "size": 9022509,
@@ -9594,6 +11310,28 @@
       "isExplicit": false,
       "searchText": "sheltered superheaven daylight jar 04 - sheltered.mp3",
       "albumID": "d48e6f81-32c8-5ff9-ba55-ebfffa1175cf"
+    },
+    "08 - Shoreline.mp3": {
+      "filename": "08 - Shoreline.mp3",
+      "size": 1826623,
+      "mtimeNs": 1783612351122806619,
+      "id": "859fd59b-a87a-5b90-8012-1f7c4ab560b9",
+      "title": "Shoreline",
+      "artist": "Landmvrks",
+      "albumArtist": "Landmvrks",
+      "album": "Lost In The Waves",
+      "duration": 34.296,
+      "year": 2021,
+      "trackNumber": 8,
+      "artwork": {
+        "topHex": "#F28482",
+        "bottomHex": "#2E1E32",
+        "symbolName": "sparkles"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "shoreline landmvrks landmvrks lost in the waves 08 - shoreline.mp3",
+      "albumID": "4d262392-b8e5-5d4a-af9c-2399bfb48f87"
     },
     "07 - Sign Me Up.mp3": {
       "filename": "07 - Sign Me Up.mp3",
@@ -9661,6 +11399,28 @@
       "searchText": "silence speaks while she sleeps feat. oliver sykes while she sleeps you are we 06 - silence speaks.mp3",
       "albumID": "7a698a7c-ace6-5bc1-862d-da5c16bb461a"
     },
+    "03 - Silent.mp3": {
+      "filename": "03 - Silent.mp3",
+      "size": 7508033,
+      "mtimeNs": 1783612351059973449,
+      "id": "8af11958-c323-560e-91bf-4b11f9c808f3",
+      "title": "Silent",
+      "artist": "Landmvrks",
+      "albumArtist": "Landmvrks",
+      "album": "Lost In The Waves",
+      "duration": 198.216,
+      "year": 2021,
+      "trackNumber": 3,
+      "artwork": {
+        "topHex": "#F4D35E",
+        "bottomHex": "#23395B",
+        "symbolName": "tram.fill"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "silent landmvrks landmvrks lost in the waves 03 - silent.mp3",
+      "albumID": "4d262392-b8e5-5d4a-af9c-2399bfb48f87"
+    },
     "03 - Silver Swarm.mp3": {
       "filename": "03 - Silver Swarm.mp3",
       "size": 8976859,
@@ -9682,6 +11442,28 @@
       "isExplicit": false,
       "searchText": "silver swarm thornhill thornhill bodies 03 - silver swarm.mp3",
       "albumID": "c5d66f9b-283d-52ce-9b64-46de98fb6ebe"
+    },
+    "02 - Since You're Gone.mp3": {
+      "filename": "02 - Since You're Gone.mp3",
+      "size": 6630602,
+      "mtimeNs": 1783612986558596044,
+      "id": "c5b2b018-9001-5011-a0fd-654b68d35c0c",
+      "title": "Since You're Gone",
+      "artist": "The Pretty Reckless",
+      "albumArtist": "The Pretty Reckless",
+      "album": "Light Me Up",
+      "duration": 161.592,
+      "year": 2010,
+      "trackNumber": 2,
+      "artwork": {
+        "topHex": "#8ECAE6",
+        "bottomHex": "#1D3557",
+        "symbolName": "drop.fill"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "since you're gone the pretty reckless the pretty reckless light me up 02 - since you're gone.mp3",
+      "albumID": "357f3175-f069-5a82-a0df-83ce1ce49a36"
     },
     "06 - Slave Only Dreams To Be King.mp3": {
       "filename": "06 - Slave Only Dreams To Be King.mp3",
@@ -9793,6 +11575,28 @@
       "searchText": "slide the goo goo dolls the goo goo dolls greatest hits, volume one: the singles 04 - slide.mp3",
       "albumID": "1b921444-b7c5-5c1d-8845-09330e047586"
     },
+    "14 - So Far Gone.mp3": {
+      "filename": "14 - So Far Gone.mp3",
+      "size": 9864632,
+      "mtimeNs": 1783614227934687300,
+      "id": "34e133ca-45f2-5791-bf35-76ad7f1c4aa1",
+      "title": "So Far Gone",
+      "artist": "Thousand Foot Krutch",
+      "albumArtist": "Thousand Foot Krutch",
+      "album": "The End Is Where We Begin",
+      "duration": 269.328,
+      "year": 2012,
+      "trackNumber": 14,
+      "artwork": {
+        "topHex": "#F28482",
+        "bottomHex": "#2E1E32",
+        "symbolName": "sparkles"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "so far gone thousand foot krutch thousand foot krutch the end is where we begin 14 - so far gone.mp3",
+      "albumID": "c59a9539-1d04-5937-becf-f482e925d03d"
+    },
     "11 - So I Thought.mp3": {
       "filename": "11 - So I Thought.mp3",
       "size": 10632796,
@@ -9858,6 +11662,50 @@
       "isExplicit": false,
       "searchText": "socialite post malone post malone austin 08 - socialite.mp3",
       "albumID": "0ab3ec0d-1f9c-5832-8963-753466a3165c"
+    },
+    "11 - Somebody else..mp3": {
+      "filename": "11 - Somebody else..mp3",
+      "size": 8684691,
+      "mtimeNs": 1783612815010618159,
+      "id": "7caac69a-704b-55ef-b610-4882d45a388a",
+      "title": "Somebody else.",
+      "artist": "Bad Omens",
+      "albumArtist": "Bad Omens",
+      "album": "THE DEATH OF PEACE OF MIND",
+      "duration": 236.76,
+      "year": 2022,
+      "trackNumber": 11,
+      "artwork": {
+        "topHex": "#A7C957",
+        "bottomHex": "#1A2C2A",
+        "symbolName": "moon.stars.fill"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "somebody else. bad omens bad omens the death of peace of mind 11 - somebody else..mp3",
+      "albumID": "73567f28-85c0-50db-b969-fb696202c7a1"
+    },
+    "05 - Queen - Somebody To Love.mp3": {
+      "filename": "05 - Queen - Somebody To Love.mp3",
+      "size": 7745007,
+      "mtimeNs": 1783611115684931039,
+      "id": "534c672e-2d8e-530a-8008-f72fda7742ea",
+      "title": "Somebody To Love",
+      "artist": "Queen",
+      "albumArtist": "AzzholeDoucheBag",
+      "album": "Greatest Hits Vol. 1",
+      "duration": 297.072,
+      "year": 2010,
+      "trackNumber": null,
+      "artwork": {
+        "topHex": "#A7C957",
+        "bottomHex": "#1A2C2A",
+        "symbolName": "moon.stars.fill"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "somebody to love queen azzholedouchebag greatest hits vol. 1 05 - queen - somebody to love.mp3",
+      "albumID": "5a31f22c-e092-5eb6-9a40-1e49f1bb13a7"
     },
     "03 - Somersaults.mp3": {
       "filename": "03 - Somersaults.mp3",
@@ -10299,6 +12147,28 @@
       "searchText": "surrender imminence imminence heaven in hiding 04 - imminence - surrender.mp3",
       "albumID": "ba86de38-ebd9-55ee-bc2e-c5d61ba994ae"
     },
+    "05 - Sweet Things.mp3": {
+      "filename": "05 - Sweet Things.mp3",
+      "size": 10928421,
+      "mtimeNs": 1783613553655832767,
+      "id": "a4cae09b-d341-51e9-b678-262cbf74ef85",
+      "title": "Sweet Things",
+      "artist": "The Pretty Reckless",
+      "albumArtist": "The Pretty Reckless",
+      "album": "Going to Hell",
+      "duration": 304.392,
+      "year": 2026,
+      "trackNumber": null,
+      "artwork": {
+        "topHex": "#B8F2E6",
+        "bottomHex": "#21455A",
+        "symbolName": "clock.fill"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "sweet things the pretty reckless the pretty reckless going to hell 05 - sweet things.mp3",
+      "albumID": "a5d7d1ef-1e03-567b-ad24-fcad3b3ff9a1"
+    },
     "09 - Swimming Pools.mp3": {
       "filename": "09 - Swimming Pools.mp3",
       "size": 6109988,
@@ -10365,6 +12235,28 @@
       "searchText": "sympathy the goo goo dolls the goo goo dolls greatest hits, volume one: the singles 13 - sympathy.mp3",
       "albumID": "1b921444-b7c5-5c1d-8845-09330e047586"
     },
+    "07 - Take A Look Around.mp3": {
+      "filename": "07 - Take A Look Around.mp3",
+      "size": 10960181,
+      "mtimeNs": 1783612597758788534,
+      "id": "a1356648-3078-5343-a1e7-68b5a589a9f0",
+      "title": "Take A Look Around",
+      "artist": "Limp Bizkit",
+      "albumArtist": "Limp Bizkit",
+      "album": "Greatest Hitz",
+      "duration": 319.944,
+      "year": 2005,
+      "trackNumber": 7,
+      "artwork": {
+        "topHex": "#45D6C7",
+        "bottomHex": "#26324A",
+        "symbolName": "waveform"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "take a look around limp bizkit limp bizkit greatest hitz 07 - take a look around.mp3",
+      "albumID": "c6e0e327-6051-5f2f-b7f5-5cb74ccd0374"
+    },
     "11 - Sleep Token - Take Me Back To Eden.mp3": {
       "filename": "11 - Sleep Token - Take Me Back To Eden.mp3",
       "size": 16317253,
@@ -10386,6 +12278,28 @@
       "isExplicit": false,
       "searchText": "take me back to eden sleep token sleep token take me back to eden 11 - sleep token - take me back to eden.mp3",
       "albumID": "8519aaa3-41db-5f63-83bd-876a58078f56"
+    },
+    "03 - Take Me First.mp3": {
+      "filename": "03 - Take Me First.mp3",
+      "size": 7460753,
+      "mtimeNs": 1783612814890002546,
+      "id": "88b64e5f-f35f-5871-81ac-024ff9bdfb53",
+      "title": "Take Me First",
+      "artist": "Bad Omens",
+      "albumArtist": "Bad Omens",
+      "album": "THE DEATH OF PEACE OF MIND",
+      "duration": 199.728,
+      "year": 2022,
+      "trackNumber": 3,
+      "artwork": {
+        "topHex": "#F4D35E",
+        "bottomHex": "#23395B",
+        "symbolName": "tram.fill"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "take me first bad omens bad omens the death of peace of mind 03 - take me first.mp3",
+      "albumID": "73567f28-85c0-50db-b969-fb696202c7a1"
     },
     "13 - Tally.mp3": {
       "filename": "13 - Tally.mp3",
@@ -10673,6 +12587,28 @@
       "searchText": "the crossfire polaris polaris fatalism 07 - the crossfire.mp3",
       "albumID": "faa2f123-0d38-523a-b2d7-14d481584fd6"
     },
+    "04 - THE DEATH OF PEACE OF MIND.mp3": {
+      "filename": "04 - THE DEATH OF PEACE OF MIND.mp3",
+      "size": 8749146,
+      "mtimeNs": 1783612814904617555,
+      "id": "6d09ed60-d328-5548-b1bb-c8ba35305abe",
+      "title": "THE DEATH OF PEACE OF MIND",
+      "artist": "Bad Omens",
+      "albumArtist": "Bad Omens",
+      "album": "THE DEATH OF PEACE OF MIND",
+      "duration": 241.536,
+      "year": 2022,
+      "trackNumber": 4,
+      "artwork": {
+        "topHex": "#C77DFF",
+        "bottomHex": "#2B235A",
+        "symbolName": "antenna.radiowaves.left.and.right"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "the death of peace of mind bad omens bad omens the death of peace of mind 04 - the death of peace of mind.mp3",
+      "albumID": "73567f28-85c0-50db-b969-fb696202c7a1"
+    },
     "Polaris_-_The_Descent__Official_Audio_Stream_.mp3": {
       "filename": "Polaris_-_The_Descent__Official_Audio_Stream_.mp3",
       "size": 5225225,
@@ -10738,6 +12674,28 @@
       "isExplicit": false,
       "searchText": "the empty hourglass architects architects all our gods have abandoned us 06 - the empty hourglass.mp3",
       "albumID": "f6ece19a-e993-561a-ac94-2c697262607f"
+    },
+    "04 - The End Is Where We Begin.mp3": {
+      "filename": "04 - The End Is Where We Begin.mp3",
+      "size": 8014914,
+      "mtimeNs": 1783614227823855256,
+      "id": "4d4e6aaf-2608-5e7a-b60b-1769c1eb66ca",
+      "title": "The End Is Where We Begin",
+      "artist": "Thousand Foot Krutch",
+      "albumArtist": "Thousand Foot Krutch",
+      "album": "The End Is Where We Begin",
+      "duration": 224.88,
+      "year": 2012,
+      "trackNumber": 4,
+      "artwork": {
+        "topHex": "#A7C957",
+        "bottomHex": "#1A2C2A",
+        "symbolName": "moon.stars.fill"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "the end is where we begin thousand foot krutch thousand foot krutch the end is where we begin 04 - the end is where we begin.mp3",
+      "albumID": "c59a9539-1d04-5937-becf-f482e925d03d"
     },
     "05 - The Fantasy.mp3": {
       "filename": "05 - The Fantasy.mp3",
@@ -10805,6 +12763,28 @@
       "searchText": "the great gig in the sky pink floyd pink floyd the dark side of the moon 05 - the great gig in the sky.mp3",
       "albumID": "e9a8304a-5369-563d-9713-65997f260e16"
     },
+    "09 - The Grey.mp3": {
+      "filename": "09 - The Grey.mp3",
+      "size": 9195115,
+      "mtimeNs": 1783612814979617983,
+      "id": "66930279-486b-5048-aaf9-820df11dc5ec",
+      "title": "The Grey",
+      "artist": "Bad Omens",
+      "albumArtist": "Bad Omens",
+      "album": "THE DEATH OF PEACE OF MIND",
+      "duration": 246.384,
+      "year": 2022,
+      "trackNumber": 9,
+      "artwork": {
+        "topHex": "#8ECAE6",
+        "bottomHex": "#1D3557",
+        "symbolName": "drop.fill"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "the grey bad omens bad omens the death of peace of mind 09 - the grey.mp3",
+      "albumID": "73567f28-85c0-50db-b969-fb696202c7a1"
+    },
     "02 - The House of Wolves.mp3": {
       "filename": "02 - The House of Wolves.mp3",
       "size": 7340946,
@@ -10826,6 +12806,28 @@
       "isExplicit": false,
       "searchText": "the house of wolves bring me the horizon bring me the horizon sempiternal 02 - the house of wolves.mp3",
       "albumID": "8672778c-8d02-5245-b39e-fc2a69560a21"
+    },
+    "01 - The Introduction.mp3": {
+      "filename": "01 - The Introduction.mp3",
+      "size": 2500968,
+      "mtimeNs": 1783614227788877810,
+      "id": "396a5f89-288c-5974-b51a-79490673aef3",
+      "title": "The Introduction",
+      "artist": "Thousand Foot Krutch",
+      "albumArtist": "Thousand Foot Krutch",
+      "album": "The End Is Where We Begin",
+      "duration": 60.816,
+      "year": 2012,
+      "trackNumber": 1,
+      "artwork": {
+        "topHex": "#F4D35E",
+        "bottomHex": "#23395B",
+        "symbolName": "tram.fill"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "the introduction thousand foot krutch thousand foot krutch the end is where we begin 01 - the introduction.mp3",
+      "albumID": "c59a9539-1d04-5937-becf-f482e925d03d"
     },
     "03 - The Kill.mp3": {
       "filename": "03 - The Kill.mp3",
@@ -11157,6 +13159,28 @@
       "searchText": "third day of a seven day binge marilyn manson marilyn manson the pale emperor 03 - marilyn manson - third day of a seven day binge.mp3",
       "albumID": "73859b3c-89b5-500a-8aef-519e39676c89"
     },
+    "08 - This Is a Warning.mp3": {
+      "filename": "08 - This Is a Warning.mp3",
+      "size": 2074788,
+      "mtimeNs": 1783614227864686897,
+      "id": "9003cb1d-7994-5249-8433-9775ebc2f280",
+      "title": "This Is a Warning",
+      "artist": "Thousand Foot Krutch",
+      "albumArtist": "Thousand Foot Krutch",
+      "album": "The End Is Where We Begin",
+      "duration": 46.896,
+      "year": 2012,
+      "trackNumber": 8,
+      "artwork": {
+        "topHex": "#45D6C7",
+        "bottomHex": "#26324A",
+        "symbolName": "waveform"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "this is a warning thousand foot krutch thousand foot krutch the end is where we begin 08 - this is a warning.mp3",
+      "albumID": "c59a9539-1d04-5937-becf-f482e925d03d"
+    },
     "04 - Thoughts & Prayers.mp3": {
       "filename": "04 - Thoughts & Prayers.mp3",
       "size": 7988425,
@@ -11244,6 +13268,28 @@
       "isExplicit": false,
       "searchText": "tipping point dead poet society dead poet society fission 07 - tipping point.mp3",
       "albumID": "78e97674-3a1d-55d0-bbd2-c91a77150488"
+    },
+    "05 - Tired of It All.mp3": {
+      "filename": "05 - Tired of It All.mp3",
+      "size": 8149624,
+      "mtimeNs": 1783612351085973597,
+      "id": "ffd65911-cc01-5a9f-9039-90f4600f9f6d",
+      "title": "Tired of It All",
+      "artist": "Landmvrks",
+      "albumArtist": "Landmvrks",
+      "album": "Lost In The Waves",
+      "duration": 217.392,
+      "year": 2021,
+      "trackNumber": 5,
+      "artwork": {
+        "topHex": "#B8F2E6",
+        "bottomHex": "#21455A",
+        "symbolName": "clock.fill"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "tired of it all landmvrks landmvrks lost in the waves 05 - tired of it all.mp3",
+      "albumID": "4d262392-b8e5-5d4a-af9c-2399bfb48f87"
     },
     "09 - TO THE FLOWERS.mp3": {
       "filename": "09 - TO THE FLOWERS.mp3",
@@ -11597,6 +13643,28 @@
       "searchText": "vagabond polaris polaris the death of me polaris_-_vagabond__official_audio_stream_.mp3",
       "albumID": "3eaa5d7e-92be-59b1-8e21-b23d7aff0390"
     },
+    "04 - Visage.mp3": {
+      "filename": "04 - Visage.mp3",
+      "size": 7127060,
+      "mtimeNs": 1783612351072973523,
+      "id": "b1542692-6b22-5f4b-8c9d-637e721a27c3",
+      "title": "Visage",
+      "artist": "Landmvrks",
+      "albumArtist": "Landmvrks",
+      "album": "Lost In The Waves",
+      "duration": 194.16,
+      "year": 2021,
+      "trackNumber": 4,
+      "artwork": {
+        "topHex": "#F4D35E",
+        "bottomHex": "#23395B",
+        "symbolName": "tram.fill"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "visage landmvrks landmvrks lost in the waves 04 - visage.mp3",
+      "albumID": "4d262392-b8e5-5d4a-af9c-2399bfb48f87"
+    },
     "09 - Void Surfacing.mp3": {
       "filename": "09 - Void Surfacing.mp3",
       "size": 9086131,
@@ -11641,6 +13709,28 @@
       "searchText": "vore sleep token sleep token take me back to eden 05 - sleep token - vore.mp3",
       "albumID": "8519aaa3-41db-5f63-83bd-876a58078f56"
     },
+    "12 - Waiting for a Friend.mp3": {
+      "filename": "12 - Waiting for a Friend.mp3",
+      "size": 6454553,
+      "mtimeNs": 1783613604328121900,
+      "id": "bfa34204-9990-54b0-bb3c-552160794386",
+      "title": "Waiting for a Friend",
+      "artist": "The Pretty Reckless",
+      "albumArtist": "The Pretty Reckless",
+      "album": "Going to Hell",
+      "duration": 192.744,
+      "year": 2026,
+      "trackNumber": null,
+      "artwork": {
+        "topHex": "#C77DFF",
+        "bottomHex": "#2B235A",
+        "symbolName": "antenna.radiowaves.left.and.right"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "waiting for a friend the pretty reckless the pretty reckless going to hell 12 - waiting for a friend.mp3",
+      "albumID": "a5d7d1ef-1e03-567b-ad24-fcad3b3ff9a1"
+    },
     "12 - Foo Fighters - Walking After You.mp3": {
       "filename": "12 - Foo Fighters - Walking After You.mp3",
       "size": 9272344,
@@ -11662,6 +13752,28 @@
       "isExplicit": false,
       "searchText": "walking after you foo fighters foo fighters the colour and the shape 12 - foo fighters - walking after you.mp3",
       "albumID": "9615a262-c0da-5a88-bcd4-833dd6b59c49"
+    },
+    "10 - War of Change.mp3": {
+      "filename": "10 - War of Change.mp3",
+      "size": 8247637,
+      "mtimeNs": 1783614227888725185,
+      "id": "01947e30-7fbd-5e05-a064-fe93aed84b48",
+      "title": "War of Change",
+      "artist": "Thousand Foot Krutch",
+      "albumArtist": "Thousand Foot Krutch",
+      "album": "The End Is Where We Begin",
+      "duration": 231.696,
+      "year": 2012,
+      "trackNumber": 10,
+      "artwork": {
+        "topHex": "#45D6C7",
+        "bottomHex": "#26324A",
+        "symbolName": "waveform"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "war of change thousand foot krutch thousand foot krutch the end is where we begin 10 - war of change.mp3",
+      "albumID": "c59a9539-1d04-5937-becf-f482e925d03d"
     },
     "05 - Warship My Wreck.mp3": {
       "filename": "05 - Warship My Wreck.mp3",
@@ -11751,6 +13863,28 @@
       "searchText": "wave in the monitor violent vira violent vira lover of a ghost 08 - violent vira - wave in the monitor.mp3",
       "albumID": "3ebc8380-95fe-5e4b-86df-bf81187df44d"
     },
+    "02 - We Are.mp3": {
+      "filename": "02 - We Are.mp3",
+      "size": 7177900,
+      "mtimeNs": 1783614227800766078,
+      "id": "1a8367a2-5bec-53e2-89e3-8b78ee0de4ed",
+      "title": "We Are",
+      "artist": "Thousand Foot Krutch",
+      "albumArtist": "Thousand Foot Krutch",
+      "album": "The End Is Where We Begin",
+      "duration": 198.144,
+      "year": 2012,
+      "trackNumber": 2,
+      "artwork": {
+        "topHex": "#B8F2E6",
+        "bottomHex": "#21455A",
+        "symbolName": "clock.fill"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "we are thousand foot krutch thousand foot krutch the end is where we begin 02 - we are.mp3",
+      "albumID": "c59a9539-1d04-5937-becf-f482e925d03d"
+    },
     "09 - We Are Broken.mp3": {
       "filename": "09 - We Are Broken.mp3",
       "size": 8340218,
@@ -11794,6 +13928,72 @@
       "isExplicit": false,
       "searchText": "we are never ever getting back together nothing,nowhere. nothing,nowhere. will it emo? (vol.1) 04 - we are never ever getting back together.mp3",
       "albumID": "680f7984-65fe-50fb-bdac-9d202637034f"
+    },
+    "02 - Queen - We Are the Champions.mp3": {
+      "filename": "02 - Queen - We Are the Champions.mp3",
+      "size": 4740823,
+      "mtimeNs": 1783611079892724037,
+      "id": "3fa81fa4-6868-54c0-9f61-067ea858dee7",
+      "title": "We Are the Champions",
+      "artist": "Queen",
+      "albumArtist": "AzzholeDoucheBag",
+      "album": "Greatest Hits Vol. 1",
+      "duration": 181.08,
+      "year": 2010,
+      "trackNumber": null,
+      "artwork": {
+        "topHex": "#90BE6D",
+        "bottomHex": "#22332C",
+        "symbolName": "airplane"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "we are the champions queen azzholedouchebag greatest hits vol. 1 02 - queen - we are the champions.mp3",
+      "albumID": "5a31f22c-e092-5eb6-9a40-1e49f1bb13a7"
+    },
+    "13 - What do you want from me？.mp3": {
+      "filename": "13 - What do you want from me？.mp3",
+      "size": 6982152,
+      "mtimeNs": 1783612815039618325,
+      "id": "b0d853f2-9a79-5311-bb4e-a27bca64b439",
+      "title": "What do you want from me？",
+      "artist": "Bad Omens",
+      "albumArtist": "Bad Omens",
+      "album": "THE DEATH OF PEACE OF MIND",
+      "duration": 175.872,
+      "year": 2022,
+      "trackNumber": 13,
+      "artwork": {
+        "topHex": "#F28482",
+        "bottomHex": "#2E1E32",
+        "symbolName": "sparkles"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "what do you want from me？ bad omens bad omens the death of peace of mind 13 - what do you want from me？.mp3",
+      "albumID": "73567f28-85c0-50db-b969-fb696202c7a1"
+    },
+    "05 - What It Cost.mp3": {
+      "filename": "05 - What It Cost.mp3",
+      "size": 4320790,
+      "mtimeNs": 1783612814916617623,
+      "id": "5056ec66-bf70-5e20-9f46-d92faadb36b8",
+      "title": "What It Cost",
+      "artist": "Bad Omens",
+      "albumArtist": "Bad Omens",
+      "album": "THE DEATH OF PEACE OF MIND",
+      "duration": 103.776,
+      "year": 2022,
+      "trackNumber": 5,
+      "artwork": {
+        "topHex": "#45D6C7",
+        "bottomHex": "#26324A",
+        "symbolName": "waveform"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "what it cost bad omens bad omens the death of peace of mind 05 - what it cost.mp3",
+      "albumID": "73567f28-85c0-50db-b969-fb696202c7a1"
     },
     "06 - What You Need.mp3": {
       "filename": "06 - What You Need.mp3",
@@ -11861,6 +14061,72 @@
       "searchText": "where the lines overlap paramore paramore brand new eyes 09 - where the lines overlap.mp3",
       "albumID": "6b07bf73-4a1f-59f5-96e2-8b38d726c534"
     },
+    "02 - Whiplash.mp3": {
+      "filename": "02 - Whiplash.mp3",
+      "size": 8473185,
+      "mtimeNs": 1783610692716482893,
+      "id": "91bc2e26-808c-555d-8c25-e5c14a92ed40",
+      "title": "Whiplash",
+      "artist": "Architects",
+      "albumArtist": "Architects",
+      "album": "The Sky, The Earth & All Between",
+      "duration": 226.2,
+      "year": 2025,
+      "trackNumber": 2,
+      "artwork": {
+        "topHex": "#45D6C7",
+        "bottomHex": "#26324A",
+        "symbolName": "waveform"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "whiplash architects architects the sky, the earth & all between 02 - whiplash.mp3",
+      "albumID": "8cb26527-8c02-53be-871a-b87838411734"
+    },
+    "10 - Who are you？.mp3": {
+      "filename": "10 - Who are you？.mp3",
+      "size": 8297957,
+      "mtimeNs": 1783612814995618074,
+      "id": "360658c5-86fe-5ce5-aa12-e5abaf91ef76",
+      "title": "Who are you？",
+      "artist": "Bad Omens",
+      "albumArtist": "Bad Omens",
+      "album": "THE DEATH OF PEACE OF MIND",
+      "duration": 217.392,
+      "year": 2022,
+      "trackNumber": 10,
+      "artwork": {
+        "topHex": "#C77DFF",
+        "bottomHex": "#2B235A",
+        "symbolName": "antenna.radiowaves.left.and.right"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "who are you？ bad omens bad omens the death of peace of mind 10 - who are you？.mp3",
+      "albumID": "73567f28-85c0-50db-b969-fb696202c7a1"
+    },
+    "15 - Why.mp3": {
+      "filename": "15 - Why.mp3",
+      "size": 8584347,
+      "mtimeNs": 1783612597856625875,
+      "id": "b5aa80eb-8d08-5dd0-87db-364c230fbec6",
+      "title": "Why",
+      "artist": "Limp Bizkit",
+      "albumArtist": "Limp Bizkit",
+      "album": "Greatest Hitz",
+      "duration": 245.976,
+      "year": 2005,
+      "trackNumber": 15,
+      "artwork": {
+        "topHex": "#C77DFF",
+        "bottomHex": "#2B235A",
+        "symbolName": "antenna.radiowaves.left.and.right"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "why limp bizkit limp bizkit greatest hitz 15 - why.mp3",
+      "albumID": "c6e0e327-6051-5f2f-b7f5-5cb74ccd0374"
+    },
     "09 - why you gotta kick me when i'm down？.mp3": {
       "filename": "09 - why you gotta kick me when i'm down？.mp3",
       "size": 9096620,
@@ -11882,6 +14148,28 @@
       "isExplicit": false,
       "searchText": "why you gotta kick me when i’m down? bring me the horizon bring me the horizon amo 09 - why you gotta kick me when i'm down？.mp3",
       "albumID": "059b7604-859f-5902-b7bb-af3ce0f07638"
+    },
+    "10 - Why'd You Bring a Shotgun to the Party.mp3": {
+      "filename": "10 - Why'd You Bring a Shotgun to the Party.mp3",
+      "size": 7301647,
+      "mtimeNs": 1783613594791067600,
+      "id": "c11285b3-bae7-51bb-9789-d1079b424c37",
+      "title": "Why'd You Bring a Shotgun to the Party",
+      "artist": "The Pretty Reckless",
+      "albumArtist": "The Pretty Reckless",
+      "album": "Going to Hell",
+      "duration": 200.28,
+      "year": 2026,
+      "trackNumber": null,
+      "artwork": {
+        "topHex": "#90BE6D",
+        "bottomHex": "#22332C",
+        "symbolName": "airplane"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "why'd you bring a shotgun to the party the pretty reckless the pretty reckless going to hell 10 - why'd you bring a shotgun to the party.mp3",
+      "albumID": "a5d7d1ef-1e03-567b-ad24-fcad3b3ff9a1"
     },
     "05 - Wide Awake.mp3": {
       "filename": "05 - Wide Awake.mp3",
@@ -12059,6 +14347,28 @@
       "searchText": "wonderful life bring me the horizon feat. dani filth bring me the horizon amo 05 - wonderful life.mp3",
       "albumID": "059b7604-859f-5902-b7bb-af3ce0f07638"
     },
+    "10 - You.mp3": {
+      "filename": "10 - You.mp3",
+      "size": 8297025,
+      "mtimeNs": 1783612986687596779,
+      "id": "29d10fc5-a4b4-5c9a-9722-820be558b0d0",
+      "title": "You",
+      "artist": "The Pretty Reckless",
+      "albumArtist": "The Pretty Reckless",
+      "album": "Light Me Up",
+      "duration": 212.664,
+      "year": 2010,
+      "trackNumber": 10,
+      "artwork": {
+        "topHex": "#45D6C7",
+        "bottomHex": "#26324A",
+        "symbolName": "waveform"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "you the pretty reckless the pretty reckless light me up 10 - you.mp3",
+      "albumID": "357f3175-f069-5a82-a0df-83ce1ce49a36"
+    },
     "14 - You and I in Unison.mp3": {
       "filename": "14 - You and I in Unison.mp3",
       "size": 10011364,
@@ -12146,6 +14456,28 @@
       "isExplicit": false,
       "searchText": "you promised violent vira violent vira lover of a ghost 13 - violent vira - you promised.mp3",
       "albumID": "3ebc8380-95fe-5e4b-86df-bf81187df44d"
+    },
+    "08 - Queen - You're My Best Friend.mp3": {
+      "filename": "08 - Queen - You're My Best Friend.mp3",
+      "size": 4526026,
+      "mtimeNs": 1783611158195177078,
+      "id": "76092a65-d338-52ad-9cd9-280bac037d46",
+      "title": "You're My Best Friend",
+      "artist": "Queen",
+      "albumArtist": "AzzholeDoucheBag",
+      "album": "Greatest Hits Vol. 1",
+      "duration": 171.048,
+      "year": 2010,
+      "trackNumber": null,
+      "artwork": {
+        "topHex": "#C77DFF",
+        "bottomHex": "#2B235A",
+        "symbolName": "antenna.radiowaves.left.and.right"
+      },
+      "hasArtwork": true,
+      "isExplicit": false,
+      "searchText": "you're my best friend queen azzholedouchebag greatest hits vol. 1 08 - queen - you're my best friend.mp3",
+      "albumID": "5a31f22c-e092-5eb6-9a40-1e49f1bb13a7"
     },
     "07 - Youngest Daughter.mp3": {
       "filename": "07 - Youngest Daughter.mp3",
