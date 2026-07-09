@@ -7,6 +7,7 @@ import mimetypes
 import os
 import re
 import subprocess
+import sys
 import threading
 import uuid
 from datetime import datetime
@@ -22,6 +23,7 @@ CATALOG_INDEX_VERSION = 4
 CATALOG_REFRESH_INTERVAL_SECONDS = 10
 DEFAULT_PAGE_LIMIT = 100
 MAX_PAGE_LIMIT = 500
+MAX_DOWNLOAD_HISTORY = 8
 PALETTES = [
     ("#45D6C7", "#26324A", "waveform"),
     ("#F28482", "#2E1E32", "sparkles"),
@@ -32,6 +34,9 @@ PALETTES = [
     ("#C77DFF", "#2B235A", "antenna.radiowaves.left.and.right"),
     ("#90BE6D", "#22332C", "airplane"),
 ]
+
+ANSI_ESCAPE_RE = re.compile(r"\x1b\[[0-?]*[ -/]*[@-~]")
+DOWNLOAD_PROGRESS_RE = re.compile(r"(\d+(?:\.\d+)?)%")
 
 
 def default_songs_dir() -> Path:
@@ -583,6 +588,291 @@ def embedded_artwork(path: Path) -> bytes | None:
     return result.stdout or None
 
 
+def timestamp() -> str:
+    return datetime.now().isoformat(timespec="seconds")
+
+
+def plain_output_line(line: str) -> str:
+    return ANSI_ESCAPE_RE.sub("", line).replace("\r", "").strip()
+
+
+class DownloadBusyError(Exception):
+    pass
+
+
+class DownloadValidationError(ValueError):
+    pass
+
+
+class DownloadJob:
+    def __init__(self, link: str, album: str, album_artist: str, year: str) -> None:
+        self.id = str(uuid.uuid4())
+        self.link = link
+        self.album = album
+        self.album_artist = album_artist
+        self.year = year
+        self.status = "queued"
+        self.phase = "Queued"
+        self.message = "Waiting to start"
+        self.progress = 0.0
+        self.files_started = 0
+        self.audio_converted = 0
+        self.metadata_lines = 0
+        self.cover_lines = 0
+        self.new_files: int | None = None
+        self.error: str | None = None
+        self.output_tail: list[str] = []
+        self.created_at = timestamp()
+        self.started_at: str | None = None
+        self.finished_at: str | None = None
+        self.lock = threading.RLock()
+
+    @property
+    def is_active(self) -> bool:
+        return self.status in {"queued", "running"}
+
+    def mark_running(self) -> None:
+        with self.lock:
+            self.status = "running"
+            self.phase = "Starting downloader"
+            self.message = "Starting yt-dlp"
+            self.progress = max(self.progress, 0.04)
+            self.started_at = timestamp()
+
+    def append_output(self, line: str) -> None:
+        clean_line = plain_output_line(line)
+        if not clean_line:
+            return
+
+        with self.lock:
+            self.output_tail.append(clean_line)
+            self.output_tail = self.output_tail[-30:]
+            self.message = clean_line
+            self.update_from_output(clean_line)
+
+    def update_from_output(self, line: str) -> None:
+        if "[youtube]" in line or "[generic]" in line:
+            self.phase = "Reading YouTube data"
+            self.progress = max(self.progress, 0.10)
+
+        if "[download] Destination:" in line:
+            self.files_started += 1
+            self.phase = "Starting file"
+            self.progress = max(self.progress, 0.18)
+        elif "[download]" in line:
+            self.phase = "Downloading"
+            match = DOWNLOAD_PROGRESS_RE.search(line)
+            if match:
+                percent = min(max(float(match.group(1)), 0), 100)
+                self.progress = max(self.progress, 0.20 + (percent / 100) * 0.46)
+            else:
+                self.progress = max(self.progress, 0.24)
+        elif "[ExtractAudio]" in line:
+            self.audio_converted += 1
+            self.phase = "Converting audio"
+            self.progress = max(self.progress, 0.70)
+        elif "[Metadata]" in line:
+            self.metadata_lines += 1
+            self.phase = "Writing metadata"
+            self.progress = max(self.progress, 0.80)
+        elif "[EmbedThumbnail]" in line:
+            self.cover_lines += 1
+            self.phase = "Embedding cover"
+            self.progress = max(self.progress, 0.84)
+        elif "Applying album metadata" in line:
+            self.phase = "Applying album metadata"
+            self.progress = max(self.progress, 0.88)
+        elif "Tagging:" in line:
+            self.phase = "Tagging MP3 files"
+            self.progress = max(self.progress, 0.90)
+        elif "Done." in line:
+            self.phase = "Finishing"
+            self.progress = max(self.progress, 0.96)
+
+        match = re.search(r"(\d+)\s+new file", line)
+        if match:
+            self.new_files = int(match.group(1))
+
+    def update_phase(self, phase: str, progress: float, message: str | None = None) -> None:
+        with self.lock:
+            self.phase = phase
+            self.progress = max(self.progress, min(max(progress, 0), 1))
+            if message:
+                self.message = message
+
+    def succeed(self) -> None:
+        with self.lock:
+            self.status = "succeeded"
+            self.phase = "Done"
+            self.message = "Download finished"
+            self.progress = 1.0
+            self.finished_at = timestamp()
+
+    def fail(self, message: str) -> None:
+        with self.lock:
+            self.status = "failed"
+            self.phase = "Failed"
+            self.message = message
+            self.error = message
+            self.finished_at = timestamp()
+
+    def snapshot(self, base_url: str | None = None) -> dict:
+        with self.lock:
+            payload = {
+                "id": self.id,
+                "status": self.status,
+                "isActive": self.is_active,
+                "phase": self.phase,
+                "message": self.message,
+                "progress": self.progress,
+                "link": self.link,
+                "album": self.album,
+                "albumArtist": self.album_artist,
+                "year": self.year,
+                "filesStarted": self.files_started,
+                "audioConverted": self.audio_converted,
+                "metadataLines": self.metadata_lines,
+                "coverLines": self.cover_lines,
+                "newFiles": self.new_files,
+                "error": self.error,
+                "outputTail": list(self.output_tail),
+                "createdAt": self.created_at,
+                "startedAt": self.started_at,
+                "finishedAt": self.finished_at,
+            }
+
+        if base_url:
+            payload["statusURL"] = f"{base_url}/api/downloads/{quote(self.id)}"
+
+        return payload
+
+
+class DownloadManager:
+    def __init__(self, base_dir: Path, songs_dir: Path, catalog_index: CatalogIndex) -> None:
+        self.base_dir = base_dir
+        self.songs_dir = songs_dir
+        self.catalog_index = catalog_index
+        self.lock = threading.RLock()
+        self.jobs: dict[str, DownloadJob] = {}
+        self.active_job_id: str | None = None
+
+    def start(self, payload: dict) -> DownloadJob:
+        link = str(payload.get("link") or payload.get("url") or "").strip()
+        album = str(payload.get("album") or "").strip()
+        album_artist = str(
+            payload.get("albumArtist")
+            or payload.get("album_artist")
+            or payload.get("artist")
+            or ""
+        ).strip()
+        year = str(payload.get("year") or "").strip()
+
+        if not link:
+            raise DownloadValidationError("Missing playlist / album link")
+        if not album:
+            raise DownloadValidationError("Missing album name")
+        if not album_artist:
+            raise DownloadValidationError("Missing album artist")
+
+        job = DownloadJob(link=link, album=album, album_artist=album_artist, year=year)
+
+        with self.lock:
+            active = self.active_job()
+            if active:
+                raise DownloadBusyError("Another download is already running")
+
+            self.jobs[job.id] = job
+            self.active_job_id = job.id
+
+        thread = threading.Thread(
+            target=self.run_job,
+            args=(job,),
+            name=f"AriaDownload-{job.id}",
+            daemon=True,
+        )
+        thread.start()
+        return job
+
+    def active_job(self) -> DownloadJob | None:
+        with self.lock:
+            if not self.active_job_id:
+                return None
+
+            job = self.jobs.get(self.active_job_id)
+            if job and job.is_active:
+                return job
+
+            return None
+
+    def job(self, job_id: str) -> DownloadJob | None:
+        with self.lock:
+            return self.jobs.get(job_id)
+
+    def recent_jobs(self) -> list[DownloadJob]:
+        with self.lock:
+            return list(self.jobs.values())[-MAX_DOWNLOAD_HISTORY:]
+
+    def run_job(self, job: DownloadJob) -> None:
+        job.mark_running()
+        script_path = self.base_dir / "scripts" / "download.py"
+        command = [sys.executable, str(script_path)]
+        input_text = "\n".join([job.link, job.album, job.album_artist, job.year]) + "\n"
+        environment = dict(os.environ)
+        environment.setdefault("PYTHONUNBUFFERED", "1")
+        environment.setdefault("TERM", "dumb")
+
+        try:
+            process = subprocess.Popen(
+                command,
+                cwd=str(self.base_dir),
+                stdin=subprocess.PIPE,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.STDOUT,
+                text=True,
+                bufsize=1,
+                env=environment,
+            )
+        except OSError as error:
+            job.fail(f"Could not start downloader: {error}")
+            self.clear_active(job)
+            return
+
+        try:
+            assert process.stdin is not None
+            process.stdin.write(input_text)
+            process.stdin.close()
+        except (BrokenPipeError, OSError):
+            pass
+
+        try:
+            assert process.stdout is not None
+            for raw_line in process.stdout:
+                job.append_output(raw_line)
+
+            return_code = process.wait()
+            if return_code == 0:
+                job.update_phase("Refreshing catalog", 0.97, "Updating the Aria catalog")
+                self.catalog_index.refresh(force=True)
+                job.succeed()
+            else:
+                job.fail(f"Downloader exited with status {return_code}")
+        except Exception as error:
+            job.fail(str(error))
+        finally:
+            self.clear_active(job)
+
+    def clear_active(self, job: DownloadJob) -> None:
+        with self.lock:
+            if self.active_job_id == job.id:
+                self.active_job_id = None
+
+            if len(self.jobs) > MAX_DOWNLOAD_HISTORY:
+                active_id = self.active_job_id
+                for old_job in list(self.jobs.values())[:-MAX_DOWNLOAD_HISTORY]:
+                    if old_job.id != active_id:
+                        self.jobs.pop(old_job.id, None)
+
+
 class AriaSongHandler(BaseHTTPRequestHandler):
     server_version = "AriaSongServer/0.1"
 
@@ -594,10 +884,14 @@ class AriaSongHandler(BaseHTTPRequestHandler):
     def catalog_index(self) -> CatalogIndex:
         return self.server.catalog_index
 
+    @property
+    def download_manager(self) -> DownloadManager:
+        return self.server.download_manager
+
     def do_OPTIONS(self) -> None:
         self.send_response(HTTPStatus.NO_CONTENT)
         self.send_common_headers()
-        self.send_header("Access-Control-Allow-Methods", "GET, HEAD, OPTIONS, PATCH, PUT")
+        self.send_header("Access-Control-Allow-Methods", "GET, HEAD, OPTIONS, PATCH, PUT, POST")
         self.send_header("Access-Control-Allow-Headers", "Content-Type")
         self.end_headers()
 
@@ -606,6 +900,14 @@ class AriaSongHandler(BaseHTTPRequestHandler):
 
     def do_PUT(self) -> None:
         self.handle_track_update()
+
+    def do_POST(self) -> None:
+        parsed = urlparse(self.path)
+
+        if parsed.path == "/api/downloads":
+            self.start_download()
+        else:
+            self.send_error(HTTPStatus.NOT_FOUND, "Not found")
 
     def do_GET(self) -> None:
         parsed = urlparse(self.path)
@@ -625,6 +927,10 @@ class AriaSongHandler(BaseHTTPRequestHandler):
             self.write_album_tracks(unquote(album_id), parsed)
         elif parsed.path == "/api/catalog":
             self.write_catalog_summary()
+        elif parsed.path == "/api/downloads":
+            self.write_downloads()
+        elif parsed.path.startswith("/api/downloads/"):
+            self.write_download(unquote(parsed.path.removeprefix("/api/downloads/")).strip("/"))
         elif parsed.path.startswith("/api/stream/"):
             self.stream_song(parsed.path.removeprefix("/api/stream/"))
         elif parsed.path.startswith("/api/artwork/"):
@@ -751,6 +1057,55 @@ class AriaSongHandler(BaseHTTPRequestHandler):
             return None
 
         return payload
+
+    def start_download(self) -> None:
+        payload = self.read_json_body()
+        if payload is None:
+            return
+
+        base_url = f"http://{self.headers.get('Host', 'localhost:8000')}"
+
+        try:
+            job = self.download_manager.start(payload)
+        except DownloadValidationError as error:
+            self.write_json({"error": str(error)}, status=HTTPStatus.BAD_REQUEST)
+            return
+        except DownloadBusyError as error:
+            active_job = self.download_manager.active_job()
+            self.write_json(
+                {
+                    "error": str(error),
+                    "active": active_job.snapshot(base_url) if active_job else None,
+                },
+                status=HTTPStatus.CONFLICT,
+            )
+            return
+
+        self.write_json(job.snapshot(base_url), status=HTTPStatus.ACCEPTED)
+
+    def write_downloads(self) -> None:
+        base_url = f"http://{self.headers.get('Host', 'localhost:8000')}"
+        active_job = self.download_manager.active_job()
+        self.write_json({
+            "active": active_job.snapshot(base_url) if active_job else None,
+            "jobs": [
+                job.snapshot(base_url)
+                for job in reversed(self.download_manager.recent_jobs())
+            ],
+        })
+
+    def write_download(self, job_id: str) -> None:
+        if not job_id:
+            self.send_error(HTTPStatus.BAD_REQUEST, "Missing download id")
+            return
+
+        job = self.download_manager.job(job_id)
+        if job is None:
+            self.send_error(HTTPStatus.NOT_FOUND, "Download not found")
+            return
+
+        base_url = f"http://{self.headers.get('Host', 'localhost:8000')}"
+        self.write_json(job.snapshot(base_url))
 
     def track_metadata_updates(self, payload: dict) -> dict | None:
         source = payload.get("metadata") if isinstance(payload.get("metadata"), dict) else payload
@@ -920,12 +1275,15 @@ class AriaSongHandler(BaseHTTPRequestHandler):
         records = self.catalog_index.tracks()
         albums = self.album_summaries(f"http://{self.headers.get('Host', 'localhost:8000')}")
         index_status = self.catalog_index.status()
+        base_url = f"http://{self.headers.get('Host', 'localhost:8000')}"
+        active_job = self.download_manager.active_job()
         self.write_json({
             "trackCount": len(records),
             "albumCount": len(albums),
             "indexVersion": CATALOG_INDEX_VERSION,
             "isIndexing": index_status["isIndexing"],
             "lastIndexError": index_status["lastError"],
+            "activeDownload": active_job.snapshot(base_url) if active_job else None,
         })
 
     def filtered_track_records(self, parsed) -> list[dict]:
@@ -1002,10 +1360,10 @@ class AriaSongHandler(BaseHTTPRequestHandler):
             if key != "searchText"
         }
 
-    def write_json(self, payload: dict | list) -> None:
+    def write_json(self, payload: dict | list, status: HTTPStatus = HTTPStatus.OK) -> None:
         body = json.dumps(payload).encode("utf-8")
 
-        self.send_response(HTTPStatus.OK)
+        self.send_response(status)
         self.send_common_headers()
         self.send_header("Content-Type", "application/json; charset=utf-8")
         self.send_header("Content-Length", str(len(body)))
@@ -1119,7 +1477,7 @@ class AriaSongHandler(BaseHTTPRequestHandler):
 
     def send_common_headers(self) -> None:
         self.send_header("Access-Control-Allow-Origin", "*")
-        self.send_header("Access-Control-Allow-Methods", "GET, HEAD, OPTIONS, PATCH, PUT")
+        self.send_header("Access-Control-Allow-Methods", "GET, HEAD, OPTIONS, PATCH, PUT, POST")
         self.send_header("Access-Control-Allow-Headers", "Content-Type")
         self.send_header("Cache-Control", "no-store")
 
@@ -1153,6 +1511,7 @@ def main() -> None:
     server = ThreadingHTTPServer((args.host, args.port), AriaSongHandler)
     server.songs_dir = songs_dir
     server.catalog_index = CatalogIndex(songs_dir)
+    server.download_manager = DownloadManager(Path(__file__).resolve().parent.parent, songs_dir, server.catalog_index)
     server.catalog_index.refresh_in_background(force=True)
 
     print(f"Serving {songs_dir} at http://{args.host}:{args.port}")
