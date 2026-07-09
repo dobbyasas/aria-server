@@ -9,4 +9,5 @@
 Thumbs.db
 
 # Songs folder
-/songs
+songs/*
+!songs/.aria_catalog_index.json

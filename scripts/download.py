@@ -132,8 +132,9 @@ after = set(SONGS_DIR.glob("*.mp3"))
 new_files = sorted(after - before)
 
 if not new_files:
-    print("No new MP3 files found. Tagging all MP3 files in songs folder instead.")
-    new_files = sorted(SONGS_DIR.glob("*.mp3"))
+    print("No new MP3 files found.")
+    print("Refusing to tag old files in songs folder.")
+    exit(1)
 
 if not new_files:
     print("No MP3 files found.")
