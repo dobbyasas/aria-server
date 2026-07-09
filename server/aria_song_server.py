@@ -16,11 +16,9 @@ from pathlib import Path
 from time import monotonic
 from urllib.parse import parse_qs, quote, unquote, urlparse
 
-from mutagen import File as MutagenFile
-
 
 SONG_EXTENSIONS = {".mp3", ".m4a", ".aac", ".wav", ".flac"}
-CATALOG_INDEX_VERSION = 2
+CATALOG_INDEX_VERSION = 4
 CATALOG_REFRESH_INTERVAL_SECONDS = 10
 DEFAULT_PAGE_LIMIT = 100
 MAX_PAGE_LIMIT = 500
@@ -34,12 +32,6 @@ PALETTES = [
     ("#C77DFF", "#2B235A", "antenna.radiowaves.left.and.right"),
     ("#90BE6D", "#22332C", "airplane"),
 ]
-
-
-class MetadataUpdateError(Exception):
-    def __init__(self, message: str, status: HTTPStatus = HTTPStatus.BAD_REQUEST) -> None:
-        super().__init__(message)
-        self.status = status
 
 
 def default_songs_dir() -> Path:
@@ -65,7 +57,7 @@ def ffprobe_metadata(path: Path) -> dict:
                 "-v",
                 "error",
                 "-show_entries",
-                "format=duration:format_tags=title,artist,album,date,track,tracknumber:stream=codec_type:stream_disposition=attached_pic",
+                "format=duration:format_tags=title,artist,album,album_artist,albumartist,date,track,tracknumber:stream=codec_type:stream_disposition=attached_pic",
                 "-of",
                 "json",
                 str(path),
@@ -92,6 +84,7 @@ def ffprobe_metadata(path: Path) -> dict:
         "title": tags.get("title"),
         "artist": tags.get("artist"),
         "album": tags.get("album"),
+        "albumArtist": album_artist_from_tags(tags),
         "date": tags.get("date"),
         "trackNumber": track_number_from_tag(tags.get("track") or tags.get("tracknumber")),
         "hasArtwork": any(
@@ -133,6 +126,15 @@ def track_number_from_tag(value: str | None) -> int | None:
     return int(match.group(0))
 
 
+def album_artist_from_tags(tags: dict) -> str | None:
+    for key in ("album_artist", "albumartist", "album artist", "album-artist"):
+        value = tags.get(key)
+        if value:
+            return str(value)
+
+    return None
+
+
 def palette_for(path: Path) -> dict:
     palette_index = uuid.uuid5(uuid.NAMESPACE_URL, path.name).int % len(PALETTES)
     top_hex, bottom_hex, symbol_name = PALETTES[palette_index]
@@ -143,12 +145,13 @@ def palette_for(path: Path) -> dict:
     }
 
 
-def album_key(path: Path, metadata: dict) -> str:
-    fallback_title, fallback_artist = title_from_filename(path)
-    artist = metadata.get("artist") or fallback_artist
-    album = metadata.get("album") or "Fedora songs"
+def normalized_album_title(album: str | None) -> str:
+    title = str(album or "Fedora songs").strip()
+    return title or "Fedora songs"
 
-    return f"{artist.casefold()}::{album.casefold()}"
+
+def album_key(_path: Path, metadata: dict) -> str:
+    return normalized_album_title(metadata.get("album")).casefold()
 
 
 def track_payload(path: Path, base_url: str, metadata: dict, artwork_url: str | None) -> dict:
@@ -159,6 +162,7 @@ def track_payload(path: Path, base_url: str, metadata: dict, artwork_url: str | 
         "id": str(uuid.uuid5(uuid.NAMESPACE_URL, path.name)),
         "title": metadata.get("title") or fallback_title,
         "artist": metadata.get("artist") or fallback_artist,
+        "albumArtist": metadata.get("albumArtist") or metadata.get("artist") or fallback_artist,
         "album": metadata.get("album") or "Fedora songs",
         "duration": metadata.get("duration") or 0,
         "year": year_from_date(metadata.get("date")),
@@ -176,6 +180,7 @@ def build_track_record(path: Path, metadata: dict) -> dict:
 
     title = metadata.get("title") or fallback_title
     artist = metadata.get("artist") or fallback_artist
+    album_artist = metadata.get("albumArtist") or artist
     album = metadata.get("album") or "Fedora songs"
 
     record = {
@@ -185,6 +190,7 @@ def build_track_record(path: Path, metadata: dict) -> dict:
         "id": str(uuid.uuid5(uuid.NAMESPACE_URL, path.name)),
         "title": title,
         "artist": artist,
+        "albumArtist": album_artist,
         "album": album,
         "duration": metadata.get("duration") or 0,
         "year": year_from_date(metadata.get("date")),
@@ -194,30 +200,60 @@ def build_track_record(path: Path, metadata: dict) -> dict:
         "isExplicit": False,
     }
     record["searchText"] = search_text_for(record)
-    record["albumID"] = album_id_for(artist, album)
+    record["albumID"] = album_id_for(album)
     return record
 
 
 def search_text_for(record: dict) -> str:
     return " ".join(
         str(record.get(key) or "")
-        for key in ("title", "artist", "album", "filename")
+        for key in ("title", "artist", "albumArtist", "album", "filename")
     ).casefold()
 
 
-def album_id_for(artist: str, album: str) -> str:
-    return str(uuid.uuid5(uuid.NAMESPACE_URL, f"aria-album:{artist.casefold()}::{album.casefold()}"))
+def album_id_for(album: str) -> str:
+    return str(uuid.uuid5(uuid.NAMESPACE_URL, f"aria-album:{normalized_album_title(album).casefold()}"))
 
 
 def album_key_for_record(record: dict) -> str:
-    return f"{str(record.get('artist') or '').casefold()}::{str(record.get('album') or '').casefold()}"
+    return normalized_album_title(record.get("album")).casefold()
+
+
+def preferred_artist(values: list[str | None]) -> str | None:
+    counts: dict[str, int] = {}
+    first_indexes: dict[str, int] = {}
+    display_values: dict[str, str] = {}
+
+    for index, value in enumerate(values):
+        artist = str(value or "").strip()
+        if not artist:
+            continue
+
+        key = artist.casefold()
+        counts[key] = counts.get(key, 0) + 1
+        first_indexes.setdefault(key, index)
+        display_values.setdefault(key, artist)
+
+    if not counts:
+        return None
+
+    best_key = max(counts, key=lambda key: (counts[key], -first_indexes[key]))
+    return display_values[best_key]
+
+
+def album_artist_for_records(records: list[dict]) -> str:
+    return (
+        preferred_artist([record.get("albumArtist") for record in records])
+        or preferred_artist([record.get("artist") for record in records])
+        or "Unknown Artist"
+    )
 
 
 def track_sort_key(record: dict) -> tuple:
     return (
-        str(record.get("artist") or "").casefold(),
         str(record.get("album") or "").casefold(),
         record.get("trackNumber") if record.get("trackNumber") is not None else 999_999,
+        str(record.get("artist") or "").casefold(),
         str(record.get("title") or "").casefold(),
         str(record.get("filename") or "").casefold(),
     )
@@ -248,6 +284,7 @@ def track_payload_from_record(record: dict, base_url: str, artwork_source_filena
         "id": record["id"],
         "title": record.get("title") or Path(record["filename"]).stem,
         "artist": record.get("artist") or "Unknown Artist",
+        "albumArtist": record.get("albumArtist") or record.get("artist") or "Unknown Artist",
         "album": record.get("album") or "Fedora songs",
         "duration": record.get("duration") or 0,
         "year": record.get("year") or datetime.now().year,
@@ -307,129 +344,6 @@ def query_int(params: dict[str, list[str]], name: str, default: int, minimum: in
     return min(max(value, minimum), maximum)
 
 
-def cleaned_metadata_text(value, field: str, fallback: str | None = None) -> str:
-    if value is None:
-        if fallback is not None:
-            return fallback
-        raise MetadataUpdateError(f"{field} is required.")
-
-    text = str(value).strip()
-    if text:
-        return text
-
-    if fallback is not None:
-        return fallback
-
-    raise MetadataUpdateError(f"{field} is required.")
-
-
-def optional_metadata_int(value, field: str, minimum: int = 0) -> int | None:
-    if value is None:
-        return None
-
-    text = str(value).strip()
-    if not text:
-        return None
-
-    try:
-        parsed = int(text)
-    except ValueError as error:
-        raise MetadataUpdateError(f"{field} must be a whole number.") from error
-
-    if parsed < minimum:
-        raise MetadataUpdateError(f"{field} must be at least {minimum}.")
-
-    return parsed
-
-
-def metadata_bool(value, field: str) -> bool:
-    if isinstance(value, bool):
-        return value
-
-    if isinstance(value, str):
-        normalized = value.strip().casefold()
-        if normalized in {"true", "yes", "1"}:
-            return True
-        if normalized in {"false", "no", "0", ""}:
-            return False
-
-    raise MetadataUpdateError(f"{field} must be true or false.")
-
-
-def metadata_updates_from_payload(payload) -> dict:
-    if not isinstance(payload, dict):
-        raise MetadataUpdateError("Expected a JSON object.")
-
-    updates: dict = {}
-
-    if "title" in payload:
-        updates["title"] = cleaned_metadata_text(payload.get("title"), "title")
-    if "artist" in payload:
-        updates["artist"] = cleaned_metadata_text(payload.get("artist"), "artist", "Unknown Artist")
-    if "album" in payload:
-        updates["album"] = cleaned_metadata_text(payload.get("album"), "album", "Fedora songs")
-    if "year" in payload:
-        updates["year"] = optional_metadata_int(payload.get("year"), "year")
-    if "trackNumber" in payload:
-        updates["trackNumber"] = optional_metadata_int(payload.get("trackNumber"), "trackNumber", minimum=1)
-    if "track_number" in payload and "trackNumber" not in updates:
-        updates["trackNumber"] = optional_metadata_int(payload.get("track_number"), "track_number", minimum=1)
-    if "isExplicit" in payload:
-        updates["isExplicit"] = metadata_bool(payload.get("isExplicit"), "isExplicit")
-    if "explicit" in payload and "isExplicit" not in updates:
-        updates["isExplicit"] = metadata_bool(payload.get("explicit"), "explicit")
-
-    return updates
-
-
-def write_audio_metadata(path: Path, updates: dict) -> None:
-    writable_fields = {"title", "artist", "album", "year", "trackNumber"}
-    if not any(field in updates for field in writable_fields):
-        return
-
-    try:
-        audio = MutagenFile(path, easy=True)
-    except Exception as error:
-        raise MetadataUpdateError(
-            f"Could not read metadata for {path.name}: {error}",
-            HTTPStatus.UNPROCESSABLE_ENTITY,
-        ) from error
-
-    if audio is None:
-        raise MetadataUpdateError(
-            f"{path.name} uses an unsupported audio metadata format.",
-            HTTPStatus.UNSUPPORTED_MEDIA_TYPE,
-        )
-
-    try:
-        if audio.tags is None:
-            audio.add_tags()
-
-        if "title" in updates:
-            audio["title"] = [updates["title"]]
-        if "artist" in updates:
-            audio["artist"] = [updates["artist"]]
-        if "album" in updates:
-            audio["album"] = [updates["album"]]
-        if "year" in updates:
-            if updates["year"] is None:
-                audio.pop("date", None)
-            else:
-                audio["date"] = [str(updates["year"])]
-        if "trackNumber" in updates:
-            if updates["trackNumber"] is None:
-                audio.pop("tracknumber", None)
-            else:
-                audio["tracknumber"] = [str(updates["trackNumber"])]
-
-        audio.save()
-    except Exception as error:
-        raise MetadataUpdateError(
-            f"Could not save metadata for {path.name}: {error}",
-            HTTPStatus.INTERNAL_SERVER_ERROR,
-        ) from error
-
-
 class CatalogIndex:
     def __init__(self, songs_dir: Path, index_path: Path | None = None) -> None:
         self.songs_dir = songs_dir
@@ -451,54 +365,7 @@ class CatalogIndex:
     def track_for_filename(self, filename: str) -> dict | None:
         self.refresh_in_background()
         with self.lock:
-            record = self.records_by_filename.get(filename)
-            return dict(record) if record else None
-
-    def track_for_id(self, track_id: str) -> dict | None:
-        self.refresh_in_background()
-        with self.lock:
-            for record in self.records:
-                if record.get("id") == track_id or record.get("filename") == track_id:
-                    return dict(record)
-
-        return None
-
-    def update_track_metadata(self, track_id: str, updates: dict, path: Path) -> dict | None:
-        stat = path.stat()
-        updated_record = None
-        records_snapshot: list[dict] = []
-
-        with self.lock:
-            for index, record in enumerate(self.records):
-                if record.get("id") != track_id and record.get("filename") != track_id:
-                    continue
-
-                updated = dict(record)
-                for field in ("title", "artist", "album", "year", "trackNumber", "isExplicit"):
-                    if field in updates:
-                        updated[field] = updates[field] if updates[field] is not None else 0 if field == "year" else None
-
-                updated["size"] = stat.st_size
-                updated["mtimeNs"] = stat.st_mtime_ns
-                updated["searchText"] = search_text_for(updated)
-                updated["albumID"] = album_id_for(
-                    updated.get("artist") or "Unknown Artist",
-                    updated.get("album") or "Fedora songs",
-                )
-                updated_record = self.normalized_record(updated)
-                self.records[index] = updated_record
-                break
-
-            if updated_record is None:
-                return None
-
-            self.records.sort(key=title_sort_key)
-            self.records_by_filename = {record["filename"]: record for record in self.records}
-            self.last_refresh_at = monotonic()
-            records_snapshot = [dict(record) for record in self.records]
-
-        self.save(records_snapshot)
-        return dict(updated_record)
+            return self.records_by_filename.get(filename)
 
     def status(self) -> dict:
         with self.lock:
@@ -525,7 +392,8 @@ class CatalogIndex:
     def normalized_record(self, record: dict) -> dict:
         record = dict(record)
         record.setdefault("searchText", search_text_for(record))
-        record.setdefault("albumID", album_id_for(record.get("artist") or "", record.get("album") or ""))
+        record["albumID"] = album_id_for(record.get("album") or "Fedora songs")
+        record.setdefault("albumArtist", record.get("artist") or "Unknown Artist")
         record.setdefault("hasArtwork", False)
         record.setdefault("isExplicit", False)
         record.setdefault("artwork", palette_for(Path(record["filename"])))
@@ -677,7 +545,7 @@ def embedded_artwork(path: Path) -> bytes | None:
 
 
 class AriaSongHandler(BaseHTTPRequestHandler):
-    server_version = "AriaSongServer/0.2"
+    server_version = "AriaSongServer/0.1"
 
     @property
     def songs_dir(self) -> Path:
@@ -694,8 +562,6 @@ class AriaSongHandler(BaseHTTPRequestHandler):
             self.write_text("Aria song server is running.\nTry /api/tracks?offset=0&limit=100\n")
         elif parsed.path == "/api/tracks":
             self.write_tracks(parsed)
-        elif parsed.path.startswith("/api/tracks/"):
-            self.write_track(parsed.path.removeprefix("/api/tracks/"))
         elif parsed.path == "/api/search":
             self.write_search(parsed)
         elif parsed.path == "/api/albums":
@@ -711,19 +577,6 @@ class AriaSongHandler(BaseHTTPRequestHandler):
             self.write_artwork(parsed.path.removeprefix("/api/artwork/"))
         else:
             self.send_error(HTTPStatus.NOT_FOUND, "Not found")
-
-    def do_PATCH(self) -> None:
-        self.update_track()
-
-    def do_PUT(self) -> None:
-        self.update_track()
-
-    def do_OPTIONS(self) -> None:
-        self.send_response(HTTPStatus.NO_CONTENT)
-        self.send_common_headers()
-        self.send_header("Access-Control-Allow-Headers", "Content-Type, Accept")
-        self.send_header("Content-Length", "0")
-        self.end_headers()
 
     def do_HEAD(self) -> None:
         parsed = urlparse(self.path)
@@ -758,76 +611,6 @@ class AriaSongHandler(BaseHTTPRequestHandler):
         page["tracks"] = page["items"]
         page["query"] = query_text(params)
         self.write_json(page)
-
-    def write_track(self, raw_track_id: str) -> None:
-        track_id = unquote(raw_track_id)
-        record = self.catalog_index.track_for_id(track_id)
-        if record is None:
-            self.write_json_error(HTTPStatus.NOT_FOUND, "Track not found")
-            return
-
-        self.write_json(self.track_payload(record))
-
-    def update_track(self) -> None:
-        parsed = urlparse(self.path)
-        if not parsed.path.startswith("/api/tracks/"):
-            self.write_json_error(HTTPStatus.NOT_FOUND, "Not found")
-            return
-
-        track_id = unquote(parsed.path.removeprefix("/api/tracks/"))
-        record = self.catalog_index.track_for_id(track_id)
-        if record is None:
-            self.write_json_error(HTTPStatus.NOT_FOUND, "Track not found")
-            return
-
-        path = (self.songs_dir / str(record["filename"])).resolve()
-        if path.parent != self.songs_dir.resolve() or not path.exists() or not path.is_file():
-            self.write_json_error(HTTPStatus.NOT_FOUND, "Song file not found")
-            return
-
-        try:
-            payload = self.read_json_body()
-            updates = metadata_updates_from_payload(payload)
-            write_audio_metadata(path, updates)
-            updated_record = self.catalog_index.update_track_metadata(str(record["id"]), updates, path)
-        except MetadataUpdateError as error:
-            self.write_json_error(error.status, str(error))
-            return
-        except Exception as error:
-            self.write_json_error(HTTPStatus.INTERNAL_SERVER_ERROR, f"Could not update metadata: {error}")
-            return
-
-        if updated_record is None:
-            self.write_json_error(HTTPStatus.NOT_FOUND, "Track not found")
-            return
-
-        self.write_json(self.track_payload(updated_record))
-
-    def read_json_body(self) -> dict:
-        try:
-            content_length = int(self.headers.get("Content-Length") or "0")
-        except ValueError as error:
-            raise MetadataUpdateError("Content-Length must be a number.") from error
-
-        if content_length <= 0:
-            return {}
-        if content_length > 64 * 1024:
-            raise MetadataUpdateError("Request body is too large.", HTTPStatus.REQUEST_ENTITY_TOO_LARGE)
-
-        raw_body = self.rfile.read(content_length)
-        try:
-            return json.loads(raw_body.decode("utf-8"))
-        except (UnicodeDecodeError, json.JSONDecodeError) as error:
-            raise MetadataUpdateError("Request body must be valid JSON.") from error
-
-    def track_payload(self, record: dict) -> dict:
-        base_url = f"http://{self.headers.get('Host', 'localhost:8000')}"
-        artwork_by_album = album_artwork_sources(self.catalog_index.tracks())
-        return track_payload_from_record(
-            record,
-            base_url,
-            artwork_by_album.get(album_key_for_record(record)),
-        )
 
     def write_search(self, parsed) -> None:
         params = parse_qs(parsed.query)
@@ -943,7 +726,7 @@ class AriaSongHandler(BaseHTTPRequestHandler):
             for records in grouped.values()
             if records
         ]
-        albums.sort(key=lambda album: (album["artist"].casefold(), album["title"].casefold()))
+        albums.sort(key=lambda album: (album["title"].casefold(), album["artist"].casefold()))
         return albums
 
     def album_summary_for_records(self, base_url: str, records: list[dict]) -> dict:
@@ -957,10 +740,21 @@ class AriaSongHandler(BaseHTTPRequestHandler):
         )
 
         title = first_record.get("album") or "Fedora songs"
-        artist = first_record.get("artist") or "Unknown Artist"
+        artist = album_artist_for_records(records)
+        album_id = first_record.get("albumID") or album_id_for(title)
+        track_artists = " ".join(
+            sorted(
+                {
+                    str(record.get("artist") or "")
+                    for record in records
+                    if str(record.get("artist") or "")
+                },
+                key=str.casefold,
+            )
+        )
 
         return {
-            "id": first_record.get("albumID") or album_id_for(artist, title),
+            "id": album_id,
             "title": title,
             "artist": artist,
             "year": min(record.get("year") or datetime.now().year for record in records),
@@ -968,8 +762,8 @@ class AriaSongHandler(BaseHTTPRequestHandler):
             "duration": sum(float(record.get("duration") or 0) for record in records),
             "artwork": first_record.get("artwork"),
             "artworkURL": artwork_url,
-            "tracksURL": f"{base_url}/api/albums/{quote(first_record.get('albumID') or album_id_for(artist, title))}/tracks",
-            "searchText": f"{title} {artist}".casefold(),
+            "tracksURL": f"{base_url}/api/albums/{quote(album_id)}/tracks",
+            "searchText": f"{title} {artist} {track_artists}".casefold(),
         }
 
     def public_album_summary(self, album: dict) -> dict:
@@ -979,18 +773,15 @@ class AriaSongHandler(BaseHTTPRequestHandler):
             if key != "searchText"
         }
 
-    def write_json(self, payload: dict | list, status: HTTPStatus = HTTPStatus.OK) -> None:
+    def write_json(self, payload: dict | list) -> None:
         body = json.dumps(payload).encode("utf-8")
 
-        self.send_response(status)
+        self.send_response(HTTPStatus.OK)
         self.send_common_headers()
         self.send_header("Content-Type", "application/json; charset=utf-8")
         self.send_header("Content-Length", str(len(body)))
         self.end_headers()
         self.wfile.write(body)
-
-    def write_json_error(self, status: HTTPStatus, message: str) -> None:
-        self.write_json({"error": message}, status=status)
 
     def album_artwork_urls(self, files: list[Path], metadata_by_path: dict[Path, dict], base_url: str) -> dict[str, str]:
         artwork_by_album: dict[str, str] = {}
@@ -1099,7 +890,6 @@ class AriaSongHandler(BaseHTTPRequestHandler):
 
     def send_common_headers(self) -> None:
         self.send_header("Access-Control-Allow-Origin", "*")
-        self.send_header("Access-Control-Allow-Methods", "GET, HEAD, OPTIONS, PATCH, PUT")
         self.send_header("Cache-Control", "no-store")
 
 
