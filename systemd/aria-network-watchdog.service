@@ -1,0 +1,8 @@
+[Unit]
+Description=Aria Network Watchdog
+After=network-online.target tailscaled.service
+Wants=network-online.target tailscaled.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/python3 /home/tofinovak/aria-server/scripts/aria_watchdog.py

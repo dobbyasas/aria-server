@@ -1,0 +1,16 @@
+[Unit]
+Description=Aria Song Server
+After=network-online.target tailscaled.service
+Wants=network-online.target tailscaled.service
+
+[Service]
+Type=simple
+User=tofinovak
+WorkingDirectory=/home/tofinovak/aria-server
+Environment=PYTHONUNBUFFERED=1
+ExecStart=/usr/bin/python3 /home/tofinovak/aria-server/server/aria_song_server.py --host 0.0.0.0 --port 8000
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

@@ -58,6 +58,32 @@ sudo firewall-cmd --add-port=8000/tcp --permanent
 sudo firewall-cmd --reload
 ```
 
+## Network Watchdog
+
+The Fedora laptop also runs a watchdog for short Wi-Fi drops. It waits for the
+network to return, restarts `tailscaled` if `tailscale0` loses its `100.x`
+address, and restarts the Aria song server if `/api/catalog` stops responding.
+
+Install or update the units from this repo:
+
+```sh
+sudo cp systemd/aria-song-server.service /etc/systemd/system/
+sudo cp systemd/aria-network-watchdog.service /etc/systemd/system/
+sudo cp systemd/aria-network-watchdog.timer /etc/systemd/system/
+sudo systemctl daemon-reload
+sudo systemctl enable --now aria-song-server.service
+sudo systemctl enable --now aria-network-watchdog.timer
+```
+
+Check status:
+
+```sh
+systemctl status aria-song-server.service
+systemctl status aria-network-watchdog.timer
+sudo systemctl start aria-network-watchdog.service
+journalctl -u aria-network-watchdog.service -n 80 --no-pager
+```
+
 Then check it from another machine on the same network:
 
 ```sh
