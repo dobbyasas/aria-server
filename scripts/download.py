@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+import os
 import re
 import shutil
 import subprocess
@@ -40,6 +41,18 @@ SONGS_DIR = BASE_DIR / "songs"
 SONGS_DIR.mkdir(exist_ok=True)
 
 
+def yt_dlp_path() -> str | None:
+    system_path = shutil.which("yt-dlp")
+    if system_path:
+        return system_path
+
+    user_path = Path(os.path.expanduser("~/.local/bin/yt-dlp"))
+    if user_path.is_file() and os.access(user_path, os.X_OK):
+        return str(user_path)
+
+    return None
+
+
 def get_track_number(path: Path) -> int | None:
     # Expected: "01 - Song Name.mp3"
     match = re.match(r"^(\d+)\s+-\s+", path.name)
@@ -77,7 +90,7 @@ def shorten(text: str, max_len: int = 100) -> str:
 def check_requirements():
     missing = []
 
-    if shutil.which("yt-dlp") is None:
+    if yt_dlp_path() is None:
         missing.append("yt-dlp")
 
     if shutil.which("node") is None:
@@ -364,11 +377,16 @@ def main():
     before = set(SONGS_DIR.glob("*.mp3"))
 
     command = [
-        "yt-dlp",
+        yt_dlp_path() or "yt-dlp",
 
-        # Helps avoid YouTube 403 errors
+        # YouTube now requires a JavaScript challenge solver. The embedded web
+        # player currently works without the GVS PO token required by android_vr.
         "--js-runtimes",
         "node",
+        "--remote-components",
+        "ejs:github",
+        "--extractor-args",
+        "youtube:player_client=web_embedded",
 
         # Do not overwrite already downloaded files
         "--no-overwrites",
@@ -416,13 +434,14 @@ def main():
     if not new_files:
         console.print(
             Panel(
-                "[yellow]No new MP3 files found.[/yellow]\n"
-                "[dim]Refusing to tag old files in songs folder.[/dim]",
+                "[yellow]0 new files downloaded.[/yellow]\n"
+                "[dim]Everything returned by YouTube is already in the songs folder; "
+                "existing files were left unchanged.[/dim]",
                 title="Nothing to tag",
                 border_style="yellow",
             )
         )
-        sys.exit(1)
+        return
 
     show_file_table(new_files)
 
