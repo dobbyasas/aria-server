@@ -436,7 +436,7 @@ def main():
             Panel(
                 "[yellow]0 new files downloaded.[/yellow]\n"
                 "[dim]Everything returned by YouTube is already in the songs folder; "
-                "existing files were left unchanged.[/dim]",
+                "no custom album tags were applied to existing files.[/dim]",
                 title="Nothing to tag",
                 border_style="yellow",
             )
