@@ -1,5 +1,7 @@
 # Aria Song Server
 
+Current Aria version: `1.1.3`
+
 Run this on the Fedora laptop from `~/aria-server`:
 
 ```sh

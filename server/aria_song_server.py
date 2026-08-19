@@ -19,6 +19,7 @@ from urllib.parse import parse_qs, quote, unquote, urlparse
 
 
 SONG_EXTENSIONS = {".mp3", ".m4a", ".aac", ".wav", ".flac"}
+ARIA_VERSION = "1.1.3"
 CATALOG_INDEX_VERSION = 4
 CATALOG_REFRESH_INTERVAL_SECONDS = 10
 DEFAULT_PAGE_LIMIT = 100
@@ -874,7 +875,7 @@ class DownloadManager:
 
 
 class AriaSongHandler(BaseHTTPRequestHandler):
-    server_version = "AriaSongServer/0.1"
+    server_version = f"AriaSongServer/{ARIA_VERSION}"
 
     @property
     def songs_dir(self) -> Path:
@@ -913,7 +914,10 @@ class AriaSongHandler(BaseHTTPRequestHandler):
         parsed = urlparse(self.path)
 
         if parsed.path == "/":
-            self.write_text("Aria song server is running.\nTry /api/tracks?offset=0&limit=100\n")
+            self.write_text(
+                f"Aria song server {ARIA_VERSION} is running.\n"
+                "Try /api/tracks?offset=0&limit=100\n"
+            )
         elif parsed.path == "/api/tracks":
             self.write_tracks(parsed)
         elif parsed.path.startswith("/api/tracks/"):
@@ -1278,6 +1282,7 @@ class AriaSongHandler(BaseHTTPRequestHandler):
         base_url = f"http://{self.headers.get('Host', 'localhost:8000')}"
         active_job = self.download_manager.active_job()
         self.write_json({
+            "ariaVersion": ARIA_VERSION,
             "trackCount": len(records),
             "albumCount": len(albums),
             "indexVersion": CATALOG_INDEX_VERSION,
