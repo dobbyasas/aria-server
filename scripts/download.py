@@ -39,9 +39,30 @@ console = Console()
 BASE_DIR = Path(__file__).resolve().parent.parent
 SONGS_DIR = BASE_DIR / "songs"
 SONGS_DIR.mkdir(exist_ok=True)
+REPAIRABLE_DOWNLOAD_ERRORS = (
+    "http error 403",
+    "unable to download video data",
+    "signature extraction failed",
+    "nsig extraction failed",
+    "challenge solving failed",
+    "no supported javascript runtime",
+    "po token",
+)
 
 
 def yt_dlp_path() -> str | None:
+    configured_path = os.environ.get("ARIA_YT_DLP", "").strip()
+    candidates = []
+    if configured_path:
+        candidates.append(Path(configured_path).expanduser())
+    candidates.append(
+        Path.home() / ".local" / "share" / "aria-downloader" / "current" / "bin" / "yt-dlp"
+    )
+
+    for candidate in candidates:
+        if candidate.is_file() and os.access(candidate, os.X_OK):
+            return str(candidate)
+
     system_path = shutil.which("yt-dlp")
     if system_path:
         return system_path
@@ -162,7 +183,7 @@ def detect_phase(line: str) -> str:
     return "working"
 
 
-def run_download(command: list[str]) -> bool:
+def run_download(command: list[str]) -> tuple[bool, list[str]]:
     output_tail: list[str] = []
 
     stats = {
@@ -239,7 +260,7 @@ def run_download(command: list[str]) -> bool:
                 border_style="red",
             )
         )
-        return False
+        return False, output_tail
 
     console.print(
         Panel.fit(
@@ -252,7 +273,34 @@ def run_download(command: list[str]) -> bool:
         )
     )
 
-    return True
+    return True, output_tail
+
+
+def should_refresh_downloader(output_tail: list[str]) -> bool:
+    combined_output = "\n".join(output_tail).lower()
+    return any(marker in combined_output for marker in REPAIRABLE_DOWNLOAD_ERRORS)
+
+
+def refresh_downloader() -> bool:
+    updater = BASE_DIR / "scripts" / "update_downloader.py"
+    if not updater.is_file():
+        return False
+
+    console.print(
+        Panel(
+            "[yellow]YouTube changed its downloader requirements.[/yellow]\n"
+            "[dim]Updating and validating Aria's downloader before one automatic retry.[/dim]",
+            title="Repairing downloader",
+            border_style="yellow",
+        )
+    )
+    result = subprocess.run([sys.executable, str(updater)], cwd=str(BASE_DIR))
+    if result.returncode == 0:
+        console.print("[green]Downloader repaired; retrying once.[/green]")
+        return True
+
+    console.print("[red]The automatic downloader repair did not pass validation.[/red]")
+    return False
 
 
 def apply_album_metadata(
@@ -423,7 +471,11 @@ def main():
         )
     )
 
-    success = run_download(command)
+    success, output_tail = run_download(command)
+
+    if not success and should_refresh_downloader(output_tail) and refresh_downloader():
+        command[0] = yt_dlp_path() or "yt-dlp"
+        success, _ = run_download(command)
 
     if not success:
         sys.exit(1)

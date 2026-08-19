@@ -1,0 +1,11 @@
+[Unit]
+Description=Update Aria's YouTube downloader every day
+
+[Timer]
+OnCalendar=*-*-* 04:15:00
+RandomizedDelaySec=45m
+Persistent=true
+AccuracySec=1m
+
+[Install]
+WantedBy=timers.target

@@ -45,6 +45,40 @@ terminal. Send JSON shaped like:
 Only one download runs at a time. Progress is approximate while `yt-dlp` runs,
 then the server refreshes the cached catalog so the apps can load the new songs.
 
+## Downloader Auto-update
+
+YouTube changes frequently, so Aria maintains a separate, validated downloader
+installation. The updater installs the latest yt-dlp nightly release and its
+default dependencies (including EJS) in an isolated environment. It then makes
+a real 10 KiB YouTube test transfer. The new version becomes active atomically
+only when that test succeeds; the previous validated version is retained for
+rollback.
+
+Install or update the daily timer:
+
+```sh
+sudo cp systemd/aria-downloader-update.service /etc/systemd/system/
+sudo cp systemd/aria-downloader-update.timer /etc/systemd/system/
+sudo systemctl daemon-reload
+sudo systemctl enable --now aria-downloader-update.timer
+sudo systemctl start aria-downloader-update.service
+```
+
+Check the updater and its logs:
+
+```sh
+systemctl status aria-downloader-update.timer
+systemctl status aria-downloader-update.service
+journalctl -u aria-downloader-update.service -n 100 --no-pager
+```
+
+The timer runs every day around 04:15, with a randomized delay of up to 45
+minutes. `Persistent=true` makes systemd run a missed update when the laptop
+next starts. The apps and song server do not need to restart after a successful
+update because every download starts the currently validated yt-dlp executable.
+If a download still encounters a recognizable YouTube 403 or challenge error,
+Aria immediately runs the same safe updater and retries that download once.
+
 Aria reads track numbers and album artwork through `ffprobe`/`ffmpeg`, so install FFmpeg on Fedora if it is missing:
 
 ```sh

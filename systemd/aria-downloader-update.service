@@ -1,0 +1,15 @@
+[Unit]
+Description=Update and validate the Aria YouTube downloader
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=tofinovak
+Group=tofinovak
+WorkingDirectory=/home/tofinovak/aria-server
+Environment=HOME=/home/tofinovak
+Environment=PYTHONUNBUFFERED=1
+ExecStart=/usr/bin/python3 /home/tofinovak/aria-server/scripts/update_downloader.py
+Nice=10
+IOSchedulingClass=idle
