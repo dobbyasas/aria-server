@@ -15,7 +15,7 @@ from pathlib import Path
 
 
 DEFAULT_INSTALL_ROOT = Path.home() / ".local" / "share" / "aria-downloader"
-DEFAULT_TEST_URL = "https://www.youtube.com/watch?v=BaW_jenozKc"
+DEFAULT_TEST_URL = "https://www.youtube.com/watch?v=jNQXAC9IVRw"
 REQUIRED_COMMANDS = ("node", "ffmpeg", "ffprobe")
 
 
