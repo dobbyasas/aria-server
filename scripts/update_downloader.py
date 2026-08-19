@@ -5,7 +5,6 @@ from __future__ import annotations
 
 import argparse
 import os
-import re
 import shutil
 import subprocess
 import sys
@@ -138,11 +137,6 @@ def validate_downloader(executable: Path, node_path: str, test_url: str) -> str:
     return version
 
 
-def safe_version(value: str) -> str:
-    cleaned = re.sub(r"[^A-Za-z0-9._-]+", "-", value).strip("-.")
-    return cleaned or "unknown"
-
-
 def replace_symlink(link: Path, target: Path) -> None:
     if link.exists() and not link.is_symlink():
         raise UpdateError(f"Refusing to replace non-symlink path: {link}")
@@ -193,17 +187,34 @@ def activate_candidate(candidate: Path, install_root: Path, version: str, keep: 
     install_root = install_root.resolve()
     versions_dir = install_root / "versions"
     versions_dir.mkdir(parents=True, exist_ok=True)
+    if candidate.parent != versions_dir.resolve():
+        raise UpdateError(f"Candidate must already be inside {versions_dir}: {candidate}")
+
     current_link = install_root / "current"
     previous_link = install_root / "previous"
     old_current = linked_version(current_link, versions_dir)
+    linked_version(previous_link, versions_dir)
 
-    stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
-    target = versions_dir / f"{safe_version(version)}-{stamp}-{os.getpid()}"
-    candidate.rename(target)
+    target = candidate
+    replace_symlink(current_link, target)
+
+    try:
+        active_version = command_output(
+            [str(current_link / "bin" / "yt-dlp"), "--version"]
+        )
+        if active_version != version:
+            raise UpdateError(
+                f"Activated version mismatch: expected {version}, got {active_version}"
+            )
+    except UpdateError:
+        if old_current:
+            replace_symlink(current_link, old_current)
+        else:
+            current_link.unlink(missing_ok=True)
+        raise
 
     if old_current:
         replace_symlink(previous_link, old_current)
-    replace_symlink(current_link, target)
 
     protected = {target.resolve()}
     previous = linked_version(previous_link, versions_dir)
@@ -241,7 +252,12 @@ def main() -> int:
     install_root = args.install_root.expanduser().resolve()
     install_root.mkdir(parents=True, exist_ok=True)
     commands = require_commands()
-    candidate = Path(tempfile.mkdtemp(prefix=".candidate-", dir=install_root))
+    versions_dir = install_root / "versions"
+    versions_dir.mkdir(parents=True, exist_ok=True)
+    stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
+    candidate = Path(
+        tempfile.mkdtemp(prefix=f"version-{stamp}-", dir=versions_dir)
+    )
 
     try:
         executable = install_candidate(candidate, args.channel)
