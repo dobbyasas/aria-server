@@ -11,5 +11,8 @@ Before pushing any completed Aria change:
   reset the patch number to zero: `1.1.3` becomes `1.2.0`.
 - Change the major number only when the user explicitly requests it.
 - Bump once per completed user request, immediately before the related Git push.
+- Prepend a `CHANGELOG.txt` entry for the new version with `Created: YYYY-MM-DD`
+  and concise `Added`, `Changed`, `Fixed`, or `Removed` notes as applicable.
+- Preserve older changelog entries except when correcting a factual mistake.
 - Keep `VERSION`, Xcode `MARKETING_VERSION`, visible version labels, and the
   server's `ARIA_VERSION` synchronized across the sibling Aria repositories.
