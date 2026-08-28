@@ -22,7 +22,7 @@ from urllib.request import Request, urlopen
 
 
 SONG_EXTENSIONS = {".mp3", ".m4a", ".aac", ".wav", ".flac"}
-ARIA_VERSION = "1.2.0"
+ARIA_VERSION = "1.2.1"
 CATALOG_INDEX_VERSION = 4
 CATALOG_REFRESH_INTERVAL_SECONDS = 10
 DEFAULT_PAGE_LIMIT = 100
