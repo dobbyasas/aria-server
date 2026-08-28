@@ -9,17 +9,20 @@ import re
 import subprocess
 import sys
 import threading
+import time
 import uuid
 from datetime import datetime
 from http import HTTPStatus
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from time import monotonic
-from urllib.parse import parse_qs, quote, unquote, urlparse
+from urllib.error import HTTPError, URLError
+from urllib.parse import parse_qs, quote, unquote, urlencode, urlparse
+from urllib.request import Request, urlopen
 
 
 SONG_EXTENSIONS = {".mp3", ".m4a", ".aac", ".wav", ".flac"}
-ARIA_VERSION = "1.1.4"
+ARIA_VERSION = "1.2.0"
 CATALOG_INDEX_VERSION = 4
 CATALOG_REFRESH_INTERVAL_SECONDS = 10
 DEFAULT_PAGE_LIMIT = 100
@@ -38,6 +41,11 @@ PALETTES = [
 
 ANSI_ESCAPE_RE = re.compile(r"\x1b\[[0-?]*[ -/]*[@-~]")
 DOWNLOAD_PROGRESS_RE = re.compile(r"(\d+(?:\.\d+)?)%")
+LRC_LINE_RE = re.compile(r"^\s*((?:\[\d{1,3}:\d{2}(?:\.\d{1,3})?\])+)(.*)$")
+LRC_TIMESTAMP_RE = re.compile(r"\[(\d{1,3}):(\d{2})(?:\.(\d{1,3}))?\]")
+LYRICS_CACHE_VERSION = 1
+LYRICS_NOT_FOUND_TTL_SECONDS = 24 * 60 * 60
+LRCLIB_BASE_URL = "https://lrclib.net/api/get"
 
 
 def default_songs_dir() -> Path:
@@ -560,6 +568,256 @@ class CatalogIndex:
                 pass
 
 
+def parse_synced_lyrics(text: str | None) -> list[dict]:
+    if not text:
+        return []
+
+    timed_lines: list[tuple[float, str]] = []
+    for raw_line in text.splitlines():
+        match = LRC_LINE_RE.match(raw_line)
+        if not match:
+            continue
+
+        timestamps, lyric_text = match.groups()
+        lyric_text = lyric_text.strip()
+        for timestamp in LRC_TIMESTAMP_RE.finditer(timestamps):
+            minutes, seconds, fraction = timestamp.groups()
+            fraction_value = float(f"0.{fraction}") if fraction else 0.0
+            start_time = int(minutes) * 60 + int(seconds) + fraction_value
+            timed_lines.append((start_time, lyric_text))
+
+    timed_lines.sort(key=lambda item: item[0])
+    return [
+        {
+            "id": f"{index}-{start_time:.3f}",
+            "startTime": round(start_time, 3),
+            "text": lyric_text,
+        }
+        for index, (start_time, lyric_text) in enumerate(timed_lines)
+    ]
+
+
+def plain_lyrics_from_synced_lines(lines: list[dict]) -> str | None:
+    text = "\n".join(line["text"] for line in lines if line.get("text")).strip()
+    return text or None
+
+
+def local_lyrics_text(path: Path) -> tuple[str, str] | None:
+    for suffix in (".lrc", ".lyrics", ".txt"):
+        sidecar = path.with_suffix(suffix)
+        if not sidecar.exists() or not sidecar.is_file():
+            continue
+
+        try:
+            text = sidecar.read_text(encoding="utf-8-sig").strip()
+        except (OSError, UnicodeError):
+            continue
+
+        if text:
+            return text, "sidecar"
+
+    try:
+        result = subprocess.run(
+            [
+                "ffprobe",
+                "-v",
+                "error",
+                "-show_entries",
+                "format_tags",
+                "-of",
+                "json",
+                str(path),
+            ],
+            check=True,
+            capture_output=True,
+            text=True,
+            timeout=5,
+        )
+        payload = json.loads(result.stdout)
+    except (FileNotFoundError, subprocess.SubprocessError, json.JSONDecodeError):
+        return None
+
+    tags = {
+        str(key).casefold().replace("_", "").replace(" ", ""): value
+        for key, value in payload.get("format", {}).get("tags", {}).items()
+    }
+    for key in ("syncedlyrics", "unsyncedlyrics", "lyrics", "lyric"):
+        value = tags.get(key)
+        if isinstance(value, str) and value.strip():
+            return value.strip(), "embedded"
+
+    return None
+
+
+def lyrics_result(
+    track_id: str,
+    source: str,
+    plain_lyrics: str | None = None,
+    synced_lyrics: str | None = None,
+    instrumental: bool = False,
+) -> dict:
+    synced_lines = parse_synced_lyrics(synced_lyrics)
+    clean_plain_lyrics = str(plain_lyrics or "").strip() or plain_lyrics_from_synced_lines(synced_lines)
+    available = instrumental or bool(clean_plain_lyrics) or bool(synced_lines)
+
+    return {
+        "trackID": track_id,
+        "available": available,
+        "instrumental": instrumental,
+        "isSynced": bool(synced_lines),
+        "source": source if available else "none",
+        "plainLyrics": clean_plain_lyrics,
+        "syncedLines": synced_lines,
+    }
+
+
+class LyricsManager:
+    def __init__(self, songs_dir: Path, cache_dir: Path | None = None) -> None:
+        self.songs_dir = songs_dir.resolve()
+        self.cache_dir = (
+            cache_dir
+            or Path(os.environ.get(
+                "ARIA_LYRICS_CACHE_DIR",
+                str(Path.home() / ".cache" / "aria-song-server" / "lyrics"),
+            ))
+        ).expanduser().resolve()
+        self.lock = threading.RLock()
+
+    def lyrics_for(self, record: dict) -> dict:
+        track_id = str(record.get("id") or "")
+        path = (self.songs_dir / str(record.get("filename") or "")).resolve()
+        if not track_id or path.parent != self.songs_dir or not path.is_file():
+            return lyrics_result(track_id, "none")
+
+        local_lyrics = local_lyrics_text(path)
+        if local_lyrics:
+            text, source = local_lyrics
+            lines = parse_synced_lyrics(text)
+            return lyrics_result(
+                track_id,
+                source,
+                plain_lyrics=None if lines else text,
+                synced_lyrics=text if lines else None,
+            )
+
+        signature = self.signature_for(record)
+        cached = self.load_cached(track_id, signature)
+        if cached is not None:
+            return cached
+
+        result = self.fetch_from_lrclib(record)
+        self.save_cached(track_id, signature, result)
+        return result
+
+    def fetch_from_lrclib(self, record: dict) -> dict:
+        track_id = str(record.get("id") or "")
+        title = str(record.get("title") or "").strip()
+        artist = str(record.get("artist") or "").strip()
+        if not title or not artist or artist.casefold() == "unknown artist":
+            return lyrics_result(track_id, "none")
+
+        params = {
+            "track_name": title,
+            "artist_name": artist,
+        }
+        album = str(record.get("album") or "").strip()
+        if album and album.casefold() not in {"unknown album", "fedora songs"}:
+            params["album_name"] = album
+
+        duration = round(float(record.get("duration") or 0))
+        if 1 <= duration <= 3600:
+            params["duration"] = str(duration)
+
+        request = Request(
+            f"{LRCLIB_BASE_URL}?{urlencode(params)}",
+            headers={
+                "Accept": "application/json",
+                "User-Agent": (
+                    f"AriaSongServer/{ARIA_VERSION} "
+                    "(https://github.com/dobbyasas/aria-server)"
+                ),
+            },
+        )
+
+        try:
+            with urlopen(request, timeout=8) as response:
+                payload = json.load(response)
+        except HTTPError:
+            return lyrics_result(track_id, "none")
+        except (URLError, TimeoutError, OSError, json.JSONDecodeError, ValueError):
+            return lyrics_result(track_id, "none")
+
+        if not isinstance(payload, dict):
+            return lyrics_result(track_id, "none")
+
+        return lyrics_result(
+            track_id,
+            "lrclib",
+            plain_lyrics=payload.get("plainLyrics"),
+            synced_lyrics=payload.get("syncedLyrics"),
+            instrumental=bool(payload.get("instrumental")),
+        )
+
+    def signature_for(self, record: dict) -> str:
+        return "|".join(
+            str(record.get(key) or "")
+            for key in ("filename", "mtimeNs", "title", "artist", "album", "duration")
+        )
+
+    def cache_path(self, track_id: str) -> Path:
+        safe_id = re.sub(r"[^A-Za-z0-9_.-]", "_", track_id)
+        return self.cache_dir / f"{safe_id}.json"
+
+    def load_cached(self, track_id: str, signature: str) -> dict | None:
+        path = self.cache_path(track_id)
+        with self.lock:
+            try:
+                payload = json.loads(path.read_text(encoding="utf-8"))
+            except (FileNotFoundError, OSError, json.JSONDecodeError):
+                return None
+
+        if payload.get("version") != LYRICS_CACHE_VERSION or payload.get("signature") != signature:
+            return None
+
+        result = payload.get("result")
+        if not isinstance(result, dict):
+            return None
+
+        expires_at = payload.get("expiresAt")
+        if expires_at is not None:
+            try:
+                if float(expires_at or 0) <= time.time():
+                    return None
+            except (TypeError, ValueError):
+                return None
+
+        return result
+
+    def save_cached(self, track_id: str, signature: str, result: dict) -> None:
+        payload = {
+            "version": LYRICS_CACHE_VERSION,
+            "signature": signature,
+            "result": result,
+        }
+        if not result.get("available"):
+            payload["expiresAt"] = time.time() + LYRICS_NOT_FOUND_TTL_SECONDS
+
+        temporary_path = self.cache_path(track_id).with_suffix(".tmp")
+        with self.lock:
+            try:
+                self.cache_dir.mkdir(parents=True, exist_ok=True)
+                temporary_path.write_text(
+                    json.dumps(payload, ensure_ascii=False, indent=2),
+                    encoding="utf-8",
+                )
+                temporary_path.replace(self.cache_path(track_id))
+            except OSError:
+                try:
+                    temporary_path.unlink(missing_ok=True)
+                except OSError:
+                    pass
+
+
 def embedded_artwork(path: Path) -> bytes | None:
     try:
         result = subprocess.run(
@@ -889,6 +1147,10 @@ class AriaSongHandler(BaseHTTPRequestHandler):
     def download_manager(self) -> DownloadManager:
         return self.server.download_manager
 
+    @property
+    def lyrics_manager(self) -> LyricsManager:
+        return self.server.lyrics_manager
+
     def do_OPTIONS(self) -> None:
         self.send_response(HTTPStatus.NO_CONTENT)
         self.send_common_headers()
@@ -920,6 +1182,8 @@ class AriaSongHandler(BaseHTTPRequestHandler):
             )
         elif parsed.path == "/api/tracks":
             self.write_tracks(parsed)
+        elif parsed.path.startswith("/api/tracks/") and parsed.path.endswith("/lyrics"):
+            self.write_lyrics(parsed)
         elif parsed.path.startswith("/api/tracks/"):
             self.write_track(parsed)
         elif parsed.path == "/api/search":
@@ -1004,6 +1268,21 @@ class AriaSongHandler(BaseHTTPRequestHandler):
             **track,
             "metadata": metadata,
         })
+
+    def write_lyrics(self, parsed) -> None:
+        track_id = unquote(
+            parsed.path.removeprefix("/api/tracks/").removesuffix("/lyrics")
+        ).strip("/")
+        if not track_id:
+            self.send_error(HTTPStatus.BAD_REQUEST, "Missing track id")
+            return
+
+        record = self.catalog_index.track_for_id(track_id)
+        if record is None:
+            self.send_error(HTTPStatus.NOT_FOUND, "Track not found")
+            return
+
+        self.write_json(self.lyrics_manager.lyrics_for(record))
 
     def handle_track_update(self) -> None:
         parsed = urlparse(self.path)
@@ -1517,10 +1796,12 @@ def main() -> None:
     server.songs_dir = songs_dir
     server.catalog_index = CatalogIndex(songs_dir)
     server.download_manager = DownloadManager(Path(__file__).resolve().parent.parent, songs_dir, server.catalog_index)
+    server.lyrics_manager = LyricsManager(songs_dir)
     server.catalog_index.refresh_in_background(force=True)
 
     print(f"Serving {songs_dir} at http://{args.host}:{args.port}")
     print(f"Catalog cache: {server.catalog_index.index_path}")
+    print(f"Lyrics cache: {server.lyrics_manager.cache_dir}")
     print("Press Ctrl+C to stop.")
 
     try:

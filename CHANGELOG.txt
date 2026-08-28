@@ -1,6 +1,19 @@
 ARIA SONG SERVER - VERSION HISTORY
 ==================================
 
+Version 1.2.0
+Created: 2026-08-28
+
+Added:
+- Added `GET /api/tracks/{id}/lyrics` for synchronized and plain lyrics.
+- Added local `.lrc`, `.lyrics`, `.txt`, and embedded-tag lyric discovery.
+- Added no-key LRCLIB lookup with responsible identification and persistent caching.
+- Added one-day negative-result caching to avoid repeated unavailable lookups.
+
+Changed:
+- Advanced the shared Aria release from 1.1.4 to 1.2.0 for the lyrics feature.
+
+
 Version 1.1.4
 Created: 2026-08-19
 

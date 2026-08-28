@@ -1,6 +1,6 @@
 # Aria Song Server
 
-Current Aria version: `1.1.4`
+Current Aria version: `1.2.0`
 
 Run this on the Fedora laptop from `~/aria-server`:
 
@@ -15,6 +15,7 @@ The server reads songs from `~/aria-server/songs`, keeps a cached catalog index 
 - `GET /api/tracks` for Aria's legacy full catalog response
 - `GET /api/tracks?offset=0&limit=100` for paged tracks
 - `GET /api/tracks?q=nirvana&offset=0&limit=100` for paged track search
+- `GET /api/tracks/<track-id>/lyrics` for synchronized or plain lyrics
 - `GET /api/search?q=nirvana` for combined track and album search
 - `GET /api/albums?offset=0&limit=100` for paged album summaries
 - `GET /api/albums?q=nirvana` for album search
@@ -31,6 +32,11 @@ seconds while serving catalog requests, the server only re-reads metadata for
 new or changed files. Adding thousands of songs does not require probing every
 file for every app launch. Delete `.aria_catalog_index.json` to force a clean
 rebuild.
+
+Lyrics are resolved from a matching `.lrc`, `.lyrics`, or `.txt` sidecar first,
+then from embedded audio tags, and finally from LRCLIB. Online results are
+cached under `~/.cache/aria-song-server/lyrics`; unsuccessful matches are
+retried after one day.
 
 Downloads reuse `scripts/download.py`, the same script previously run from the
 terminal. Send JSON shaped like:
