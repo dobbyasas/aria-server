@@ -1,6 +1,15 @@
 ARIA SONG SERVER - VERSION HISTORY
 ==================================
 
+Version 1.5.0
+Created: 2026-08-29
+
+Added:
+- Added persistent GET, PUT, and DELETE playlist APIs shared by every Aria client.
+- Added atomic storage for playlist names, ordered track IDs, custom covers, and revisions.
+- Added validation, cover-size limits, duplicate track removal, and stale-revision protection.
+
+
 Version 1.4.0
 Created: 2026-08-29
 

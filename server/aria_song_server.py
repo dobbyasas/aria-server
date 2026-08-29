@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import argparse
+import base64
 import json
 import mimetypes
 import os
@@ -22,7 +23,7 @@ from urllib.request import Request, urlopen
 
 
 SONG_EXTENSIONS = {".mp3", ".m4a", ".aac", ".wav", ".flac"}
-ARIA_VERSION = "1.4.0"
+ARIA_VERSION = "1.5.0"
 CATALOG_INDEX_VERSION = 4
 CATALOG_REFRESH_INTERVAL_SECONDS = 10
 DEFAULT_PAGE_LIMIT = 100
@@ -46,6 +47,8 @@ LRC_TIMESTAMP_RE = re.compile(r"\[(\d{1,3}):(\d{2})(?:\.(\d{1,3}))?\]")
 LYRICS_CACHE_VERSION = 1
 LYRICS_NOT_FOUND_TTL_SECONDS = 24 * 60 * 60
 LRCLIB_BASE_URL = "https://lrclib.net/api/get"
+PLAYLIST_STORE_VERSION = 1
+MAX_PLAYLIST_COVER_BYTES = 2 * 1024 * 1024
 
 
 def default_songs_dir() -> Path:
@@ -1132,6 +1135,117 @@ class DownloadManager:
                         self.jobs.pop(old_job.id, None)
 
 
+class PlaylistManager:
+    def __init__(self, songs_dir: Path):
+        self.path = songs_dir / ".aria_playlists.json"
+        self.lock = threading.RLock()
+        self.playlists: dict[str, dict] = {}
+        self._load()
+
+    def _load(self) -> None:
+        try:
+            payload = json.loads(self.path.read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError):
+            return
+
+        if payload.get("version") != PLAYLIST_STORE_VERSION:
+            return
+
+        for item in payload.get("playlists", []):
+            if not isinstance(item, dict):
+                continue
+            try:
+                normalized = self._normalized(item, item.get("id"))
+            except ValueError:
+                continue
+            if normalized is not None:
+                self.playlists[normalized["id"]] = normalized
+
+    def all(self) -> list[dict]:
+        with self.lock:
+            return [dict(item) for item in self.playlists.values()]
+
+    def upsert(self, playlist_id: str, payload: dict) -> dict:
+        normalized = self._normalized(payload, playlist_id)
+        if normalized is None:
+            raise ValueError("Invalid playlist payload")
+
+        with self.lock:
+            existing = self.playlists.get(playlist_id)
+            if existing is not None and existing.get("revision", 0) > normalized["revision"]:
+                return dict(existing)
+            self.playlists[playlist_id] = normalized
+            self._save()
+            return dict(normalized)
+
+    def delete(self, playlist_id: str) -> bool:
+        with self.lock:
+            if playlist_id not in self.playlists:
+                return False
+            del self.playlists[playlist_id]
+            self._save()
+            return True
+
+    def _normalized(self, payload: dict, playlist_id: str | None) -> dict | None:
+        try:
+            normalized_id = str(uuid.UUID(str(playlist_id)))
+        except (ValueError, TypeError, AttributeError):
+            return None
+
+        title = str(payload.get("title") or "Untitled Playlist").strip()[:120]
+        if not title:
+            title = "Untitled Playlist"
+
+        raw_track_ids = payload.get("trackIDs", [])
+        if not isinstance(raw_track_ids, list):
+            return None
+
+        track_ids: list[str] = []
+        seen: set[str] = set()
+        for raw_track_id in raw_track_ids[:10_000]:
+            try:
+                track_id = str(uuid.UUID(str(raw_track_id)))
+            except (ValueError, TypeError, AttributeError):
+                continue
+            if track_id not in seen:
+                seen.add(track_id)
+                track_ids.append(track_id)
+
+        cover_data = payload.get("coverImageData")
+        if cover_data is not None:
+            if not isinstance(cover_data, str):
+                return None
+            try:
+                decoded_cover = base64.b64decode(cover_data, validate=True)
+            except (ValueError, TypeError):
+                return None
+            if len(decoded_cover) > MAX_PLAYLIST_COVER_BYTES:
+                raise ValueError("Playlist cover is too large")
+
+        return {
+            "id": normalized_id,
+            "title": title,
+            "trackIDs": track_ids,
+            "coverImageData": cover_data,
+            "revision": max(int(payload.get("revision") or 0), 0),
+        }
+
+    def _save(self) -> None:
+        self.path.parent.mkdir(parents=True, exist_ok=True)
+        temporary_path = self.path.with_suffix(".json.tmp")
+        temporary_path.write_text(
+            json.dumps(
+                {
+                    "version": PLAYLIST_STORE_VERSION,
+                    "playlists": list(self.playlists.values()),
+                },
+                indent=2,
+            ),
+            encoding="utf-8",
+        )
+        temporary_path.replace(self.path)
+
+
 class AriaSongHandler(BaseHTTPRequestHandler):
     server_version = f"AriaSongServer/{ARIA_VERSION}"
 
@@ -1151,10 +1265,14 @@ class AriaSongHandler(BaseHTTPRequestHandler):
     def lyrics_manager(self) -> LyricsManager:
         return self.server.lyrics_manager
 
+    @property
+    def playlist_manager(self) -> PlaylistManager:
+        return self.server.playlist_manager
+
     def do_OPTIONS(self) -> None:
         self.send_response(HTTPStatus.NO_CONTENT)
         self.send_common_headers()
-        self.send_header("Access-Control-Allow-Methods", "GET, HEAD, OPTIONS, PATCH, PUT, POST")
+        self.send_header("Access-Control-Allow-Methods", "GET, HEAD, OPTIONS, PATCH, PUT, POST, DELETE")
         self.send_header("Access-Control-Allow-Headers", "Content-Type")
         self.end_headers()
 
@@ -1162,7 +1280,18 @@ class AriaSongHandler(BaseHTTPRequestHandler):
         self.handle_track_update()
 
     def do_PUT(self) -> None:
-        self.handle_track_update()
+        parsed = urlparse(self.path)
+        if parsed.path.startswith("/api/playlists/"):
+            self.upsert_playlist(parsed)
+        else:
+            self.handle_track_update()
+
+    def do_DELETE(self) -> None:
+        parsed = urlparse(self.path)
+        if parsed.path.startswith("/api/playlists/"):
+            self.delete_playlist(parsed)
+        else:
+            self.send_error(HTTPStatus.NOT_FOUND, "Not found")
 
     def do_POST(self) -> None:
         parsed = urlparse(self.path)
@@ -1195,6 +1324,8 @@ class AriaSongHandler(BaseHTTPRequestHandler):
             self.write_album_tracks(unquote(album_id), parsed)
         elif parsed.path == "/api/catalog":
             self.write_catalog_summary()
+        elif parsed.path == "/api/playlists":
+            self.write_json(self.playlist_manager.all())
         elif parsed.path == "/api/downloads":
             self.write_downloads()
         elif parsed.path.startswith("/api/downloads/"):
@@ -1205,6 +1336,36 @@ class AriaSongHandler(BaseHTTPRequestHandler):
             self.write_artwork(parsed.path.removeprefix("/api/artwork/"))
         else:
             self.send_error(HTTPStatus.NOT_FOUND, "Not found")
+
+    def upsert_playlist(self, parsed) -> None:
+        playlist_id = unquote(parsed.path.removeprefix("/api/playlists/")).strip("/")
+        payload = self.read_json_body()
+        if payload is None:
+            return
+
+        try:
+            playlist = self.playlist_manager.upsert(playlist_id, payload)
+        except ValueError as error:
+            self.write_json({"error": str(error)}, status=HTTPStatus.BAD_REQUEST)
+            return
+
+        self.write_json(playlist)
+
+    def delete_playlist(self, parsed) -> None:
+        playlist_id = unquote(parsed.path.removeprefix("/api/playlists/")).strip("/")
+        try:
+            playlist_id = str(uuid.UUID(playlist_id))
+        except (ValueError, TypeError):
+            self.send_error(HTTPStatus.BAD_REQUEST, "Invalid playlist id")
+            return
+
+        if not self.playlist_manager.delete(playlist_id):
+            self.send_error(HTTPStatus.NOT_FOUND, "Playlist not found")
+            return
+
+        self.send_response(HTTPStatus.NO_CONTENT)
+        self.send_common_headers()
+        self.end_headers()
 
     def do_HEAD(self) -> None:
         parsed = urlparse(self.path)
@@ -1761,7 +1922,7 @@ class AriaSongHandler(BaseHTTPRequestHandler):
 
     def send_common_headers(self) -> None:
         self.send_header("Access-Control-Allow-Origin", "*")
-        self.send_header("Access-Control-Allow-Methods", "GET, HEAD, OPTIONS, PATCH, PUT, POST")
+        self.send_header("Access-Control-Allow-Methods", "GET, HEAD, OPTIONS, PATCH, PUT, POST, DELETE")
         self.send_header("Access-Control-Allow-Headers", "Content-Type")
         self.send_header("Cache-Control", "no-store")
 
@@ -1797,6 +1958,7 @@ def main() -> None:
     server.catalog_index = CatalogIndex(songs_dir)
     server.download_manager = DownloadManager(Path(__file__).resolve().parent.parent, songs_dir, server.catalog_index)
     server.lyrics_manager = LyricsManager(songs_dir)
+    server.playlist_manager = PlaylistManager(songs_dir)
     server.catalog_index.refresh_in_background(force=True)
 
     print(f"Serving {songs_dir} at http://{args.host}:{args.port}")

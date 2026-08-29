@@ -1,6 +1,6 @@
 # Aria Song Server
 
-Current Aria version: `1.4.0`
+Current Aria version: `1.5.0`
 
 Run this on the Fedora laptop from `~/aria-server`:
 
@@ -20,6 +20,9 @@ The server reads songs from `~/aria-server/songs`, keeps a cached catalog index 
 - `GET /api/albums?offset=0&limit=100` for paged album summaries
 - `GET /api/albums?q=nirvana` for album search
 - `GET /api/albums/<album-id>/tracks?offset=0&limit=100` for album tracks sorted by metadata track number
+- `GET /api/playlists` for shared playlists on every Aria device
+- `PUT /api/playlists/<playlist-id>` to create or update a shared playlist
+- `DELETE /api/playlists/<playlist-id>` to remove a shared playlist
 - `POST /api/downloads` to start a server-side YouTube playlist/album download
 - `GET /api/downloads` for the active download plus recent jobs
 - `GET /api/downloads/<download-id>` for progress, status, and output tail
@@ -32,6 +35,10 @@ seconds while serving catalog requests, the server only re-reads metadata for
 new or changed files. Adding thousands of songs does not require probing every
 file for every app launch. Delete `.aria_catalog_index.json` to force a clean
 rebuild.
+
+Shared playlists are stored atomically in `songs/.aria_playlists.json`. The
+server preserves their names, ordered track IDs, compressed custom covers, and
+edit revisions so stale updates from another device cannot overwrite newer edits.
 
 Lyrics are resolved from a matching `.lrc`, `.lyrics`, or `.txt` sidecar first,
 then from embedded audio tags, and finally from LRCLIB. Online results are
