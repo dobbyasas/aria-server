@@ -23,7 +23,7 @@ from urllib.request import Request, urlopen
 
 
 SONG_EXTENSIONS = {".mp3", ".m4a", ".aac", ".wav", ".flac"}
-ARIA_VERSION = "1.10.0"
+ARIA_VERSION = "1.11.0"
 CATALOG_INDEX_VERSION = 4
 CATALOG_REFRESH_INTERVAL_SECONDS = 10
 DEFAULT_PAGE_LIMIT = 100
@@ -50,6 +50,8 @@ LRCLIB_BASE_URL = "https://lrclib.net/api/get"
 PLAYLIST_STORE_VERSION = 1
 MAX_PLAYLIST_COVER_BYTES = 2 * 1024 * 1024
 MAX_ARTWORK_BYTES = 12 * 1024 * 1024
+STANDALONE_TRACK_STORE_VERSION = 1
+STANDALONE_TRACK_STORE_NAME = ".aria_standalone_tracks.json"
 YOUTUBE_ARTWORK_HOST_SUFFIXES = ("googleusercontent.com", "ytimg.com")
 ARTWORK_REQUEST_USER_AGENT = (
     "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
@@ -70,6 +72,42 @@ def song_files(songs_dir: Path) -> list[Path]:
         ),
         key=lambda path: path.name.lower(),
     )
+
+
+def standalone_track_filenames(songs_dir: Path) -> set[str]:
+    path = songs_dir / STANDALONE_TRACK_STORE_NAME
+    try:
+        payload = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return set()
+
+    if payload.get("version") != STANDALONE_TRACK_STORE_VERSION:
+        return set()
+
+    filenames = payload.get("filenames", [])
+    if not isinstance(filenames, list):
+        return set()
+    return {
+        str(filename)
+        for filename in filenames
+        if isinstance(filename, str) and filename
+    }
+
+
+def save_standalone_track_filenames(songs_dir: Path, filenames: set[str]) -> None:
+    path = songs_dir / STANDALONE_TRACK_STORE_NAME
+    temporary_path = path.with_suffix(".json.tmp")
+    temporary_path.write_text(
+        json.dumps(
+            {
+                "version": STANDALONE_TRACK_STORE_VERSION,
+                "filenames": sorted(filenames, key=str.casefold),
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
+    temporary_path.replace(path)
 
 
 def ffprobe_metadata(path: Path) -> dict:
@@ -197,7 +235,7 @@ def track_payload(path: Path, base_url: str, metadata: dict, artwork_url: str | 
     }
 
 
-def build_track_record(path: Path, metadata: dict) -> dict:
+def build_track_record(path: Path, metadata: dict, is_standalone: bool = False) -> dict:
     fallback_title, fallback_artist = title_from_filename(path)
     stat = path.stat()
 
@@ -221,6 +259,7 @@ def build_track_record(path: Path, metadata: dict) -> dict:
         "artwork": palette_for(path),
         "hasArtwork": bool(metadata.get("hasArtwork")),
         "isExplicit": False,
+        "isStandalone": is_standalone,
     }
     record["searchText"] = search_text_for(record)
     record["albumID"] = album_id_for(album)
@@ -325,6 +364,7 @@ def track_payload_from_record(record: dict, base_url: str, artwork_source_record
         "streamURL": f"{base_url}/api/stream/{filename}",
         "artworkURL": artwork_url,
         "isExplicit": bool(record.get("isExplicit")),
+        "isStandalone": bool(record.get("isStandalone")),
     }
 
 
@@ -523,6 +563,7 @@ class CatalogIndex:
         record.setdefault("albumArtist", record.get("artist") or "Unknown Artist")
         record.setdefault("hasArtwork", False)
         record.setdefault("isExplicit", False)
+        record.setdefault("isStandalone", False)
         record.setdefault("artwork", palette_for(Path(record["filename"])))
         return record
 
@@ -571,6 +612,7 @@ class CatalogIndex:
 
         cache = self.load()
         cached_tracks = cache.get("tracks", {})
+        standalone_filenames = standalone_track_filenames(self.songs_dir)
         records: list[dict] = []
         changed = False
 
@@ -586,7 +628,16 @@ class CatalogIndex:
                 record = self.normalized_record(cached_record)
             else:
                 metadata = ffprobe_metadata(path)
-                record = build_track_record(path, metadata)
+                record = build_track_record(
+                    path,
+                    metadata,
+                    is_standalone=path.name in standalone_filenames,
+                )
+                changed = True
+
+            is_standalone = path.name in standalone_filenames
+            if bool(record.get("isStandalone")) != is_standalone:
+                record["isStandalone"] = is_standalone
                 changed = True
 
             records.append(record)
@@ -605,6 +656,46 @@ class CatalogIndex:
 
         if changed or cache.get("version") != CATALOG_INDEX_VERSION:
             self.save(records)
+
+    def delete_album(self, album_id: str) -> tuple[int, set[str]] | None:
+        with self.lock:
+            records = [
+                dict(record)
+                for record in self.records
+                if record.get("albumID") == album_id
+                and not bool(record.get("isStandalone"))
+            ]
+
+        if not records:
+            return None
+
+        deleted_track_ids: set[str] = set()
+        deleted_filenames: set[str] = set()
+        songs_root = self.songs_dir.resolve()
+
+        for record in records:
+            filename = str(record.get("filename") or "")
+            path = (self.songs_dir / filename).resolve()
+            if not filename or path.parent != songs_root:
+                raise OSError("Album contains an unsafe filename")
+            if path.is_file():
+                path.unlink()
+            for suffix in (".lrc", ".lyrics", ".txt"):
+                sidecar = path.with_suffix(suffix)
+                if sidecar.is_file():
+                    sidecar.unlink()
+            deleted_track_ids.add(str(record.get("id")))
+            deleted_filenames.add(filename)
+
+        standalone = standalone_track_filenames(self.songs_dir)
+        if standalone.intersection(deleted_filenames):
+            save_standalone_track_filenames(
+                self.songs_dir,
+                standalone.difference(deleted_filenames),
+            )
+
+        self.refresh(force=True)
+        return len(deleted_filenames), deleted_track_ids
 
     def load(self) -> dict:
         try:
@@ -1060,12 +1151,13 @@ class DownloadValidationError(ValueError):
 
 
 class DownloadJob:
-    def __init__(self, link: str, album: str, album_artist: str, year: str) -> None:
+    def __init__(self, link: str, album: str, album_artist: str, year: str, kind: str) -> None:
         self.id = str(uuid.uuid4())
         self.link = link
         self.album = album
         self.album_artist = album_artist
         self.year = year
+        self.kind = kind
         self.status = "queued"
         self.phase = "Queued"
         self.message = "Waiting to start"
@@ -1184,6 +1276,7 @@ class DownloadJob:
                 "album": self.album,
                 "albumArtist": self.album_artist,
                 "year": self.year,
+                "kind": self.kind,
                 "filesStarted": self.files_started,
                 "audioConverted": self.audio_converted,
                 "metadataLines": self.metadata_lines,
@@ -1221,15 +1314,24 @@ class DownloadManager:
             or ""
         ).strip()
         year = str(payload.get("year") or "").strip()
+        kind = str(payload.get("kind") or "album").strip().casefold()
 
         if not link:
-            raise DownloadValidationError("Missing playlist / album link")
-        if not album:
+            raise DownloadValidationError("Missing YouTube Music link")
+        if kind not in {"album", "song", "playlist"}:
+            raise DownloadValidationError("Download kind must be album, song, or playlist")
+        if kind == "album" and not album:
             raise DownloadValidationError("Missing album name")
-        if not album_artist:
+        if kind == "album" and not album_artist:
             raise DownloadValidationError("Missing album artist")
 
-        job = DownloadJob(link=link, album=album, album_artist=album_artist, year=year)
+        job = DownloadJob(
+            link=link,
+            album=album,
+            album_artist=album_artist,
+            year=year,
+            kind=kind,
+        )
 
         with self.lock:
             active = self.active_job()
@@ -1270,8 +1372,20 @@ class DownloadManager:
     def run_job(self, job: DownloadJob) -> None:
         job.mark_running()
         script_path = self.base_dir / "scripts" / "download.py"
-        command = [sys.executable, str(script_path)]
-        input_text = "\n".join([job.link, job.album, job.album_artist, job.year]) + "\n"
+        command = [
+            sys.executable,
+            str(script_path),
+            "--mode",
+            job.kind,
+            "--link",
+            job.link,
+        ]
+        if job.album:
+            command.extend(["--album", job.album])
+        if job.album_artist:
+            command.extend(["--artist", job.album_artist])
+        if job.year:
+            command.extend(["--year", job.year])
         environment = dict(os.environ)
         environment.setdefault("PYTHONUNBUFFERED", "1")
         environment.setdefault("TERM", "dumb")
@@ -1280,7 +1394,6 @@ class DownloadManager:
             process = subprocess.Popen(
                 command,
                 cwd=str(self.base_dir),
-                stdin=subprocess.PIPE,
                 stdout=subprocess.PIPE,
                 stderr=subprocess.STDOUT,
                 text=True,
@@ -1291,13 +1404,6 @@ class DownloadManager:
             job.fail(f"Could not start downloader: {error}")
             self.clear_active(job)
             return
-
-        try:
-            assert process.stdin is not None
-            process.stdin.write(input_text)
-            process.stdin.close()
-        except (BrokenPipeError, OSError):
-            pass
 
         try:
             assert process.stdout is not None
@@ -1378,6 +1484,29 @@ class PlaylistManager:
             del self.playlists[playlist_id]
             self._save()
             return True
+
+    def remove_track_ids(self, track_ids: set[str]) -> int:
+        if not track_ids:
+            return 0
+
+        changed_count = 0
+        with self.lock:
+            for playlist_id, playlist in list(self.playlists.items()):
+                remaining_ids = [
+                    track_id
+                    for track_id in playlist.get("trackIDs", [])
+                    if track_id not in track_ids
+                ]
+                if len(remaining_ids) == len(playlist.get("trackIDs", [])):
+                    continue
+                updated = dict(playlist)
+                updated["trackIDs"] = remaining_ids
+                updated["revision"] = int(updated.get("revision") or 0) + 1
+                self.playlists[playlist_id] = updated
+                changed_count += 1
+            if changed_count:
+                self._save()
+        return changed_count
 
     def _normalized(self, payload: dict, playlist_id: str | None) -> dict | None:
         try:
@@ -1483,6 +1612,10 @@ class AriaSongHandler(BaseHTTPRequestHandler):
         parsed = urlparse(self.path)
         if parsed.path.startswith("/api/playlists/"):
             self.delete_playlist(parsed)
+        elif parsed.path.startswith("/api/tracks/") and parsed.path.endswith("/album"):
+            self.delete_track_album(parsed)
+        elif parsed.path.startswith("/api/albums/"):
+            self.delete_album(parsed)
         else:
             self.send_error(HTTPStatus.NOT_FOUND, "Not found")
 
@@ -1561,6 +1694,59 @@ class AriaSongHandler(BaseHTTPRequestHandler):
         self.send_response(HTTPStatus.NO_CONTENT)
         self.send_common_headers()
         self.end_headers()
+
+    def delete_album(self, parsed) -> None:
+        album_id = unquote(parsed.path.removeprefix("/api/albums/")).strip("/")
+        if not album_id:
+            self.write_json({"error": "Missing album id"}, status=HTTPStatus.BAD_REQUEST)
+            return
+        if self.download_manager.active_job() is not None:
+            self.write_json(
+                {"error": "Wait for the active music download to finish before deleting an album."},
+                status=HTTPStatus.CONFLICT,
+            )
+            return
+
+        try:
+            result = self.catalog_index.delete_album(album_id)
+        except OSError as error:
+            self.write_json(
+                {"error": f"Could not delete album files: {error}"},
+                status=HTTPStatus.INTERNAL_SERVER_ERROR,
+            )
+            return
+
+        if result is None:
+            self.write_json({"error": "Album not found"}, status=HTTPStatus.NOT_FOUND)
+            return
+
+        deleted_files, deleted_track_ids = result
+        updated_playlists = self.playlist_manager.remove_track_ids(deleted_track_ids)
+        self.write_json({
+            "deletedFiles": deleted_files,
+            "deletedTrackIDs": sorted(deleted_track_ids),
+            "updatedPlaylists": updated_playlists,
+        })
+
+    def delete_track_album(self, parsed) -> None:
+        track_id = unquote(
+            parsed.path.removeprefix("/api/tracks/").removesuffix("/album")
+        ).strip("/")
+        record = self.catalog_index.track_for_id(track_id)
+        if record is None:
+            self.write_json({"error": "Track not found"}, status=HTTPStatus.NOT_FOUND)
+            return
+        if bool(record.get("isStandalone")):
+            self.write_json(
+                {"error": "Standalone songs do not belong to a deletable album."},
+                status=HTTPStatus.BAD_REQUEST,
+            )
+            return
+
+        class AlbumPath:
+            path = f"/api/albums/{quote(str(record.get('albumID') or ''))}"
+
+        self.delete_album(AlbumPath())
 
     def do_HEAD(self) -> None:
         parsed = urlparse(self.path)
@@ -2010,6 +2196,8 @@ class AriaSongHandler(BaseHTTPRequestHandler):
         grouped: dict[str, list[dict]] = {}
 
         for record in self.catalog_index.tracks():
+            if bool(record.get("isStandalone")):
+                continue
             grouped.setdefault(str(record.get("albumID")), []).append(record)
 
         albums = [

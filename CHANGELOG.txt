@@ -1,6 +1,18 @@
 ARIA SONG SERVER - VERSION HISTORY
 ==================================
 
+Version 1.11.0
+Created: 2026-08-30
+
+Added:
+- Added explicit album, individual-song, and full-playlist download modes.
+- Added a persistent standalone-track manifest so song and playlist downloads do not create incomplete albums.
+- Added protected album-deletion endpoints with playlist cleanup and sidecar removal.
+- Added tests for standalone catalog behavior, album deletion, playlist cleanup, and download-mode validation.
+
+Changed:
+- Album summaries now exclude standalone song and playlist downloads while the tracks remain available in the main song library.
+
 Version 1.10.0
 Created: 2026-08-30
 

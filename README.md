@@ -1,6 +1,6 @@
 # Aria Song Server
 
-Current Aria version: `1.10.0`
+Current Aria version: `1.11.0`
 
 Run this on the Fedora laptop from `~/aria-server`:
 
@@ -21,10 +21,12 @@ The server reads songs from `~/aria-server/songs`, keeps a cached catalog index 
 - `GET /api/albums?offset=0&limit=100` for paged album summaries
 - `GET /api/albums?q=nirvana` for album search
 - `GET /api/albums/<album-id>/tracks?offset=0&limit=100` for album tracks sorted by metadata track number
+- `DELETE /api/albums/<album-id>` to delete every file in one album
+- `DELETE /api/tracks/<track-id>/album` to delete the album containing a selected track
 - `GET /api/playlists` for shared playlists on every Aria device
 - `PUT /api/playlists/<playlist-id>` to create or update a shared playlist
 - `DELETE /api/playlists/<playlist-id>` to remove a shared playlist
-- `POST /api/downloads` to start a server-side YouTube playlist/album download
+- `POST /api/downloads` to start a server-side YouTube album, song, or playlist download
 - `GET /api/downloads` for the active download plus recent jobs
 - `GET /api/downloads/<download-id>` for progress, status, and output tail
 - `GET /api/stream/<filename>` for MP3/audio streaming with byte ranges
@@ -54,9 +56,15 @@ terminal. Send JSON shaped like:
   "link": "https://www.youtube.com/playlist?list=...",
   "album": "Album name",
   "albumArtist": "Album artist",
-  "year": "2026"
+  "year": "2026",
+  "kind": "album"
 }
 ```
+
+`kind` may be `album`, `song`, or `playlist`. Album downloads require the album
+fields and retain the existing album-wide retagging. Song and playlist downloads
+preserve source metadata and are recorded in `.aria_standalone_tracks.json`, so
+they stay visible in the song library without creating partial album cards.
 
 Only one download runs at a time. Progress is approximate while `yt-dlp` runs,
 then the server refreshes the cached catalog so the apps can load the new songs.
