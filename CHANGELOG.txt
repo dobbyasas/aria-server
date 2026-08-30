@@ -1,6 +1,13 @@
 ARIA SONG SERVER - VERSION HISTORY
 ==================================
 
+Version 1.8.2
+Created: 2026-08-30
+
+Changed:
+- Advanced the shared Aria release from 1.8.1 to 1.8.2 for the edge-to-edge Mac sidebar container.
+
+
 Version 1.8.1
 Created: 2026-08-30
 
