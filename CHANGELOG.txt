@@ -1,6 +1,18 @@
 ARIA SONG SERVER - VERSION HISTORY
 ==================================
 
+Version 1.10.0
+Created: 2026-08-30
+
+Added:
+- Added a protected endpoint that downloads a validated YouTube Music image and replaces the embedded cover on every track in the selected album.
+- Added album-cover refresh tests covering trusted YouTube hosts, album-wide catalog updates, and artwork URL cache busting.
+
+Changed:
+- Album and track artwork URLs now include their source file modification token so replaced covers refresh immediately on every device.
+- Cover replacement is blocked while a music download is active to prevent concurrent file mutation.
+
+
 Version 1.9.0
 Created: 2026-08-30
 

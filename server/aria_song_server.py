@@ -23,7 +23,7 @@ from urllib.request import Request, urlopen
 
 
 SONG_EXTENSIONS = {".mp3", ".m4a", ".aac", ".wav", ".flac"}
-ARIA_VERSION = "1.9.0"
+ARIA_VERSION = "1.10.0"
 CATALOG_INDEX_VERSION = 4
 CATALOG_REFRESH_INTERVAL_SECONDS = 10
 DEFAULT_PAGE_LIMIT = 100
@@ -49,6 +49,12 @@ LYRICS_NOT_FOUND_TTL_SECONDS = 24 * 60 * 60
 LRCLIB_BASE_URL = "https://lrclib.net/api/get"
 PLAYLIST_STORE_VERSION = 1
 MAX_PLAYLIST_COVER_BYTES = 2 * 1024 * 1024
+MAX_ARTWORK_BYTES = 12 * 1024 * 1024
+YOUTUBE_ARTWORK_HOST_SUFFIXES = ("googleusercontent.com", "ytimg.com")
+ARTWORK_REQUEST_USER_AGENT = (
+    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
+    "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36"
+)
 
 
 def default_songs_dir() -> Path:
@@ -236,6 +242,15 @@ def album_key_for_record(record: dict) -> str:
     return normalized_album_title(record.get("album")).casefold()
 
 
+def artwork_url_for_record(record: dict | None, base_url: str) -> str | None:
+    if not record:
+        return None
+
+    filename = quote(str(record["filename"]))
+    version = quote(str(record.get("mtimeNs") or "0"))
+    return f"{base_url}/api/artwork/{filename}?v={version}"
+
+
 def preferred_artist(values: list[str | None]) -> str | None:
     counts: dict[str, int] = {}
     first_indexes: dict[str, int] = {}
@@ -293,9 +308,9 @@ def matches_query(record: dict, query: str) -> bool:
     return all(token in search_text for token in query.casefold().split())
 
 
-def track_payload_from_record(record: dict, base_url: str, artwork_source_filename: str | None = None) -> dict:
+def track_payload_from_record(record: dict, base_url: str, artwork_source_record: dict | None = None) -> dict:
     filename = quote(str(record["filename"]))
-    artwork_url = f"{base_url}/api/artwork/{quote(artwork_source_filename)}" if artwork_source_filename else None
+    artwork_url = artwork_url_for_record(artwork_source_record, base_url)
 
     return {
         "id": record["id"],
@@ -313,8 +328,8 @@ def track_payload_from_record(record: dict, base_url: str, artwork_source_filena
     }
 
 
-def album_artwork_sources(records: list[dict]) -> dict[str, str]:
-    artwork_by_album: dict[str, str] = {}
+def album_artwork_sources(records: list[dict]) -> dict[str, dict]:
+    artwork_by_album: dict[str, dict] = {}
 
     for record in records:
         if not record.get("hasArtwork"):
@@ -322,7 +337,7 @@ def album_artwork_sources(records: list[dict]) -> dict[str, str]:
 
         key = album_key_for_record(record)
         if key not in artwork_by_album:
-            artwork_by_album[key] = record["filename"]
+            artwork_by_album[key] = record
 
     return artwork_by_album
 
@@ -422,6 +437,62 @@ class CatalogIndex:
 
             self.save(records)
             return dict(updated_record)
+
+    def refresh_album_artwork(
+        self,
+        track_id: str,
+        artwork_data: bytes,
+        artwork_mime: str,
+    ) -> tuple[dict, int] | None:
+        with self.lock:
+            target_record = next(
+                (record for record in self.records if record.get("id") == track_id),
+                None,
+            )
+            if target_record is None:
+                return None
+
+            target_album_key = album_key_for_record(target_record)
+            album_records = [
+                record
+                for record in self.records
+                if album_key_for_record(record) == target_album_key
+            ]
+            refreshed_filenames: set[str] = set()
+
+            try:
+                for record in album_records:
+                    path = self.songs_dir / str(record["filename"])
+                    if not path.is_file():
+                        raise ArtworkRefreshError(f"Song file is missing: {path.name}")
+                    replace_embedded_artwork(path, artwork_data, artwork_mime)
+                    refreshed_filenames.add(path.name)
+            finally:
+                if refreshed_filenames:
+                    refreshed_records: list[dict] = []
+                    for record in self.records:
+                        refreshed_record = dict(record)
+                        if record.get("filename") in refreshed_filenames:
+                            path = self.songs_dir / str(record["filename"])
+                            stat = path.stat()
+                            refreshed_record["size"] = stat.st_size
+                            refreshed_record["mtimeNs"] = stat.st_mtime_ns
+                            refreshed_record["hasArtwork"] = True
+                        refreshed_records.append(refreshed_record)
+
+                    refreshed_records.sort(key=title_sort_key)
+                    self.records = refreshed_records
+                    self.records_by_filename = {
+                        record["filename"]: record for record in refreshed_records
+                    }
+                    self.last_refresh_at = monotonic()
+                    self.last_error = None
+                    self.save(refreshed_records)
+
+            updated_target = next(
+                record for record in self.records if record.get("id") == track_id
+            )
+            return dict(updated_target), len(album_records)
 
     def status(self) -> dict:
         with self.lock:
@@ -848,6 +919,128 @@ def embedded_artwork(path: Path) -> bytes | None:
         return None
 
     return result.stdout or None
+
+
+class ArtworkRefreshError(Exception):
+    def __init__(self, message: str, status: HTTPStatus = HTTPStatus.BAD_GATEWAY) -> None:
+        super().__init__(message)
+        self.status = status
+
+
+def is_youtube_artwork_url(source_url: str) -> bool:
+    parsed = urlparse(source_url)
+    host = (parsed.hostname or "").casefold().rstrip(".")
+    return parsed.scheme == "https" and any(
+        host == suffix or host.endswith(f".{suffix}")
+        for suffix in YOUTUBE_ARTWORK_HOST_SUFFIXES
+    )
+
+
+def detected_artwork_mime(data: bytes, advertised_mime: str | None = None) -> str | None:
+    if data.startswith(b"\xff\xd8\xff"):
+        return "image/jpeg"
+    if data.startswith(b"\x89PNG\r\n\x1a\n"):
+        return "image/png"
+    if data.startswith(b"RIFF") and data[8:12] == b"WEBP":
+        return "image/webp"
+
+    advertised = str(advertised_mime or "").split(";", 1)[0].strip().casefold()
+    if advertised in {"image/jpeg", "image/png", "image/webp"} and data:
+        return advertised
+    return None
+
+
+def download_youtube_artwork(source_url: str) -> tuple[bytes, str]:
+    if not is_youtube_artwork_url(source_url):
+        raise ArtworkRefreshError(
+            "Artwork URL must be an HTTPS image hosted by YouTube.",
+            HTTPStatus.BAD_REQUEST,
+        )
+
+    request = Request(
+        source_url,
+        headers={
+            "Accept": "image/jpeg,image/png,*/*;q=0.8",
+            "User-Agent": ARTWORK_REQUEST_USER_AGENT,
+        },
+    )
+
+    try:
+        with urlopen(request, timeout=20) as response:
+            advertised_mime = response.headers.get("Content-Type")
+            artwork_data = response.read(MAX_ARTWORK_BYTES + 1)
+    except (HTTPError, URLError, TimeoutError, OSError) as error:
+        raise ArtworkRefreshError(f"YouTube artwork download failed: {error}") from error
+
+    if len(artwork_data) > MAX_ARTWORK_BYTES:
+        raise ArtworkRefreshError(
+            "YouTube artwork is too large.",
+            HTTPStatus.REQUEST_ENTITY_TOO_LARGE,
+        )
+
+    artwork_mime = detected_artwork_mime(artwork_data, advertised_mime)
+    if artwork_mime is None:
+        raise ArtworkRefreshError("YouTube did not return a supported image.")
+
+    return artwork_data, artwork_mime
+
+
+def replace_embedded_artwork(path: Path, artwork_data: bytes, artwork_mime: str) -> None:
+    try:
+        if path.suffix.casefold() in {".mp3", ".aac", ".wav"}:
+            from mutagen.id3 import APIC, ID3, ID3NoHeaderError
+
+            try:
+                tags = ID3(path)
+            except ID3NoHeaderError:
+                tags = ID3()
+
+            tags.delall("APIC")
+            tags.add(
+                APIC(
+                    encoding=3,
+                    mime=artwork_mime,
+                    type=3,
+                    desc="Cover",
+                    data=artwork_data,
+                )
+            )
+            tags.save(path, v2_version=3)
+            return
+
+        if path.suffix.casefold() == ".m4a":
+            from mutagen.mp4 import MP4, MP4Cover
+
+            audio = MP4(path)
+            image_format = (
+                MP4Cover.FORMAT_PNG
+                if artwork_mime == "image/png"
+                else MP4Cover.FORMAT_JPEG
+            )
+            audio["covr"] = [MP4Cover(artwork_data, imageformat=image_format)]
+            audio.save()
+            return
+
+        if path.suffix.casefold() == ".flac":
+            from mutagen.flac import FLAC, Picture
+
+            audio = FLAC(path)
+            audio.clear_pictures()
+            picture = Picture()
+            picture.type = 3
+            picture.mime = artwork_mime
+            picture.desc = "Cover"
+            picture.data = artwork_data
+            audio.add_picture(picture)
+            audio.save()
+            return
+    except (OSError, ValueError) as error:
+        raise ArtworkRefreshError(f"Could not replace artwork in {path.name}: {error}") from error
+
+    raise ArtworkRefreshError(
+        f"Artwork replacement is not supported for {path.suffix or path.name}.",
+        HTTPStatus.UNSUPPORTED_MEDIA_TYPE,
+    )
 
 
 def timestamp() -> str:
@@ -1298,6 +1491,8 @@ class AriaSongHandler(BaseHTTPRequestHandler):
 
         if parsed.path == "/api/downloads":
             self.start_download()
+        elif parsed.path.startswith("/api/tracks/") and parsed.path.endswith("/artwork/refresh"):
+            self.refresh_track_artwork(parsed)
         else:
             self.send_error(HTTPStatus.NOT_FOUND, "Not found")
 
@@ -1444,6 +1639,70 @@ class AriaSongHandler(BaseHTTPRequestHandler):
             return
 
         self.write_json(self.lyrics_manager.lyrics_for(record))
+
+    def refresh_track_artwork(self, parsed) -> None:
+        track_id = unquote(
+            parsed.path.removeprefix("/api/tracks/").removesuffix("/artwork/refresh")
+        ).strip("/")
+        if not track_id:
+            self.send_error(HTTPStatus.BAD_REQUEST, "Missing track id")
+            return
+
+        if self.download_manager.active_job() is not None:
+            self.write_json(
+                {"error": "Wait for the active music download to finish before refreshing artwork."},
+                status=HTTPStatus.CONFLICT,
+            )
+            return
+
+        if self.catalog_index.track_for_id(track_id) is None:
+            self.send_error(HTTPStatus.NOT_FOUND, "Track not found")
+            return
+
+        payload = self.read_json_body()
+        if payload is None:
+            return
+
+        source_url = str(payload.get("sourceURL") or payload.get("sourceUrl") or "").strip()
+        if not source_url:
+            self.write_json(
+                {"error": "Missing YouTube artwork URL."},
+                status=HTTPStatus.BAD_REQUEST,
+            )
+            return
+
+        try:
+            artwork_data, artwork_mime = download_youtube_artwork(source_url)
+            refresh_result = self.catalog_index.refresh_album_artwork(
+                track_id,
+                artwork_data,
+                artwork_mime,
+            )
+        except ArtworkRefreshError as error:
+            self.write_json({"error": str(error)}, status=error.status)
+            return
+        except Exception as error:
+            self.write_json(
+                {"error": f"Artwork refresh failed: {error}"},
+                status=HTTPStatus.INTERNAL_SERVER_ERROR,
+            )
+            return
+
+        if refresh_result is None:
+            self.send_error(HTTPStatus.NOT_FOUND, "Track not found")
+            return
+
+        updated_record, refreshed_track_count = refresh_result
+        base_url = f"http://{self.headers.get('Host', 'localhost:8000')}"
+        artwork_by_album = album_artwork_sources(self.catalog_index.tracks())
+        response = track_payload_from_record(
+            updated_record,
+            base_url,
+            artwork_by_album.get(album_key_for_record(updated_record)),
+        )
+        response["refreshedTrackCount"] = refreshed_track_count
+        response["artworkSource"] = "YouTube Music"
+        self.write_json(response)
 
     def handle_track_update(self) -> None:
         parsed = urlparse(self.path)
@@ -1765,11 +2024,7 @@ class AriaSongHandler(BaseHTTPRequestHandler):
         records = sorted(records, key=track_sort_key)
         first_record = records[0]
         artwork_record = next((record for record in records if record.get("hasArtwork")), None)
-        artwork_url = (
-            f"{base_url}/api/artwork/{quote(artwork_record['filename'])}"
-            if artwork_record
-            else None
-        )
+        artwork_url = artwork_url_for_record(artwork_record, base_url)
 
         title = first_record.get("album") or "Fedora songs"
         artist = album_artist_for_records(records)

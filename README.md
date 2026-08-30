@@ -1,6 +1,6 @@
 # Aria Song Server
 
-Current Aria version: `1.9.0`
+Current Aria version: `1.10.0`
 
 Run this on the Fedora laptop from `~/aria-server`:
 
@@ -16,6 +16,7 @@ The server reads songs from `~/aria-server/songs`, keeps a cached catalog index 
 - `GET /api/tracks?offset=0&limit=100` for paged tracks
 - `GET /api/tracks?q=nirvana&offset=0&limit=100` for paged track search
 - `GET /api/tracks/<track-id>/lyrics` for synchronized or plain lyrics
+- `POST /api/tracks/<track-id>/artwork/refresh` to replace an album's embedded cover from a validated YouTube image
 - `GET /api/search?q=nirvana` for combined track and album search
 - `GET /api/albums?offset=0&limit=100` for paged album summaries
 - `GET /api/albums?q=nirvana` for album search
