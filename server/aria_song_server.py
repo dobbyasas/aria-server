@@ -7,6 +7,7 @@ import json
 import mimetypes
 import os
 import re
+import shutil
 import subprocess
 import sys
 import threading
@@ -23,7 +24,7 @@ from urllib.request import Request, urlopen
 
 
 SONG_EXTENSIONS = {".mp3", ".m4a", ".aac", ".wav", ".flac"}
-ARIA_VERSION = "1.11.0"
+ARIA_VERSION = "1.12.0"
 CATALOG_INDEX_VERSION = 4
 CATALOG_REFRESH_INTERVAL_SECONDS = 10
 DEFAULT_PAGE_LIMIT = 100
@@ -57,6 +58,64 @@ ARTWORK_REQUEST_USER_AGENT = (
     "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
     "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36"
 )
+
+
+def downloader_executable() -> str:
+    configured = os.environ.get("ARIA_YT_DLP", "").strip()
+    candidates = []
+    if configured:
+        candidates.append(Path(configured).expanduser())
+    candidates.append(
+        Path.home() / ".local" / "share" / "aria-downloader" / "current" / "bin" / "yt-dlp"
+    )
+    for candidate in candidates:
+        if candidate.is_file() and os.access(candidate, os.X_OK):
+            return str(candidate)
+    return shutil.which("yt-dlp") or "yt-dlp"
+
+
+def normalized_download_identity(value: str | None) -> str:
+    value = str(value or "")
+    value = re.sub(r"\([^)]*\)|\[[^]]*]", " ", value)
+    return " ".join(re.findall(r"[a-z0-9]+", value.casefold()))
+
+
+def normalized_download_artist(value: str | None) -> str:
+    words = normalized_download_identity(value).split()
+    ignored = {"official", "topic", "vevo", "music"}
+    normalized_words: list[str] = []
+    for word in words:
+        if word in ignored:
+            continue
+        for suffix in ("official", "topic", "vevo"):
+            if word.endswith(suffix) and len(word) > len(suffix):
+                word = word.removesuffix(suffix)
+                break
+        if word:
+            normalized_words.append(word)
+    return " ".join(normalized_words)
+
+
+def download_title_identities(value: str | None) -> set[str]:
+    raw_value = str(value or "").strip()
+    candidates = {normalized_download_identity(raw_value)}
+    parts = re.split(r"\s+[-–—]\s+", raw_value, maxsplit=1)
+    if len(parts) == 2:
+        candidates.add(normalized_download_identity(parts[1]))
+    return {candidate for candidate in candidates if candidate}
+
+
+def download_artists_match(first: str | None, second: str | None) -> bool:
+    left = normalized_download_artist(first)
+    right = normalized_download_artist(second)
+    if not left or not right:
+        return False
+    return left == right or left.replace(" ", "") == right.replace(" ", "")
+
+
+def youtube_id_from_filename(filename: str) -> str | None:
+    match = re.search(r"\[([A-Za-z0-9_-]{6,})]\.[^.]+$", filename)
+    return match.group(1) if match else None
 
 
 def default_songs_dir() -> Path:
@@ -1167,6 +1226,9 @@ class DownloadJob:
         self.metadata_lines = 0
         self.cover_lines = 0
         self.new_files: int | None = None
+        self.reused_files = 0
+        self.playlist_id: str | None = None
+        self.playlist_track_count: int | None = None
         self.error: str | None = None
         self.output_tail: list[str] = []
         self.created_at = timestamp()
@@ -1282,6 +1344,9 @@ class DownloadJob:
                 "metadataLines": self.metadata_lines,
                 "coverLines": self.cover_lines,
                 "newFiles": self.new_files,
+                "reusedFiles": self.reused_files,
+                "playlistID": self.playlist_id,
+                "playlistTrackCount": self.playlist_track_count,
                 "error": self.error,
                 "outputTail": list(self.output_tail),
                 "createdAt": self.created_at,
@@ -1296,10 +1361,17 @@ class DownloadJob:
 
 
 class DownloadManager:
-    def __init__(self, base_dir: Path, songs_dir: Path, catalog_index: CatalogIndex) -> None:
+    def __init__(
+        self,
+        base_dir: Path,
+        songs_dir: Path,
+        catalog_index: CatalogIndex,
+        playlist_manager: "PlaylistManager | None" = None,
+    ) -> None:
         self.base_dir = base_dir
         self.songs_dir = songs_dir
         self.catalog_index = catalog_index
+        self.playlist_manager = playlist_manager
         self.lock = threading.RLock()
         self.jobs: dict[str, DownloadJob] = {}
         self.active_job_id: str | None = None
@@ -1371,6 +1443,42 @@ class DownloadManager:
 
     def run_job(self, job: DownloadJob) -> None:
         job.mark_running()
+        inspected_entries: list[dict] = []
+        missing_playlist_items: list[int] = []
+        try:
+            if job.kind in {"song", "playlist"}:
+                job.update_phase("Checking library", 0.06, "Checking for songs already in Aria")
+                inspected_entries = self.inspect_entries(job)
+                existing_records = self.catalog_index.tracks()
+                matched_records = [
+                    self.match_entry(entry, existing_records)
+                    for entry in inspected_entries
+                ]
+                job.reused_files = sum(record is not None for record in matched_records)
+                missing_playlist_items = [
+                    int(entry["playlistIndex"])
+                    for entry, record in zip(inspected_entries, matched_records)
+                    if record is None
+                ]
+
+                if job.kind == "song" and matched_records and matched_records[0] is not None:
+                    job.new_files = 0
+                    job.update_phase("Finishing", 0.96, "Song is already in the Aria library")
+                    job.succeed()
+                    self.clear_active(job)
+                    return
+
+                if job.kind == "playlist" and not missing_playlist_items:
+                    job.new_files = 0
+                    self.create_downloaded_playlist(job, inspected_entries, existing_records)
+                    job.succeed()
+                    self.clear_active(job)
+                    return
+        except Exception as error:
+            job.fail(str(error))
+            self.clear_active(job)
+            return
+
         script_path = self.base_dir / "scripts" / "download.py"
         command = [
             sys.executable,
@@ -1386,6 +1494,8 @@ class DownloadManager:
             command.extend(["--artist", job.album_artist])
         if job.year:
             command.extend(["--year", job.year])
+        if job.kind == "playlist" and missing_playlist_items:
+            command.extend(["--playlist-items", ",".join(map(str, missing_playlist_items))])
         environment = dict(os.environ)
         environment.setdefault("PYTHONUNBUFFERED", "1")
         environment.setdefault("TERM", "dumb")
@@ -1414,6 +1524,12 @@ class DownloadManager:
             if return_code == 0:
                 job.update_phase("Refreshing catalog", 0.97, "Updating the Aria catalog")
                 self.catalog_index.refresh(force=True)
+                if job.kind == "playlist":
+                    self.create_downloaded_playlist(
+                        job,
+                        inspected_entries,
+                        self.catalog_index.tracks(),
+                    )
                 job.succeed()
             else:
                 job.fail(f"Downloader exited with status {return_code}")
@@ -1421,6 +1537,137 @@ class DownloadManager:
             job.fail(str(error))
         finally:
             self.clear_active(job)
+
+    def inspect_entries(self, job: DownloadJob) -> list[dict]:
+        command = [
+            downloader_executable(),
+            "--js-runtimes",
+            "node",
+            "--remote-components",
+            "ejs:github",
+            "--extractor-args",
+            "youtube:player_client=web_embedded",
+            "--flat-playlist",
+            "--dump-single-json",
+            "--no-warnings",
+            "--yes-playlist" if job.kind == "playlist" else "--no-playlist",
+            job.link,
+        ]
+        try:
+            result = subprocess.run(
+                command,
+                cwd=str(self.base_dir),
+                capture_output=True,
+                text=True,
+                timeout=90,
+            )
+        except (OSError, subprocess.TimeoutExpired) as error:
+            raise DownloadValidationError(f"Could not inspect YouTube Music: {error}") from error
+        if result.returncode != 0:
+            lines = plain_output_line(result.stderr or result.stdout).splitlines()
+            detail = lines[-1] if lines else "yt-dlp could not read the link"
+            raise DownloadValidationError(f"Could not inspect YouTube Music: {detail}")
+        try:
+            payload = json.loads(result.stdout)
+        except json.JSONDecodeError as error:
+            raise DownloadValidationError("YouTube Music returned invalid playlist information") from error
+
+        raw_entries = payload.get("entries") if isinstance(payload, dict) else None
+        if not isinstance(raw_entries, list):
+            raw_entries = [payload]
+        entries: list[dict] = []
+        for fallback_index, raw_entry in enumerate(raw_entries, start=1):
+            if not isinstance(raw_entry, dict):
+                continue
+            video_id = str(raw_entry.get("id") or "").strip()
+            title = str(raw_entry.get("title") or "").strip()
+            if not video_id or not title:
+                continue
+            entries.append({
+                "id": video_id,
+                "title": title,
+                "artist": self.entry_artist(raw_entry),
+                "playlistIndex": int(
+                    raw_entry.get("playlist_index")
+                    or raw_entry.get("playlist_autonumber")
+                    or fallback_index
+                ),
+            })
+        if not entries:
+            raise DownloadValidationError("YouTube Music did not return any downloadable songs")
+        return entries[:1] if job.kind == "song" else entries
+
+    @staticmethod
+    def entry_artist(entry: dict) -> str:
+        artists = entry.get("artists")
+        if isinstance(artists, list):
+            for artist in artists:
+                if isinstance(artist, dict) and artist.get("name"):
+                    return str(artist["name"])
+                if isinstance(artist, str) and artist:
+                    return artist
+        return str(
+            entry.get("artist")
+            or entry.get("uploader")
+            or entry.get("channel")
+            or ""
+        ).removesuffix(" - Topic").strip()
+
+    @staticmethod
+    def match_entry(entry: dict, records: list[dict]) -> dict | None:
+        video_id = str(entry.get("id") or "")
+        for record in records:
+            if youtube_id_from_filename(str(record.get("filename") or "")) == video_id:
+                return record
+
+        titles = download_title_identities(entry.get("title"))
+        artist = normalized_download_artist(entry.get("artist"))
+        title_matches = [
+            record
+            for record in records
+            if normalized_download_identity(record.get("title")) in titles
+        ]
+        if artist:
+            artist_matches = [
+                record
+                for record in title_matches
+                if download_artists_match(record.get("artist"), artist)
+                or download_artists_match(record.get("albumArtist"), artist)
+            ]
+            return artist_matches[0] if artist_matches else None
+        return title_matches[0] if len(title_matches) == 1 else None
+
+    def create_downloaded_playlist(
+        self,
+        job: DownloadJob,
+        entries: list[dict],
+        records: list[dict],
+    ) -> None:
+        if self.playlist_manager is None:
+            raise RuntimeError("Playlist storage is unavailable")
+        track_ids: list[str] = []
+        for entry in entries:
+            record = self.match_entry(entry, records)
+            if record is None:
+                raise RuntimeError(f"Downloaded song could not be added to playlist: {entry['title']}")
+            track_ids.append(str(record["id"]))
+
+        playlist_id = str(uuid.uuid5(uuid.NAMESPACE_URL, f"aria-youtube-playlist:{job.link}"))
+        existing = next(
+            (playlist for playlist in self.playlist_manager.all() if playlist["id"] == playlist_id),
+            None,
+        )
+        revision = int(existing.get("revision") or 0) + 1 if existing else 1
+        playlist = self.playlist_manager.upsert(
+            playlist_id,
+            {
+                "title": job.album or "YouTube Music Playlist",
+                "trackIDs": track_ids,
+                "revision": revision,
+            },
+        )
+        job.playlist_id = playlist["id"]
+        job.playlist_track_count = len(playlist["trackIDs"])
 
     def clear_active(self, job: DownloadJob) -> None:
         with self.lock:
@@ -2399,9 +2646,14 @@ def main() -> None:
     server = ThreadingHTTPServer((args.host, args.port), AriaSongHandler)
     server.songs_dir = songs_dir
     server.catalog_index = CatalogIndex(songs_dir)
-    server.download_manager = DownloadManager(Path(__file__).resolve().parent.parent, songs_dir, server.catalog_index)
     server.lyrics_manager = LyricsManager(songs_dir)
     server.playlist_manager = PlaylistManager(songs_dir)
+    server.download_manager = DownloadManager(
+        Path(__file__).resolve().parent.parent,
+        songs_dir,
+        server.catalog_index,
+        server.playlist_manager,
+    )
     server.catalog_index.refresh_in_background(force=True)
 
     print(f"Serving {songs_dir} at http://{args.host}:{args.port}")

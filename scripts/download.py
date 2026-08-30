@@ -430,6 +430,7 @@ def arguments():
     parser.add_argument("--album", default="")
     parser.add_argument("--artist", default="")
     parser.add_argument("--year", default="")
+    parser.add_argument("--playlist-items", default="")
     return parser.parse_args()
 
 
@@ -498,12 +499,18 @@ def main():
             / (
                 "%(playlist_index)02d - %(title)s.%(ext)s"
                 if mode == "album"
-                else "%(uploader,channel,artist)s - %(title)s [%(id)s].%(ext)s"
+                else (
+                    "%(playlist_index)04d - %(uploader,channel,artist)s - %(title)s [%(id)s].%(ext)s"
+                    if mode == "playlist"
+                    else "%(uploader,channel,artist)s - %(title)s [%(id)s].%(ext)s"
+                )
             )
         ),
-
-        link,
     ]
+
+    if mode == "playlist" and options.playlist_items:
+        command.extend(["--playlist-items", options.playlist_items])
+    command.append(link)
 
     console.print(
         Panel(

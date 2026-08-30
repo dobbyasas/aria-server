@@ -4,6 +4,7 @@ import tempfile
 import unittest
 import uuid
 from pathlib import Path
+from unittest.mock import patch
 
 
 MODULE_PATH = Path(__file__).resolve().parents[1] / "server" / "aria_song_server.py"
@@ -121,6 +122,95 @@ class StandaloneDownloadsAndAlbumDeletionTests(unittest.TestCase):
 
             playlist_job = manager.start({"link": "https://music.youtube.com/playlist?list=x", "kind": "playlist"})
             self.assertEqual(playlist_job.kind, "playlist")
+
+    def test_playlist_matching_reuses_youtube_id_then_title_and_artist(self):
+        records = [
+            {
+                "id": str(uuid.uuid4()),
+                "filename": "Artist - Existing [abcdefghijk].mp3",
+                "title": "Existing",
+                "artist": "Artist",
+                "albumArtist": "Artist",
+            },
+            {
+                "id": str(uuid.uuid4()),
+                "filename": "01 - Album Song.mp3",
+                "title": "Album Song (Remastered)",
+                "artist": "Album Artist",
+                "albumArtist": "Album Artist",
+            },
+        ]
+
+        by_id = server.DownloadManager.match_entry(
+            {"id": "abcdefghijk", "title": "Different title", "artist": "Different"},
+            records,
+        )
+        by_metadata = server.DownloadManager.match_entry(
+            {"id": "missing-id", "title": "Album Song", "artist": "Album Artist - Topic"},
+            records,
+        )
+        by_youtube_style = server.DownloadManager.match_entry(
+            {"id": "missing-id", "title": "Album Artist - Album Song (Official Video)", "artist": "albumartist"},
+            records,
+        )
+
+        self.assertEqual(by_id["id"], records[0]["id"])
+        self.assertEqual(by_metadata["id"], records[1]["id"])
+        self.assertEqual(by_youtube_style["id"], records[1]["id"])
+
+    def test_inspection_and_playlist_creation_reuse_existing_catalog_tracks(self):
+        with tempfile.TemporaryDirectory() as directory:
+            base = Path(directory)
+            songs = base / "songs"
+            songs.mkdir()
+            catalog = server.CatalogIndex(songs)
+            playlists = server.PlaylistManager(songs)
+            manager = server.DownloadManager(base, songs, catalog, playlists)
+            job = server.DownloadJob(
+                link="https://music.youtube.com/playlist?list=test",
+                album="My Mix",
+                album_artist="Curator",
+                year="",
+                kind="playlist",
+            )
+            inspected_payload = {
+                "entries": [
+                    {"id": "video000001", "title": "First", "uploader": "One - Topic"},
+                    {"id": "video000002", "title": "Second", "artist": "Two"},
+                ]
+            }
+            completed = server.subprocess.CompletedProcess(
+                args=[],
+                returncode=0,
+                stdout=json.dumps(inspected_payload),
+                stderr="",
+            )
+            with patch.object(server.subprocess, "run", return_value=completed):
+                entries = manager.inspect_entries(job)
+
+            records = [
+                {
+                    "id": str(uuid.uuid4()),
+                    "filename": "One - First [video000001].mp3",
+                    "title": "First",
+                    "artist": "One",
+                    "albumArtist": "One",
+                },
+                {
+                    "id": str(uuid.uuid4()),
+                    "filename": "Two - Second [video000002].mp3",
+                    "title": "Second",
+                    "artist": "Two",
+                    "albumArtist": "Two",
+                },
+            ]
+            manager.create_downloaded_playlist(job, entries, records)
+            created = playlists.all()[0]
+
+            self.assertEqual([entry["artist"] for entry in entries], ["One", "Two"])
+            self.assertEqual(created["title"], "My Mix")
+            self.assertEqual(created["trackIDs"], [record["id"] for record in records])
+            self.assertEqual(job.playlist_track_count, 2)
 
 
 if __name__ == "__main__":

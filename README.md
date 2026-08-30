@@ -1,6 +1,6 @@
 # Aria Song Server
 
-Current Aria version: `1.11.0`
+Current Aria version: `1.12.0`
 
 Run this on the Fedora laptop from `~/aria-server`:
 
@@ -65,6 +65,10 @@ terminal. Send JSON shaped like:
 fields and retain the existing album-wide retagging. Song and playlist downloads
 preserve source metadata and are recorded in `.aria_standalone_tracks.json`, so
 they stay visible in the song library without creating partial album cards.
+Before downloading a song or playlist, the server inspects its YouTube entries
+and matches them against the catalog by YouTube video ID, then normalized title
+and artist. Only missing playlist positions are downloaded. A stable shared Aria
+playlist is created or updated with both reused and new tracks in source order.
 
 Only one download runs at a time. Progress is approximate while `yt-dlp` runs,
 then the server refreshes the cached catalog so the apps can load the new songs.
