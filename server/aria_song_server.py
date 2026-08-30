@@ -24,7 +24,7 @@ from urllib.request import Request, urlopen
 
 
 SONG_EXTENSIONS = {".mp3", ".m4a", ".aac", ".wav", ".flac"}
-ARIA_VERSION = "1.12.0"
+ARIA_VERSION = "1.12.1"
 CATALOG_INDEX_VERSION = 4
 CATALOG_REFRESH_INTERVAL_SECONDS = 10
 DEFAULT_PAGE_LIMIT = 100
@@ -1634,7 +1634,12 @@ class DownloadManager:
                 if download_artists_match(record.get("artist"), artist)
                 or download_artists_match(record.get("albumArtist"), artist)
             ]
-            return artist_matches[0] if artist_matches else None
+            if artist_matches:
+                return artist_matches[0]
+            # Older Aria playlist downloads overwrote the original artist with
+            # a user-supplied playlist artist. A unique normalized title is
+            # still a safer reuse candidate than downloading a duplicate file.
+            return title_matches[0] if len(title_matches) == 1 else None
         return title_matches[0] if len(title_matches) == 1 else None
 
     def create_downloaded_playlist(

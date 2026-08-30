@@ -1,6 +1,12 @@
 ARIA SONG SERVER - VERSION HISTORY
 ==================================
 
+Version 1.12.1
+Created: 2026-08-30
+
+Fixed:
+- Reused uniquely titled existing songs even when an older playlist download had overwritten their original artist metadata.
+
 Version 1.12.0
 Created: 2026-08-30
 

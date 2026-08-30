@@ -153,10 +153,15 @@ class StandaloneDownloadsAndAlbumDeletionTests(unittest.TestCase):
             {"id": "missing-id", "title": "Album Artist - Album Song (Official Video)", "artist": "albumartist"},
             records,
         )
+        by_unique_title = server.DownloadManager.match_entry(
+            {"id": "missing-id", "title": "Album Song", "artist": "Original Artist"},
+            records,
+        )
 
         self.assertEqual(by_id["id"], records[0]["id"])
         self.assertEqual(by_metadata["id"], records[1]["id"])
         self.assertEqual(by_youtube_style["id"], records[1]["id"])
+        self.assertEqual(by_unique_title["id"], records[1]["id"])
 
     def test_inspection_and_playlist_creation_reuse_existing_catalog_tracks(self):
         with tempfile.TemporaryDirectory() as directory:
