@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+import argparse
+import json
 import os
 import re
 import shutil
@@ -39,6 +41,7 @@ console = Console()
 BASE_DIR = Path(__file__).resolve().parent.parent
 SONGS_DIR = BASE_DIR / "songs"
 SONGS_DIR.mkdir(exist_ok=True)
+STANDALONE_TRACK_STORE = SONGS_DIR / ".aria_standalone_tracks.json"
 REPAIRABLE_DOWNLOAD_ERRORS = (
     "http error 403",
     "unable to download video data",
@@ -400,7 +403,39 @@ def show_file_table(files: list[Path]):
     console.print(table)
 
 
+def mark_standalone(files: list[Path]) -> None:
+    try:
+        payload = json.loads(STANDALONE_TRACK_STORE.read_text(encoding="utf-8"))
+        existing = {
+            str(filename)
+            for filename in payload.get("filenames", [])
+            if isinstance(filename, str)
+        }
+    except (OSError, json.JSONDecodeError):
+        existing = set()
+
+    existing.update(path.name for path in files)
+    temporary_path = STANDALONE_TRACK_STORE.with_suffix(".json.tmp")
+    temporary_path.write_text(
+        json.dumps({"version": 1, "filenames": sorted(existing, key=str.casefold)}, indent=2),
+        encoding="utf-8",
+    )
+    temporary_path.replace(STANDALONE_TRACK_STORE)
+
+
+def arguments():
+    parser = argparse.ArgumentParser(description="Download music into Aria")
+    parser.add_argument("--mode", choices=("album", "song", "playlist"))
+    parser.add_argument("--link")
+    parser.add_argument("--album", default="")
+    parser.add_argument("--artist", default="")
+    parser.add_argument("--year", default="")
+    parser.add_argument("--playlist-items", default="")
+    return parser.parse_args()
+
+
 def main():
+    options = arguments()
     console.clear()
 
     console.print(
@@ -413,10 +448,15 @@ def main():
 
     check_requirements()
 
-    link = Prompt.ask("\n[bold cyan]Paste playlist / album link[/bold cyan]").strip()
-    album = Prompt.ask("[bold cyan]Album name[/bold cyan]").strip()
-    album_artist = Prompt.ask("[bold cyan]Album artist[/bold cyan]").strip()
-    year = Prompt.ask("[bold cyan]Year[/bold cyan]").strip()
+    mode = options.mode or "album"
+    link = (options.link or Prompt.ask("\n[bold cyan]Paste YouTube Music link[/bold cyan]")).strip()
+    album = options.album.strip()
+    album_artist = options.artist.strip()
+    year = options.year.strip()
+    if mode == "album" and not options.mode:
+        album = Prompt.ask("[bold cyan]Album name[/bold cyan]").strip()
+        album_artist = Prompt.ask("[bold cyan]Album artist[/bold cyan]").strip()
+        year = Prompt.ask("[bold cyan]Year[/bold cyan]").strip()
 
     if not link:
         console.print("[red]No link provided.[/red]")
@@ -449,15 +489,28 @@ def main():
         "0",
         "--embed-thumbnail",
         "--add-metadata",
-        "--yes-playlist",
+        "--yes-playlist" if mode != "song" else "--no-playlist",
 
         # Keep files directly inside aria-server/songs
         # Playlist position becomes track number
         "-o",
-        str(SONGS_DIR / "%(playlist_index)02d - %(title)s.%(ext)s"),
-
-        link,
+        str(
+            SONGS_DIR
+            / (
+                "%(playlist_index)02d - %(title)s.%(ext)s"
+                if mode == "album"
+                else (
+                    "%(playlist_index)04d - %(uploader,channel,artist)s - %(title)s [%(id)s].%(ext)s"
+                    if mode == "playlist"
+                    else "%(uploader,channel,artist)s - %(title)s [%(id)s].%(ext)s"
+                )
+            )
+        ),
     ]
+
+    if mode == "playlist" and options.playlist_items:
+        command.extend(["--playlist-items", options.playlist_items])
+    command.append(link)
 
     console.print(
         Panel(
@@ -497,7 +550,10 @@ def main():
 
     show_file_table(new_files)
 
-    apply_album_metadata(new_files, album, album_artist, year)
+    if mode == "album":
+        apply_album_metadata(new_files, album, album_artist, year)
+    else:
+        mark_standalone(new_files)
 
     console.print(
         Panel.fit(
