@@ -1,6 +1,13 @@
 ARIA SONG SERVER - VERSION HISTORY
 ==================================
 
+Version 1.9.0
+Created: 2026-08-30
+
+Changed:
+- Advanced the shared Aria release from 1.8.2 to 1.9.0 for the Mac sidebar logo and visibility control.
+
+
 Version 1.8.2
 Created: 2026-08-30
 
