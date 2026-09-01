@@ -30,7 +30,7 @@ from youtube_track_metadata import refresh_tracks_from_youtube
 
 
 SONG_EXTENSIONS = {".mp3", ".m4a", ".aac", ".wav", ".flac"}
-ARIA_VERSION = "1.14.3"
+ARIA_VERSION = "1.14.4"
 CATALOG_INDEX_VERSION = 4
 CATALOG_REFRESH_INTERVAL_SECONDS = 10
 DEFAULT_PAGE_LIMIT = 100
