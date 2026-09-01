@@ -30,7 +30,7 @@ from youtube_track_metadata import refresh_tracks_from_youtube
 
 
 SONG_EXTENSIONS = {".mp3", ".m4a", ".aac", ".wav", ".flac"}
-ARIA_VERSION = "1.13.0"
+ARIA_VERSION = "1.13.1"
 CATALOG_INDEX_VERSION = 4
 CATALOG_REFRESH_INTERVAL_SECONDS = 10
 DEFAULT_PAGE_LIMIT = 100
@@ -762,6 +762,36 @@ class CatalogIndex:
         self.refresh(force=True)
         return len(deleted_filenames), deleted_track_ids
 
+    def delete_track_records(self, records: list[dict]) -> set[str]:
+        deleted_track_ids: set[str] = set()
+        deleted_filenames: set[str] = set()
+        songs_root = self.songs_dir.resolve()
+
+        for record in records:
+            filename = str(record.get("filename") or "")
+            path = (self.songs_dir / filename).resolve()
+            if not filename or path.parent != songs_root:
+                raise OSError("Track contains an unsafe filename")
+            if path.is_file():
+                path.unlink()
+            for suffix in (".lrc", ".lyrics", ".txt"):
+                sidecar = path.with_suffix(suffix)
+                if sidecar.is_file():
+                    sidecar.unlink()
+            deleted_track_ids.add(str(record.get("id")))
+            deleted_filenames.add(filename)
+
+        standalone = standalone_track_filenames(self.songs_dir)
+        if standalone.intersection(deleted_filenames):
+            save_standalone_track_filenames(
+                self.songs_dir,
+                standalone.difference(deleted_filenames),
+            )
+
+        if deleted_filenames:
+            self.refresh(force=True)
+        return deleted_track_ids
+
     def load(self) -> dict:
         try:
             with self.index_path.open("r", encoding="utf-8") as file:
@@ -1467,6 +1497,26 @@ class DownloadManager:
                     if record is None
                 ]
 
+                legacy_duplicates = self.legacy_duplicate_records(
+                    inspected_entries,
+                    matched_records,
+                    existing_records,
+                )
+                if legacy_duplicates:
+                    job.update_phase(
+                        "Cleaning old duplicates",
+                        0.1,
+                        f"Removing {len(legacy_duplicates)} obsolete playlist duplicate(s)",
+                    )
+                    deleted_ids = self.catalog_index.delete_track_records(legacy_duplicates)
+                    if self.playlist_manager is not None:
+                        self.playlist_manager.remove_track_ids(deleted_ids)
+                    existing_records = self.catalog_index.tracks()
+                    matched_records = [
+                        self.match_entry(entry, existing_records)
+                        for entry in inspected_entries
+                    ]
+
                 if self.refresh_reused_standalone_metadata(
                     job,
                     inspected_entries,
@@ -1666,6 +1716,30 @@ class DownloadManager:
             record.get("albumArtist") or record.get("artist")
         )
         return album in {"playlist", "youtube music"} or artist == "youtube music"
+
+    @classmethod
+    def legacy_duplicate_records(
+        cls,
+        entries: list[dict],
+        matched_records: list[dict | None],
+        all_records: list[dict],
+    ) -> list[dict]:
+        duplicates: dict[str, dict] = {}
+        for entry, selected in zip(entries, matched_records):
+            if selected is None or cls.is_legacy_playlist_record(selected):
+                continue
+            selected_id = str(selected.get("id") or "")
+            titles = download_title_identities(entry.get("title"))
+            for record in all_records:
+                record_id = str(record.get("id") or "")
+                if not record_id or record_id == selected_id:
+                    continue
+                if not cls.is_legacy_playlist_record(record):
+                    continue
+                if normalized_download_identity(record.get("title")) not in titles:
+                    continue
+                duplicates[record_id] = record
+        return list(duplicates.values())
 
     def refresh_reused_standalone_metadata(
         self,

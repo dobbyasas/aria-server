@@ -177,6 +177,30 @@ class StandaloneDownloadsAndAlbumDeletionTests(unittest.TestCase):
             "albumArtist": "Actual Artist",
         }))
 
+    def test_legacy_duplicate_is_removed_when_proper_album_track_is_reused(self):
+        proper = {
+            "id": str(uuid.uuid4()),
+            "title": "Song",
+            "artist": "Real Artist",
+            "album": "Real Album",
+            "albumArtist": "Real Artist",
+        }
+        legacy = {
+            "id": str(uuid.uuid4()),
+            "title": "Song",
+            "artist": "YouTube Music",
+            "album": "Playlist",
+            "albumArtist": "YouTube Music",
+        }
+
+        duplicates = server.DownloadManager.legacy_duplicate_records(
+            [{"id": "video", "title": "Song", "artist": "Real Artist"}],
+            [proper],
+            [proper, legacy],
+        )
+
+        self.assertEqual([record["id"] for record in duplicates], [legacy["id"]])
+
     def test_inspection_and_playlist_creation_reuse_existing_catalog_tracks(self):
         with tempfile.TemporaryDirectory() as directory:
             base = Path(directory)
