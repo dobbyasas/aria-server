@@ -1,6 +1,12 @@
 ARIA SONG SERVER - VERSION HISTORY
 ==================================
 
+Version 1.14.2
+Created: 2026-09-01
+
+Changed:
+- Advanced the shared Aria release for high-resolution artist heroes and reliable artist-page navigation.
+
 Version 1.14.1
 Created: 2026-09-01
 
