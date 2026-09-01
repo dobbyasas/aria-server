@@ -1,6 +1,12 @@
 ARIA SONG SERVER - VERSION HISTORY
 ==================================
 
+Version 1.14.0
+Created: 2026-09-01
+
+Added:
+- Advanced the shared Aria release for artist pages and direct artist-discography downloads on iPhone, iPad, and Mac.
+
 Version 1.13.2
 Created: 2026-09-01
 
