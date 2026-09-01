@@ -163,6 +163,20 @@ class StandaloneDownloadsAndAlbumDeletionTests(unittest.TestCase):
         self.assertEqual(by_youtube_style["id"], records[1]["id"])
         self.assertEqual(by_unique_title["id"], records[1]["id"])
 
+    def test_only_standalone_or_legacy_playlist_records_are_retagged(self):
+        self.assertTrue(server.DownloadManager.is_legacy_playlist_record({
+            "album": "Playlist",
+            "artist": "YouTube Music",
+        }))
+        self.assertTrue(server.DownloadManager.is_legacy_playlist_record({
+            "album": "Anything",
+            "albumArtist": "YouTube Music",
+        }))
+        self.assertFalse(server.DownloadManager.is_legacy_playlist_record({
+            "album": "Actual Album",
+            "albumArtist": "Actual Artist",
+        }))
+
     def test_inspection_and_playlist_creation_reuse_existing_catalog_tracks(self):
         with tempfile.TemporaryDirectory() as directory:
             base = Path(directory)

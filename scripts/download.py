@@ -35,6 +35,8 @@ from rich.progress import (
 from rich.prompt import Prompt
 from rich.table import Table
 
+from youtube_track_metadata import apply_downloaded_info_sidecars
+
 
 console = Console()
 
@@ -508,6 +510,8 @@ def main():
         ),
     ]
 
+    if mode != "album":
+        command.extend(["--write-info-json", "--clean-info-json"])
     if mode == "playlist" and options.playlist_items:
         command.extend(["--playlist-items", options.playlist_items])
     command.append(link)
@@ -553,6 +557,7 @@ def main():
     if mode == "album":
         apply_album_metadata(new_files, album, album_artist, year)
     else:
+        apply_downloaded_info_sidecars(new_files)
         mark_standalone(new_files)
 
     console.print(

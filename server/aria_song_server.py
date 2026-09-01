@@ -22,9 +22,15 @@ from urllib.error import HTTPError, URLError
 from urllib.parse import parse_qs, quote, unquote, urlencode, urlparse
 from urllib.request import Request, urlopen
 
+SCRIPTS_MODULE_DIR = Path(__file__).resolve().parents[1] / "scripts"
+if str(SCRIPTS_MODULE_DIR) not in sys.path:
+    sys.path.insert(0, str(SCRIPTS_MODULE_DIR))
+
+from youtube_track_metadata import refresh_tracks_from_youtube
+
 
 SONG_EXTENSIONS = {".mp3", ".m4a", ".aac", ".wav", ".flac"}
-ARIA_VERSION = "1.12.1"
+ARIA_VERSION = "1.13.0"
 CATALOG_INDEX_VERSION = 4
 CATALOG_REFRESH_INTERVAL_SECONDS = 10
 DEFAULT_PAGE_LIMIT = 100
@@ -1461,6 +1467,17 @@ class DownloadManager:
                     if record is None
                 ]
 
+                if self.refresh_reused_standalone_metadata(
+                    job,
+                    inspected_entries,
+                    matched_records,
+                ):
+                    existing_records = self.catalog_index.tracks()
+                    matched_records = [
+                        self.match_entry(entry, existing_records)
+                        for entry in inspected_entries
+                    ]
+
                 if job.kind == "song" and matched_records and matched_records[0] is not None:
                     job.new_files = 0
                     job.update_phase("Finishing", 0.96, "Song is already in the Aria library")
@@ -1641,6 +1658,58 @@ class DownloadManager:
             # still a safer reuse candidate than downloading a duplicate file.
             return title_matches[0] if len(title_matches) == 1 else None
         return title_matches[0] if len(title_matches) == 1 else None
+
+    @staticmethod
+    def is_legacy_playlist_record(record: dict) -> bool:
+        album = normalized_download_identity(record.get("album"))
+        artist = normalized_download_identity(
+            record.get("albumArtist") or record.get("artist")
+        )
+        return album in {"playlist", "youtube music"} or artist == "youtube music"
+
+    def refresh_reused_standalone_metadata(
+        self,
+        job: DownloadJob,
+        entries: list[dict],
+        matched_records: list[dict | None],
+    ) -> bool:
+        items: list[dict] = []
+        legacy_filenames: set[str] = set()
+        for entry, record in zip(entries, matched_records):
+            if record is None:
+                continue
+            is_legacy = self.is_legacy_playlist_record(record)
+            if not record.get("isStandalone") and not is_legacy:
+                continue
+            filename = str(record.get("filename") or "")
+            path = self.songs_dir / filename
+            if not filename or not path.is_file():
+                continue
+            items.append({"id": entry["id"], "path": str(path)})
+            if is_legacy:
+                legacy_filenames.add(filename)
+
+        if not items:
+            return False
+
+        job.update_phase(
+            "Refreshing song details",
+            0.12,
+            f"Refreshing individual metadata and covers for {len(items)} existing song(s)",
+        )
+        refresh_tracks_from_youtube(
+            items,
+            downloader=downloader_executable(),
+            base_dir=self.base_dir,
+        )
+        if legacy_filenames:
+            standalone = standalone_track_filenames(self.songs_dir)
+            save_standalone_track_filenames(
+                self.songs_dir,
+                standalone.union(legacy_filenames),
+            )
+        self.catalog_index.refresh(force=True)
+        return True
 
     def create_downloaded_playlist(
         self,

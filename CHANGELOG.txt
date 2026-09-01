@@ -1,6 +1,17 @@
 ARIA SONG SERVER - VERSION HISTORY
 ==================================
 
+Version 1.13.0
+Created: 2026-09-01
+
+Added:
+- Added per-song YouTube metadata and artwork processing for individual-song and playlist downloads.
+
+Changed:
+- Playlist tracks keep their own title, artist, album, year, track number, genre, and cover instead of playlist-level placeholder metadata.
+- Reused standalone tracks are refreshed in place without downloading duplicate audio.
+- Legacy tracks tagged as album "Playlist" by artist "YouTube Music" are repaired and moved out of the album collection.
+
 Version 1.12.1
 Created: 2026-08-30
 
