@@ -1,6 +1,13 @@
 ARIA SONG SERVER - VERSION HISTORY
 ==================================
 
+Version 1.13.2
+Created: 2026-09-01
+
+Fixed:
+- Included canonical album IDs in every track response so clients can delete albums directly and reliably.
+- Refreshed the catalog once before rejecting legacy track-based album deletion for a missing track.
+
 Version 1.13.1
 Created: 2026-09-01
 

@@ -30,7 +30,7 @@ from youtube_track_metadata import refresh_tracks_from_youtube
 
 
 SONG_EXTENSIONS = {".mp3", ".m4a", ".aac", ".wav", ".flac"}
-ARIA_VERSION = "1.13.1"
+ARIA_VERSION = "1.13.2"
 CATALOG_INDEX_VERSION = 4
 CATALOG_REFRESH_INTERVAL_SECONDS = 10
 DEFAULT_PAGE_LIMIT = 100
@@ -286,6 +286,7 @@ def track_payload(path: Path, base_url: str, metadata: dict, artwork_url: str | 
 
     return {
         "id": str(uuid.uuid5(uuid.NAMESPACE_URL, path.name)),
+        "albumID": album_id_for(metadata.get("album") or "Fedora songs"),
         "title": metadata.get("title") or fallback_title,
         "artist": metadata.get("artist") or fallback_artist,
         "albumArtist": metadata.get("albumArtist") or metadata.get("artist") or fallback_artist,
@@ -418,6 +419,7 @@ def track_payload_from_record(record: dict, base_url: str, artwork_source_record
 
     return {
         "id": record["id"],
+        "albumID": record.get("albumID") or album_id_for(record.get("album") or "Fedora songs"),
         "title": record.get("title") or Path(record["filename"]).stem,
         "artist": record.get("artist") or "Unknown Artist",
         "albumArtist": record.get("albumArtist") or record.get("artist") or "Unknown Artist",
@@ -2128,6 +2130,9 @@ class AriaSongHandler(BaseHTTPRequestHandler):
             parsed.path.removeprefix("/api/tracks/").removesuffix("/album")
         ).strip("/")
         record = self.catalog_index.track_for_id(track_id)
+        if record is None:
+            self.catalog_index.refresh(force=True)
+            record = self.catalog_index.track_for_id(track_id)
         if record is None:
             self.write_json({"error": "Track not found"}, status=HTTPStatus.NOT_FOUND)
             return

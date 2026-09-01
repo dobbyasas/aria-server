@@ -38,6 +38,24 @@ class StandaloneDownloadsAndAlbumDeletionTests(unittest.TestCase):
         record["albumID"] = server.album_id_for(album)
         return record
 
+    def test_track_payloads_include_canonical_album_id(self):
+        with tempfile.TemporaryDirectory() as directory:
+            track = Path(directory) / "01 - Album Song.mp3"
+            track.write_bytes(b"audio")
+            metadata = {
+                "title": "Album Song",
+                "artist": "Test Artist",
+                "album": "Shared Name",
+            }
+            record = self.record(track, album="Shared Name", standalone=False)
+            expected_album_id = server.album_id_for("Shared Name")
+
+            legacy_payload = server.track_payload(track, "http://localhost", metadata, None)
+            indexed_payload = server.track_payload_from_record(record, "http://localhost")
+
+            self.assertEqual(legacy_payload["albumID"], expected_album_id)
+            self.assertEqual(indexed_payload["albumID"], expected_album_id)
+
     def test_standalone_manifest_updates_cached_record_without_retagging_file(self):
         with tempfile.TemporaryDirectory() as directory:
             songs = Path(directory)
