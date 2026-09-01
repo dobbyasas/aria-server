@@ -1,6 +1,12 @@
 ARIA SONG SERVER - VERSION HISTORY
 ==================================
 
+Version 1.15.0
+Created: 2026-09-01
+
+Added:
+- Advanced the shared Aria release for iPhone/iPad provisioning-expiry reminders.
+
 Version 1.14.4
 Created: 2026-09-01
 
