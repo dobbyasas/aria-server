@@ -1,6 +1,12 @@
 ARIA SONG SERVER - VERSION HISTORY
 ==================================
 
+Version 1.20.0
+Created: 2026-09-05
+
+Changed:
+- Advanced the shared Aria release for gapless album playback on Mac; this platform's playback behavior is unchanged.
+
 Version 1.19.0
 Created: 2026-09-05
 
