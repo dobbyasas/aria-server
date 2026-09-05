@@ -1,6 +1,12 @@
 ARIA SONG SERVER - VERSION HISTORY
 ==================================
 
+Version 1.19.0
+Created: 2026-09-05
+
+Changed:
+- Advanced the shared Aria release for the Mac vinyl player redesign; no playback or interface changes on this platform.
+
 Version 1.18.0
 Created: 2026-09-05
 
