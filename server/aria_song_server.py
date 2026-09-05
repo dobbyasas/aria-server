@@ -30,7 +30,7 @@ from youtube_track_metadata import refresh_tracks_from_youtube
 
 
 SONG_EXTENSIONS = {".mp3", ".m4a", ".aac", ".wav", ".flac"}
-ARIA_VERSION = "1.17.0"
+ARIA_VERSION = "1.18.0"
 CATALOG_INDEX_VERSION = 4
 CATALOG_REFRESH_INTERVAL_SECONDS = 10
 DEFAULT_PAGE_LIMIT = 100
@@ -59,6 +59,10 @@ MAX_PLAYLIST_COVER_BYTES = 2 * 1024 * 1024
 MAX_ARTWORK_BYTES = 12 * 1024 * 1024
 STANDALONE_TRACK_STORE_VERSION = 1
 STANDALONE_TRACK_STORE_NAME = ".aria_standalone_tracks.json"
+SHARED_PLAYBACK_SESSION_ID = "shared"
+PLAYBACK_DEVICE_TTL_SECONDS = 8
+PLAYBACK_SESSION_TTL_SECONDS = 24 * 60 * 60
+MAX_PLAYBACK_COMMANDS = 100
 YOUTUBE_ARTWORK_HOST_SUFFIXES = ("googleusercontent.com", "ytimg.com")
 ARTWORK_REQUEST_USER_AGENT = (
     "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
@@ -1965,6 +1969,239 @@ class PlaylistManager:
         temporary_path.replace(self.path)
 
 
+class PlaybackSessionManager:
+    """Coordinates one audio host and any number of controllers per session."""
+
+    VALID_COMMANDS = {
+        "play",
+        "playPause",
+        "next",
+        "previous",
+        "seek",
+        "shuffle",
+        "repeat",
+        "setVolume",
+        "playNext",
+        "addToQueue",
+        "removeFromQueue",
+        "moveQueueItem",
+    }
+
+    def __init__(self, clock=time.time):
+        self.clock = clock
+        self.lock = threading.RLock()
+        self.sessions: dict[str, dict] = {}
+
+    def sync(self, payload: dict) -> dict:
+        device_id = self._required_text(payload, "deviceID", 128)
+        device_name = self._optional_text(payload.get("deviceName"), "Aria device", 80)
+        platform = self._optional_text(payload.get("platform"), "unknown", 32)
+        session_id = self._session_id(payload.get("sessionID"))
+        last_command_id = self._nonnegative_int(payload.get("lastCommandID"))
+        now = self.clock()
+
+        with self.lock:
+            self._prune(now)
+            session = self._session(session_id, now)
+            session["devices"][device_id] = {
+                "id": device_id,
+                "name": device_name,
+                "platform": platform,
+                "lastSeen": now,
+            }
+
+            if session["hostDeviceID"] not in session["devices"]:
+                session["hostDeviceID"] = device_id
+
+            is_host = session["hostDeviceID"] == device_id
+            if is_host and isinstance(payload.get("state"), dict):
+                session["state"] = self._normalized_state(
+                    payload["state"],
+                    now,
+                    previous=session["state"],
+                )
+
+            if is_host and last_command_id > 0:
+                session["commands"] = [
+                    command for command in session["commands"]
+                    if command["id"] > last_command_id
+                ]
+
+            session["lastActivity"] = now
+            pending_commands = (
+                [dict(command) for command in session["commands"] if command["id"] > last_command_id]
+                if is_host
+                else []
+            )
+            host = session["devices"].get(session["hostDeviceID"])
+            devices = [
+                {
+                    "id": device["id"],
+                    "name": device["name"],
+                    "platform": device["platform"],
+                    "isHost": device["id"] == session["hostDeviceID"],
+                }
+                for device in sorted(
+                    session["devices"].values(),
+                    key=lambda item: (item["id"] != session["hostDeviceID"], item["name"].casefold()),
+                )
+            ]
+
+            return {
+                "sessionID": session_id,
+                "isShared": session_id == SHARED_PLAYBACK_SESSION_ID,
+                "role": "host" if is_host else "controller",
+                "hostDeviceID": session["hostDeviceID"],
+                "hostName": host["name"] if host else None,
+                "devices": devices,
+                "state": dict(session["state"]),
+                "latestCommandID": session["nextCommandID"] - 1,
+                "commands": pending_commands,
+            }
+
+    def enqueue_command(self, session_id: str, payload: dict) -> dict:
+        session_id = self._session_id(session_id)
+        device_id = self._required_text(payload, "deviceID", 128)
+        action = self._required_text(payload, "action", 40)
+        if action not in self.VALID_COMMANDS:
+            raise ValueError("Unsupported playback command")
+
+        now = self.clock()
+        with self.lock:
+            self._prune(now)
+            session = self._session(session_id, now)
+            command_id = session["nextCommandID"]
+            session["nextCommandID"] += 1
+            command = {
+                "id": command_id,
+                "action": action,
+                "deviceID": device_id,
+            }
+
+            for key in ("trackID", "targetTrackID"):
+                value = payload.get(key)
+                if value is not None:
+                    command[key] = self._optional_text(value, "", 128)
+
+            raw_queue = payload.get("queueTrackIDs")
+            if raw_queue is not None:
+                if not isinstance(raw_queue, list):
+                    raise ValueError("queueTrackIDs must be an array")
+                command["queueTrackIDs"] = [
+                    self._optional_text(track_id, "", 128)
+                    for track_id in raw_queue[:10_000]
+                    if str(track_id).strip()
+                ]
+
+            if payload.get("position") is not None:
+                command["position"] = self._bounded_float(payload["position"], 0, 24 * 60 * 60)
+            if payload.get("value") is not None:
+                command["value"] = self._bounded_float(payload["value"], 0, 1)
+
+            session["commands"].append(command)
+            session["commands"] = session["commands"][-MAX_PLAYBACK_COMMANDS:]
+            session["lastActivity"] = now
+            return {"accepted": True, "commandID": command_id, "sessionID": session_id}
+
+    def _session(self, session_id: str, now: float) -> dict:
+        session = self.sessions.get(session_id)
+        if session is not None:
+            return session
+
+        session = {
+            "hostDeviceID": None,
+            "devices": {},
+            "state": self._normalized_state({}, now),
+            "commands": [],
+            "nextCommandID": 1,
+            "lastActivity": now,
+        }
+        self.sessions[session_id] = session
+        return session
+
+    def _prune(self, now: float) -> None:
+        for session_id, session in list(self.sessions.items()):
+            session["devices"] = {
+                device_id: device
+                for device_id, device in session["devices"].items()
+                if now - device["lastSeen"] <= PLAYBACK_DEVICE_TTL_SECONDS
+            }
+            if session["hostDeviceID"] not in session["devices"]:
+                session["hostDeviceID"] = None
+            if (
+                session_id != SHARED_PLAYBACK_SESSION_ID
+                and not session["devices"]
+                and now - session["lastActivity"] > PLAYBACK_SESSION_TTL_SECONDS
+            ):
+                del self.sessions[session_id]
+
+    def _normalized_state(self, payload: dict, now: float, previous: dict | None = None) -> dict:
+        if "queueTrackIDs" in payload:
+            raw_queue = payload.get("queueTrackIDs", [])
+        else:
+            raw_queue = (previous or {}).get("queueTrackIDs", [])
+        queue = raw_queue if isinstance(raw_queue, list) else []
+        repeat_mode = str(payload.get("repeatMode") or "off")
+        if repeat_mode not in {"off", "one", "all"}:
+            repeat_mode = "off"
+
+        raw_track_id = payload.get("trackID")
+        track_id = self._optional_text(raw_track_id, "", 128) if raw_track_id is not None else None
+        return {
+            "trackID": track_id or None,
+            "queueTrackIDs": [
+                self._optional_text(track_id, "", 128)
+                for track_id in queue[:10_000]
+                if str(track_id).strip()
+            ],
+            "elapsed": self._bounded_float(payload.get("elapsed", 0), 0, 24 * 60 * 60),
+            "isPlaying": bool(payload.get("isPlaying", False)),
+            "isShuffleEnabled": bool(payload.get("isShuffleEnabled", False)),
+            "repeatMode": repeat_mode,
+            "volume": self._bounded_float(payload.get("volume", 1), 0, 1),
+            "updatedAt": now,
+        }
+
+    @staticmethod
+    def _required_text(payload: dict, key: str, limit: int) -> str:
+        value = str(payload.get(key) or "").strip()
+        if not value:
+            raise ValueError(f"Missing {key}")
+        return value[:limit]
+
+    @staticmethod
+    def _optional_text(value, fallback: str, limit: int) -> str:
+        text = str(value or "").strip()
+        return (text or fallback)[:limit]
+
+    @staticmethod
+    def _session_id(value) -> str:
+        session_id = str(value or SHARED_PLAYBACK_SESSION_ID).strip()
+        if session_id == SHARED_PLAYBACK_SESSION_ID:
+            return session_id
+        try:
+            return str(uuid.UUID(session_id))
+        except (ValueError, TypeError, AttributeError) as error:
+            raise ValueError("Invalid playback session id") from error
+
+    @staticmethod
+    def _nonnegative_int(value) -> int:
+        try:
+            return max(int(value or 0), 0)
+        except (TypeError, ValueError) as error:
+            raise ValueError("Invalid command revision") from error
+
+    @staticmethod
+    def _bounded_float(value, lower: float, upper: float) -> float:
+        try:
+            number = float(value or 0)
+        except (TypeError, ValueError) as error:
+            raise ValueError("Invalid playback value") from error
+        if number != number or number in {float("inf"), float("-inf")}:
+            raise ValueError("Invalid playback value")
+        return min(max(number, lower), upper)
+
+
 class AriaSongHandler(BaseHTTPRequestHandler):
     server_version = f"AriaSongServer/{ARIA_VERSION}"
 
@@ -1987,6 +2224,10 @@ class AriaSongHandler(BaseHTTPRequestHandler):
     @property
     def playlist_manager(self) -> PlaylistManager:
         return self.server.playlist_manager
+
+    @property
+    def playback_session_manager(self) -> "PlaybackSessionManager":
+        return self.server.playback_session_manager
 
     def do_OPTIONS(self) -> None:
         self.send_response(HTTPStatus.NO_CONTENT)
@@ -2021,6 +2262,10 @@ class AriaSongHandler(BaseHTTPRequestHandler):
 
         if parsed.path == "/api/downloads":
             self.start_download()
+        elif parsed.path == "/api/playback/sync":
+            self.sync_playback_session()
+        elif parsed.path.startswith("/api/playback/sessions/") and parsed.path.endswith("/commands"):
+            self.enqueue_playback_command(parsed)
         elif parsed.path.startswith("/api/tracks/") and parsed.path.endswith("/artwork/refresh"):
             self.refresh_track_artwork(parsed)
         else:
@@ -2075,6 +2320,34 @@ class AriaSongHandler(BaseHTTPRequestHandler):
             return
 
         self.write_json(playlist)
+
+    def sync_playback_session(self) -> None:
+        payload = self.read_json_body()
+        if payload is None:
+            return
+
+        try:
+            response = self.playback_session_manager.sync(payload)
+        except ValueError as error:
+            self.write_json({"error": str(error)}, status=HTTPStatus.BAD_REQUEST)
+            return
+
+        self.write_json(response)
+
+    def enqueue_playback_command(self, parsed) -> None:
+        session_path = parsed.path.removeprefix("/api/playback/sessions/").removesuffix("/commands")
+        session_id = unquote(session_path).strip("/")
+        payload = self.read_json_body()
+        if payload is None:
+            return
+
+        try:
+            response = self.playback_session_manager.enqueue_command(session_id, payload)
+        except ValueError as error:
+            self.write_json({"error": str(error)}, status=HTTPStatus.BAD_REQUEST)
+            return
+
+        self.write_json(response, status=HTTPStatus.ACCEPTED)
 
     def delete_playlist(self, parsed) -> None:
         playlist_id = unquote(parsed.path.removeprefix("/api/playlists/")).strip("/")
@@ -2801,6 +3074,7 @@ def main() -> None:
     server.catalog_index = CatalogIndex(songs_dir)
     server.lyrics_manager = LyricsManager(songs_dir)
     server.playlist_manager = PlaylistManager(songs_dir)
+    server.playback_session_manager = PlaybackSessionManager()
     server.download_manager = DownloadManager(
         Path(__file__).resolve().parent.parent,
         songs_dir,

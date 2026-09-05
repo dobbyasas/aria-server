@@ -1,6 +1,6 @@
 # Aria Song Server
 
-Current Aria version: `1.15.0`
+Current Aria version: `1.18.0`
 
 Run this on the Fedora laptop from `~/aria-server`:
 
@@ -26,6 +26,8 @@ The server reads songs from `~/aria-server/songs`, keeps a cached catalog index 
 - `GET /api/playlists` for shared playlists on every Aria device
 - `PUT /api/playlists/<playlist-id>` to create or update a shared playlist
 - `DELETE /api/playlists/<playlist-id>` to remove a shared playlist
+- `POST /api/playback/sync` for host election, heartbeats, and live playback state
+- `POST /api/playback/sessions/<session-id>/commands` to control the device producing audio
 - `POST /api/downloads` to start a server-side YouTube album, song, or playlist download
 - `GET /api/downloads` for the active download plus recent jobs
 - `GET /api/downloads/<download-id>` for progress, status, and output tail
@@ -42,6 +44,12 @@ rebuild.
 Shared playlists are stored atomically in `songs/.aria_playlists.json`. The
 server preserves their names, ordered track IDs, compressed custom covers, and
 edit revisions so stale updates from another device cannot overwrite newer edits.
+
+Playback sessions are intentionally transient. The first active device in the
+default `shared` session produces audio; later devices become controllers and
+receive its track, queue, elapsed time, volume, shuffle, and repeat state. If the
+host disappears, another active controller is elected automatically. Choosing
+separate playback creates a UUID-named session so both devices may play at once.
 
 Lyrics are resolved from a matching `.lrc`, `.lyrics`, or `.txt` sidecar first,
 then from embedded audio tags, and finally from LRCLIB. Online results are

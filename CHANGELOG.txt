@@ -1,6 +1,12 @@
 ARIA SONG SERVER - VERSION HISTORY
 ==================================
 
+Version 1.18.0
+Created: 2026-09-05
+
+Added:
+- Added transient playback sessions with automatic host election, device heartbeats, synchronized playback state, remote command delivery, host failover, and independent per-device sessions.
+
 Version 1.17.0
 Created: 2026-09-05
 
