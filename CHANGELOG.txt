@@ -1,6 +1,12 @@
 ARIA SONG SERVER - VERSION HISTORY
 ==================================
 
+Version 1.21.0
+Created: 2026-09-06
+
+Changed:
+- Synchronized the shared Aria version for Mac queue reordering, Add to Queue, and corrected manual song priority.
+
 Version 1.20.0
 Created: 2026-09-05
 
