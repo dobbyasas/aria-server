@@ -1,6 +1,12 @@
 ARIA SONG SERVER - VERSION HISTORY
 ==================================
 
+Version 1.22.0
+Created: 2026-09-06
+
+Changed:
+- Synchronized the shared Aria version for persistent Mac library navigation and album browsing state.
+
 Version 1.21.0
 Created: 2026-09-06
 
