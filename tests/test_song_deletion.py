@@ -5,7 +5,7 @@ import uuid
 from pathlib import Path
 from types import SimpleNamespace
 from urllib.parse import urlparse
-from unittest.mock import Mock
+from unittest.mock import Mock, patch
 
 import test_standalone_downloads_and_album_deletion as fixtures
 
@@ -26,6 +26,9 @@ class SongDeletionTests(unittest.TestCase):
         self.records = [helper.record(path, album='Same Album', standalone=False)
                         for path in [self.target, self.kept]]
         self.catalog = server.CatalogIndex(self.songs)
+        refresh = patch.object(self.catalog, "refresh_in_background")
+        refresh.start()
+        self.addCleanup(refresh.stop)
         self.catalog.records = self.records
         self.catalog.records_by_filename = {r['filename']: r for r in self.records}
         self.catalog.save(self.records)

@@ -59,6 +59,7 @@ MAX_PLAYLIST_COVER_BYTES = 2 * 1024 * 1024
 MAX_ARTWORK_BYTES = 12 * 1024 * 1024
 STANDALONE_TRACK_STORE_VERSION = 1
 STANDALONE_TRACK_STORE_NAME = ".aria_standalone_tracks.json"
+RADIO_TRACK_STORE_NAME = ".aria_radio_tracks.json"
 SHARED_PLAYBACK_SESSION_ID = "shared"
 PLAYBACK_DEVICE_TTL_SECONDS = 8
 PLAYBACK_SESSION_TTL_SECONDS = 24 * 60 * 60
@@ -177,6 +178,30 @@ def save_standalone_track_filenames(songs_dir: Path, filenames: set[str]) -> Non
         encoding="utf-8",
     )
     temporary_path.replace(path)
+
+
+def radio_track_filenames(songs_dir: Path) -> set[str]:
+    path = songs_dir / RADIO_TRACK_STORE_NAME
+    try:
+        payload = json.loads(path.read_text(encoding="utf-8"))
+    except FileNotFoundError:
+        return set()
+    if not isinstance(payload, dict) or payload.get("version") != 1 or not isinstance(payload.get("filenames"), list):
+        raise ValueError("Invalid radio download manifest")
+    return {name for name in payload["filenames"] if isinstance(name, str) and name}
+
+
+def save_radio_track_filenames(songs_dir: Path, filenames: set[str]) -> None:
+    path = songs_dir / RADIO_TRACK_STORE_NAME
+    temporary = path.with_suffix(".json.tmp")
+    temporary.write_text(json.dumps({"version": 1, "filenames": sorted(filenames)}, indent=2), encoding="utf-8")
+    temporary.replace(path)
+
+
+def forget_radio_tracks(songs_dir: Path, filenames: set[str]) -> None:
+    radio = radio_track_filenames(songs_dir)
+    if radio.intersection(filenames):
+        save_radio_track_filenames(songs_dir, radio.difference(filenames))
 
 
 def ffprobe_metadata(path: Path) -> dict:
@@ -436,6 +461,7 @@ def track_payload_from_record(record: dict, base_url: str, artwork_source_record
         "artworkURL": artwork_url,
         "isExplicit": bool(record.get("isExplicit")),
         "isStandalone": bool(record.get("isStandalone")),
+        "isRadioDownload": bool(record.get("isRadioDownload")),
     }
 
 
@@ -492,6 +518,7 @@ class CatalogIndex:
         self.songs_dir = songs_dir
         self.index_path = index_path or songs_dir / ".aria_catalog_index.json"
         self.lock = threading.RLock()
+        self.refresh_lock = threading.RLock()
         self.records: list[dict] = []
         self.records_by_filename: dict[str, dict] = {}
         self.last_refresh_at = 0.0
@@ -621,6 +648,9 @@ class CatalogIndex:
             for record in cache.get("tracks", {}).values()
             if isinstance(record, dict) and record.get("filename")
         ]
+        radio_filenames = radio_track_filenames(self.songs_dir)
+        for record in records:
+            record["isRadioDownload"] = record["filename"] in radio_filenames
         records.sort(key=title_sort_key)
 
         with self.lock:
@@ -672,6 +702,10 @@ class CatalogIndex:
                 self.is_refreshing = False
 
     def refresh(self, force: bool = False) -> None:
+        with self.refresh_lock:
+            self._refresh(force)
+
+    def _refresh(self, force: bool = False) -> None:
         now = monotonic()
         with self.lock:
             if (
@@ -684,6 +718,7 @@ class CatalogIndex:
         cache = self.load()
         cached_tracks = cache.get("tracks", {})
         standalone_filenames = standalone_track_filenames(self.songs_dir)
+        radio_filenames = radio_track_filenames(self.songs_dir)
         records: list[dict] = []
         changed = False
 
@@ -711,6 +746,11 @@ class CatalogIndex:
                 record["isStandalone"] = is_standalone
                 changed = True
 
+            is_radio = path.name in radio_filenames
+            if bool(record.get("isRadioDownload")) != is_radio:
+                changed = True
+            record["isRadioDownload"] = is_radio
+
             records.append(record)
 
         current_names = {record["filename"] for record in records}
@@ -729,6 +769,10 @@ class CatalogIndex:
             self.save(records)
 
     def delete_album(self, album_id: str) -> tuple[int, set[str]] | None:
+        with self.refresh_lock:
+            return self._delete_album(album_id)
+
+    def _delete_album(self, album_id: str) -> tuple[int, set[str]] | None:
         with self.lock:
             records = [
                 dict(record)
@@ -765,10 +809,15 @@ class CatalogIndex:
                 standalone.difference(deleted_filenames),
             )
 
+        forget_radio_tracks(self.songs_dir, deleted_filenames)
         self.refresh(force=True)
         return len(deleted_filenames), deleted_track_ids
 
     def delete_track_records(self, records: list[dict]) -> set[str]:
+        with self.refresh_lock:
+            return self._delete_track_records(records)
+
+    def _delete_track_records(self, records: list[dict]) -> set[str]:
         deleted_track_ids: set[str] = set()
         deleted_filenames: set[str] = set()
         songs_root = self.songs_dir.resolve()
@@ -795,6 +844,7 @@ class CatalogIndex:
             )
 
         if deleted_filenames:
+            forget_radio_tracks(self.songs_dir, deleted_filenames)
             self.refresh(force=True)
         return deleted_track_ids
 
@@ -1252,13 +1302,14 @@ class DownloadValidationError(ValueError):
 
 
 class DownloadJob:
-    def __init__(self, link: str, album: str, album_artist: str, year: str, kind: str) -> None:
+    def __init__(self, link: str, album: str, album_artist: str, year: str, kind: str, source: str = "manual") -> None:
         self.id = str(uuid.uuid4())
         self.link = link
         self.album = album
         self.album_artist = album_artist
         self.year = year
         self.kind = kind
+        self.source = source
         self.status = "queued"
         self.phase = "Queued"
         self.message = "Waiting to start"
@@ -1382,6 +1433,7 @@ class DownloadJob:
                 "albumArtist": self.album_artist,
                 "year": self.year,
                 "kind": self.kind,
+                "source": self.source,
                 "filesStarted": self.files_started,
                 "audioConverted": self.audio_converted,
                 "metadataLines": self.metadata_lines,
@@ -1431,6 +1483,9 @@ class DownloadManager:
         ).strip()
         year = str(payload.get("year") or "").strip()
         kind = str(payload.get("kind") or "album").strip().casefold()
+        source = str(payload.get("source") or "manual").strip().casefold()
+        if source not in {"manual", "radio"} or (source == "radio" and kind != "song"):
+            raise DownloadValidationError("Download source must be manual, or radio for a single song")
 
         if not link:
             raise DownloadValidationError("Missing YouTube Music link")
@@ -1447,6 +1502,7 @@ class DownloadManager:
             album_artist=album_artist,
             year=year,
             kind=kind,
+            source=source,
         )
 
         with self.lock:
@@ -1489,7 +1545,10 @@ class DownloadManager:
         job.mark_running()
         inspected_entries: list[dict] = []
         missing_playlist_items: list[int] = []
+        existing_filenames: set[str] = set()
         try:
+            if job.source == "radio":
+                existing_filenames = {path.name for path in song_files(self.songs_dir)}
             if job.kind in {"song", "playlist"}:
                 job.update_phase("Checking library", 0.06, "Checking for songs already in Aria")
                 inspected_entries = self.inspect_entries(job)
@@ -1597,6 +1656,7 @@ class DownloadManager:
                 job.append_output(raw_line)
 
             return_code = process.wait()
+            self.mark_radio_downloads(job, inspected_entries, existing_filenames)
             if return_code == 0:
                 job.update_phase("Refreshing catalog", 0.97, "Updating the Aria catalog")
                 self.catalog_index.refresh(force=True)
@@ -1613,9 +1673,26 @@ class DownloadManager:
             else:
                 job.fail(f"Downloader exited with status {return_code}")
         except Exception as error:
+            try:
+                self.mark_radio_downloads(job, inspected_entries, existing_filenames)
+            except (OSError, ValueError) as manifest_error:
+                error = RuntimeError(f"{error}; could not flag radio downloads: {manifest_error}")
             job.fail(str(error))
         finally:
             self.clear_active(job)
+
+    def mark_radio_downloads(self, job: DownloadJob, entries: list[dict], existing_filenames: set[str]) -> None:
+        if job.source != "radio":
+            return
+        video_ids = {str(entry["id"]) for entry in entries}
+        new_filenames = {
+            path.name for path in song_files(self.songs_dir)
+            if path.name not in existing_filenames and youtube_id_from_filename(path.name) in video_ids
+        }
+        if new_filenames:
+            radio = radio_track_filenames(self.songs_dir)
+            save_radio_track_filenames(self.songs_dir, radio | new_filenames)
+            self.catalog_index.refresh(force=True)
 
     def inspect_entries(self, job: DownloadJob) -> list[dict]:
         command = [
@@ -2254,7 +2331,9 @@ class AriaSongHandler(BaseHTTPRequestHandler):
 
     def do_DELETE(self) -> None:
         parsed = urlparse(self.path)
-        if parsed.path.startswith("/api/playlists/"):
+        if parsed.path == "/api/radio-downloads":
+            self.delete_radio_downloads()
+        elif parsed.path.startswith("/api/playlists/"):
             self.delete_playlist(parsed)
         elif parsed.path.startswith("/api/tracks/") and parsed.path.endswith("/album"):
             self.delete_track_album(parsed)
@@ -2304,6 +2383,8 @@ class AriaSongHandler(BaseHTTPRequestHandler):
             self.write_catalog_summary()
         elif parsed.path == "/api/playlists":
             self.write_json(self.playlist_manager.all())
+        elif parsed.path == "/api/radio-downloads":
+            self.write_radio_downloads()
         elif parsed.path == "/api/downloads":
             self.write_downloads()
         elif parsed.path.startswith("/api/downloads/"):
@@ -2403,6 +2484,29 @@ class AriaSongHandler(BaseHTTPRequestHandler):
         self.write_json({
             "deletedFiles": deleted_files,
             "deletedTrackIDs": sorted(deleted_track_ids),
+            "updatedPlaylists": updated_playlists,
+        })
+
+    def write_radio_downloads(self) -> None:
+        records = [record for record in self.catalog_index.tracks() if record.get("isRadioDownload")]
+        self.write_json({"trackCount": len(records), "trackIDs": [record["id"] for record in records]})
+
+    def delete_radio_downloads(self) -> None:
+        with self.download_manager.lock:
+            if self.download_manager.active_job() is not None:
+                self.write_json({"error": "Wait for the active download to finish before deleting radio downloads."}, status=HTTPStatus.CONFLICT)
+                return
+            try:
+                self.catalog_index.refresh(force=True)
+                records = [record for record in self.catalog_index.tracks() if record.get("isRadioDownload")]
+                deleted_ids = self.catalog_index.delete_track_records(records)
+            except (OSError, ValueError) as error:
+                self.write_json({"error": f"Could not delete radio downloads: {error}"}, status=HTTPStatus.INTERNAL_SERVER_ERROR)
+                return
+            updated_playlists = self.playlist_manager.remove_track_ids(deleted_ids)
+        self.write_json({
+            "deletedFiles": len(deleted_ids),
+            "deletedTrackIDs": sorted(deleted_ids),
             "updatedPlaylists": updated_playlists,
         })
 
@@ -2885,6 +2989,7 @@ class AriaSongHandler(BaseHTTPRequestHandler):
         self.write_json({
             "ariaVersion": ARIA_VERSION,
             "trackCount": len(records),
+            "radioDownloadCount": sum(bool(record.get("isRadioDownload")) for record in records),
             "albumCount": len(albums),
             "indexVersion": CATALOG_INDEX_VERSION,
             "isIndexing": index_status["isIndexing"],
