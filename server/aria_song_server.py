@@ -1271,6 +1271,7 @@ class DownloadJob:
         self.reused_files = 0
         self.playlist_id: str | None = None
         self.playlist_track_count: int | None = None
+        self.track_id: str | None = None
         self.error: str | None = None
         self.output_tail: list[str] = []
         self.created_at = timestamp()
@@ -1389,6 +1390,7 @@ class DownloadJob:
                 "reusedFiles": self.reused_files,
                 "playlistID": self.playlist_id,
                 "playlistTrackCount": self.playlist_track_count,
+                "trackID": self.track_id,
                 "error": self.error,
                 "outputTail": list(self.output_tail),
                 "createdAt": self.created_at,
@@ -1536,6 +1538,7 @@ class DownloadManager:
 
                 if job.kind == "song" and matched_records and matched_records[0] is not None:
                     job.new_files = 0
+                    job.track_id = str(matched_records[0]["id"])
                     job.update_phase("Finishing", 0.96, "Song is already in the Aria library")
                     job.succeed()
                     self.clear_active(job)
@@ -1597,6 +1600,9 @@ class DownloadManager:
             if return_code == 0:
                 job.update_phase("Refreshing catalog", 0.97, "Updating the Aria catalog")
                 self.catalog_index.refresh(force=True)
+                if job.kind == "song" and inspected_entries:
+                    record = self.match_entry(inspected_entries[0], self.catalog_index.tracks())
+                    job.track_id = str(record["id"]) if record else None
                 if job.kind == "playlist":
                     self.create_downloaded_playlist(
                         job,
@@ -2252,6 +2258,8 @@ class AriaSongHandler(BaseHTTPRequestHandler):
             self.delete_playlist(parsed)
         elif parsed.path.startswith("/api/tracks/") and parsed.path.endswith("/album"):
             self.delete_track_album(parsed)
+        elif parsed.path.startswith("/api/tracks/"):
+            self.delete_track(parsed)
         elif parsed.path.startswith("/api/albums/"):
             self.delete_album(parsed)
         else:
@@ -2395,6 +2403,41 @@ class AriaSongHandler(BaseHTTPRequestHandler):
         self.write_json({
             "deletedFiles": deleted_files,
             "deletedTrackIDs": sorted(deleted_track_ids),
+            "updatedPlaylists": updated_playlists,
+        })
+
+    def delete_track(self, parsed) -> None:
+        track_id = unquote(parsed.path.removeprefix("/api/tracks/")).strip("/")
+        try:
+            track_id = str(uuid.UUID(track_id))
+        except ValueError:
+            self.write_json({"error": "Invalid track id"}, status=HTTPStatus.BAD_REQUEST)
+            return
+
+        # Serialize against new downloads: their metadata refresh and duplicate
+        # detection must not race a deletion. The phone skips immediately and
+        # retries a busy deletion once the current download has finished.
+        with self.download_manager.lock:
+            if self.download_manager.active_job() is not None:
+                self.write_json(
+                    {"error": "Wait for the active music download to finish before deleting a song."},
+                    status=HTTPStatus.CONFLICT,
+                )
+                return
+            record = self.catalog_index.track_for_id(track_id)
+            try:
+                deleted_ids = self.catalog_index.delete_track_records([record]) if record else set()
+            except OSError as error:
+                self.write_json(
+                    {"error": f"Could not delete song files: {error}"},
+                    status=HTTPStatus.INTERNAL_SERVER_ERROR,
+                )
+                return
+            # Also clean stale playlist references on an idempotent retry.
+            updated_playlists = self.playlist_manager.remove_track_ids({track_id})
+        self.write_json({
+            "deletedFiles": len(deleted_ids),
+            "deletedTrackIDs": [track_id],
             "updatedPlaylists": updated_playlists,
         })
 

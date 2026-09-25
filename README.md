@@ -23,6 +23,7 @@ The server reads songs from `~/aria-server/songs`, keeps a cached catalog index 
 - `GET /api/albums/<album-id>/tracks?offset=0&limit=100` for album tracks sorted by metadata track number
 - `DELETE /api/albums/<album-id>` to delete every file in one album
 - `DELETE /api/tracks/<track-id>/album` to delete the album containing a selected track
+- `DELETE /api/tracks/<track-id>` to delete one song and its lyrics sidecars and remove its shared playlist references
 - `GET /api/playlists` for shared playlists on every Aria device
 - `PUT /api/playlists/<playlist-id>` to create or update a shared playlist
 - `DELETE /api/playlists/<playlist-id>` to remove a shared playlist
@@ -80,6 +81,14 @@ playlist is created or updated with both reused and new tracks in source order.
 
 Only one download runs at a time. Progress is approximate while `yt-dlp` runs,
 then the server refreshes the cached catalog so the apps can load the new songs.
+Successful song jobs include `trackID`, identifying the downloaded or reused
+catalog track even when its saved metadata differs from the YouTube title.
+
+The iPhone radio feature requests individual missing songs through the existing
+download API. Single-song deletion is idempotent and returns `deletedFiles`,
+`deletedTrackIDs`, and `updatedPlaylists`. It returns HTTP 409 while a download
+is active; the app skips immediately and retries deletion after the download.
+Deleting a song that belongs to an album leaves the other album tracks intact.
 
 ## Downloader Auto-update
 
