@@ -23,6 +23,9 @@ The server reads songs from `~/aria-server/songs`, keeps a cached catalog index 
 - `GET /api/albums/<album-id>/tracks?offset=0&limit=100` for album tracks sorted by metadata track number
 - `DELETE /api/albums/<album-id>` to delete every file in one album
 - `DELETE /api/tracks/<track-id>/album` to delete the album containing a selected track
+- `DELETE /api/tracks/<track-id>` to delete one song and its lyrics sidecars and remove its shared playlist references
+- `GET /api/radio-downloads` for the count and IDs of songs downloaded by radio
+- `DELETE /api/radio-downloads` to delete all radio downloads and their playlist references
 - `GET /api/playlists` for shared playlists on every Aria device
 - `PUT /api/playlists/<playlist-id>` to create or update a shared playlist
 - `DELETE /api/playlists/<playlist-id>` to remove a shared playlist
@@ -80,6 +83,32 @@ playlist is created or updated with both reused and new tracks in source order.
 
 Only one download runs at a time. Progress is approximate while `yt-dlp` runs,
 then the server refreshes the cached catalog so the apps can load the new songs.
+Successful song jobs include `trackID`, identifying the downloaded or reused
+catalog track even when its saved metadata differs from the YouTube title.
+
+The iPhone radio feature requests individual missing songs through the existing
+download API. Single-song deletion is idempotent and returns `deletedFiles`,
+`deletedTrackIDs`, and `updatedPlaylists`. It returns HTTP 409 while a download
+is active; the app skips immediately and retries deletion after the download.
+Deleting a song that belongs to an album leaves the other album tracks intact.
+
+Radio song download requests include `"source": "radio"` (ordinary downloads
+default to `"manual"`). Newly created audio files for those requests are recorded
+atomically in `songs/.aria_radio_tracks.json`. Track responses expose the flag as
+`isRadioDownload`; `/api/catalog` also includes `radioDownloadCount`. The separate
+manifest survives server restarts and catalog-cache rebuilds. Existing songs
+reused by radio keep their original flag, so an ordinary library song never
+becomes a bulk-delete target merely because radio played it. Completed audio
+files left by a failed radio download job are also flagged.
+
+Bulk deletion returns `deletedFiles`, `deletedTrackIDs`, and `updatedPlaylists`.
+It deletes only flagged files and their lyrics sidecars, clears their origin
+flags, and leaves ordinary songs intact. Like single-song deletion, it returns
+HTTP 409 while a download is active. The iPhone Library shows a radio-download
+count and a **Delete all** action, which stops radio and waits for the current
+download before deleting. Clearing downloads does not add songs to the radio
+exclusion list. Downloads made before origin tracking was introduced are not
+retroactively guessed or flagged.
 
 ## Downloader Auto-update
 

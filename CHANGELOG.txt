@@ -1,6 +1,14 @@
 ARIA SONG SERVER - VERSION HISTORY
 ==================================
 
+Version 1.23.0
+Created: 2026-09-26
+
+Added:
+- Single-song deletion with playlist cleanup and download-job track resolution.
+- Persistent radio-download origin flags that preserve existing library songs.
+- Listing and bulk deletion of radio downloads, coordinated with active downloads.
+
 Version 1.22.6
 Created: 2026-09-10
 

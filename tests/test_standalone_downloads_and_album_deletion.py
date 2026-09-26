@@ -181,6 +181,25 @@ class StandaloneDownloadsAndAlbumDeletionTests(unittest.TestCase):
         self.assertEqual(by_youtube_style["id"], records[1]["id"])
         self.assertEqual(by_unique_title["id"], records[1]["id"])
 
+    def test_reused_song_job_returns_catalog_track_id(self):
+        with tempfile.TemporaryDirectory() as directory:
+            base = Path(directory)
+            songs = base / "songs"
+            songs.mkdir()
+            index = server.CatalogIndex(songs)
+            manager = server.DownloadManager(base, songs, index)
+            track_id = str(uuid.uuid4())
+            record = {"id": track_id, "title": "Song", "artist": "Artist",
+                      "album": "Album", "filename": "Song [abcdefghijk].mp3"}
+            job = server.DownloadJob("https://music.youtube.com/watch?v=abcdefghijk", "Song", "Artist", "", "song")
+            with patch.object(manager, "inspect_entries", return_value=[{"id": "abcdefghijk", "title": "Song", "artist": "Artist", "playlistIndex": 1}]), \
+                 patch.object(index, "tracks", return_value=[record]), \
+                 patch.object(manager, "refresh_reused_standalone_metadata", return_value=False):
+                manager.run_job(job)
+            self.assertEqual(job.status, "succeeded")
+            self.assertEqual(job.snapshot()["trackID"], track_id)
+            self.assertEqual(job.new_files, 0)
+
     def test_only_standalone_or_legacy_playlist_records_are_retagged(self):
         self.assertTrue(server.DownloadManager.is_legacy_playlist_record({
             "album": "Playlist",
