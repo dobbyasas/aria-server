@@ -5,6 +5,7 @@ import uuid
 from pathlib import Path
 from types import SimpleNamespace
 from unittest.mock import Mock, patch
+from urllib.parse import urlparse
 
 import test_standalone_downloads_and_album_deletion as fixtures
 
@@ -125,6 +126,54 @@ class RadioDownloadsTests(unittest.TestCase):
         for payload in [{'kind': 'album', 'source': 'radio'}, {'kind': 'song', 'source': 'unknown'}]:
             with self.assertRaises(server.DownloadValidationError):
                 self.manager.start({'link': 'https://music.youtube.com/watch?v=x', **payload})
+
+    def keep(self, track_id):
+        self.handler.keep_radio_download(urlparse(f'/api/radio-downloads/{track_id}/keep'))
+
+    def test_keep_survives_restart_rebuild_and_bulk_cleanup_without_changing_audio_or_playlists(self):
+        target, _ = self.download()
+        record = self.catalog.track_for_filename(target.name)
+        original_audio = target.read_bytes()
+        target.with_suffix('.lrc').write_text('lyrics')
+        self.playlists.upsert(str(uuid.uuid4()), {'title': 'Mix', 'trackIDs': [record['id']]})
+        self.keep(record['id'])
+        self.keep(record['id'])  # Idempotent retry after a lost response.
+        self.assertFalse(self.handler.write_json.call_args.args[0]['isRadioDownload'])
+        self.assertFalse(server.radio_track_filenames(self.songs))
+        self.download()  # Radio reusing a kept file must not flag it again.
+        self.assertFalse(server.radio_track_filenames(self.songs))
+        reloaded = server.CatalogIndex(self.songs)
+        reloaded.index_path.unlink()
+        with patch.object(server, 'ffprobe_metadata', return_value={}):
+            reloaded.refresh(force=True)
+        self.assertFalse(reloaded.track_for_id(record['id'])['isRadioDownload'])
+        self.handler.delete_radio_downloads()
+        self.assertEqual(target.read_bytes(), original_audio)
+        self.assertEqual(target.with_suffix('.lrc').read_text(), 'lyrics')
+        self.assertEqual(self.playlists.all()[0]['trackIDs'], [record['id']])
+        self.assertEqual(self.handler.write_json.call_args.args[0]['deletedFiles'], 0)
+
+    def test_keep_errors_preserve_flag_and_files(self):
+        target, _ = self.download()
+        record = self.catalog.track_for_filename(target.name)
+        with patch.object(self.manager, 'active_job', return_value=object()):
+            self.keep(record['id'])
+        self.assertEqual(self.handler.write_json.call_args.kwargs['status'], 409)
+        with patch.object(server, 'save_radio_track_filenames', side_effect=OSError('disk full')):
+            self.keep(record['id'])
+        self.assertEqual(self.handler.write_json.call_args.kwargs['status'], 500)
+        self.assertIn(target.name, server.radio_track_filenames(self.songs))
+        self.assertTrue(target.exists())
+        self.keep('invalid')
+        self.assertEqual(self.handler.write_json.call_args.kwargs['status'], 400)
+        self.keep(str(uuid.uuid4()))
+        self.assertEqual(self.handler.write_json.call_args.kwargs['status'], 404)
+
+    def test_keep_route_and_ordinary_song_are_safe(self):
+        self.handler.path = f'/api/radio-downloads/{self.existing_record["id"]}/keep'
+        self.handler.do_POST()
+        self.assertFalse(self.handler.write_json.call_args.args[0]['isRadioDownload'])
+        self.assertTrue(self.existing.exists())
 
     def test_routes_expose_listing_and_bulk_deletion(self):
         self.handler.path = '/api/radio-downloads'

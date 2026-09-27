@@ -25,7 +25,8 @@ The server reads songs from `~/aria-server/songs`, keeps a cached catalog index 
 - `DELETE /api/tracks/<track-id>/album` to delete the album containing a selected track
 - `DELETE /api/tracks/<track-id>` to delete one song and its lyrics sidecars and remove its shared playlist references
 - `GET /api/radio-downloads` for the count and IDs of songs downloaded by radio
-- `DELETE /api/radio-downloads` to delete all radio downloads and their playlist references
+- `POST /api/radio-downloads/<track-id>/keep` to clear the radio flag permanently without changing the audio or playlists (idempotent; 409 while a download is active)
+- `DELETE /api/radio-downloads` to delete remaining flagged radio downloads and their playlist references; kept songs are protected
 - `GET /api/playlists` for shared playlists on every Aria device
 - `PUT /api/playlists/<playlist-id>` to create or update a shared playlist
 - `DELETE /api/playlists/<playlist-id>` to remove a shared playlist
