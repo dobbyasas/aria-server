@@ -1,6 +1,13 @@
 ARIA SONG SERVER - VERSION HISTORY
 ==================================
 
+Version 1.24.0
+Created: 2026-09-27
+
+Added:
+- Persistent, idempotent Keep endpoint to remove the radio-download flag without changing audio or playlists.
+- Serialized Keep and cleanup operations to protect retained songs across devices and catalog rebuilds.
+
 Version 1.23.0
 Created: 2026-09-26
 

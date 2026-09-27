@@ -30,7 +30,7 @@ from youtube_track_metadata import refresh_tracks_from_youtube
 
 
 SONG_EXTENSIONS = {".mp3", ".m4a", ".aac", ".wav", ".flac"}
-ARIA_VERSION = "1.23.0"
+ARIA_VERSION = "1.24.0"
 CATALOG_INDEX_VERSION = 4
 CATALOG_REFRESH_INTERVAL_SECONDS = 10
 DEFAULT_PAGE_LIMIT = 100
@@ -2349,6 +2349,8 @@ class AriaSongHandler(BaseHTTPRequestHandler):
 
         if parsed.path == "/api/downloads":
             self.start_download()
+        elif parsed.path.startswith("/api/radio-downloads/") and parsed.path.endswith("/keep"):
+            self.keep_radio_download(parsed)
         elif parsed.path == "/api/playback/sync":
             self.sync_playback_session()
         elif parsed.path.startswith("/api/playback/sessions/") and parsed.path.endswith("/commands"):
@@ -2490,6 +2492,33 @@ class AriaSongHandler(BaseHTTPRequestHandler):
     def write_radio_downloads(self) -> None:
         records = [record for record in self.catalog_index.tracks() if record.get("isRadioDownload")]
         self.write_json({"trackCount": len(records), "trackIDs": [record["id"] for record in records]})
+
+    def keep_radio_download(self, parsed) -> None:
+        track_id = unquote(parsed.path.removeprefix("/api/radio-downloads/").removesuffix("/keep"))
+        try:
+            track_id = str(uuid.UUID(track_id))
+        except ValueError:
+            self.write_json({"error": "Invalid track id"}, status=HTTPStatus.BAD_REQUEST)
+            return
+
+        # Share the deletion/download lock so a successful Keep is durable before
+        # another device can take the bulk-cleanup snapshot.
+        with self.download_manager.lock, self.catalog_index.refresh_lock:
+            if self.download_manager.active_job() is not None:
+                self.write_json({"error": "Wait for the active download to finish before keeping a song."}, status=HTTPStatus.CONFLICT)
+                return
+            try:
+                self.catalog_index.refresh(force=True)
+                record = self.catalog_index.track_for_id(track_id)
+                if record is None:
+                    self.write_json({"error": "Song not found"}, status=HTTPStatus.NOT_FOUND)
+                    return
+                forget_radio_tracks(self.catalog_index.songs_dir, {record["filename"]})
+                self.catalog_index.refresh(force=True)
+            except (OSError, ValueError) as error:
+                self.write_json({"error": f"Could not keep song: {error}"}, status=HTTPStatus.INTERNAL_SERVER_ERROR)
+                return
+        self.write_json({"trackID": track_id, "isRadioDownload": False})
 
     def delete_radio_downloads(self) -> None:
         with self.download_manager.lock:
